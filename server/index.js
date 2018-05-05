@@ -18,6 +18,39 @@ app.use(session({
 }))
 
 
+app.post('/login', function(req,res){
+ var username = req.body.userName;
+ var password = req.body.password;
+ console.log('mais is here', username, password)
+ db.Users.findOne({username:username}, function(err,data){
+  if(err){
+    throw err;
+  }
+  else {
+    if (!data) {
+     res.sendStatus(404);
+   }
+   else {
+    bcrypt.compare(password, data.password, function(err,found){
+      if(found) {
+        helper.createSession(req,res,data.username);  
+      }
+      else {
+        res.sendStatus(404);
+      }
+    })
+  }
+
+}
+})
+ 
+})
+
+
+
+
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`The Port : ${ PORT }`);
