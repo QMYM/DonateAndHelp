@@ -1,9 +1,21 @@
 let express = require('express');
 let db = require('../db/index')
-let helper = require('../helper/uitilty')
-var app = express()
+let helper = require('../helper/uitilty');
+let session = require('express-session');
+let bcrypt = require ('bcrypt');
+let bodyParser = require('body-parser');
+
+const app = express();
+const saltRounds = 10;
 
 app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(session({
+ secret: "very very secret",
+ resave: true,
+ saveUninitialized: true
+}))
 
 
 const PORT = process.env.PORT || 3000;
