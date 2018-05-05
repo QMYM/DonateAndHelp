@@ -19,7 +19,10 @@ app.use(session({
 }))
 
 
-app.post('/user',handler.Signup)
+
+app.post('/login', handler.Login);
+app.post('/user',handler.Signup);
+
 
 
 

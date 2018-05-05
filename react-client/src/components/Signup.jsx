@@ -6,9 +6,9 @@ class Signup extends React.Component{
 	constructor(props){
 	super(props)
 		this.state={
-	    email: "",
-        password: "",
-        username:""
+	    username: "",
+        email: "",
+        password:""
     };
 		this.onChange=this.onChange.bind(this)
 		this.submit=this.submit.bind(this)
@@ -19,14 +19,15 @@ onChange(e){
 	})
 	
 }
-submit(email , username , password){
+submit(username , email , password){
 	$.ajax({
 		type : 'POST',
 		url : '/user',
 		data :{
-			email : email , 
+			username : username, 
+			email : email ,
 			password : password , 
-			username : username
+			
 		},
 		success : (data)=>{
 			console.log('aaa' , data)
@@ -48,7 +49,7 @@ return(
 <h2>Password:</h2>
 <input type ='password' name='password' onChange={this.onChange}/>
 
-<button onClick={()=>this.submit(this.state.username , this.state.password , this.state.email)}>Signup</button>
+<button onClick={()=>this.submit(this.state.username ,this.state.email , this.state.password )}>Signup</button>
 </div>
 	)
 }
