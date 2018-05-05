@@ -22,4 +22,13 @@ var users = new Schema ({
 })
 var Users = mongoose.model("Users" , users);
 
+var userSave = function(data ,callBack ){
+	var user = new Users(data);
+	user.save(function( err , elem){
+	if(err){callBack(err , null)}
+		callBack(null , elem)
+
+		})
+}
+module.exports.userSave =userSave ; 
 module.exports.Users = Users;
