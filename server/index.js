@@ -4,6 +4,7 @@ let helper = require('../helper/uitilty');
 let session = require('express-session');
 let bcrypt = require ('bcrypt');
 let bodyParser = require('body-parser');
+let handler = require('./handler');
 
 const app = express();
 const saltRounds = 10;
@@ -16,6 +17,13 @@ app.use(session({
  resave: true,
  saveUninitialized: true
 }))
+
+
+
+app.post('/login', handler.Login);
+app.post('/user',handler.Signup);
+
+
 
 
 const PORT = process.env.PORT || 3000;
