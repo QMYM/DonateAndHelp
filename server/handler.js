@@ -1,4 +1,6 @@
-let db = require('../db/index')
+let db = require('../db/index');
+let helper = require('../helper/uitilty');
+let bcrypt = require('bcrypt');
 
 exports.Signup=function(req,res){
 	db.userSave(req.body , function(err , data){
@@ -10,8 +12,8 @@ exports.Signup=function(req,res){
 exports.Login = function(req,res){
  var username = req.body.userName;
  var password = req.body.password;
- console.log('mais is here', username, password)
  db.Users.findOne({username:username}, function(err,data){
+ console.log('mais is here',data)
   if(err){
     throw err;
   }
