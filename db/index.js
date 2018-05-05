@@ -12,4 +12,14 @@ db.once('open', function() {
 	console.log('mongoose connected successfully');
 });
 
-module.exports = db;
+var Schema = mongoose.Schema ; 
+
+var users = new Schema ({
+	username :{type : String} , 
+	email : {type : String} ,
+	password : {type : String},
+	image : {type : String}
+})
+var Users = mongoose.model("Users" , users);
+
+module.exports.Users = Users;
