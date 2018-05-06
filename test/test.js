@@ -1,4 +1,5 @@
 var assert = require('assert')
+let db = require('../db/index')
 
 describe('Array', function () {
   describe('#indexOf()', function () {
