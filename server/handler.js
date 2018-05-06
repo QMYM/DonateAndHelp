@@ -5,11 +5,11 @@ let bcrypt = require('bcrypt');
 exports.Signup = function(req, res) {
     db.userSave(req.body, function(err, data) {
         if (err) {
-            res.status(404).send(err)
+            res.status(404).send(err);
         }
-        res.status(200).send(data)
+        res.status(200).send(data);
     })
-}
+};
 
 exports.Login = function(req, res) {
     var username = req.body.userName;
@@ -30,9 +30,9 @@ exports.Login = function(req, res) {
                     } else {
                         res.sendStatus(404);
                     }
-                })
+                });
             }
 
         }
-    })
-}
+    });
+};
