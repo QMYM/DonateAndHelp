@@ -1,18 +1,15 @@
-import React from 'react';
-import $ from 'jquery';
+import React from 'react'
+import $ from 'jquery'
 
-import axios from 'axios';
+import axios from 'axios'
 
-import Signup from './Signup.jsx';
-import Login from './Login.jsx';
+import Signup from './Signup.jsx'
+import Login from './Login.jsx'
 
+const Home = (props) => (<div >
+  <Signup />
+  <Login />
+  <button > Signup </button> <button > login </button> </div >
 
-const Home = (props) => ( <
-    div >
-    <
-    button > Signup < /button> <
-    button > login < /button> < /
-    div >
-
-);
-export default Home;
+)
+export default Home
