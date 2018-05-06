@@ -1,8 +1,5 @@
 let express = require('express')
-let db = require('../db/index')
-let helper = require('../helper/uitilty')
 let session = require('express-session')
-let bcrypt = require('bcrypt')
 let bodyParser = require('body-parser')
 let handler = require('./handler')
 

@@ -1,4 +1,6 @@
 var assert = require('assert')
+let db = require('../db/index')
+
 describe('Array', function () {
   describe('#indexOf()', function () {
     it('should return -1 when the value is not present', function () {
@@ -7,11 +9,14 @@ describe('Array', function () {
   })
 })
 
-describe('User', function () {
+describe('Users', function () {
   describe('#save()', function () {
     it('should save without error', function (done) {
-      var user = new User('Luna')
-      user.save(done)
+      var user = new db.Users({ username: 'anyname', email: 'anyemail', password: '123' })
+      user.save(function (err) {
+        if (err) done(err)
+        else done()
+      })
     })
   })
 })

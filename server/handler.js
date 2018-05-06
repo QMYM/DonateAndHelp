@@ -1,6 +1,7 @@
 let db = require('../db/index')
 let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
+
 let saltRounds = 10
 exports.Signup = function (req, res) {
   console.log('data is here', req.body)
