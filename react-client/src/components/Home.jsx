@@ -9,8 +9,6 @@ import Login from './Login.jsx'
 
 const Home = (props) => (
   <div>
-  <Signup />
-  <Login />
    <button>Signup</button>
     <button>login</button>
   </div>
