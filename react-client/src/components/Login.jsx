@@ -1,10 +1,7 @@
 import React from 'react'
-import $ from 'jquery'
-
 import axios from 'axios'
-
 import Signup from './Signup.jsx'
-
+  
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -17,29 +14,29 @@ class Login extends React.Component {
     this.submitLogin = this.submitLogin.bind(this)
   };
 
-  handlechangeUserName (evt) {
+  handlechangeUserName (evt) { //change the state for the input text
     var user = evt.target.value
     this.setState({
       userName: user
     })
   };
 
-  handlechangePassword (evt) {
+  handlechangePassword (evt) { //change the state for the input text
     var pass = evt.target.value
     this.setState({
       password: pass
     })
   };
 
-  submitLogin () {
+  submitLogin () { // send post request to the server
     axios.post('/login', {
       userName: this.state.userName,
       password: this.state.password
     })
       .then(response => {
-        window.location.href = '/profile'
+        // should go to the home page from here
       }).catch(error => {
-        console.log('error login', error)
+        alert('password or username is wrong')
       })
   };
 

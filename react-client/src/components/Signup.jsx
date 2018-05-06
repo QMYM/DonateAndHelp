@@ -14,12 +14,12 @@ class Signup extends React.Component {
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
   }
-  onChange (e) {
+  onChange (e) { //change the state for the input text
     this.setState({
       [e.target.name]: e.target.value
     })
   };
-  submit (username, email, password, confirmPassword) {
+  submit (username, email, password, confirmPassword) { //sending post reqeust to the server
   	if (confirmPassword === password) {
       if(password !== '' && confirmPassword !== ''){
       axios.post('/user', {username: username,
