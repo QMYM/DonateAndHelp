@@ -13,37 +13,6 @@ import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Home from './Home.jsx'
 
-
-// const AppRoute = (props) => (
-//   <BrowserRouter history={hashHistory}>
-//   <Switch>
-//   <Route exact path="/" component={Login} />
-//   <Route exact path="/login" component={Login} />
-//   <Route exact path="/signup" component={Signup} />
-//   </Switch>
-//   </BrowserRouter>
-// )
-
-
-// const AuthExample = () => (
-//   <Router>
-//     <div>
-      
-//       <ul>
-//         <li>
-//           <Link to="/public">Public Page</Link>
-//         </li>
-//         <li>
-//           <Link to="/protected">Protected Page</Link>
-//         </li>
-//       </ul>
-//       <Route path="/public" component={Public} />
-//       <Route path="/protected" component={Protected} />
-//     </div>
-//   </Router>
-// );
-
-
 class AppRoute extends React.Component {
   constructor (props) {
     super(props)
