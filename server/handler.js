@@ -1,20 +1,21 @@
 let db = require('../db/index')
 let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
-
 let saltRounds = 10
+
+
 exports.Signup = function (req, res) {
-  console.log('data is here', req.body)
-  var username = req.body.username
+  // console.log('data is here', req.body)
+  var username = req.body.username  
   var password = req.body.password
   var email = req.body.email
-  db.Users.find({
+  db.Users.find({  // searching for the username in the schema  
     username: username
   }, function (err, data) {
     if (err) {
       res.sendStatus(404)
     } else {
-      if (data.length > 0) {
+      if (data.length > 0) { // if the username found in the schema, then send error, if not save his/her name and hash his/her password
         res.sendStatus(404)
       } else {
         bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -46,14 +47,14 @@ exports.Signup = function (req, res) {
 exports.Login = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
-  db.Users.findOne({
+  db.Users.findOne({   // searching for the username in the schema  
     username: username
   }, function (err, data) {
     console.log('mais is here', data)
     if (err) {
       throw err
     } else {
-      if (!data) {
+      if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
         res.sendStatus(404)
       } else {
         bcrypt.compare(password, data.password, function (err, found) {
