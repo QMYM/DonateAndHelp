@@ -1,6 +1,10 @@
 import React from 'react'
 import $ from 'jquery'
+<<<<<<< HEAD
 
+=======
+import axios from 'axios'
+>>>>>>> d66c23d80bb7dfe344eb823a4fdbb1d25ee3eff6
 class Signup extends React.Component {
   constructor (props) {
     super(props)
@@ -18,6 +22,7 @@ class Signup extends React.Component {
     })
   };
   submit (username, email, password) {
+<<<<<<< HEAD
     $.ajax({
       type: 'POST',
       url: '/user',
@@ -30,6 +35,15 @@ class Signup extends React.Component {
       success: (data) => {
         console.log('aaa', data)
       }
+=======
+    axios.post('/user', {username: username,
+   						email: email,
+   						password: password
+    }).then(function (res) {
+   	 // go to the home page
+    }).catch(function (err) {
+   		alert('this username is exist')
+>>>>>>> d66c23d80bb7dfe344eb823a4fdbb1d25ee3eff6
     })
   };
 

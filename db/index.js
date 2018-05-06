@@ -23,18 +23,4 @@ var users = new Schema({
 })
 var Users = mongoose.model('Users', users)
 
-var userSave = function (data, callBack) {
-  console.log(data)
-  bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(data.password, salt, function (err, hash) {
-         	data.password = hash
-      var user = new Users(data)
-      user.save(function (err, elem) {
-        if (err) { callBack(err, null) }
-        callBack(null, elem)
-      })
-    })
-  })
-}
-module.exports.userSave = userSave
 module.exports.Users = Users

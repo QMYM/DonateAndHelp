@@ -2,12 +2,44 @@ let db = require('../db/index')
 let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 
+let saltRounds = 10
 exports.Signup = function (req, res) {
-  db.userSave(req.body, function (err, data) {
+  console.log('data is here', req.body)
+  var username = req.body.username
+  var password = req.body.password
+  var email = req.body.email
+  db.Users.find({
+    username: username
+  }, function (err, data) {
     if (err) {
-      res.status(404).send(err)
+      res.sendStatus(404)
+    } else {
+      if (data.length > 0) {
+        res.sendStatus(404)
+      } else {
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+          if (err) {
+            throw err
+          }
+          bcrypt.hash(password, salt, function (err, hash) {
+            if (err) {
+              throw err
+            }
+            var user = new db.Users({
+              username: username,
+              email: email,
+              password: hash
+            })
+            user.save(function (err, data) {
+              if (err) {
+                throw err
+              }
+              helper.createSession(req, res, data.username)
+            })
+          })
+        })
+      }
     }
-    res.status(200).send(data)
   })
 }
 

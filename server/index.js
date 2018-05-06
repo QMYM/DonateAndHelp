@@ -7,7 +7,6 @@ let bodyParser = require('body-parser')
 let handler = require('./handler')
 
 const app = express()
-const saltRounds = 10
 
 app.use(express.static(__dirname + '/../react-client/dist'))
 app.use(bodyParser.json({limit: '50mb'}))
