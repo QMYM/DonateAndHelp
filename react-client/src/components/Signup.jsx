@@ -45,6 +45,7 @@ class Signup extends React.Component {
 
   render () {
     return (<div >
+      <div className = "containter text-center">
       <h2 > Name: </h2> <input type='text'
         name='username'
         onChange={
@@ -74,7 +75,8 @@ class Signup extends React.Component {
 
       <button onClick={
         () => this.submit(this.state.username, this.state.email, this.state.password , this.state.confirmPassword)
-      } > Signup </button> </div>
+      } > Signup </button>
+      </div> </div>
     )
   }
 };
