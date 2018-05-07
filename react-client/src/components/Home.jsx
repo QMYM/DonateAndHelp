@@ -32,15 +32,13 @@ const Home = (props) => (<div >
       <Router>
   <ul className="nav navbar-nav navbar-right" >
         <li>
-          <Link to="/login">Login Page</Link>
+          <Link className="icon-bar"  to="/login">Login</Link>
         </li>
         <li>
-          <Link to="/register">Sign Up Page</Link>
+          <Link className="text-light " to="/signup">SignUp </Link>
         </li>
-  <li><a herf ='#' className="icon-bar"   >Signup</a></li>
-  <li><a herf ='#' className="text-light " >Login</a></li>
       <Route path="/login" component={Login} />
-      <Route path="/register" component={Signup} />
+      <Route path="/signup" component={Signup} />
   </ul>
   </Router>
   </form>
