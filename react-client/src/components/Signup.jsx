@@ -15,7 +15,7 @@ class Signup extends React.Component {
 
     }
     this.onChange = this.onChange.bind(this)
-    this.submit = this.submit.bind(this)
+    this.submitDonater = this.submitDonater.bind(this)
     this.alo = this.alo.bind(this)
     this.submitCompany = this.submitCompany.bind(this)
   } 
@@ -30,13 +30,14 @@ class Signup extends React.Component {
   };
 
 submitCompany(username, email, password, confirmPassword) { // sending post reqeust to the server
+      
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Company', {username: username,
               email: email,
               password: password
         }).then(function (res) {
-     // go to the home page
+          window.location.href="/profile"
         }).catch(function (err) {
       alert('this username is exist')
         })
@@ -51,7 +52,7 @@ submitCompany(username, email, password, confirmPassword) { // sending post reqe
     }
   };
 
-  submit (username, email, password, confirmPassword) { // sending post reqeust to the server
+  submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Donater', {username: username,
@@ -122,7 +123,7 @@ submitCompany(username, email, password, confirmPassword) { // sending post reqe
  
       <button onClick={
 
-        () => this.submit(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+        () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
       } > Signup </button>
         </div>
         ) :  <div>
