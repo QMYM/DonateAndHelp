@@ -1,8 +1,6 @@
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/Donate')
-var bcrypt = require('bcrypt')
 // mongoose.connect('mongodb://admin:admin@ds113700.mlab.com:13700/g-db')
-
 var db = mongoose.connection
 
 db.on('error', function () {
@@ -27,8 +25,8 @@ var userCompany = new Schema({
   password: {type: String},
   image: {type: String}
 })
-var userCompany = mongoose.model('userCompany', userCompany)
-var userDonater = mongoose.model('userDonater', userDonater)
+userCompany = mongoose.model('userCompany', userCompany)
+userDonater = mongoose.model('userDonater', userDonater)
 
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
