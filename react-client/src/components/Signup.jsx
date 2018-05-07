@@ -6,6 +6,7 @@ class Signup extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      check:true,
       username: '',
       email: '',
       password: '',
@@ -14,13 +15,17 @@ class Signup extends React.Component {
     }
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
-
+    this.alo = this.alo.bind(this)
   } 
-
-  
+ 
+  alo(){
+    this.setState({
+          check: !this.state.check
+        })
+  }
   onChange (e) { // change the state for the input text
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   };
   submit (username, email, password, confirmPassword) { // sending post reqeust to the server
@@ -46,12 +51,26 @@ class Signup extends React.Component {
   };
 
   render () {
-    return (<div >
+    return (
 
+      <div className = "containter text-center">
+           <select>
+        <option value='Donater'>Donater</option>
+          <option value='nonUser'>nonUser</option>
+      </select>
+
+    
+      <br/> 
+        <button onClick = {this.alo}> alo </button> 
+      <br/> 
+        { this.state.check ? (
+        <div>
+          
       <h2 > Name: </h2> <input type='text'
         name='username'
         onChange={
           this.onChange
+
         }
       /> <h2 > Email: </h2>
 
@@ -75,17 +94,18 @@ class Signup extends React.Component {
         }
         ref={el => this.conPass = el}
       />
-      <select>
-        <option value='Donater' >Donater</option>
-          <option value='nonUser' onChange = {this.Beneficiary}>nonUser</option>
-      </select>
+ 
       <button onClick={
+
         () => this.submit(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
       } > Signup </button>
-       
-      <br /> <br />
+        </div>
+        ) : null }
 
-    </div>
+       
+ </div>
+ 
+
     )
   }
 };

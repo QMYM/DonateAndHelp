@@ -13,7 +13,6 @@ class Login extends React.Component {
     this.handlechangePassword = this.handlechangePassword.bind(this)
     this.submitLogin = this.submitLogin.bind(this)
   };
-
   handlechangeUserName (evt) { // change the state for the input text
     var user = evt.target.value
     this.setState({
