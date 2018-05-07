@@ -1,12 +1,5 @@
-
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Link, IndexRoute, hashHistory, browserHistory , Switch  } from "react-router-dom";
 import $ from 'jquery';
 
 import Login from './Login.jsx';
@@ -23,22 +16,14 @@ class AppRoute extends React.Component {
 
   render () {
     return (
-    <div>
-    <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/login">Login Page</Link>
-        </li>
-        <li>
-          <Link to="/register">Sign Up Page</Link>
-        </li>
-      </ul>
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Signup} />
-    </div>
-  </Router>
-   </div>)
+      <BrowserRouter history={hashHistory}>
+     <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        </Switch>
+     </BrowserRouter>
+            )
   }
 }
 
