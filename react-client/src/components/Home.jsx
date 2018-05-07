@@ -45,7 +45,6 @@ const Home = (props) => (<div >
   </div>
   </div>
   </nav>
-  <button > Signup </button> <button > login </button>
    </div>
 )
 export default Home
