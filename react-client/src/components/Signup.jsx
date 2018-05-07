@@ -62,6 +62,7 @@ class Signup extends React.Component {
    						email: email,
    						password: password
         }).then(function (res) {
+          console.log('hello')
           window.location.href="/donor"
    	 // go to the home page
         }).catch(function (err) {

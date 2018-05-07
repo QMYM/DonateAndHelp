@@ -7,12 +7,19 @@ class Login extends React.Component {
     super(props)
     this.state = {
       userName: '',
-      password: ''
+      password: '',
+      value:''
     }
     this.handlechangeUserName = this.handlechangeUserName.bind(this)
     this.handlechangePassword = this.handlechangePassword.bind(this)
-    this.submitLogin = this.submitLogin.bind(this)
+    this.submitLoginDonater = this.submitLoginDonater.bind(this)
+    this.submitLoginCompany = this.submitLoginCompany.bind(this)
+    this.alo = this.alo.bind(this)
   };
+
+  alo (event) {
+    this.setState({value: event.target.value})
+  }
   handlechangeUserName (evt) { // change the state for the input text
     var user = evt.target.value
     this.setState({
@@ -27,18 +34,26 @@ class Login extends React.Component {
     })
   };
 
-  submitLogin () { // send post request to the server
-    axios.post('/login', {
+  submitLoginCompany(){
+    axios.post('/loginCompany', {
       userName: this.state.userName,
       password: this.state.password
     })
       .then(response => {
-          if(response.status === 202){
-            window.location.href = "/beneficiaries"
-          }
-          else {
-            window.location.href = "/donor"
-          }
+          window.location.href = "/beneficiaries"
+        // should go to the home page from here
+      }).catch(error => {
+        alert('password or username is wrong')
+      })
+  }
+
+  submitLoginDonater () { // send post request to the server
+    axios.post('/loginDonater', {
+      userName: this.state.userName,
+      password: this.state.password
+    })
+      .then(response => {
+          window.location.href = "/donor"
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')
@@ -49,6 +64,17 @@ class Login extends React.Component {
     return (
 
       <div >
+       <select value={this.state.value} onChange={this.alo}>
+
+          <option value='false'>Donater</option>
+          <option value=''>company</option>
+        </select>
+
+        <br />
+
+        <br />
+        { this.state.value ? (
+        <div>
         <input type='text'
           onChange={
             this.handlechangeUserName
@@ -60,9 +86,25 @@ class Login extends React.Component {
           }
         /> <br />
         <button onClick={
-          this.submitLogin
-        } > Login </button> </div >
-
+          this.submitLoginDonater
+        } > LoginDonater </button>
+        </div>
+        ) : <div>
+          <input type='text'
+          onChange={
+            this.handlechangeUserName
+          }
+        /> <br />
+        <input type='password'
+          onChange={
+            this.handlechangePassword
+          }
+        /> <br />
+        <button onClick={
+          this.submitLoginCompany
+        } > Login </button>
+          </div>}
+        </div>
     )
   };
 };
