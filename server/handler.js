@@ -102,6 +102,7 @@ exports.Login = function (req, res) {
       if (data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
         bcrypt.compare(password, data.password, function (err, found) {
           if (found) {
+            res.sendStatus(201)
             helper.createSession(req, res, data.username)
           } else {
             res.sendStatus(404)
@@ -120,6 +121,7 @@ exports.Login = function (req, res) {
             } else {
               bcrypt.compare(password, data.password, function (err, found) {
                 if (found) {
+                  res.sendStatus(202)
                   helper.createSession(req, res, data.username)
                 } else {
                   res.sendStatus(404)

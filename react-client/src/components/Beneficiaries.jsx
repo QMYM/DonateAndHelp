@@ -8,6 +8,16 @@ class Beneficiaries extends React.Component {
     this.state = {
 
     }
+    this.logout = this.logout.bind(this)
+  }
+  logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
   }
   render () {
     return (
@@ -33,7 +43,7 @@ class Beneficiaries extends React.Component {
                     <a className='icon-bar' to='/profile'>Profile</a>
                   </li>
                   <li>
-                    <a className='icon-bar' to='/logout'>Logout</a>
+                    <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a>
                   </li>
                 </ul>
               </form>

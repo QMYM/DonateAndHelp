@@ -14,7 +14,7 @@ class Signup extends React.Component {
 
     }
     this.onChange = this.onChange.bind(this)
-    this.submit = this.submit.bind(this)
+    this.submitDonater = this.submitDonater.bind(this)
     this.alo = this.alo.bind(this)
     this.submitCompany = this.submitCompany.bind(this)
   }
@@ -28,14 +28,19 @@ class Signup extends React.Component {
     })
   };
 
+
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
+
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Company', {username: username,
           email: email,
           password: password
         }).then(function (res) {
+          window.location.href="/beneficiaries"
+
           // go to the home page
+
         }).catch(function (err) {
           alert('this username is exist')
         })
@@ -50,13 +55,14 @@ class Signup extends React.Component {
     }
   };
 
-  submit (username, email, password, confirmPassword) { // sending post reqeust to the server
+  submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Donater', {username: username,
    						email: email,
    						password: password
         }).then(function (res) {
+          window.location.href="/donor"
    	 // go to the home page
         }).catch(function (err) {
    		alert('this username is exist')
@@ -86,77 +92,77 @@ class Signup extends React.Component {
 
         <br />
         { this.state.value ? (
-          <div>
+        <div>
+          
+      <h2 > Name: </h2> <input type='text'
+        name='username'
+        onChange={
+          this.onChange
 
-            <h2 > Name: </h2> <input type='text'
-              name='username'
-              onChange={
-                this.onChange
+        }
+      /> <h2 > Email: </h2>
 
-              }
-            /> <h2 > Email: </h2>
+      <input type='text'
+        name='email'
+        onChange={
+          this.onChange
+        }
+      /> <h2 > Password: </h2> <input type='password'
+        name='password'
+        onChange={
+          this.onChange
+        }
+        ref={el => this.pass = el}
+      />
 
-            <input type='text'
-              name='email'
-              onChange={
-                this.onChange
-              }
-            /> <h2 > Password: </h2> <input type='password'
-              name='password'
-              onChange={
-                this.onChange
-              }
-              ref={el => this.pass = el}
-            />
+      <h2 > confirmPassword: </h2> <input type='Password'
+        name='confirmPassword'
+        onChange={
+          this.onChange
+        }
+        ref={el => this.conPass = el}
+      />
+ 
+      <button onClick={
 
-            <h2 > confirmPassword: </h2> <input type='Password'
-              name='confirmPassword'
-              onChange={
-                this.onChange
-              }
-              ref={el => this.conPass = el}
-            />
+        () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+      } > Signup </button>
+        </div>
+        ) :  <div>
+          
+      <h2 > Name: </h2> <input type='text'
+        name='username'
+        onChange={
+          this.onChange
 
-            <button onClick={
+        }
+      /> <h2 > Email: </h2>
 
-              () => this.submit(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
-            } > Signup </button>
-          </div>
-        ) : <div>
+      <input type='text'
+        name='email'
+        onChange={
+          this.onChange
+        }
+      /> <h2 > Password: </h2> <input type='password'
+        name='password'
+        onChange={
+          this.onChange
+        }
+        ref={el => this.pass = el}
+      />
 
-          <h2 > Name: </h2> <input type='text'
-            name='username'
-            onChange={
-              this.onChange
+      <h2 > confirmPassword: </h2> <input type='Password'
+        name='confirmPassword'
+        onChange={
+          this.onChange
+        }
+        ref={el => this.conPass = el}
+      />
+ 
+      <button onClick={
 
-            }
-          /> <h2 > Email: </h2>
-
-          <input type='text'
-            name='email'
-            onChange={
-              this.onChange
-            }
-          /> <h2 > Password: </h2> <input type='password'
-            name='password'
-            onChange={
-              this.onChange
-            }
-            ref={el => this.pass = el}
-          />
-
-          <h2 > confirmPassword: </h2> <input type='Password'
-            name='confirmPassword'
-            onChange={
-              this.onChange
-            }
-            ref={el => this.conPass = el}
-          />
-
-          <button onClick={
-
-            () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
-          } > SignupYUSUR </button>
+        () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+      } > SignupYUSUR </button>
         </div> }
 
       </div>
