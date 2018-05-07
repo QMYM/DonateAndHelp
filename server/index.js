@@ -16,7 +16,8 @@ app.use(session({
 
 app.post('/login', handler.Login)
 app.post('/user', handler.Signup)
-
+app.post('/userType', handler.userType)
+app.get('/logout', handler.logout)
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)

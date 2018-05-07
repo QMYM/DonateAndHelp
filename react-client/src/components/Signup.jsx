@@ -10,34 +10,36 @@ class Signup extends React.Component {
       email: '',
       password: '',
       confirmPassword: ''
+
     }
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
-  }
-  onChange (e) { //change the state for the input text
+
+  } 
+
+  
+  onChange (e) { // change the state for the input text
     this.setState({
       [e.target.name]: e.target.value
     })
   };
-  submit (username, email, password, confirmPassword) { //sending post reqeust to the server
+  submit (username, email, password, confirmPassword) { // sending post reqeust to the server
   	if (confirmPassword === password) {
-      if(password !== '' && confirmPassword !== ''){
-      axios.post('/user', {username: username,
+      if (password !== '' && confirmPassword !== '') {
+        axios.post('/user', {username: username,
    						email: email,
    						password: password
-      }).then(function (res) {
+        }).then(function (res) {
    	 // go to the home page
-      }).catch(function (err) {
+        }).catch(function (err) {
    		alert('this username is exist')
-      })
-    }
-    else{
-      alert('enter your password ya 7mar')
-    }
-
-  } else {
+        })
+      } else {
+        alert('enter your password ya 7mar')
+      }
+    } else {
       console.log('cococ  ', confirmPassword)
-	 alert("password doesn't match,rewrite it again")
+	 alert("password doesn't match,rewrite it again ya 7mar")
       this.pass.value = ''
       this.conPass.value = ''
     }
@@ -45,6 +47,7 @@ class Signup extends React.Component {
 
   render () {
     return (<div >
+
       <h2 > Name: </h2> <input type='text'
         name='username'
         onChange={
@@ -64,17 +67,25 @@ class Signup extends React.Component {
         }
         ref={el => this.pass = el}
       />
+
       <h2 > confirmPassword: </h2> <input type='Password'
         name='confirmPassword'
-         onChange={
+        onChange={
           this.onChange
         }
         ref={el => this.conPass = el}
       />
-
+      <select>
+        <option value='Donater' >Donater</option>
+          <option value='nonUser' onChange = {this.Beneficiary}>nonUser</option>
+      </select>
       <button onClick={
-        () => this.submit(this.state.username, this.state.email, this.state.password , this.state.confirmPassword)
-      } > Signup </button> </div>
+        () => this.submit(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+      } > Signup </button>
+       
+      <br /> <br />
+
+    </div>
     )
   }
 };
