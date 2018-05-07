@@ -21,8 +21,8 @@ app.use(session({
 }))
 
 app.post('/login', handler.Login)
-app.post('/user', handler.Signup)
-app.post('/userType', handler.userType)
+app.post('/Donater', handler.Signup)
+app.post('/Company', handler.SignupCompany)
 app.get('/logout', handler.logout)
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

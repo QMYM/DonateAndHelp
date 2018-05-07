@@ -15,12 +15,20 @@ db.once('open', function () {
 
 var Schema = mongoose.Schema
 
-var users = new Schema({
+var userDonater = new Schema({
   username: {type: String},
   email: {type: String},
   password: {type: String},
   image: {type: String}
 })
-var Users = mongoose.model('Users', users)
+var userCompany = new Schema({
+  username: {type: String},
+  email: {type: String},
+  password: {type: String},
+  image: {type: String}
+})
+var userCompany = mongoose.model('userCompany', userCompany)
+var userDonater = mongoose.model('userDonater', userDonater)
 
-module.exports.Users = Users
+module.exports.userDonater = userDonater
+module.exports.userCompany = userCompany
