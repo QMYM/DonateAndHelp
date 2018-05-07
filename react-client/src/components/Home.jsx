@@ -13,6 +13,7 @@ import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 
 const Home = (props) => (<div >
+
 	    <nav className="navbar navbar-inverse navbar-fixed-top">
     <div className="container">
     <div className="navbar-header">
@@ -45,6 +46,10 @@ const Home = (props) => (<div >
   </div>
   </div>
   </nav>
+<<<<<<< HEAD
    </div>
+=======
+  </div>
+>>>>>>> a247e0552b8a1d0032ff18f2436df47c9f8c874d
 )
 export default Home
