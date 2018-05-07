@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Signup from './Signup.jsx'
-  
+
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -13,15 +13,14 @@ class Login extends React.Component {
     this.handlechangePassword = this.handlechangePassword.bind(this)
     this.submitLogin = this.submitLogin.bind(this)
   };
-
-  handlechangeUserName (evt) { //change the state for the input text
+  handlechangeUserName (evt) { // change the state for the input text
     var user = evt.target.value
     this.setState({
       userName: user
     })
   };
 
-  handlechangePassword (evt) { //change the state for the input text
+  handlechangePassword (evt) { // change the state for the input text
     var pass = evt.target.value
     this.setState({
       password: pass
