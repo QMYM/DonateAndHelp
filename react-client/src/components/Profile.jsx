@@ -1,20 +1,18 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import $ from 'jquery'
 import axios from 'axios'
 
-import Signup from './Signup.jsx'
-import Login from './Login.jsx'
+class Profile extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
 
-const Profile = (props) => (
-	<div >
-<h1>hello</h1>
-
-  </div>
-)
+    }
+  }
+  render () {
+    return (
+      <div />
+    )
+  }
+}
 export default Profile

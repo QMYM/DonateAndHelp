@@ -33,6 +33,12 @@ class Login extends React.Component {
       password: this.state.password
     })
       .then(response => {
+          if(response.status === 202){
+            window.location.href = "/beneficiaries"
+          }
+          else {
+            window.location.href = "/donor"
+          }
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')

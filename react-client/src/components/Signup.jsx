@@ -11,42 +11,45 @@ class Signup extends React.Component {
       password: '',
       confirmPassword: '',
       value: ''
-      
 
     }
     this.onChange = this.onChange.bind(this)
     this.submitDonater = this.submitDonater.bind(this)
     this.alo = this.alo.bind(this)
     this.submitCompany = this.submitCompany.bind(this)
-  } 
-  alo(event){
-  this.setState({value: event.target.value});
+  }
+  alo (event) {
+    this.setState({value: event.target.value})
   }
 
   onChange (e) { // change the state for the input text
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   };
 
-submitCompany(username, email, password, confirmPassword) { // sending post reqeust to the server
-      
+
+  submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
+
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Company', {username: username,
-              email: email,
-              password: password
+          email: email,
+          password: password
         }).then(function (res) {
-          window.location.href="/profile"
+          window.location.href="/beneficiaries"
+
+          // go to the home page
+
         }).catch(function (err) {
-      alert('this username is exist')
+          alert('this username is exist')
         })
       } else {
         alert('enter your password ya 7mar')
       }
     } else {
       console.log('cococ  ', confirmPassword)
-   alert("password doesn't match,rewrite it again ya 7mar")
+      alert("password doesn't match,rewrite it again ya 7mar")
       this.pass.value = ''
       this.conPass.value = ''
     }
@@ -59,6 +62,7 @@ submitCompany(username, email, password, confirmPassword) { // sending post reqe
    						email: email,
    						password: password
         }).then(function (res) {
+          window.location.href="/donor"
    	 // go to the home page
         }).catch(function (err) {
    		alert('this username is exist')
@@ -77,18 +81,16 @@ submitCompany(username, email, password, confirmPassword) { // sending post reqe
   render () {
     return (
 
-      <div className = "containter text-center">
-               <select value={this.state.value} onChange={this.alo}>
+      <div className='containter text-center'>
+        <select value={this.state.value} onChange={this.alo}>
 
-                <option value="false">Donater</option>
-                <option value="">company</option>
-            </select>
-     
+          <option value='false'>Donater</option>
+          <option value=''>company</option>
+        </select>
 
-    
-      <br/> 
-        
-      <br/> 
+        <br />
+
+        <br />
         { this.state.value ? (
         <div>
           
@@ -163,9 +165,7 @@ submitCompany(username, email, password, confirmPassword) { // sending post reqe
       } > SignupYUSUR </button>
         </div> }
 
-       
- </div>
- 
+      </div>
 
     )
   }

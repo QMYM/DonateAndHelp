@@ -43,7 +43,6 @@ exports.Signup = function (req, res) {
   })
 }
 
-
 exports.SignupCompany = function (req, res) {
   console.log('data is here', req.body)
   var username = req.body.username
@@ -90,7 +89,6 @@ exports.logout = function (req, res) { // logout and destroy session
   })
 }
 
-
 exports.Login = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
@@ -102,34 +100,36 @@ exports.Login = function (req, res) {
       throw err
     } else {
       if (data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
-         bcrypt.compare(password, data.password, function (err, found) {
-          if (found) {
-            helper.createSession(req, res, data.username)
-          } else {
-            res.sendStatus(404)
-          }
-        })
-      } else {
-          db.userCompany.findOne({ // searching for the username in the schema
-    username: username
-  }, function (err, data) {
-    console.log('CompanyScema', data)
-    if (err) {
-      throw err
-    } else {
-      if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
-        res.sendStatus(404)
-      } else {
         bcrypt.compare(password, data.password, function (err, found) {
           if (found) {
+            res.sendStatus(201)
             helper.createSession(req, res, data.username)
           } else {
             res.sendStatus(404)
           }
         })
-      }
-    }
-  })
+      } else {
+        db.userCompany.findOne({ // searching for the username in the schema
+          username: username
+        }, function (err, data) {
+          console.log('CompanyScema', data)
+          if (err) {
+            throw err
+          } else {
+            if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
+              res.sendStatus(404)
+            } else {
+              bcrypt.compare(password, data.password, function (err, found) {
+                if (found) {
+                  res.sendStatus(202)
+                  helper.createSession(req, res, data.username)
+                } else {
+                  res.sendStatus(404)
+                }
+              })
+            }
+          }
+        })
       }
     }
   })
