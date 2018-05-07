@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Signup from './Signup.jsx'
-  
+
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -33,32 +33,36 @@ class Login extends React.Component {
       userName: this.state.userName,
       password: this.state.password
     })
-      .then(response => {
+    .then(response => {
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')
       })
-  };
+    };
 
-  render () {
-    return (
-
-      <div >
+    render () {
+      return (
+        <div>
         <input type='text'
-          onChange={
-            this.handlechangeUserName
-          }
+        onChange={
+          this.handlechangeUserName
+        }
         /> <br />
         <input type='password'
-          onChange={
-            this.handlechangePassword
-          }
-        /> <br />
+        onChange={
+          this.handlechangePassword
+        }
+        /> 
+        <br />
         <button onClick={
           this.submitLogin
-        } > Login </button> </div >
+        } > Login </button> 
+        
+        </div>
+        )
 
-    )
+
+    }
   };
-};
-export default Login
+
+  export default Login;
