@@ -1,6 +1,12 @@
 import React from 'react'
 import $ from 'jquery'
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 import axios from 'axios'
 
 import Signup from './Signup.jsx'
@@ -23,13 +29,18 @@ const Home = (props) => (<div >
     </div>
     <div className="collapse navbar-collapse" id="myNavbar">
     <form className=" ">
+      <Router>
   <ul className="nav navbar-nav navbar-right" >
-  <li><a herf ='#' className="icon-bar"   >Signup</a></li>
-
- 
-  <li><a herf ='#' className="text-light " >Login</a></li>
-  
+        <li>
+          <Link className="icon-bar"  to="/login">Login</Link>
+        </li>
+        <li>
+          <Link className="text-light " to="/signup">SignUp </Link>
+        </li>
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
   </ul>
+  </Router>
   </form>
   </div>
   </div>
