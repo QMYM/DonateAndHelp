@@ -138,3 +138,19 @@ exports.LoginDonater = function (req, res) {
           }
         })
 }
+
+
+
+exports.addProfileDonor = function (req, res) {
+console.log(req.body)
+
+
+
+}
+
+
+
+
+
+
+
