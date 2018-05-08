@@ -71,6 +71,7 @@ exports.SignupCompany = function (req, res) {
               password: hash
             })
             user.save(function (err, data) {
+
               if (err) {
                 throw err
               }
@@ -115,6 +116,7 @@ exports.LoginCompany = function (req, res) {
 }
 
 exports.LoginDonater = function (req, res) {
+
   var username = req.body.userName
   var password = req.body.password
   db.userDonater.findOne({ // searching for the username in the schema
@@ -141,10 +143,36 @@ exports.LoginDonater = function (req, res) {
 
 
 
-exports.addProfileDonor = function (req, res) {
-console.log(req.body)
+exports.addProfileCompany = function (req, res) {
+console.log(req.body,'hhhhhhhhhhh')
+console.log('check the session ', req.session.user )
+var name=req.body.name
+var contactNum=req.body.contactNum
+var description=req.body.description
+var address=req.body.address
 
+db.userCompany.findOne({username:req.session.user},function(err,data){
+  console.log('mais',data)
+if(err){
+  throw err
+}else{
+  var info = new db.userCompany({
+    name:name,
+    contactNum:contactNum,
+    description:description,
+    address:address
+  })
+  info.save(function(err,information){
+    if(err){
+      throw err
+    }else{
+      res.send(information)
+    }
+  })
 
+}
+
+})
 
 }
 

@@ -23,7 +23,7 @@ onChange(e){
 }
 
 submit(name,contactNum,description,address){
-    axios.post('/profile_donor', {
+    axios.post('/profile_company', {
       // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,

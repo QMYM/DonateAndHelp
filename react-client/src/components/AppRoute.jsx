@@ -7,7 +7,7 @@ import Login from './Login.jsx'
 import Donor from './Donor.jsx'
 import Signup from './Signup.jsx'
 import Beneficiaries from './Beneficiaries.jsx'
-import Profile from './profile_Donors.jsx'
+import Profile from './Profile.jsx'
 import Message from './Message.jsx'
 
 class AppRoute extends React.Component {
@@ -27,7 +27,7 @@ class AppRoute extends React.Component {
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/donor' component={Donor} />
           <Route exact path='/beneficiaries' component={Beneficiaries} />
-          <Route exact path='/profile_Donors' component={Profile} />
+          <Route exact path='/profile' component={Profile} />
           <Route exact path='/message' component={Message} />
         </Switch>
       </BrowserRouter>
