@@ -7,15 +7,16 @@ class Message extends React.Component {
     this.state = {
 
     }
+    
   }
 
   render () {
     return (
       <div>
       <nav className="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3  }} id="mySidebar">
-  <a href="javascript:void(0)" onClick="w3_close()" title="Close Sidemenu" 
+  <a href="javascript:void(0)" title="Close Sidemenu" 
   className="w3-bar-item w3-button w3-hide-large w3-large">Close <i className="fa fa-remove"></i></a>
-  <a href="javascript:void(0)" className="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align">New Message <i className="w3-padding fa fa-pencil"></i></a>
+  <a href="javascript:void(0)" className="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align"  data-toggle="modal" data-target="#myModal">New Message <i className="w3-padding fa fa-pencil"></i></a>
   <a id="myBtn"  href="javascript:void(0)" className="w3-bar-item w3-button"><i className="fa fa-inbox w3-margin-right"></i>Inbox (3)<i className="fa fa-caret-down w3-margin-left"></i></a>
   <div id="Demo1" className="w3-hide w3-animate-left">
     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" id="firstTab">
@@ -25,13 +26,13 @@ class Message extends React.Component {
         <p>Hello, i just wanted to let you know that i'll be home at...</p>
       </div>
     </a>
-     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onClick="openMail('Jane');w3_close();">
+     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onClick="openMail('Jane');w3_close">
       <div className="w3-container">
         <img className="w3-round w3-margin-right" src="/w3images/avatar5.png" /><span className="w3-opacity w3-large">Jane Doe</span>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
       </div>
     </a>
-    <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onClick="openMail('John');w3_close();">
+    <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey">
       <div className="w3-container">
         <img className="w3-round w3-margin-right" src="/w3images/avatar2.png" /><span className="w3-opacity w3-large">John Doe</span>
         <p>Welcome!</p>
@@ -43,7 +44,7 @@ class Message extends React.Component {
   <a href="#" className="w3-bar-item w3-button"><i className="fa fa-trash w3-margin-right"></i>Trash</a>
 </nav>
 
-<div id="id01" className="w3-modal" >
+<div id="id01" className="modal fade" id="myModal" >
   <div className="w3-modal-content w3-animate-zoom" >
     <div className="w3-container w3-padding w3-red" >
        <span 
@@ -59,7 +60,7 @@ class Message extends React.Component {
       <input className="w3-input w3-border w3-margin-bottom" type="text"/>
       <input className="w3-input w3-border w3-margin-bottom"  placeholder="What's on your mind?"/>
       <div className="w3-section">
-        <a className="w3-button w3-red" >Cancel  <i className="fa fa-remove"></i></a>
+        <a className="w3-button w3-red" data-dismiss="modal">Cancel  <i className="fa fa-remove"></i></a>
         <a className="w3-button w3-light-grey w3-right" >Send  <i className="fa fa-paper-plane"></i></a> 
       </div>    
     </div>
@@ -69,7 +70,7 @@ class Message extends React.Component {
 <div className="w3-overlay w3-hide-large w3-animate-opacity" onClick="w3_close()" title="Close Sidemenu" id="myOverlay"></div>
 
 <div className="w3-main" >
-<i className="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onClick="w3_open()"></i>
+<i className="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onClick={this.w3open}></i>
 <a href="javascript:void(0)" className="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" ><i className="fa fa-pencil"></i></a>
 <div style = {{marginLeft:300}}>
   
