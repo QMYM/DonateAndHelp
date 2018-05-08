@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Donate')
 // mongoose.connect('mongodb://admin:admin@ds113700.mlab.com:13700/g-db')
 var db = mongoose.connection
@@ -25,8 +26,27 @@ var userCompany = new Schema({
   password: {type: String},
   image: {type: String}
 })
+
+const messageSchema = new Schema({
+  sender:{
+    type: String,
+    required: true
+  },
+  reciver:  {
+    type: String,
+    required: true
+  },
+  message:{
+    type: String,
+    required: true
+  }
+  
+});
+
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
+module.exports.MessageSchema = MessageSchema

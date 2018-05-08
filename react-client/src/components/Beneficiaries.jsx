@@ -1,13 +1,13 @@
 import React from 'react'
 import $ from 'jquery'
-import axios from 'axios'
+import axios from 'axios';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Redirect,
   withRouter
-} from 'react-router-dom'
+} from 'react-router-dom';
 import Message from './Message.jsx'
 import Profile from './Profile.jsx'
 
@@ -28,6 +28,7 @@ class Beneficiaries extends React.Component {
       console.log("logout err "  ,err)
     })
   }
+
   render () {
     return (
       <div>
