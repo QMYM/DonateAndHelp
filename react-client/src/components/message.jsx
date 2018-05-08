@@ -12,7 +12,7 @@ class Message extends React.Component {
   render () {
     return (
       <div>
-      <nav className="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style={{ width:0 , zIndex:3  }} id="mySidebar">
+      <nav className="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3  }} id="mySidebar">
   <a href="javascript:void(0)" onClick="w3_close()" title="Close Sidemenu" 
   className="w3-bar-item w3-button w3-hide-large w3-large">Close <i className="fa fa-remove"></i></a>
   <a href="javascript:void(0)" className="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align">New Message <i className="w3-padding fa fa-pencil"></i></a>
@@ -44,15 +44,15 @@ class Message extends React.Component {
 </nav>
 
 <div id="id01" className="w3-modal" >
-  <div className="w3-modal-content w3-animate-zoom">
-    <div className="w3-container w3-padding w3-red">
+  <div className="w3-modal-content w3-animate-zoom" >
+    <div className="w3-container w3-padding w3-red" >
        <span 
        className="w3-button w3-red w3-right w3-xxlarge"><i className="fa fa-remove"></i></span>
       <h2>Send Mail</h2>
     </div>
     <div className="w3-panel">
       <label>To</label>
-      <input className="w3-input w3-border w3-margin-bottom" type="text"/>
+      <input className="w3-input w3-border w3-margin-bottom" type="text" />
       <label>From</label>
       <input className="w3-input w3-border w3-margin-bottom" type="text"/>
       <label>Subject</label>
@@ -71,8 +71,9 @@ class Message extends React.Component {
 <div className="w3-main" >
 <i className="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onClick="w3_open()"></i>
 <a href="javascript:void(0)" className="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" ><i className="fa fa-pencil"></i></a>
-
-<div id="Borge" className="w3-container person">
+<div style = {{marginLeft:300}}>
+  
+<div id="Borge" className="w3-container person" >
   <br/>
   <img className="w3-round  w3-animate-top" src="/w3images/avatar3.png" />
   <h5 className="w3-opacity">Subject: Remember Me</h5>
@@ -109,6 +110,7 @@ class Message extends React.Component {
   <p>That's it!</p>
 </div>
      
+</div>
 </div>
 
 
