@@ -33,13 +33,13 @@ const Home = (props) => (<div >
           <Router>
             <ul className='nav navbar-nav navbar-right' >
               <li>
-                <Link className='icon-bar' to='/login'>Login</Link>
+                <a href="/login" className='icon-bar' to='/login'>Login</a>
               </li>
               <li>
-                <Link className='text-light ' to='/signup'>SignUp </Link>
+                <a href="/signup" className='text-light '>SignUp </a>
               </li>
               <Route path='/login' component={Login} />
-              <Route path='/signup' component={Signup} />
+                <Route path='/signup' component={Signup}/>
             </ul>
           </Router>
         </form>
