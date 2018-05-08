@@ -46,6 +46,7 @@ const Home = (props) => (<div >
       </div>
     </div>
   </nav>
+  
 </div>
 )
 export default Home
