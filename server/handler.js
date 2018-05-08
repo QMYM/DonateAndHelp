@@ -89,30 +89,13 @@ exports.logout = function (req, res) { // logout and destroy session
   })
 }
 
-exports.Login = function (req, res) {
+exports.LoginCompany = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
-  db.userDonater.findOne({ // searching for the username in the schema
-    username: username
-  }, function (err, data) {
-    console.log('Donater schema', data)
-    if (err) {
-      throw err
-    } else {
-      if (data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
-        bcrypt.compare(password, data.password, function (err, found) {
-          if (found) {
-            res.sendStatus(201)
-            helper.createSession(req, res, data.username)
-          } else {
-            res.sendStatus(404)
-          }
-        })
-      } else {
-        db.userCompany.findOne({ // searching for the username in the schema
+  db.userCompany.findOne({ // searching for the username in the schema
           username: username
         }, function (err, data) {
-          console.log('CompanyScema', data)
+          console.log('CompanySchema', data)
           if (err) {
             throw err
           } else {
@@ -121,7 +104,6 @@ exports.Login = function (req, res) {
             } else {
               bcrypt.compare(password, data.password, function (err, found) {
                 if (found) {
-                  res.sendStatus(202)
                   helper.createSession(req, res, data.username)
                 } else {
                   res.sendStatus(404)
@@ -130,7 +112,29 @@ exports.Login = function (req, res) {
             }
           }
         })
-      }
-    }
-  })
+}
+
+exports.LoginDonater = function (req, res) {
+  var username = req.body.userName
+  var password = req.body.password
+  db.userDonater.findOne({ // searching for the username in the schema
+          username: username
+        }, function (err, data) {
+          console.log('DonaterSchema', data)
+          if (err) {
+            throw err
+          } else {
+            if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
+              res.sendStatus(404)
+            } else {
+              bcrypt.compare(password, data.password, function (err, found) {
+                if (found) {
+                  helper.createSession(req, res, data.username)
+                } else {
+                  res.sendStatus(404)
+                }
+              })
+            }
+          }
+        })
 }
