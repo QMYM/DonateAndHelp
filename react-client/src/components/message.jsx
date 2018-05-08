@@ -20,7 +20,7 @@ class Message extends React.Component {
   var x = this
    axios.get('/recieveMessage')
    .then(function(response) {
-    console.log("aaa" ,response)
+    // console.log("aaa" ,response)
     x.setState({messages : response.data})
    })
   }
