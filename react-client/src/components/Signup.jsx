@@ -85,15 +85,15 @@ render () {
     <div className='containter text-center'>
     <div className="login-wrap">
     <div className="login-html">
-    <input id="tab-1" type="radio" name="tab" className="sign-in" /><label for="tab-1" className="tab">Login In</label>
-    <input id="tab-2" type="radio" name="tab" className="sign-up" checked={true}/><label for="tab-2" className="tab">Sign Up</label>
+    <input id="tab-1" type="radio" name="tab" className="sign-in" /><label for="tab-1" className="tab"><a href ='/login'>Login In</a></label>
+   <input id="tab-2" type="radio" name="tab" className="sign-up" checked={true}/><label for="tab-2" className="tab">Sign Up</label>
     <div className="login-form">
 
     <div className="sign-up-htm">
-    <div className="group">
+    <div className="form-group group" >
     <select value={this.state.value} onChange={this.alo}>
 
-    <option value='false'>Donater</option>
+    <option className="form-control" value='false'>Donater</option>
     <option value=''>company</option>
     </select>
 
