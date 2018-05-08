@@ -6,10 +6,8 @@ var path = require('path')
 
 const app = express()
 
-app.use(express.static(__dirname + '/../react-client/dist'))
 
-
-
+app.use(express.static(path.join(__dirname, '../react-client/dist')))
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use(session({
@@ -17,15 +15,19 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+app.get('/getImage',handler.getImage)
+
 app.post('/loginCompany', handler.LoginCompany)
 app.post('/loginDonater', handler.LoginDonater) 
 app.post('/Donater', handler.Signup)
 app.post('/Company', handler.SignupCompany)
 app.post('/photo', handler.uploadImage)
 app.get('/logout', handler.logout)
-app.get('getImage', handler.getImage)
 app.post('/profile_company',handler.addProfileCompany)
-app.get('/*', (req, res) => {
+app.get('/recieveMessage', handler.reciveMessag)
+app.post('/sendMessage' , handler.sendMessage)
+
+app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
 const PORT = process.env.PORT || 3000

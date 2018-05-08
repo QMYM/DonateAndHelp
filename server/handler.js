@@ -1,6 +1,7 @@
 let db = require('../db/index')
 let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
+let session = require('express-session');
 let saltRounds = 10
 
 exports.Signup = function (req, res) {
@@ -95,12 +96,12 @@ exports.LoginCompany = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
   db.userCompany.findOne({ // searching for the username in the schema
-          username: username
-        }, function (err, data) {
-          console.log('CompanySchema', data)
-          if (err) {
-            throw err
-          } else {
+    username: username
+  }, function (err, data) {
+    console.log('CompanySchema', data)
+    if (err) {
+      throw err
+    } else {
             if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
               res.sendStatus(404)
             } else {
@@ -119,6 +120,17 @@ exports.LoginCompany = function (req, res) {
 exports.uploadImage = function(req,res){ // add a personal photo for the user
   console.log('mais mais ' , req.body.image)
 var image = req.body.image
+var save = new db.userCompany({
+  image:image
+})
+save.save(function(err,data){
+  if(err){
+    throw err
+  }else {
+    console.log("'here's the data", data)
+  }
+})
+
 db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
  if(err){
    throw err
@@ -130,7 +142,7 @@ db.userCompany.update({username: req.session.user}, { $set: { image: image }},fu
 }
 exports.getImage = function(req,res){
   console.log('image uploaded', req.body)
-  db.userCompany.find({},function(err,data){
+  db.userCompany.findOne({username: req.session.user},function(err,data){
     if(err){
       throw err
     }else {
@@ -144,12 +156,12 @@ exports.LoginDonater = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
   db.userDonater.findOne({ // searching for the username in the schema
-          username: username
-        }, function (err, data) {
-          console.log('DonaterSchema', data)
-          if (err) {
-            throw err
-          } else {
+    username: username
+  }, function (err, data) {
+    console.log('DonaterSchema', data)
+    if (err) {
+      throw err
+    } else {
             if (!data) { // if he does not exist, then send error, if he exsist compare the password if it right, create session for him/her
               res.sendStatus(404)
             } else {
@@ -164,8 +176,6 @@ exports.LoginDonater = function (req, res) {
           }
         })
 }
-
-
 
 exports.addProfileCompany = function (req, res) {
 console.log(req.body,'hhhhhhhhhhh')
@@ -200,13 +210,55 @@ if(err){
 
 }
 
+exports.sendMessage = function(req , res){
+  var reciever = req.body.user
+  var text = req.body.text 
 
+  db.userCompany.findOne({username : reciever} , function (err , data ) {
+    console.log("The Messsage ", data)
+    if(err){
+      throw err 
+      
+    }else{
+      if(!data){
+        res.sendStatus(401);
+      }
+      else{
+        db.userDonater.findOne({username : reciever} , function (err , data ) {
+          if(err){throw err}
+            else {
+              if(!data){
+                res.sendStatus(402);
+              }
+              else{
+                // console.log("fff" , req.session  )
+                var message = new db.MessageSchema ({
+                  sender:req.session.user , 
+                  reciver:reciever , 
+                  message:text
+                })
+              }
+            }
+            message.save(function(err,data){
+              if(err){
+                throw err
+              }else{
+                res.send(data)
+              }
 
+            })
+          }) 
+      }
+    }
 
+  })
+}
 
-
-
-
-
-
-
+exports.reciveMessag = function (req , res) {
+  console.log("bushra ")
+  db.MessageSchema.find({} , function (err , data) {
+    if(err ){throw err}
+      console.log("daaattaa" , data)
+    res.send(data)
+  })
+}
