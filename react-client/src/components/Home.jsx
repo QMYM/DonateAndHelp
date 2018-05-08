@@ -38,7 +38,7 @@ const Home = (props) => (<div >
               <li>
                 <a href="/signup" className='text-light '>SignUp </a>
               </li>
-              <Route path='/login' component={Login} />
+              <Route path='/login' component={Login} name={this.state.states.userName}  />
                 <Route path='/signup' component={Signup}/>
             </ul>
           </Router>
