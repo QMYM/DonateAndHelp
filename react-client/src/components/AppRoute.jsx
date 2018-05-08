@@ -1,17 +1,14 @@
+import React from 'react'
+import { BrowserRouter, Route, Link, IndexRoute, hashHistory, browserHistory, Switch } from 'react-router-dom'
+import $ from 'jquery'
 
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
-import $ from 'jquery';
-
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
 import Home from './Home.jsx'
+import Login from './Login.jsx'
+import Donor from './Donor.jsx'
+import Signup from './Signup.jsx'
+import Beneficiaries from './Beneficiaries.jsx'
+import Profile from './Profile.jsx'
+import Message from './Message.jsx'
 
 class AppRoute extends React.Component {
   constructor (props) {
@@ -23,24 +20,19 @@ class AppRoute extends React.Component {
 
   render () {
     return (
-    <div>
-    <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/login">Login Page</Link>
-        </li>
-        <li>
-          <Link to="/register">Sign Up Page</Link>
-        </li>
-      </ul>
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Signup} />
-    </div>
-  </Router>
-   </div>)
+      <BrowserRouter history={hashHistory}>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/donor' component={Donor} />
+          <Route exact path='/beneficiaries' component={Beneficiaries} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/message' component={Message} />
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
 
-
-export default AppRoute;
+export default AppRoute
