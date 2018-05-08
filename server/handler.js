@@ -86,6 +86,7 @@ exports.SignupCompany = function (req, res) {
 
 exports.logout = function (req, res) { // logout and destroy session
   req.session.destroy(function () {
+    console.log('out')
     res.sendStatus(200)
   })
 }
@@ -113,6 +114,29 @@ exports.LoginCompany = function (req, res) {
             }
           }
         })
+}
+
+exports.uploadImage = function(req,res){ // add a personal photo for the user
+  console.log('mais mais ' , req.body.image)
+var image = req.body.image
+db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
+ if(err){
+   throw err
+ }else{
+   res.send(data)
+ }
+})
+
+}
+exports.getImage = function(req,res){
+  console.log('image uploaded', req.body)
+  db.userCompany.find({},function(err,data){
+    if(err){
+      throw err
+    }else {
+      res.send(data)
+    }
+  })
 }
 
 exports.LoginDonater = function (req, res) {
@@ -175,6 +199,10 @@ if(err){
 })
 
 }
+
+
+
+
 
 
 
