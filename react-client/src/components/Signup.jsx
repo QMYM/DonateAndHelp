@@ -45,11 +45,11 @@ class Signup extends React.Component {
           alert('this username is exist')
         })
       } else {
-        alert('enter your password ya 7mar')
+        alert('enter your password')
       }
     } else {
       console.log('cococ  ', confirmPassword)
-      alert("password doesn't match,rewrite it again ya 7mar")
+      alert("password doesn't match,rewrite it again")
       this.pass.value = ''
       this.conPass.value = ''
     }
@@ -69,11 +69,11 @@ class Signup extends React.Component {
      alert('this username is exist')
    })
   } else {
-    alert('enter your password ya 7mar')
+    alert('enter your password')
   }
 } else {
   console.log('cococ  ', confirmPassword)
-  alert("password doesn't match,rewrite it again ya 7mar")
+  alert("password doesn't match,rewrite it again")
   this.pass.value = ''
   this.conPass.value = ''
 }

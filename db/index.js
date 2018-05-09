@@ -18,14 +18,23 @@ var userDonater = new Schema({
   username: {type: String},
   email: {type: String},
   password: {type: String},
-  image: {type: String}
+  image: {type: String},
+  name: {type: String},
+  contactNum: {type: String},
+  description: {type: String},
+  address: {type: String}
 })
 var userCompany = new Schema({
   username: {type: String},
   email: {type: String},
   password: {type: String},
-  image: {type: String}
+  image: {type: String},
+  name: {type: String},
+  contactNum: {type: String},
+  description: {type: String},
+  address: {type: String}
 })
+
 
 const messageSchema = new Schema({
   sender:{
