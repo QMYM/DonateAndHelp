@@ -22,7 +22,7 @@ app.post('/Company', handler.SignupCompany)
 app.get('/logout', handler.logout)
 app.get('/recieveMessage', handler.reciveMessag)
 app.post('/sendMessage' , handler.sendMessage)
-
+app.get("/sessionName",handler.sessionName)
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
