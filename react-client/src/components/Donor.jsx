@@ -9,6 +9,7 @@ import {
   withRouter
 } from 'react-router-dom'
 import Profile_Donor from './Profile_Donor.jsx'
+import Message from './Message.jsx'
 class Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -53,7 +54,7 @@ class Donor extends React.Component {
       <li> <a href='/profile' className='icon-bar' to='/profile'>Profile</a> </li>
       <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
       <Route path='/message' component={Message} />
-      <Route path='/profile' component={Profile}/>
+      <Route path='/profile' component={Profile_Donor}/>
       </ul>
       </Router>
       </form>
