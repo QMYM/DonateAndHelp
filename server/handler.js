@@ -210,6 +210,72 @@ if(err){
 
 }
 
+exports.addProfileDonor = function (req, res) {
+console.log(req.body,'donor donor')
+console.log('check the session donor', req.session.user )
+var name=req.body.name
+var contactNum=req.body.contactNum
+var description=req.body.description
+var address=req.body.address
+
+db.userDonater.findOne({username:req.session.user},function(err,data){
+  console.log('mais',data)
+if(err){
+  throw err
+}else{
+  var info = new db.userDonater({
+    name:name,
+    contactNum:contactNum,
+    description:description,
+    address:address
+  })
+  info.save(function(err,information){
+    if(err){
+      throw err
+    }else{
+      res.send(information)
+    }
+  })
+
+}
+
+})
+
+}
+
+exports.uploadImageDonor = function(req,res){ // add a personal photo for the user
+  console.log('mais mais ' , req.body.image)
+var image = req.body.image
+var save = new db.userDonater({
+  image:image
+ })
+ save.save(function(err,data){
+  if(err){
+    throw err
+  }else {
+ console.log("'here's the data", data)
+ }
+ })
+
+db.userDonater.update({username: req.session.user}, { $set: { image: image }},function(err,data){
+ if(err){
+   throw err
+ }else{
+   res.send(data)
+ }
+})
+
+ }
+exports.getImageDonor = function(req,res){
+  db.userDonater.findOne({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else {
+      res.send(data)
+    }
+  })
+}
+
 exports.sendMessage = function(req , res){
   var reciever = req.body.user
   var text = req.body.text 

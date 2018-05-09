@@ -1,7 +1,14 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+import Profile_Donor from './Profile_Donor.jsx'
 class Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -39,11 +46,14 @@ class Donor extends React.Component {
             </div>
             <div className='collapse navbar-collapse' id='myNavbar'>
               <form className=' '>
+              <router>
                 <ul className='nav navbar-nav navbar-right' >
                   <li> <a className='icon-bar' to='/message'>Message</a> </li>
-                  <li> <a className='icon-bar' to='/profile'>Profile</a> </li>
+                  <li> <a href='/Profile_Donor' className='icon-bar' >Profile</a> </li>
                   <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a>  </li>
+                  <Route path='/profile_Donor' component={Profile_Donor} />
                 </ul>
+                </router>
               </form>
             </div>
           </div>

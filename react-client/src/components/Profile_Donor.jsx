@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
 
-class Profile extends React.Component {
+class Profile_Donor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -25,7 +25,7 @@ class Profile extends React.Component {
 }
 
 submit(name,contactNum,description,address){
-  axios.post('/profile_company', {
+  axios.post('/Profile_Donor', {
       // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,
@@ -46,21 +46,23 @@ submit(name,contactNum,description,address){
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/photo', {image: e.target.result})
+    axios.post('/photoDonor', {image: e.target.result})
     .then(res => {
+    	console.log('hello world', res)
              x.componentDidMount() // here i'm getting the photo from database
            })
     .catch(function (error) {
       console.log(error);
     });
+  
   }
 
 }
 
 componentDidMount() { // this is the initial
-  axios.get('/getImage')
+  axios.get('/getImageDonor')
   .then(response => {
-    console.log('jackel', response['data'].image)
+    console.log('jackel', response['data'])
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
@@ -110,4 +112,4 @@ render () {
 }
 
 
-export default Profile
+export default Profile_Donor
