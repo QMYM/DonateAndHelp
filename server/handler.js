@@ -220,8 +220,21 @@ exports.sendMessage = function(req , res){
       throw err 
       
     }else{
-      if(!data){
-        res.sendStatus(401);
+      if(data){
+         var message = new db.MessageSchema ({
+                  sender:req.session.user , 
+                  reciver:reciever , 
+                  message:text
+                })
+         message.save(function(err,data){
+            if(err){
+              throw err
+            }else{
+              res.send(data)
+            }
+
+         })
+
       }
       else{
         db.userDonater.findOne({username : reciever} , function (err , data ) {
@@ -255,10 +268,15 @@ exports.sendMessage = function(req , res){
 }
 
 exports.reciveMessag = function (req , res) {
-  console.log("bushra ")
+
+  console.log("bushra", req.session)
   db.MessageSchema.find({} , function (err , data) {
     if(err ){throw err}
       console.log("daaattaa" , data)
-    res.send(data)
+    res.send(data )
   })
+}
+
+exports.sessionName = function (req , res) {
+  res.send(req.session.user)
 }
