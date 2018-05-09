@@ -26,7 +26,7 @@ app.get('/logout', handler.logout)
 app.post('/profile_company',handler.addProfileCompany)
 app.get('/recieveMessage', handler.reciveMessag)
 app.post('/sendMessage' , handler.sendMessage)
-
+app.get("/sessionName",handler.sessionName)
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
