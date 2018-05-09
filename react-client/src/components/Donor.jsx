@@ -46,15 +46,17 @@ class Donor extends React.Component {
             </div>
             <div className='collapse navbar-collapse' id='myNavbar'>
               <form className=' '>
-              <router>
-                <ul className='nav navbar-nav navbar-right' >
-                  <li> <a className='icon-bar' to='/message'>Message</a> </li>
-                  <li> <a href='/Profile_Donor' className='icon-bar' >Profile</a> </li>
-                  <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a>  </li>
-                  <Route path='/profile_Donor' component={Profile_Donor} />
-                </ul>
-                </router>
-              </form>
+
+      <Router>
+      <ul className='nav navbar-nav navbar-right' >
+      <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+      <li> <a href='/profile' className='icon-bar' to='/profile'>Profile</a> </li>
+      <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+      <Route path='/message' component={Message} />
+      <Route path='/profile' component={Profile}/>
+      </ul>
+      </Router>
+      </form>
             </div>
           </div>
         </nav>

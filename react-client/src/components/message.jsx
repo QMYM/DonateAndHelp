@@ -9,22 +9,40 @@ class Message extends React.Component {
       image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq",
       user:'',
       text:'' , 
-      messages : [] 
+      messages : [],
+      sessionUser:'' 
     }
     this.sendMessage = this.sendMessage.bind(this);
     this.onChange = this.onChange.bind(this);
-      // this.componentDidMount = this.componentDidMount.bind(this);
-  
   }
   componentDidMount() {
   var x = this
+    x.user()
    axios.get('/recieveMessage')
    .then(function(response) {
-    // console.log("aaa" ,response)
-    x.setState({messages : response.data})
+    var mes = []
+     console.log("aaa" , response.data , x.state.sessionUser)
+     for (var i = 0; i < response.data.length; i++) {
+     if(response.data[i].reciver === x.state.sessionUser){
+      mes.push(response.data[i])
+    x.setState({messages : mes})
+     }
+      
+     }
    })
+
+
   }
-  
+  user (){
+    var x = this;
+    axios.get("/sessionName").then(function (res){
+      x.setState({sessionUser : res.data})
+    }).catch(function(err){
+      console.log("error",err)
+    })
+  }
+
+
   onChange(e){
     
     this.setState({
@@ -41,6 +59,8 @@ class Message extends React.Component {
     })
   }
   render () {
+     console.log("mess" ,this.state.messages)
+
     return (
       <div>
       <nav className="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3  }} id="mySidebar">
@@ -103,12 +123,13 @@ class Message extends React.Component {
 <a href="javascript:void(0)" className="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" ><i className="fa fa-pencil"></i></a>
 <div style = {{marginLeft:300}}>
   {this.state.messages.map(item => 
+
     <div>
 <div id="Qays" className="w3-container person" >
   <br/>
   <img className="w3-round  w3-animate-top" src={this.state.image} />
   <h5 className="w3-opacity">Subject: Remember Me</h5>
-  <h4><i className="fa fa-clock-o"></i> From {item.reciver}, Sep 27, 2015.</h4>
+  <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
   <p>{item.message}</p>
   <p>Best Regards, <br/>Borge Refsnes</p>
   <a className="w3-button w3-light-grey" href="#">Reply<i className="w3-margin-left fa fa-mail-reply"></i></a>
