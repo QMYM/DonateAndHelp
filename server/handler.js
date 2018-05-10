@@ -254,6 +254,30 @@ exports.sendMessage = function(req , res){
 
   })
 }
+exports.getPhotoForMessages = function (req, res){
+  db.userCompany.aggregate([{$match:{$or: [{ reciver: req.session.userName }, { sender: req.session.userName }]}},
+ {
+   $lookup:
+     {
+       from: "userCompany",
+       localField: "sender",
+       foreignField: "userName",
+       as: "senderInfo"
+     }
+}
+], function (err, data) {
+      if (err) {
+        console.log(err);
+
+      }
+      //console.log(data[0].senderInfo);
+      //res.send( data)
+
+      res.send(data)
+  })
+
+}
+
 
 exports.reciveMessag = function (req , res) {
   db.MessageSchema.find({} , function (err , data) {

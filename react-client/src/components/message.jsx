@@ -10,7 +10,8 @@ class Message extends React.Component {
       user:'',
       text:'' , 
       messages : [],
-      sessionUser:'' 
+      sessionUser:'',
+      items:[] 
     }
     this.sendMessage = this.sendMessage.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -26,12 +27,31 @@ class Message extends React.Component {
      if(response.data[i].reciver === x.state.sessionUser){
       mes.push(response.data[i])
     x.setState({messages : mes})
+    
      }
       
      }
    })
+   this.getPhotoForMessages()
+
+  }
+  getPhotoForMessages(){
+    var x = this
+    axios.get("/getPhotoForMessages").then(function(res){
+      var arr =[]
+      for(var i = 0; i< res.data.length; i++){
+        if(res.data[i].image !== undefined){
+          arr.push(res.data[i].image)
+           x.setState({items : arr})
+           console.log("my image",x.state.items)
+        }
+
+      }
 
 
+    }).catch(function(err){
+      console.log("error",err)
+    })
   }
   user (){
     var x = this;
@@ -127,7 +147,7 @@ class Message extends React.Component {
     <div>
 <div id="Qays" className="w3-container person" >
   <br/>
-  <img className="w3-round  w3-animate-top" src={this.state.image} />
+  <img className="w3-round  w3-animate-top" src={this.state.items[0]} />
   <h5 className="w3-opacity">Subject: Remember Me</h5>
   <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
   <p>{item.message}</p>
@@ -138,46 +158,14 @@ class Message extends React.Component {
 </div>
 </div>
     )}
-<div id="Borge" className="w3-container person" >
-  <br/>
-  <img className="w3-round  w3-animate-top" src={this.state.image} />
-  <h5 className="w3-opacity">Subject: Remember Me</h5>
-  <h4><i className="fa fa-clock-o"></i> From Borge Refsnes, Sep 27, 2015.</h4>
-  <a className="w3-button w3-light-grey" href="#">Reply<i className="w3-margin-left fa fa-mail-reply"></i></a>
-  <a className="w3-button w3-light-grey" href="#">Forward<i className="w3-margin-left fa fa-arrow-right"></i></a>
-  <hr/>
-  <p>Hello, i just wanted to let you know that i'll be home at lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Best Regards, <br/>Borge Refsnes</p>
-</div>
 
-<div id="Jane" className="w3-container person">
-  <br/>
-  <img className="w3-round w3-animate-top" src={this.state.image} />
-  <h5 className="w3-opacity">Subject: None</h5>
-  <h4><i className="fa fa-clock-o"></i> From Jane Doe, Sep 25, 2015.</h4>
-  <a className="w3-button w3-light-grey">Reply<i className="w3-margin-left fa fa-mail-reply"></i></a>
-  <a className="w3-button w3-light-grey">Forward<i className="w3-margin-left fa fa-arrow-right"></i></a>
-  <hr/>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Forever yours,<br/>Jane</p>
-</div>
 
-<div id="John" className="w3-container person">
-  <br/>
-  <img className="w3-round w3-animate-top" src={this.state.image}/>
-  <h5 className="w3-opacity">Subject: None</h5>
-  <h4><i className="fa fa-clock-o"></i> From John Doe, Sep 23, 2015.</h4>
-  <a className="w3-button w3-light-grey">Reply<i className="w3-margin-left fa fa-mail-reply"></i></a>
-  <a className="w3-button w3-light-grey">Forward<i className="w3-margin-left fa fa-arrow-right"></i></a>
-  <hr/>
-  <p>Welcome.</p>
-  <p>That's it!</p>
-</div>
+
+
      
 </div>
 </div>
-
+  
 
       </div>
     )

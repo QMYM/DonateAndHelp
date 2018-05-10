@@ -52,9 +52,31 @@ const messageSchema = new Schema({
   
 });
 
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
+var messageSenders = function (callback){
+   MessageSchema.aggregate([
+   {
+     $lookup:
+       {
+         from: "userCompany",
+         localField: "sender",
+         foreignField: "userName",
+         as: "senderInfo"
+       }
+  }
+], function (err, data) {
+        if (err) {
+          console.log(err);
+            callback(err, null);
+        }
+        console.log(data);
+        callback(null, data)
+    });
+};
+
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
-MessageSchema = mongoose.model('MessageSchema', messageSchema)
+
 
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
