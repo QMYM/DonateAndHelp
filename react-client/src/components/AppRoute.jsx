@@ -9,8 +9,10 @@ import Signup from './Signup.jsx'
 import Beneficiaries from './Beneficiaries.jsx'
 import Profile from './Profile.jsx'
 import Message from './Message.jsx'
+import Campaign from './Campaign.jsx'
 import Profile_Donor from './Profile_Donor.jsx'
 import TheApp from './TheApp.jsx'
+
 
 class AppRoute extends React.Component {
   constructor (props) {
@@ -33,6 +35,7 @@ class AppRoute extends React.Component {
           <Route exact path='/Profile_Donor' component={Profile_Donor} />
           <Route exact path='/theapp' component={TheApp} />
           <Route exact path='/message' component={Message} />
+          <Route exact path='/campaign' component={Campaign} />
         </Switch>
       </BrowserRouter>
     )

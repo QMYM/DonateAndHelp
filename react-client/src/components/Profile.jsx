@@ -54,7 +54,6 @@ submit(name,contactNum,description,address){
       console.log(error);
     });
   }
-
 }
 
 componentDidMount() { // this is the initial
@@ -82,13 +81,9 @@ render () {
     <input type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto}/>
     Choose file
     </label>
-
-
     </form>
-
     <br />
     <br />
-
     <label>Name:</label>
     <input type="text" name="name" onChange={this.onChange}/>
     <br/>
@@ -101,7 +96,6 @@ render () {
     <label>address:</label>
     <input type="text" name="address" onChange={this.onChange}/>
     <br/>
-    
     <button onClick={()=>this.submit(this.state.name,this.state.contactNum,
       this.state.description,this.state.address)}>Submit</button>
     </div>
