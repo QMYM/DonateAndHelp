@@ -22,7 +22,6 @@ class Message extends React.Component {
    axios.get('/recieveMessage')
    .then(function(response) {
     var mes = []
-     console.log("aaa" , response.data , x.state.sessionUser)
      for (var i = 0; i < response.data.length; i++) {
      if(response.data[i].reciver === x.state.sessionUser){
       mes.push(response.data[i])
@@ -32,27 +31,27 @@ class Message extends React.Component {
       
      }
    })
-   this.getPhotoForMessages()
+   // this.getPhotoForMessages()
 
   }
-  getPhotoForMessages(){
-    var x = this
-    axios.get("/getPhotoForMessages").then(function(res){
-      var arr =[]
-      for(var i = 0; i< res.data.length; i++){
-        if(res.data[i].image !== undefined){
-          arr.push(res.data[i].image)
-           x.setState({items : arr})
-           console.log("my image",x.state.items)
-        }
+  // getPhotoForMessages(){
+  //   var x = this
+  //   axios.get("/getPhotoForMessages").then(function(res){
+  //     var arr =[]
+  //     for(var i = 0; i< res.data.length; i++){
+  //       if(res.data[i].image !== undefined){
+  //         arr.push(res.data[i].image)
+  //          x.setState({items : arr})
+  //          console.log("my image",x.state.items)
+  //       }
 
-      }
+  //     }
 
 
-    }).catch(function(err){
-      console.log("error",err)
-    })
-  }
+  //   }).catch(function(err){
+  //     console.log("error",err)
+  //   })
+  // }
   user (){
     var x = this;
     axios.get("/sessionName").then(function (res){
@@ -147,7 +146,7 @@ class Message extends React.Component {
     <div>
 <div id="Qays" className="w3-container person" >
   <br/>
-  <img className="w3-round  w3-animate-top" src={this.state.items[0]} />
+  <img className="w3-round  w3-animate-top" src={this.state.image}/>
   <h5 className="w3-opacity">Subject: Remember Me</h5>
   <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
   <p>{item.message}</p>

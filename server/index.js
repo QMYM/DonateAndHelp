@@ -16,7 +16,6 @@ app.use(session({
   saveUninitialized: true
 }))
 app.get('/getImage',handler.getImage)
-
 app.post('/loginCompany', handler.LoginCompany)
 app.post('/loginDonater', handler.LoginDonater) 
 app.post('/Donater', handler.Signup)
@@ -25,9 +24,15 @@ app.post('/photo', handler.uploadImage)
 app.get('/logout', handler.logout)
 app.post('/profile_company',handler.addProfileCompany)
 app.get('/recieveMessage', handler.reciveMessag)
+app.post('/imageCampaign', handler.uploadImageCampaign)
+app.post('/campaignInfo', handler.postCampaign)
 app.post('/sendMessage' , handler.sendMessage)
+app.post('/Profile_Donor',handler.addProfileDonor)
+app.post('/photoDonor', handler.uploadImageDonor)
+app.get('/getImageDonor',handler.getImageDonor)
 app.get("/sessionName",handler.sessionName)
-app.get('/getPhotoForMessages', handler.getPhotoForMessages)
+// app.get('/getPhotoForMessages', handler.getPhotoForMessages)
+
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))

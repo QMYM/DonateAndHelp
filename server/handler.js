@@ -114,11 +114,12 @@ exports.LoginCompany = function (req, res) {
 }
 
 exports.uploadImage = function(req,res){ // add a personal photo for the user
-var image = req.body.image
-var save = new db.userCompany({
+ console.log('mais mais ' , req.body.image)
+ var image = req.body.image
+ var save = new db.userCompany({
   image:image
 })
-save.save(function(err,data){
+ save.save(function(err,data){
   if(err){
     throw err
   }else {
@@ -126,15 +127,16 @@ save.save(function(err,data){
   }
 })
 
-db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
- if(err){
-   throw err
- }else{
-   res.send(data)
- }
-})
+ db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
 
 }
+
 exports.getImage = function(req,res){
   db.userCompany.findOne({username: req.session.user},function(err,data){
     if(err){
@@ -171,33 +173,104 @@ exports.LoginDonater = function (req, res) {
 }
 
 exports.addProfileCompany = function (req, res) {
-var name=req.body.name
-var contactNum=req.body.contactNum
-var description=req.body.description
-var address=req.body.address
+  console.log(req.body,'hhhhhhhhhhh')
+  console.log('check the session ', req.session.user )
+  var name=req.body.name
+  var contactNum=req.body.contactNum
+  var description=req.body.description
+  var address=req.body.address
 
-db.userCompany.findOne({username:req.session.user},function(err,data){
-if(err){
-  throw err
-}else{
-  var info = new db.userCompany({
-    name:name,
-    contactNum:contactNum,
-    description:description,
-    address:address
-  })
-  info.save(function(err,information){
+  db.userCompany.findOne({username:req.session.user},function(err,data){
+    console.log('mais',data)
+
     if(err){
       throw err
     }else{
-      res.send(information)
+      var info = new db.userCompany({
+        name:name,
+        contactNum:contactNum,
+        description:description,
+        address:address
+      })
+      info.save(function(err,information){
+        if(err){
+          throw err
+        }else{
+          res.send(information)
+        }
+      })
+
     }
+
   })
 
 }
 
-})
+exports.addProfileDonor = function (req, res) {
+  console.log(req.body,'donor donor')
+  console.log('check the session donor', req.session.user )
+  var name=req.body.name
+  var contactNum=req.body.contactNum
+  var description=req.body.description
+  var address=req.body.address
 
+  db.userDonater.findOne({username:req.session.user},function(err,data){
+    console.log('mais',data)
+    if(err){
+      throw err
+    }else{
+      var info = new db.userDonater({
+        name:name,
+        contactNum:contactNum,
+        description:description,
+        address:address
+      })
+      info.save(function(err,information){
+        if(err){
+          throw err
+        }else{
+          res.send(information)
+        }
+      })
+
+    }
+
+  })
+
+}
+
+exports.uploadImageDonor = function(req,res){ // add a personal photo for the user
+  console.log('mais mais ' , req.body.image)
+  var image = req.body.image
+  var save = new db.userDonater({
+    image:image
+  })
+  save.save(function(err,data){
+    if(err){
+      throw err
+    }else {
+     console.log("'here's the data", data)
+   }
+ })
+
+  db.userDonater.update({username: req.session.user}, { $set: { image: image }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
+
+}
+
+exports.getImageDonor = function(req,res){
+  db.userDonater.findOne({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else {
+      res.send(data)
+    }
+  })
 }
 
 exports.sendMessage = function(req , res){
@@ -210,82 +283,142 @@ exports.sendMessage = function(req , res){
       
     }else{
       if(data){
-         var message = new db.MessageSchema ({
-                  sender:req.session.user , 
-                  reciver:reciever , 
-                  message:text
-                })
-         message.save(function(err,data){
+       var message = new db.MessageSchema ({
+        sender:req.session.user , 
+        reciver:reciever , 
+        message:text
+      })
+       message.save(function(err,data){
+        if(err){
+          throw err
+        }else{
+          res.send(data)
+        }
+
+      })
+
+     }
+     else{
+      db.userDonater.findOne({username : reciever} , function (err , data ) {
+        if(err){throw err}
+          else {
+            if(!data){
+              res.sendStatus(402);
+            }
+            else{
+              var message = new db.MessageSchema ({
+                sender:req.session.user , 
+                reciver:reciever , 
+                message:text
+              })
+            }
+          }
+          message.save(function(err,data){
             if(err){
               throw err
             }else{
               res.send(data)
             }
 
-         })
-
-      }
-      else{
-        db.userDonater.findOne({username : reciever} , function (err , data ) {
-          if(err){throw err}
-            else {
-              if(!data){
-                res.sendStatus(402);
-              }
-              else{
-                var message = new db.MessageSchema ({
-                  sender:req.session.user , 
-                  reciver:reciever , 
-                  message:text
-                })
-              }
-            }
-            message.save(function(err,data){
-              if(err){
-                throw err
-              }else{
-                res.send(data)
-              }
-
-            })
-          }) 
-      }
+          })
+        }) 
     }
+  }
 
-  })
+})
 }
-exports.getPhotoForMessages = function (req, res){
-  db.userCompany.aggregate([{$match:{$or: [{ reciver: req.session.userName }, { sender: req.session.userName }]}},
- {
-   $lookup:
-     {
-       from: "userCompany",
-       localField: "sender",
-       foreignField: "userName",
-       as: "senderInfo"
-     }
-}
-], function (err, data) {
-      if (err) {
-        console.log(err);
+// exports.getPhotoForMessages = function (req, res){
+  
+//   db.userCompany.aggregate([{$match:{$or: [{ reciver: req.session.username }, { sender: req.session.username }]}},
+//  {
+//    $lookup:
+//      {
+//        from: "userCompany",
+//        localField: "sender",
+//        foreignField: "user",
+//        as: "senderInfo"
+//      }
 
-      }
-      //console.log(data[0].senderInfo);
-      //res.send( data)
+// }
 
-      res.send(data)
-  })
+// ], function (err, data) {
+//       if (err) {
+//         console.log(err);
 
-}
+//       }
+//       //console.log(data[0].senderInfo);
+//       //res.send( data)
+
+//       res.send(data)
+//       console.log("hello mar7aba", data)
+//   })
+
+// }
 
 
 exports.reciveMessag = function (req , res) {
   db.MessageSchema.find({} , function (err , data) {
     if(err ){throw err}
-    res.send(data )
+      res.send(data )
+  })
+}
+
+exports.uploadImageCampaign = function(req, res){
+
+ var image = req.body.campaignImage;
+ console.log(image,"image in post server!");
+ var save = new db.companyCampaigns({
+  campaignImage:image
+})
+ save.save(function(err,data){
+  if(err){
+    throw err
+  }else {
+    console.log("Campaign image has been posted", data);
+  }
+})
+
+ db.companyCampaigns.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
+
+}
+
+exports.postCampaign = function(req, res){
+
+  console.log(req.body);
+
+  var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+
+  db.companyCampaigns.findOne({username:req.session.user},function(err,data){
+    if(err){
+      throw err;
+    } else {
+      var info = new db.companyCampaigns({
+        campaignName:campaignName,
+        campaignDescription:campaignDescription,
+        campaignAmount:campaignAmount,
+        username:req.session.user
+      })
+      info.save(function(err,information){
+        if(err){
+          throw err;
+        } else {
+          console.log(information);
+          res.send(information);
+        }
+      })
+    }
   })
 }
 
 exports.sessionName = function (req , res) {
   res.send(req.session.user)
 }
+

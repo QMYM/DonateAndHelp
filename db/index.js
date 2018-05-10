@@ -34,6 +34,13 @@ var userCompany = new Schema({
   description: {type: String},
   address: {type: String}
 })
+var companyCampaigns = new Schema({
+  campaignName: {type: String},
+  campaignDescription: {type: String},
+  campaignAmount: {type: String},
+  campaignImage: {type: String},
+  username: {type: String}
+})
 
 
 const messageSchema = new Schema({
@@ -52,32 +59,36 @@ const messageSchema = new Schema({
   
 });
 
-MessageSchema = mongoose.model('MessageSchema', messageSchema)
-var messageSenders = function (callback){
-   MessageSchema.aggregate([
-   {
-     $lookup:
-       {
-         from: "userCompany",
-         localField: "sender",
-         foreignField: "userName",
-         as: "senderInfo"
-       }
-  }
-], function (err, data) {
-        if (err) {
-          console.log(err);
-            callback(err, null);
-        }
-        console.log(data);
-        callback(null, data)
-    });
-};
+// MessageSchema = mongoose.model('MessageSchema', messageSchema)
+// var messageSenders = function (callback){
+//    MessageSchema.aggregate([
+//    {
+//      $lookup:
+//        {
+//          from: "userCompany",
+//          localField: "sender",
+//          foreignField: "user",
+//          as: "senderInfo"
+//        }
+//   }
+// ], function (err, data) {
+//         if (err) {
+//           console.log(err);
+//             callback(err, null);
+//         }
+//         console.log(data);
+//         callback(null, data)
+//     });
+// };
 
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
+companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema
+module.exports.companyCampaigns = companyCampaigns
+
