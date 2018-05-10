@@ -456,3 +456,36 @@ exports.donorCam = function (req , res) {
       }
   })
 }
+
+exports.fetchDonorData = function (req, res){
+  db.userDonater.findOne({username: req.session.user}, function(err,data){
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
+  })
+}
+
+exports.fetchCompanyData = function (req, res){
+  console.log("check", req.session)
+  db.userCompany.findOne({username: req.session.user}, function(err,data){
+    console.log("hello data", data)
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+

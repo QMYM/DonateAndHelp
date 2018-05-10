@@ -10,8 +10,9 @@ class Profile extends React.Component {
      name:'',
      contactNum:'',
      description:'',
-     address:''
-
+     address:'',
+     user:'',
+     email:''
    }
    this.onChange=this.onChange.bind(this);
    this.uploadPhoto=this.uploadPhoto.bind(this);
@@ -64,14 +65,28 @@ componentDidMount() { // this is the initial
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
      })
-
+     this.fetchCompanyData()
 
    })
   .catch(function (error) {
    console.log(error);
  });
 }
+fetchCompanyData(){
+  var x = this
+axios.get("/fetchCompanyData").then(function(res){
+  console.log("alo data is here",res)
+  var user = res.data.username
+  var email = res.data.email
+  x.setState({
+    user:user,
+    email:email
 
+  })
+}).catch(function(err){
+ console.log("error",err)
+})
+}
 render () {
   return (
     <div>
@@ -82,6 +97,8 @@ render () {
     Choose file
     </label>
     </form>
+    <h1>{this.state.user}</h1>
+      <h1>{this.state.email} </h1>
     <br />
     <br />
     <label>Name:</label>
