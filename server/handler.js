@@ -327,11 +327,39 @@ exports.sendMessage = function(req , res){
 
 })
 }
+// exports.getPhotoForMessages = function (req, res){
+  
+//   db.userCompany.aggregate([{$match:{$or: [{ reciver: req.session.username }, { sender: req.session.username }]}},
+//  {
+//    $lookup:
+//      {
+//        from: "userCompany",
+//        localField: "sender",
+//        foreignField: "user",
+//        as: "senderInfo"
+//      }
+
+// }
+
+// ], function (err, data) {
+//       if (err) {
+//         console.log(err);
+
+//       }
+//       //console.log(data[0].senderInfo);
+//       //res.send( data)
+
+//       res.send(data)
+//       console.log("hello mar7aba", data)
+//   })
+
+// }
+
 
 exports.reciveMessag = function (req , res) {
   db.MessageSchema.find({} , function (err , data) {
     if(err ){throw err}
-      res.send(data )
+      res.send(data)
   })
 }
 
@@ -394,11 +422,59 @@ exports.sessionName = function (req , res) {
   res.send(req.session.user)
 }
 
+exports.searchBeneficiary = function(req, res){
+  var name = req.body.name;
+  //console.log(name, "i am a server");
+  db.userDonater.findOne({name:name},function(err,data){
+    if(err){
+      throw err;
+    } else if(!data){
+      res.sendStatus(404)
+    } else {
+      var arr = [];
+      arr.push(data);
+      res.send(arr);
+    }   
+  }) 
+}
+
+exports.imageSearch = function (req, res){
+  db.userDonater.find({}, function(err,data){
+    if(err){
+      throw err
+    } else {
+      res.send(data)
+    }
+  })
+}
+
 exports.donorCam = function (req , res) {
   db.companyCampaigns.find({} , function (err , data) {
     if(err){throw err}
       else{
         res.send(data)
       }
+  })
+}
+
+exports.fetchDonorData = function (req, res){
+  db.userDonater.findOne({username: req.session.user}, function(err,data){
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
+  })
+}
+
+exports.fetchCompanyData = function (req, res){
+  console.log("check", req.session)
+  db.userCompany.findOne({username: req.session.user}, function(err,data){
+    console.log("hello data", data)
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
   })
 }

@@ -10,8 +10,9 @@ class Profile extends React.Component {
      name:'',
      contactNum:'',
      description:'',
-     address:''
-
+     address:'',
+     user:'',
+     email:''
    }
    this.onChange=this.onChange.bind(this);
    this.uploadPhoto=this.uploadPhoto.bind(this);
@@ -59,29 +60,45 @@ submit(name,contactNum,description,address){
 componentDidMount() { // this is the initial
   axios.get('/getImage')
   .then(response => {
-    console.log('jackel', response['data'].image)
+
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
      })
-
+     this.fetchCompanyData()
 
    })
   .catch(function (error) {
    console.log(error);
  });
 }
+fetchCompanyData(){
+  var x = this
+axios.get("/fetchCompanyData").then(function(res){
+  console.log("alo data is here",res)
+  var user = res.data.username
+  var email = res.data.email
+  x.setState({
+    user:user,
+    email:email
 
+  })
+}).catch(function(err){
+ console.log("error",err)
+})
+}
 render () {
   return (
     <div>
-    <span><img src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> </span>
+    <span><img src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"400px", height:"400px"}} /> </span>
     <form> 
     <label className="btn  btn-primary" style={{color:"black"}}>
     <input type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto}/>
     Choose file
     </label>
     </form>
+    <h1>{this.state.user}</h1>
+      <h1>{this.state.email} </h1>
     <br />
     <br />
     <label>Name:</label>

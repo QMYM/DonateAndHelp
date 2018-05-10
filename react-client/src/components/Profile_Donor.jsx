@@ -10,7 +10,9 @@ class Profile_Donor extends React.Component {
      name:'',
      contactNum:'',
      description:'',
-     address:''
+     address:'',
+     user:'',
+     email:''
 
    }
    this.onChange=this.onChange.bind(this);
@@ -48,7 +50,7 @@ submit(name,contactNum,description,address){
    fileReader.onload = function(e) {
     axios.post('/photoDonor', {image: e.target.result})
     .then(res => {
-    	console.log('hello world', res)
+    	console.log('hello Donor image', res)
              x.componentDidMount() // here i'm getting the photo from database
            })
     .catch(function (error) {
@@ -62,6 +64,7 @@ submit(name,contactNum,description,address){
 componentDidMount() { // this is the initial
   axios.get('/getImageDonor')
   .then(response => {
+    this.fetchDonorData()
     console.log('jackel', response['data'])
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
@@ -73,6 +76,22 @@ componentDidMount() { // this is the initial
   .catch(function (error) {
    console.log(error);
  });
+}
+
+fetchDonorData(){
+  var x = this
+axios.get("/fetchDonorData").then(function(res){
+  console.log("alo data is here",res.data)
+  var user = res.data.username
+  var email = res.data.email
+  x.setState({
+    user:user,
+    email:email
+
+  })
+}).catch(function(err){
+ console.log("error",err)
+})
 }
 
 render () {
@@ -88,8 +107,18 @@ render () {
 
     </form>
 
+    
+   
+      <h1>{this.state.user}</h1>
+      <h1>{this.state.email} </h1>
+<br />
     <br />
-    <br />
+   
+ 
+
+    
+    
+  
 
     <label>Name:</label>
     <input type="text" name="name" onChange={this.onChange}/>
