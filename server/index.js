@@ -33,6 +33,7 @@ app.get('/getImageDonor',handler.getImageDonor)
 app.get("/sessionName", handler.sessionName)
 app.get('/imageSearch', handler.imageSearch)
 app.post("/search_beneficiary", handler.searchBeneficiary)
+app.get('/donorCam' , handler.donorCam)
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))

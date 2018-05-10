@@ -420,14 +420,11 @@ exports.imageSearch = function (req, res){
   })
 }
 
-
-
-
-
-
-
-
-
-
-
-
+exports.donorCam = function (req , res) {
+  db.companyCampaigns.find({} , function (err , data) {
+    if(err){throw err}
+      else{
+        res.send(data)
+      }
+  })
+}
