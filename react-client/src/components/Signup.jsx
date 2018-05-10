@@ -30,7 +30,7 @@ class Signup extends React.Component {
 
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-    alert("i am a company")
+
 
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
@@ -57,7 +57,7 @@ class Signup extends React.Component {
   };
 
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-    alert("i am a donor")
+
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Donater', {username: username,
