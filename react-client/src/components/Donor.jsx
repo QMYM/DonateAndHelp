@@ -82,20 +82,37 @@ submitDonate(){
         </nav> 
         <div className="container-fluid">
         <br/>
-        <div className='row'>
-    {this.state.camp.map( item =>
+        <br/>
+        <br/>
+        <br/
+>
+<div id="pricing" className="container-fluid">
+  <div className="row slideanim">
+      {this.state.camp.map( item =>
     <div>
 
-    <div className=" col-md-6" style={{top:50 }}>
-    <ul className="list-group"> 
-  <li className="list-group">{item.campaignName}</li>
-  <li className="list-group">{item.campaignDescription}</li>
-  <li className="list-group">{item.campaignAmount}</li>
-  <li className="list-group">{item.username}</li>
-</ul>
-  <div className="container">
-    <h2>Donate</h2>
+    <div className="col-sm-4 col-xs-12">
+      <div className="panel panel-default text-center">
+        <div className="panel-heading">
+          <h1>{item.campaignName}</h1>
+        </div>
+        <div className="panel-body">
+          <h2>From : {item.username}</h2>
+    <span><img src = {item.campaignImage || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"250px", height:"250px"}} /> </span>
+
+          <p> {item.campaignDescription}</p>
+        </div>
+        <div className="panel-footer">
+          <h3>{item.campaignAmount}</h3>
      <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Donate</button>
+        </div>
+      </div>      
+    </div>     
+        </div>
+  )}
+  </div>
+</div>
+
   <div className="modal fade" id="myModal" role="dialog">
     <div className="modal-dialog">
 
@@ -121,13 +138,8 @@ submitDonate(){
   
 </div>
 
-        </div>
-        </div>
 
-  )}
         </div>
-        </div>
-      </div>
     )
   }
 }
