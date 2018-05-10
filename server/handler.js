@@ -478,14 +478,3 @@ exports.fetchCompanyData = function (req, res){
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-

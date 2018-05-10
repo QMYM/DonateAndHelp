@@ -18,6 +18,43 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
 <style type="text/css">
+  .panel {
+      border: 1px solid #f4511e; 
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid #f4511e;
+      background-color: #fff !important;
+      color: #f4511e;
+  }
+  .panel-heading {
+      color: #fff !important;
+      background: #f4511e !important;
+      padding: 25px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 32px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+  }
+  .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #f4511e;
+      color: #fff;
+  }
 img {margin-bottom: -8px;}
 .mySlides {display: none;}
 .bgimg-2, .bgimg-3 , .homeImg{
@@ -113,7 +150,7 @@ a{color:inherit;text-decoration:none}
 	border-color:#1161ee;
 }
 .login-form{
-	min-height:345px;
+	height:345px;
 	position:relative;
 	perspective:1000px;
 	transform-style:preserve-3d;
@@ -205,6 +242,11 @@ a{color:inherit;text-decoration:none}
 </head>
 
 <body>
+	
+<script>
+
+
+</script>
 <div id="app"></div>
 <script type="text/javascript" src="bundle.js"></script>
 </body>
