@@ -74,7 +74,7 @@ class Login extends React.Component {
         <div className="group">
            <select value={this.state.value} onChange={this.alo}>
 
-        <option value='false'>Donater</option>
+        <option value='false'>Donor</option>
         <option value=''>company</option>
         </select>
 
