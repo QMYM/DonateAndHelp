@@ -10,7 +10,7 @@ class Signup extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      value: ''
+      value: 'true'
 
     }
     this.onChange = this.onChange.bind(this)
@@ -30,6 +30,7 @@ class Signup extends React.Component {
 
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
+
 
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
@@ -56,6 +57,7 @@ class Signup extends React.Component {
   };
 
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
+
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Donater', {username: username,
@@ -93,8 +95,8 @@ render () {
     <div className="form-group group" >
     <select value={this.state.value} onChange={this.alo}>
 
-    <option className="form-control" value='false'>Donater</option>
-    <option value=''>company</option>
+    <option className="form-control" value= 'false'>Company</option>
+    <option value='true'>Donor</option>
     </select>
 
     <br />
@@ -135,7 +137,7 @@ render () {
     </div>
 
     <div className="group">
-    { this.state.value ? (
+    { this.state.value === 'true' ? (
       <div>
 
       <input type="submit" className="button" value="Sign Up"  onClick={

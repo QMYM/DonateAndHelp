@@ -1,4 +1,5 @@
-var assert = require('assert')
+var assert = require('chai').assert
+var handler = require('../server/handler')
 var db = require('../db/index')
 
 

@@ -48,7 +48,7 @@ submit(name,contactNum,description,address){
    fileReader.onload = function(e) {
     axios.post('/photoDonor', {image: e.target.result})
     .then(res => {
-    	console.log('hello world', res)
+    	console.log('hello Donor image', res)
              x.componentDidMount() // here i'm getting the photo from database
            })
     .catch(function (error) {
