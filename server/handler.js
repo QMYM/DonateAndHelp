@@ -331,7 +331,7 @@ exports.sendMessage = function(req , res){
 exports.reciveMessag = function (req , res) {
   db.MessageSchema.find({} , function (err , data) {
     if(err ){throw err}
-      res.send(data )
+      res.send(data)
   })
 }
 
@@ -392,6 +392,32 @@ exports.postCampaign = function(req, res){
 
 exports.sessionName = function (req , res) {
   res.send(req.session.user)
+}
+
+exports.searchBeneficiary = function(req, res){
+  var name = req.body.name;
+  //console.log(name, "i am a server");
+  db.userDonater.findOne({name:name},function(err,data){
+    if(err){
+      throw err;
+    } else if(!data){
+      res.sendStatus(404)
+    } else {
+      var arr = [];
+      arr.push(data);
+      res.send(arr);
+    }   
+  }) 
+}
+
+exports.imageSearch = function (req, res){
+  db.userDonater.find({}, function(err,data){
+    if(err){
+      throw err
+    } else {
+      res.send(data)
+    }
+  })
 }
 
 exports.donorCam = function (req , res) {

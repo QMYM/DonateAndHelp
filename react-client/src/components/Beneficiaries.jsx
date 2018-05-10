@@ -33,6 +33,10 @@ class Beneficiaries extends React.Component {
    window.location.href = '/campaign';
   }
 
+  onClickSearch(){
+    window.location.href = '/search';
+  }
+
   render () {
     return (
       <div>
@@ -58,6 +62,7 @@ class Beneficiaries extends React.Component {
       <li> <a href='/profile' className='icon-bar' to='/profile'>Profile</a> </li>
       <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
       <button type='button' onClick={this.onClickCampaign}>Create Campaign</button>
+      <button type='button' onClick={this.onClickSearch}>Search</button>
       <Route path='/message' component={Message} />
       <Route path='/profile' component={Profile}/>
       </ul>
