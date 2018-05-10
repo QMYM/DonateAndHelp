@@ -30,7 +30,9 @@ app.post('/sendMessage' , handler.sendMessage)
 app.post('/Profile_Donor',handler.addProfileDonor)
 app.post('/photoDonor', handler.uploadImageDonor)
 app.get('/getImageDonor',handler.getImageDonor)
-app.get("/sessionName",handler.sessionName)
+app.get("/sessionName", handler.sessionName)
+app.get('/imageSearch', handler.imageSearch)
+app.post("/search_beneficiary", handler.searchBeneficiary)
 app.get('/donorCam' , handler.donorCam)
 
 app.get('/*' , (req, res) => {
