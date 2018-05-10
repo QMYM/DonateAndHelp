@@ -394,3 +394,11 @@ exports.sessionName = function (req , res) {
   res.send(req.session.user)
 }
 
+exports.donorCam = function (req , res) {
+  db.companyCampaigns.find({} , function (err , data) {
+    if(err){throw err}
+      else{
+        res.send(data)
+      }
+  })
+}

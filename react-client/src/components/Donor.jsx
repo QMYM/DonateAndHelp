@@ -14,7 +14,7 @@ class Donor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-
+      camp :[]
     }
     this.logout = this.logout.bind(this)
     
@@ -28,10 +28,21 @@ class Donor extends React.Component {
       console.log("logout err "  ,err)
     })
   }
+  componentDidMount() {
+    var x = this
+    axios.get('/donorCam')
+    .then(function (res) {
+    x.setState({camp : res.data})  
+      // const camp=res.data.results.map(obj=>{})
+    }).catch(function (err) {
+      console.log(err)
+    })
+  }
+
   render () {
     return (
       <div >
-      <nav className='navbar navbar-inverse navbar-fixed-top'>
+      <nav className='navbar navbar-fixed-top navbar-default'>
           <div className='container'>
             <div className='navbar-header'>
               <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
@@ -60,7 +71,26 @@ class Donor extends React.Component {
       </form>
             </div>
           </div>
-        </nav>
+        </nav> 
+        <div className="container-fluid">
+        <br/>
+        <div className='row'>
+    {this.state.camp.map( item =>
+    <div>
+    <div className=" col-md-6" style={{top:50 }}>
+    <ul className="list-group">
+  <li className="list-group-item">{item.campaignName}</li>
+  <li className="list-group-item">{item.campaignDescription}</li>
+  <li className="list-group-item">{item.campaignImage}</li>
+  <li className="list-group-item">{item.campaignAmount}</li>
+  <li className="list-group-item">{item.username}</li>
+</ul>
+        </div>
+        </div>
+
+  )}
+        </div>
+        </div>
       </div>
     )
   }
