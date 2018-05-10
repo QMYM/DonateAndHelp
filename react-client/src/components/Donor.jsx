@@ -39,6 +39,14 @@ class Donor extends React.Component {
     })
   }
 
+
+
+submitDonate(){
+
+}
+
+
+
   render () {
     return (
       <div >
@@ -77,14 +85,42 @@ class Donor extends React.Component {
         <div className='row'>
     {this.state.camp.map( item =>
     <div>
+
     <div className=" col-md-6" style={{top:50 }}>
-    <ul className="list-group">
-  <li className="list-group-item">{item.campaignName}</li>
-  <li className="list-group-item">{item.campaignDescription}</li>
-  <li className="list-group-item">{item.campaignImage}</li>
-  <li className="list-group-item">{item.campaignAmount}</li>
-  <li className="list-group-item">{item.username}</li>
+    <ul className="list-group"> 
+  <li className="list-group">{item.campaignName}</li>
+  <li className="list-group">{item.campaignDescription}</li>
+  <li className="list-group">{item.campaignAmount}</li>
+  <li className="list-group">{item.username}</li>
 </ul>
+  <div className="container">
+    <h2>Donate</h2>
+     <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Donate</button>
+  <div className="modal fade" id="myModal" role="dialog">
+    <div className="modal-dialog">
+
+
+     <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Donate</h4>
+        </div>
+        <div className="modal-body">
+          <p>Some text in the modal.</p>
+          <h1>FirstName:</h1><input type="text" />
+          <h1>Cash💰:</h1><input type="text" />
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.submitDonate}>Donate</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
         </div>
         </div>
 
