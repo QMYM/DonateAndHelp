@@ -119,25 +119,25 @@ exports.LoginCompany = function (req, res) {
 
 exports.uploadImage = function(req,res){ // add a personal photo for the user
   console.log('mais mais ' , req.body.image)
-var image = req.body.image
-var save = new db.userCompany({
-  image:image
-})
-save.save(function(err,data){
-  if(err){
-    throw err
-  }else {
-    console.log("'here's the data", data)
-  }
-})
+  var image = req.body.image
+  var save = new db.userCompany({
+    image:image
+  })
+  save.save(function(err,data){
+    if(err){
+      throw err
+    }else {
+      console.log("'here's the data", data)
+    }
+  })
 
-db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
- if(err){
-   throw err
- }else{
-   res.send(data)
- }
-})
+  db.userCompany.update({username: req.session.user}, { $set: { image: image }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
 
 }
 
@@ -179,35 +179,35 @@ exports.LoginDonater = function (req, res) {
 }
 
 exports.addProfileCompany = function (req, res) {
-console.log(req.body,'hhhhhhhhhhh')
-console.log('check the session ', req.session.user )
-var name=req.body.name
-var contactNum=req.body.contactNum
-var description=req.body.description
-var address=req.body.address
+  console.log(req.body,'hhhhhhhhhhh')
+  console.log('check the session ', req.session.user )
+  var name=req.body.name
+  var contactNum=req.body.contactNum
+  var description=req.body.description
+  var address=req.body.address
 
-db.userCompany.findOne({username:req.session.user},function(err,data){
-  console.log('mais',data)
-if(err){
-  throw err
-}else{
-  var info = new db.userCompany({
-    name:name,
-    contactNum:contactNum,
-    description:description,
-    address:address
-  })
-  info.save(function(err,information){
+  db.userCompany.findOne({username:req.session.user},function(err,data){
+    console.log('mais',data)
     if(err){
       throw err
     }else{
-      res.send(information)
+      var info = new db.userCompany({
+        name:name,
+        contactNum:contactNum,
+        description:description,
+        address:address
+      })
+      info.save(function(err,information){
+        if(err){
+          throw err
+        }else{
+          res.send(information)
+        }
+      })
+
     }
+
   })
-
-}
-
-})
 
 }
 
@@ -261,5 +261,61 @@ exports.reciveMessag = function (req , res) {
     if(err ){throw err}
       console.log("daaattaa" , data)
     res.send(data)
+  })
+}
+
+
+exports.uploadImageCampaign = function(req, res){
+
+ var image = req.body.campaignImage;
+ console.log(image,"image in post server!");
+ var save = new db.companyCampaigns({
+  campaignImage:image
+})
+ save.save(function(err,data){
+  if(err){
+    throw err
+  }else {
+    console.log("Campaign image has been posted", data);
+  }
+})
+
+ db.companyCampaigns.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
+
+}
+
+exports.postCampaign = function(req, res){
+
+  console.log(req.body);
+
+  var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+
+  db.companyCampaigns.findOne({username:req.session.user},function(err,data){
+    if(err){
+      throw err;
+    } else {
+      var info = new db.companyCampaigns({
+        campaignName:campaignName,
+        campaignDescription:campaignDescription,
+        campaignAmount:campaignAmount,
+        username:req.session.user
+      })
+      info.save(function(err,information){
+        if(err){
+          throw err;
+        } else {
+          console.log(information);
+          res.send(information);
+        }
+      })
+    }
   })
 }

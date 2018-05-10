@@ -25,7 +25,9 @@ app.post('/photo', handler.uploadImage)
 app.get('/logout', handler.logout)
 app.post('/profile_company',handler.addProfileCompany)
 app.get('/recieveMessage', handler.reciveMessag)
-app.post('/sendMessage' , handler.sendMessage)
+app.post('/sendMessage', handler.sendMessage)
+app.post('/imageCampaign', handler.uploadImageCampaign)
+app.post('/campaignInfo', handler.postCampaign)
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
