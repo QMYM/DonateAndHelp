@@ -505,14 +505,3 @@ exports.imageSearchDonor = function (req, res){
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-

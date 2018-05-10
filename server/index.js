@@ -46,6 +46,10 @@ app.get('/*' , (req, res) => {
 
 const PORT = process.env.PORT || 3000
 
+var server =app.listen(PORT, () => {
+  console.log(`The Port : ${PORT}`)
+})
 app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)
 })
+module.exports = server

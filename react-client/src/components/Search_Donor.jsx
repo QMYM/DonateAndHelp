@@ -23,7 +23,7 @@ class Search_Donor extends React.Component {
 	}
 
 	handleClickSearch(input){
-		console.log(this.state.searchInput, "search input donor")
+		console.log(this.state.searchInput, "search input donor!!")
 		var that=this;	
 		$.ajax({
 			type:'POST',
