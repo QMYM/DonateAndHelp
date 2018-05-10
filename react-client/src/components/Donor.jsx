@@ -1,7 +1,15 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+import Profile_Donor from './Profile_Donor.jsx'
+import Message from './Message.jsx'
 class Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -39,12 +47,17 @@ class Donor extends React.Component {
             </div>
             <div className='collapse navbar-collapse' id='myNavbar'>
               <form className=' '>
-                <ul className='nav navbar-nav navbar-right' >
-                  <li> <a className='icon-bar' to='/message'>Message</a> </li>
-                  <li> <a className='icon-bar' to='/profile'>Profile</a> </li>
-                  <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a>  </li>
-                </ul>
-              </form>
+
+      <Router>
+      <ul className='nav navbar-nav navbar-right' >
+      <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+      <li> <a href='/profile' className='icon-bar' to='/profile'>Profile</a> </li>
+      <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+      <Route path='/message' component={Message} />
+      <Route path='/profile' component={Profile_Donor}/>
+      </ul>
+      </Router>
+      </form>
             </div>
           </div>
         </nav>
