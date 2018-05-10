@@ -3,7 +3,7 @@ import React from 'react';
 import $ from 'jquery';
 import axios from 'axios';
 
-class Search extends React.Component {
+class Search_Donor extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -23,12 +23,11 @@ class Search extends React.Component {
 	}
 
 	handleClickSearch(input){
-		console.log(this.state.searchInput)
-		var that  = this;	
-		console.log('input');
+		console.log(this.state.searchInput, "search input donor")
+		var that=this;	
 		$.ajax({
 			type:'POST',
-			url:'/search_beneficiary',
+			url:'/search_donor',
 			data: {
 				name : that.state.searchInput
 			},
@@ -45,7 +44,7 @@ class Search extends React.Component {
 
 	getImage(){
 		var x = this;
-		axios.get('/imageSearch')
+		axios.get('/imageSearchDonor')
 		.then(function(res){
 			console.log("show image for mais", res.data);
 			var alo =[];
@@ -91,7 +90,7 @@ class Search extends React.Component {
 									<br/>
 									<p>{record.address}</p>
 									<br/>
-									<img src={this.state.arr[0]}/>
+				                    <img src={this.state.arr[0]}/>
 									<br/>
 								</div>
 			                   </div>
@@ -104,4 +103,4 @@ class Search extends React.Component {
 			}
 	}
 
-export default Search;
+export default Search_Donor;

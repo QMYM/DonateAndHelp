@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom'
 import Profile_Donor from './Profile_Donor.jsx'
 import Message from './Message.jsx'
+
 class Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -19,6 +20,7 @@ class Donor extends React.Component {
     this.logout = this.logout.bind(this)
     
   }
+
    logout (){
     axios.get("/logout")
     .then(function (res) {
@@ -28,6 +30,7 @@ class Donor extends React.Component {
       console.log("logout err "  ,err)
     })
   }
+
   componentDidMount() {
     var x = this
     axios.get('/donorCam')
@@ -40,12 +43,13 @@ class Donor extends React.Component {
   }
 
 
-
-submitDonate(){
-
+onClickSearchDonor(){
+ window.location.href = '/searchD';
 }
 
-
+submitDonate(){
+ console.log("Donate")
+}
 
   render () {
     return (
@@ -77,6 +81,7 @@ submitDonate(){
       </ul>
       </Router>
       </form>
+      <button type='button' onClick={this.onClickSearchDonor}>Search</button>
             </div>
           </div>
         </nav> 
@@ -131,4 +136,6 @@ submitDonate(){
     )
   }
 }
-export default Donor
+
+export default Donor;
+
