@@ -31,6 +31,7 @@ app.post('/Profile_Donor',handler.addProfileDonor)
 app.post('/photoDonor', handler.uploadImageDonor)
 app.get('/getImageDonor',handler.getImageDonor)
 app.get("/sessionName",handler.sessionName)
+app.get('/donorCam' , handler.donorCam)
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
