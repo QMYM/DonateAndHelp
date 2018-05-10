@@ -13,6 +13,7 @@ import Campaign from './Campaign.jsx'
 import Profile_Donor from './Profile_Donor.jsx'
 import Search_Beneficiary from './Search_Beneficiary.jsx'
 import TheApp from './TheApp.jsx'
+import Search_Donor from './Search_Donor.jsx'
 
 
 class AppRoute extends React.Component {
@@ -37,7 +38,8 @@ class AppRoute extends React.Component {
           <Route exact path='/theapp' component={TheApp} />
           <Route exact path='/message' component={Message} />
           <Route exact path='/campaign' component={Campaign} />
-           <Route exact path='/search' component={Search_Beneficiary} />
+          <Route exact path='/search' component={Search_Beneficiary} />
+          <Route exact path='/searchD' component={Search_Donor} />
         </Switch>
       </BrowserRouter>
     )
