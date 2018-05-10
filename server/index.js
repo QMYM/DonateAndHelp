@@ -30,7 +30,9 @@ app.post('/sendMessage' , handler.sendMessage)
 app.post('/Profile_Donor',handler.addProfileDonor)
 app.post('/photoDonor', handler.uploadImageDonor)
 app.get('/getImageDonor',handler.getImageDonor)
-app.get("/sessionName",handler.sessionName)
+app.get("/sessionName", handler.sessionName)
+app.get('/imageSearch', handler.imageSearch)
+app.post("/search_beneficiary", handler.searchBeneficiary)
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
