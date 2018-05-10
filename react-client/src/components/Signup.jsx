@@ -168,4 +168,4 @@ render () {
 }
 };
 
-export default Signup
+export default Signup;
