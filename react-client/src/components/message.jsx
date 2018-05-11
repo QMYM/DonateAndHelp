@@ -28,7 +28,20 @@ class Message extends React.Component {
     this.sendMessage = this.sendMessage.bind(this);
     this.onChange = this.onChange.bind(this);
     this.openMail = this.openMail.bind(this)
+    this.remove = this.remove.bind(this)
   }
+  remove(user,id){
+
+
+    axios.post("/removeMsg", {user:user, id:id})
+    .then(function(res){
+      console.log('done', res)
+      window.location.reload()
+    }).catch(function(err){
+      console.log("err", err)
+    })
+ }
+
   componentDidMount() {
     var x = this
     x.user()
@@ -203,8 +216,8 @@ render () {
     <label>Subject</label>
     <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <div className="w3-section">
-    <a className="w3-button w3-red" data-dismiss="modal">Cancel  <i className="fa fa-remove"></i></a>
-    <a className="w3-button w3-light-grey w3-right" onClick={()=>this.sendMessage(this.state.user , this.state.text)}>Send  <i className="fa fa-paper-plane"></i></a> 
+    <a className="w3-button w3-red" data-dismiss="modal">Cancel  <i className="fa fa-remove"></i></a>
+    <a className="w3-button w3-light-grey w3-right" onClick={()=>this.sendMessage(this.state.user , this.state.text)}>Send  <i className="fa fa-paper-plane"></i></a> 
     </div>    
     </div>
     </div>
@@ -218,12 +231,10 @@ render () {
     <div style = {{marginLeft:300}}>
 
     {this.state.messages.map(item => 
-
       <div>
       <div id={item.sender} className="w3-container person" >
       <img className="w3-round  w3-animate-top" src={this.state.image}/>
       <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
-
       <br/>{this.state.rightMes.map(mes =>
         <div>
         <p>{mes.message}</p>
@@ -232,7 +243,9 @@ render () {
     }
     <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <a className="w3-button w3-light-grey" href="#"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send<i className="w3-margin-left fa  fa-chevron-circle-right"></i></a>
+      <button onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
     <hr/>
+
     </div>
     </div>
     )}     
@@ -244,5 +257,4 @@ render () {
     )
 }
 }
-
-export default Message
+  export default Message
