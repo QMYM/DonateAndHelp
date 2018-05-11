@@ -103,6 +103,7 @@ exports.LoginCompany = function (req, res) {
             } else {
               bcrypt.compare(password, data.password, function (err, found) {
                 if (found) {
+
                   helper.createSession(req, res, data.username)
                 } else {
                   res.sendStatus(404)
@@ -311,8 +312,6 @@ exports.sendMessage = function(req , res){
                 reciver:reciever , 
                 message:text
               })
-            }
-          }
           message.save(function(err,data){
             if(err){
               throw err
@@ -321,6 +320,8 @@ exports.sendMessage = function(req , res){
             }
 
           })
+            }
+          }
         }) 
     }
   }
