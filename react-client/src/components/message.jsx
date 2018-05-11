@@ -31,14 +31,23 @@ class Message extends React.Component {
         mes.push(response.data[i])
         x.setState({messages : mes})
       }  
+         }
+         for (var i = 0; i < response.data.length; i++) {
 
-        if(response.data[i].sender === response.data[i+1].sender){
-          rec.push(response.data[i])
-        }
-        x.setState({reciver : rec})
-
-    }
-  })
+          if(response.data[i].sender !== response.data[i + 1] && !response.data[i].sender){
+            console.log("see the data ", response.data)
+            response.data[i].splice(i,1)
+            rec.push(response.data[i])
+            
+            x.setState({reciver:rec})
+          }
+         
+      
+         
+          
+       }
+    
+     })
 
 
    // this.getPhotoForMessages()
@@ -83,7 +92,7 @@ class Message extends React.Component {
     axios.post('/sendMessage' , {user:to , text:text})
     .then (function (res) {
     }).catch (function (err) {
-      console.log("Err Mess" , err)
+      alert("this shit is not exist")
     })
   }
 

@@ -303,7 +303,7 @@ exports.sendMessage = function(req , res){
         if(err){throw err}
           else {
             if(!data){
-              res.sendStatus(402);
+              res.sendStatus(404);
             }
             else{
               var message = new db.MessageSchema ({
@@ -311,9 +311,7 @@ exports.sendMessage = function(req , res){
                 reciver:reciever , 
                 message:text
               })
-            }
-          }
-          message.save(function(err,data){
+               message.save(function(err,data){
             if(err){
               throw err
             }else{
@@ -321,6 +319,9 @@ exports.sendMessage = function(req , res){
             }
 
           })
+            }
+          }
+         
         }) 
     }
   }
