@@ -25,19 +25,23 @@ class Message extends React.Component {
     axios.get('/recieveMessage')
     .then(function(response) {
       var mes = []
+      var obj = {}
       var rec = []
       for (var i = 0; i < response.data.length; i++) {
        if(response.data[i].reciver === x.state.sessionUser){
         mes.push(response.data[i])
         x.setState({messages : mes})
       }  
+      if(!obj[response.data[i].sender]){
+      obj[response.data[i].sender] = 0
+      }
+    }
+     for(var key in obj){
+      rec.push(key)
+     } 
 
-        if(response.data[i].sender === response.data[i+1].sender){
-          rec.push(response.data[i])
-        }
         x.setState({reciver : rec})
 
-    }
   })
 
 
@@ -82,8 +86,10 @@ class Message extends React.Component {
     var x = this
     axios.post('/sendMessage' , {user:to , text:text})
     .then (function (res) {
+      window.location.reload()
     }).catch (function (err) {
-      console.log("Err Mess" , err)
+      window.location.reload()
+      alert("fuck off")
     })
   }
 
@@ -120,9 +126,9 @@ render () {
     {this.state.reciver.map(emp => 
      <div>
      <div id="Demo1" className=" w3-animate-left">
-     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"  onClick={()=>this.openMail(emp.sender)}>
+     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"  onClick={()=>this.openMail(emp)}>
      <div className="w3-container">
-     <img className=" img-circle w3-margin-right" src={this.state.image} style={{width:"70px" , hight:"70px"}} /><span className="w3-opacity w3-large">{emp.sender}</span>
+     <img className=" img-circle w3-margin-right" src={this.state.image} style={{width:"70px" , hight:"70px"}} /><span className="w3-opacity w3-large">{emp}</span>
      </div>
      </a>
      </div>
