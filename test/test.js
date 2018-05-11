@@ -11,6 +11,19 @@ var should = chai.should();
  
  chai.use(chaiHttp);
 
+describe('/removeMsg', function () {
+      it('it should sendStatus(201)', function(done){
+        chai.request(server)
+           .post('/removeMsg')
+            .end(function(err,res) {
+                res.should.have.status(201);
+               
+              done();
+            });
+      });
+  });
+
+
 describe('/searchBeneficiary', function () {
       it('it should sendStatus(404)if there is somthing wrong okay!', function(done){
         chai.request(server)

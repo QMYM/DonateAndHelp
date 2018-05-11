@@ -3,7 +3,7 @@ let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session');
 let saltRounds = 10
-
+var ObjectId = require('mongodb').ObjectID
 exports.Signup = function (req, res) {
   var username = req.body.username
   var password = req.body.password
@@ -513,3 +513,17 @@ exports.imageSearchDonor = function (req, res){
     }
   })
 }
+
+
+exports.removeMsg = function(req,res) {
+  var user = req.body.user
+  var Id = req.body.id
+db.MessageSchema.remove({_id: Id}, function (err , done) {
+  if(err){
+    throw err
+  }else{
+    res.sendStatus(201)
+  }
+})
+}
+
