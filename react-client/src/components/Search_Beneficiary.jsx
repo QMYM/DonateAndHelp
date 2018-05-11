@@ -1,7 +1,8 @@
 
 import React from 'react';
 import $ from 'jquery';
-import axios from 'axios'
+import axios from 'axios';
+
 class Search extends React.Component {
 
 	constructor(props){
@@ -23,7 +24,7 @@ class Search extends React.Component {
 
 	handleClickSearch(input){
 		console.log(this.state.searchInput)
-		var that  = this	
+		var that  = this;	
 		console.log('input');
 		$.ajax({
 			type:'POST',
@@ -64,7 +65,7 @@ class Search extends React.Component {
 
 		render(){ 
 			
-			return (
+		 return (
 			<div>
 				{console.log(this.state.searchOut)}
 				<div className="container" >

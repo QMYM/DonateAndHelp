@@ -103,6 +103,7 @@ exports.LoginCompany = function (req, res) {
             } else {
               bcrypt.compare(password, data.password, function (err, found) {
                 if (found) {
+
                   helper.createSession(req, res, data.username)
                 } else {
                   res.sendStatus(404)
@@ -311,7 +312,11 @@ exports.sendMessage = function(req , res){
                 reciver:reciever , 
                 message:text
               })
-               message.save(function(err,data){
+
+              
+
+          message.save(function(err,data){
+
             if(err){
               throw err
             }else{
@@ -321,7 +326,9 @@ exports.sendMessage = function(req , res){
           })
             }
           }
+
          
+
         }) 
     }
   }
@@ -430,7 +437,7 @@ exports.searchBeneficiary = function(req, res){
     if(err){
       throw err;
     } else if(!data){
-      res.sendStatus(404)
+      res.sendStatus(404);
     } else {
       var arr = [];
       arr.push(data);
@@ -444,7 +451,7 @@ exports.imageSearch = function (req, res){
     if(err){
       throw err
     } else {
-      res.send(data)
+      res.send(data);
     }
   })
 }
@@ -453,7 +460,7 @@ exports.donorCam = function (req , res) {
   db.companyCampaigns.find({} , function (err , data) {
     if(err){throw err}
       else{
-        res.send(data)
+        res.send(data);
       }
   })
 }
@@ -463,7 +470,7 @@ exports.fetchDonorData = function (req, res){
     if(err){
       throw err
     }else{
-      res.send(data)
+      res.send(data);
     }
   })
 }
@@ -475,7 +482,34 @@ exports.fetchCompanyData = function (req, res){
     if(err){
       throw err
     }else{
-      res.send(data)
+      res.send(data);
+    }
+  })
+}
+
+exports.searchDonor = function(req, res){
+  var name = req.body.name;
+  console.log(req.body.name, "donor search name");
+  db.userCompany.findOne({name:name},function(err,data){
+    if(err){
+      throw err;
+    } else if(!data){
+      res.sendStatus(404);
+    } else {
+      var arr = [];
+      arr.push(data);
+      console.log(data.name, "data post search donor")
+      res.send(arr);
+    }   
+  }) 
+}
+
+exports.imageSearchDonor = function (req, res){
+  db.userCompany.find({}, function(err,data){
+    if(err){
+      throw err
+    } else {
+      res.send(data);
     }
   })
 }

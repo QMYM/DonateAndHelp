@@ -34,7 +34,7 @@ class Message extends React.Component {
          }
          for (var i = 0; i < response.data.length; i++) {
 
-          if(response.data[i].sender !== response.data[i + 1] && !response.data[i].sender){
+          if(response.data[i].sender === response.data[i + 1] && !response.data[i].sender){
             console.log("see the data ", response.data)
             response.data[i].splice(i,1)
             rec.push(response.data[i])
