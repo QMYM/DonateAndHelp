@@ -1,6 +1,16 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
+import Profile_Donor from './Profile_Donor.jsx'
+import Search_Donor from './Search_Donor.jsx'
 
 class Message extends React.Component {
   constructor (props) {
@@ -113,10 +123,53 @@ class Message extends React.Component {
   this.setState({rightMes : arr})
 
 }
+logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
+  }
+
 render () {
   return (
     <div>
-    <nav className="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3  }} id="mySidebar">
+   <nav className='navbar navbar-fixed-top navbar-default'>
+    <div className='container'>
+    <div className='navbar-header'>
+    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    </button>
+    <ul className='navbar-nav mr-auto nav '>
+    <li>  <a herf='/home'>Home</a></li>
+    <li ><a href='#About'>DODO</a></li>
+    </ul>
+    </div>
+    <div className='collapse navbar-collapse' id='myNavbar'>
+    <form className=' '>
+
+    <Router>
+    <ul className='nav navbar-nav navbar-right ' >
+    <li> <a href='/searchD' className='icon-bar' >Search_Donor</a> </li>
+    <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
+    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <Route path='/Profile_Donor' component={Profile_Donor}/>
+    <Route path='/searchD' component={Search_Donor}/>
+    </ul>
+    </Router>
+    </form>
+    </div>
+    </div>
+    </nav> 
+    <br/>
+    <br/>
+
+    <nav className="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3 ,top:50 }} id="mySidebar">
     
     <a href="javascript:void(0)" title="Close Sidemenu" 
 

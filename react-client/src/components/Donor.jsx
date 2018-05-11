@@ -8,8 +8,10 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+
 import Profile_Donor from './Profile_Donor.jsx'
 import Search_Donor from './Search_Donor.jsx'
+import Campaign from './Campaign.jsx'
 import Message from './Message.jsx'
 
 class Donor extends React.Component {
@@ -64,7 +66,7 @@ class Donor extends React.Component {
     </button>
     <ul className='navbar-nav mr-auto nav '>
     <li>  <a herf='/home'>Home</a></li>
-    <li ><a href='#About'>DODO</a></li>
+    <li ><a href='/campaign'>DODO</a></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>
@@ -77,6 +79,7 @@ class Donor extends React.Component {
     <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
     <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
     <Route path='/message' component={Message} />
+    <Route path='/campaign' component={Campaign} />
     <Route path='/Profile_Donor' component={Profile_Donor}/>
     <Route path='/searchD' component={Search_Donor}/>
     </ul>

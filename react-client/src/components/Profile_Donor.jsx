@@ -2,6 +2,16 @@ import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
 import {Image} from 'react-bootstrap';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
+import Search_Donor from './Search_Donor.jsx'
+import Message from './Message.jsx'
 
 class Profile_Donor extends React.Component {
   constructor (props) {
@@ -93,9 +103,52 @@ fetchDonorData(){
  })
 }
 
+logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
+  }
+
 render () {
   return (
     <div style={{background:"white"}} >
+
+   <nav className='navbar navbar-fixed-top navbar-default'>
+    <div className='container'>
+    <div className='navbar-header'>
+    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    </button>
+    <ul className='navbar-nav mr-auto nav '>
+    <li>  <a herf='/home'>Home</a></li>
+    <li ><a href='#About'>DODO</a></li>
+    </ul>
+    </div>
+    <div className='collapse navbar-collapse' id='myNavbar'>
+    <form className=' '>
+
+    <Router>
+    <ul className='nav navbar-nav navbar-right ' >
+    <li> <a href='/searchD' className='icon-bar' >Search_Donor</a> </li>
+    <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
+    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <Route path='/searchD' component={Search_Donor}/>
+    </ul>
+    </Router>
+    </form>
+    </div>
+    </div>
+    </nav> 
+    <br/>
+
+
     <form> 
     <br/>
     <div className="container">
