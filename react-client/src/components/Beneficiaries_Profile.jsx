@@ -13,7 +13,7 @@ import {
 import Search_Donor from './Search_Donor.jsx'
 import Message from './Message.jsx'
 
-class Profile_Donor extends React.Component {
+class Beneficiaries_Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -323,4 +323,4 @@ render () {
 }
 
 
-export default Profile_Donor
+export default Beneficiaries_Profile

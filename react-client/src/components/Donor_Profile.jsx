@@ -9,11 +9,10 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import Profile_Donor from './Profile_Donor.jsx'
 import Search_Donor from './Search_Donor.jsx'
 import Message from './Message.jsx'
 
-class Profile extends React.Component {
+class Donor_Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -148,4 +147,4 @@ render () {
 }
 
 
-export default Profile
+export default Donor_Profile

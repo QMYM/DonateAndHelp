@@ -1,9 +1,10 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
+import {Well} from 'react-bootstrap';
 
 
-class Campaign extends React.Component {
+class Donor_Campaign extends React.Component {
 
 	constructor (props) {
     super(props)
@@ -61,14 +62,25 @@ class Campaign extends React.Component {
 
    return (
     <div>
+    <Well>
+      <div className="container">
+        <div className='row'>
+        <div className="form-group">
+  <label for="usr">Campain Name :</label>
+  <input type="text" name="campaignName" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
+</div>
+  <div className="form-group">
+  <label for="usr">Campain Description :</label>
+  <input type="text" name="campaignDescription" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
+</div>  <div className="form-group">
+  <label for="usr">Amount :</label>
+  <input type="text" className="form-control w3-round-xlarge" id="usr"/>
+</div>  <div className="form-group">
+  <label for="usr">Name:</label>
+  <input type="text" className="form-control w3-round-xlarge" id="usr"/>
+</div>
     <span><img src = {this.state.campaignImage} /> </span>
-    <label>Campain Name</label>
-    <input type="text" name="campaignName" onChange={this.onChange} />
-    <br/>
-    <label>Campain Description</label>
-    <input type="text" name="campaignDescription" onChange={this.onChange} />
-    <br/>
-    <label>Amount</label>
+    <label></label>
     <input type="text" name="campaignAmount" onChange={this.onChange} />
     <br/>
     <label>Beneficiary Name</label>
@@ -79,9 +91,12 @@ class Campaign extends React.Component {
     Choose image
     </form>
     <br/>
-    <button onClick={
+    <button className="btn" onClick={
       () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName)
     } > Submit </button>
+      </div>
+        </div>
+    </Well>
     </div>
 
     )
@@ -90,4 +105,4 @@ class Campaign extends React.Component {
 
 };
 
-export default Campaign;
+export default Donor_Campaign;

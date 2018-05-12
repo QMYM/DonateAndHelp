@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import Profile_Donor from './Profile_Donor.jsx'
+import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
 
 class Message extends React.Component {
