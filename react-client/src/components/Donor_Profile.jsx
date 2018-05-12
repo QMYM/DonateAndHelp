@@ -158,14 +158,25 @@ render () {
     </div>
     </div>
     </nav>   
+    <br/>
+    <br/>
+    <br/>
 
-    <span><img src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"400px", height:"400px"}} /> </span>
+    <div className="w3-card-4 w3-dark-grey">
+
+<div className="w3-container w3-center">
+  <img src= {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"500px", height:"500px"}} alt="Avatar" />
+  <h3>{this.state.user } MRAnonymous</h3>
+
+</div>
     <form> 
     <label className="btn  btn-primary" style={{color:"black"}}>
     <input type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto}/>
     Choose file
     </label>
     </form>
+
+</div>
     <h1>{this.state.user}</h1>
       <h1>{this.state.email} </h1>
     <br />
