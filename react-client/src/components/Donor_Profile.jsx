@@ -36,7 +36,7 @@ class Donor_Profile extends React.Component {
 }
 
 submit(name,contactNum,description,address){
-  axios.post('/profile_company', {
+  axios.post('/Profile_Donor', {
       // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,
@@ -57,46 +57,63 @@ submit(name,contactNum,description,address){
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/photo', {image: e.target.result})
+    axios.post('/photoDonor', {image: e.target.result})
     .then(res => {
+      console.log('hello Donor image', res)
              x.componentDidMount() // here i'm getting the photo from database
            })
     .catch(function (error) {
       console.log(error);
     });
+
   }
+
 }
 
 componentDidMount() { // this is the initial
-  axios.get('/getImage')
+  axios.get('/getImageDonor')
   .then(response => {
-
+    this.fetchDonorData()
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
      })
-     this.fetchCompanyData()
+
 
    })
   .catch(function (error) {
    console.log(error);
  });
-}
-fetchCompanyData(){
   var x = this
-axios.get("/fetchCompanyData").then(function(res){
-  console.log("alo data is here",res)
-  var user = res.data.username
-  var email = res.data.email
-  x.setState({
-    user:user,
-    email:email
+  axios.get('/donorCam' )
+  .then(res => {
+    var posts = []
+    for (var i = 0; i < res.data.length; i++) {
+     if(res.data[i].username === this.state.user){
+      posts.push(res.data[i])
+      x.setState({post : posts})
+    }
+  }
 
-  })
-}).catch(function(err){
- console.log("error",err)
 })
 }
+
+
+fetchDonorData(){
+  var x = this
+  axios.get("/fetchDonorData").then(function(res){
+    var user = res.data.username
+    var email = res.data.email
+    x.setState({
+      user:user,
+      email:email
+
+    })
+  }).catch(function(err){
+   console.log("error",err)
+ })
+}
+
 logout (){
     axios.get("/logout")
     .then(function (res) {
