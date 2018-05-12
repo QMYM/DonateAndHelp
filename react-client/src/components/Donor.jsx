@@ -26,14 +26,15 @@ class Donor extends React.Component {
     super(props)
     this.state = {
       camp :[],
-      term:''
+      term:'',
+      amount: ''
     }
     this.logout = this.logout.bind(this)
     this.search=this.search.bind(this) 
+    this.logout = this.logout.bind(this);
+    this.handlechangeAmount = this.handlechangeAmount.bind(this); 
     
-    
-  }
-
+    }
 
 
 search(e){
@@ -62,7 +63,13 @@ this.setState({term:e.target.value})
     })
   }
 
-
+ handlechangeAmount (evt) { // change the state for the input text
+    var amount = evt.target.value
+    this.setState({
+      amount: amount
+    })
+    //this.input.value="";
+  };
 
   submitDonate(){
    console.log("Donate")
@@ -135,7 +142,7 @@ this.setState({term:e.target.value})
       <p> {item.campaignDescription}</p>
       </div>
       <div className="panel-footer">
-      <h3>{item.campaignAmount}</h3>
+      <h3>{item.campaignAmount}</h3><h3>JOD</h3>
       <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Donate</button>
       </div>
       </div>      
@@ -152,12 +159,17 @@ this.setState({term:e.target.value})
     <div className="modal-content">
     <div className="modal-header">
     <button type="button" className="close" data-dismiss="modal">&times;</button>
-    <h4 className="modal-title">Donate</h4>
+    <h4 className="modal-title">Your Donation Will Make A Difference</h4>
     </div>
     <div className="modal-body">
-    <p>Some text in the modal.</p>
-    <h1>FirstName:</h1><input type="text" />
-    <h1>Cash💰:</h1><input type="text" />
+    <p>ENTER YOUR AMOUNT</p>
+    <h1>Cash💰:</h1>
+    <input id="user" type="number" className="input" 
+         onChange={
+            this.handlechangeAmount
+          }
+    ref={el => this.input = el}/>
+    <p>Donations made in JOD</p>
     </div>
     <div className="modal-footer">
     <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
