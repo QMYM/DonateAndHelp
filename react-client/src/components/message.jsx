@@ -1,6 +1,16 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
+import Profile_Donor from './Profile_Donor.jsx'
+import Search_Donor from './Search_Donor.jsx'
 
 class Message extends React.Component {
   constructor (props) {
@@ -126,10 +136,24 @@ class Message extends React.Component {
   this.setState({rightMes : arr})
 
 }
+logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
+  }
+
 render () {
   return (
     <div>
-    <nav className="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3  }} id="mySidebar">
+
+    <br/>
+    <br/>
+
+    <nav className="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3 ,top:50 }} id="mySidebar">
     
     <a href="javascript:void(0)" title="Close Sidemenu" 
 
@@ -182,15 +206,24 @@ render () {
       <div id={item.sender} className="w3-container person" >
       <img className="w3-round  w3-animate-top" src={this.state.image}/>
       <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
-      <br/>{this.state.rightMes.map(mes =>
-        <div>
-        <p>{mes.message}</p>
-        </div>
+      <br/>
+      {this.state.rightMes.map(mes =>
+          <div className="msg messageReceived">
+      {mes.message}
+        <span className="timestamp">00:02</span>
+      </div>
         )
     }
+        <div>
+      <div className="msg messageSent">
+
+        <span className="timestamp">00:04</span>
+      </div>
+      
+    </div>
     <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <a className="w3-button w3-light-grey" href="#"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send<i className="w3-margin-left fa  fa-chevron-circle-right"></i></a>
-      <button onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
+      <button className='btn' onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
     <hr/>
 
     </div>
