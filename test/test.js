@@ -11,6 +11,155 @@ var should = chai.should();
  
  chai.use(chaiHttp);
 
+
+describe('/uploadImageDonor', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/uploadImageDonor')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+describe('/addProfileDonor', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/addProfileDonor')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+describe('/postCampaign', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/postCampaign')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+describe('/uploadImageCampaign', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/uploadImageCampaign')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/addProfileCompany', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/addProfileCompany')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/uploadImage', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/uploadImage')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/SignupCompany', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/SignupCompany')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/Signup', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/Signup')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/LoginCompany', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/LoginCompany')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/LoginDonater', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/LoginDonater')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+
+
+describe('/removeMsg', function () {
+      it('it should sendStatus(201)', function(done){
+        chai.request(server)
+           .post('/removeMsg')
+            .end(function(err,res) {
+                res.should.have.status(201);
+               
+              done();
+            });
+      });
+  });
+
+  describe('/searchBeneficiary', function () {
+      it('should sending the data to the client', function(done){
+        chai.request(server)
+           .get('/searchBeneficiary')
+            .end(function(err,res) {
+                res.should.have.status(200);
+               
+              done();
+            });
+      });
+  });
+
+  
+
+
 describe('/searchBeneficiary', function () {
       it('it should sendStatus(404)if there is somthing wrong okay!', function(done){
         chai.request(server)
@@ -256,17 +405,17 @@ describe('/donorCam', function () {
       });
   });
 
-describe('userCompany', function () {
-  describe('#save()', function () {
-    it('should save without error', function (done) {
-      var user = new db.userCompany({id:"id"})
-      user.save(function (err) {
-        if (err) done(err)
-        else done()
-      })
-    })
-  })
-})
+// describe('userCompany', function () {
+//   describe('#save()', function () {
+//     it('should save without error', function (done) {
+//       var user = new db.userCompany({id:"id"})
+//       user.save(function (err) {
+//         if (err) done(err)
+//         else done()
+//       })
+//     })
+//   })
+// })
 
 describe('userCompany', function () {
   describe('#delete()', function () {
@@ -280,17 +429,17 @@ describe('userCompany', function () {
   })
 })
 
-describe('userDonater', function () {
-  describe('#save()', function () {
-    it('should save without error', function (done) {
-      var user = new db.userDonater({id:"id"})
-      user.save(function (err) {
-        if (err) done(err)
-        else done()
-      })
-    })
-  })
-})
+// describe('userDonater', function () {
+//   describe('#save()', function () {
+//     it('should save without error', function (done) {
+//       var user = new db.userDonater({id:"id"})
+//       user.save(function (err) {
+//         if (err) done(err)
+//         else done()
+//       })
+//     })
+//   })
+// })
 
 describe('userDonater', function () {
   describe('#delete()', function () {
@@ -306,17 +455,17 @@ describe('userDonater', function () {
 
 
 
-describe('MessageSchema', function () {
-  describe('#save()', function () {
-    it('should save without error', function (done) {
-      var user = new db.MessageSchema({ sender: 'anyname', reciver: 'anyname', message: 'anytext' })
-      user.save(function (err) {
-        if (err) done(err)
-        else done()
-      })
-    })
-  })
-})
+// describe('MessageSchema', function () {
+//   describe('#save()', function () {
+//     it('should save without error', function (done) {
+//       var user = new db.MessageSchema({ sender: 'anyname', reciver: 'anyname', message: 'anytext' })
+//       user.save(function (err) {
+//         if (err) done(err)
+//         else done()
+//       })
+//     })
+//   })
+// })
 
 describe('MessageSchema', function () {
   describe('#delete()', function () {
@@ -332,17 +481,17 @@ describe('MessageSchema', function () {
 
 
 
-describe('companyCampaigns', function () {
-  describe('#save()', function () {
-    it('should save without error', function (done) {
-      var user = new db.companyCampaigns({id:"id"})
-      user.save(function (err) {
-        if (err) done(err)
-        else done()
-      })
-    })
-  })
-})
+// describe('companyCampaigns', function () {
+//   describe('#save()', function () {
+//     it('should save without error', function (done) {
+//       var user = new db.companyCampaigns({id:"id"})
+//       user.save(function (err) {
+//         if (err) done(err)
+//         else done()
+//       })
+//     })
+//   })
+// })
 
 describe('companyCampaigns', function () {
   describe('#delete()', function () {
