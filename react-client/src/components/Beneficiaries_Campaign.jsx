@@ -1,7 +1,17 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 import {Well} from 'react-bootstrap';
+import Message from './Message.jsx'
+import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
+
 
 
 class Beneficiaries_Campaign extends React.Component {
@@ -26,11 +36,12 @@ class Beneficiaries_Campaign extends React.Component {
     })
   };
 
-  submitCampaign(campaignName,campaignDescription,campaignAmount){
-  axios.post('/campaignInfo', {
+  submitCampaign(campaignName,campaignDescription,campaignAmount, campaignImage ){
+  axios.post('/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
-      campaignAmount: this.state.campaignAmount
+      campaignAmount: this.state.campaignAmount,
+      campaignImage:this.state.campaignImage
     })
   .then(response => {
     console.log('campaign has been posted!')
@@ -45,16 +56,7 @@ class Beneficiaries_Campaign extends React.Component {
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/imageCampaign', {campaignImage: e.target.result})
-    .then(res => {
-             console.log("Image campaign has been uploaded!");
-           })
-    .catch(function (error) {
-      console.log(error);
-    });
-   
-    
-
+    x.setState({campaignImage : e.target.result})
   }
 }
 
@@ -62,6 +64,40 @@ class Beneficiaries_Campaign extends React.Component {
 
    return (
     <div>
+        <nav className='navbar navbar-fixed-top navbar-default'>
+    <div className='container'>
+    <div className='navbar-header'>
+    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    </button>
+    <ul className='navbar-nav mr-auto nav '>
+    <li>  <a to='/'>Home</a></li>
+    <li ><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+    </ul>
+    </div>
+    <div className='collapse navbar-collapse' id='myNavbar'>
+    <form className=' '>
+    <Router>
+    <ul className='nav navbar-nav navbar-right ' >
+    <li> <a href='/search' className='icon-bar' >Search</a> </li>
+    <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
+    <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+    <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
+    <Route path="/message" component={Message} />
+    </ul>
+    </Router>
+    </form>
+    </div>
+    </div>
+    </nav> 
+    <br/>
+    <br/>
+    <br/>
+
+
     <Well>
       <div className="container">
         <div className='row'>
@@ -74,25 +110,18 @@ class Beneficiaries_Campaign extends React.Component {
   <input type="text" name="campaignDescription" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
 </div>  <div className="form-group">
   <label for="usr">Amount :</label>
-  <input type="text" className="form-control w3-round-xlarge" id="usr"/>
+  <input type="text" name="campaignAmount" onChange={this.onChange} className="form-control w3-round-xlarge" id="usr"/>
 </div>  <div className="form-group">
   <label for="usr">Name:</label>
   <input type="text" className="form-control w3-round-xlarge" id="usr"/>
 </div>
-    <span><img src = {this.state.campaignImage} /> </span>
-    <label></label>
-    <input type="text" name="campaignAmount" onChange={this.onChange} />
-    <br/>
-    <label>Beneficiary Name</label>
-    <input type="text" onChange={this.onChange} />
     <br/>
     <form>
     <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
-    Choose image
     </form>
     <br/>
     <button className="btn" onClick={
-      () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName)
+      () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName , this.state.campaignImage)
     } > Submit </button>
       </div>
         </div>

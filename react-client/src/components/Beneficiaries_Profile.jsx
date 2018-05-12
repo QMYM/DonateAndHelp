@@ -8,10 +8,9 @@ import {
   Link,
   Redirect,
   withRouter
-} from 'react-router-dom'
-
-import Search_Donor from './Search_Donor.jsx'
+} from 'react-router-dom';
 import Message from './Message.jsx'
+import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 
 class Beneficiaries_Profile extends React.Component {
   constructor (props) {
@@ -39,7 +38,7 @@ class Beneficiaries_Profile extends React.Component {
 }
 
 submit(name,contactNum,description,address){
-  axios.post('/Profile_Donor', {
+  axios.post('/profile_company', {
       // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,
@@ -60,61 +59,45 @@ submit(name,contactNum,description,address){
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/photoDonor', {image: e.target.result})
+    axios.post('/photo', {image: e.target.result})
     .then(res => {
-      console.log('hello Donor image', res)
              x.componentDidMount() // here i'm getting the photo from database
            })
     .catch(function (error) {
       console.log(error);
     });
-
   }
-
 }
 
 componentDidMount() { // this is the initial
-  axios.get('/getImageDonor')
+  axios.get('/getImage')
   .then(response => {
-    this.fetchDonorData()
+
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
      })
-
+     this.fetchCompanyData()
 
    })
   .catch(function (error) {
    console.log(error);
  });
-  var x = this
-  axios.get('/donorCam' )
-  .then(res => {
-    var posts = []
-    for (var i = 0; i < res.data.length; i++) {
-     if(res.data[i].username === this.state.user){
-      posts.push(res.data[i])
-      x.setState({post : posts})
-    }
-  }
-
-})
 }
-
-
-fetchDonorData(){
+fetchCompanyData(){
   var x = this
-  axios.get("/fetchDonorData").then(function(res){
-    var user = res.data.username
-    var email = res.data.email
-    x.setState({
-      user:user,
-      email:email
+axios.get("/fetchCompanyData").then(function(res){
+  console.log("alo data is here",res)
+  var user = res.data.username
+  var email = res.data.email
+  x.setState({
+    user:user,
+    email:email
 
-    })
-  }).catch(function(err){
-   console.log("error",err)
- })
+  })
+}).catch(function(err){
+ console.log("error",err)
+})
 }
 
 logout (){
@@ -131,6 +114,37 @@ render () {
   console.log("aaa" , this.state.post)
   return (
     <div style={{background:"white"}} >
+    
+        <nav className='navbar navbar-fixed-top navbar-default'>
+    <div className='container'>
+    <div className='navbar-header'>
+    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    <span className='icon-bar' />
+    </button>
+    <ul className='navbar-nav mr-auto nav '>
+    <li>  <a to='/'>Home</a></li>
+    <li ><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+    </ul>
+    </div>
+    <div className='collapse navbar-collapse' id='myNavbar'>
+    <form className=' '>
+    <Router>
+    <ul className='nav navbar-nav navbar-right ' >
+    <li> <a href='/search' className='icon-bar' >Search</a> </li>
+    <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
+    <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+    <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <Route path="/message" component={Message} />
+    <Route path="/Beneficiaries_Campaign" component = {BeneficiariesCampaign} />
+    </ul>
+    </Router>
+    </form>
+    </div>
+    </div>
+    </nav> 
+    <br/>
 
     <form> 
     <br/>

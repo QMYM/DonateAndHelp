@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import Message from './Message.jsx'
-import Beneficiaries_Campaign from './Beneficiaries_Campaign.jsx'
+import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 class Beneficiaries extends React.Component {
@@ -33,8 +33,6 @@ class Beneficiaries extends React.Component {
   render () {
     return (
       <div>
-    <Router>
-    <div>
       
         <nav className='navbar navbar-fixed-top navbar-default'>
     <div className='container'>
@@ -45,35 +43,29 @@ class Beneficiaries extends React.Component {
     <span className='icon-bar' />
     </button>
     <ul className='navbar-nav mr-auto nav '>
-    <li>  <Link to='/'>Home</Link></li>
-    <li ><Link href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Beneficiaries_Campaign</Link></li>
+    <li>  <a to='/'>Home</a></li>
+    <li ><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>
     <form className=' '>
-
+    <Router>
     <ul className='nav navbar-nav navbar-right ' >
     <li> <a href='/search' className='icon-bar' >Search</a> </li>
-    <li> <Link className='icon-bar' to='/message' replace >Message</Link> </li>
-    <li> <Link  className='icon-bar' to='/Beneficiaries_Profile'>Profile</Link> </li>
-    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
+    <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+    <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
+    <Route path="/message" component={Message} />
+    <Route path="/Beneficiaries_Campaign" component = {BeneficiariesCampaign} />
     </ul>
+    </Router>
     </form>
     </div>
     </div>
     </nav> 
     <br/>
 
-    <div className="content">
-    <Route path="/Beneficiaries_Profile" render={()=><BeneficiariesProfile /> } />
-    <Route path="/Message" render={()=><Message /> } />
-    <Route path="/Campaign" render={()=><Campaign /> } />
-
-    </div>
-
-    </div>
-
-    </Router>
       </div>
       )
   }
