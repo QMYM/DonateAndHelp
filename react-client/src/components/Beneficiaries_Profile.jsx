@@ -135,8 +135,8 @@ render () {
     <span className='icon-bar' />
     </button>
     <ul className='navbar-nav mr-auto nav '>
-    <li>  <a to='/'>Home</a></li>
-    <li ><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+    <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+    <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>

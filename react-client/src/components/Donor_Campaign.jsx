@@ -39,7 +39,6 @@ class Donor_Campaign extends React.Component {
 
   submitCampaign(campaignName,campaignDescription,campaignAmount , campaignImage){
     axios.post('/Donorcampaign', {
-
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
@@ -64,6 +63,16 @@ class Donor_Campaign extends React.Component {
 
   }
 }
+logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
+  }
+
 
 render(){
 
@@ -78,8 +87,8 @@ render(){
   <span className='icon-bar' />
   </button>
   <ul className='navbar-nav mr-auto nav '>
-  <li>  <a herf='/home'>Home</a></li>
-  <li ><a href='/Donor_Campaign'>Campaign</a></li>
+  <li><a href='/donor'>Home</a></li>
+  <li><a href='/Donor_Campaign'>Campaign</a></li>
   </ul>
   </div>
   <div className='collapse navbar-collapse' id='myNavbar'>
