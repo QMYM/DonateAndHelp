@@ -3,7 +3,7 @@ let session = require('express-session')
 let bodyParser = require('body-parser')
 let handler = require('./handler')
 var path = require('path')
-
+var ObjectId = require('mongodb').ObjectID
 const app = express()
 
 app.use(express.static(path.join(__dirname, '../react-client/dist')))
@@ -39,6 +39,11 @@ app.post("/search_beneficiary", handler.searchBeneficiary)
 app.get('/donorCam' , handler.donorCam)
 app.get('/imageSearchDonor', handler.imageSearchDonor)
 app.post("/search_donor", handler.searchDonor)
+app.post('/removeMsg', handler.removeMsg)
+
+
+
+
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
@@ -51,12 +56,7 @@ app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)
 })
 
-// const PORT = process.env.PORT || 3000
-
 // var server =app.listen(PORT, () => {
-//   console.log(`The Port : ${PORT}`)
-// })
-// app.listen(PORT, () => {
 //   console.log(`The Port : ${PORT}`)
 // })
 // module.exports = server

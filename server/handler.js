@@ -3,7 +3,7 @@ let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session');
 let saltRounds = 10
-
+var ObjectId = require('mongodb').ObjectID
 exports.Signup = function (req, res) {
   var username = req.body.username
   var password = req.body.password
@@ -103,6 +103,7 @@ exports.LoginCompany = function (req, res) {
             } else {
               bcrypt.compare(password, data.password, function (err, found) {
                 if (found) {
+
                   helper.createSession(req, res, data.username)
                 } else {
                   res.sendStatus(404)
@@ -303,7 +304,7 @@ exports.sendMessage = function(req , res){
         if(err){throw err}
           else {
             if(!data){
-              res.sendStatus(402);
+              res.sendStatus(404);
             }
             else{
               var message = new db.MessageSchema ({
@@ -311,9 +312,11 @@ exports.sendMessage = function(req , res){
                 reciver:reciever , 
                 message:text
               })
-            }
-          }
+
+              
+
           message.save(function(err,data){
+
             if(err){
               throw err
             }else{
@@ -321,6 +324,11 @@ exports.sendMessage = function(req , res){
             }
 
           })
+            }
+          }
+
+         
+
         }) 
     }
   }
@@ -505,3 +513,17 @@ exports.imageSearchDonor = function (req, res){
     }
   })
 }
+
+
+exports.removeMsg = function(req,res) {
+  var user = req.body.user
+  var Id = req.body.id
+db.MessageSchema.remove({_id: Id}, function (err , done) {
+  if(err){
+    throw err
+  }else{
+    res.sendStatus(201)
+  }
+})
+}
+
