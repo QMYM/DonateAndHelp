@@ -39,7 +39,7 @@ class Beneficiaries_Profile extends React.Component {
 }
 
 submit(name,contactNum,description,address){
-  axios.post('/Profile_Donor', {
+  axios.post('/profile_company', {
       // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,
