@@ -9,9 +9,9 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import Profile_Donor from './Profile_Donor.jsx'
+import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
-import Campaign from './Campaign.jsx'
+import Donor_Campaign from './Donor_Campaign.jsx'
 import Message from './Message.jsx'
 
 class Donor extends React.Component {
@@ -66,7 +66,7 @@ class Donor extends React.Component {
     </button>
     <ul className='navbar-nav mr-auto nav '>
     <li>  <a herf='/home'>Home</a></li>
-    <li ><a href='/campaign'></a></li>
+    <li ><a href='/Donor_Campaign'>Donor_Campaign</a></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>
@@ -76,11 +76,11 @@ class Donor extends React.Component {
     <ul className='nav navbar-nav navbar-right ' >
     <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
     <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
-    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profiler</a> </li>
+    <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profiler</a> </li>
     <li> <a href ="#"onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
     <Route path='/message' component={Message} />
-    <Route path='/campaign' component={Campaign} />
-    <Route path='/Profile_Donor' component={Profile_Donor}/>
+    <Route path='/Donor_Campaign' component={Donor_Campaign} />
+    <Route path='/Donor_Profile' component={Donor_Profile}/>
     <Route path='/searchD' component={Search_Donor}/>
     </ul>
     </Router>
