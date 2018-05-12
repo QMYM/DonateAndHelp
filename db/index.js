@@ -59,7 +59,7 @@ const messageSchema = new Schema({
   
 });
 
-// MessageSchema = mongoose.model('MessageSchema', messageSchema)
+ //MessageSchema = mongoose.model('MessageSchema', messageSchema)
 // var messageSenders = function (callback){
 //    MessageSchema.aggregate([
 //    {
@@ -67,8 +67,8 @@ const messageSchema = new Schema({
 //        {
 //          from: "userCompany",
 //          localField: "sender",
-//          foreignField: "user",
-//          as: "senderInfo"
+//          foreignField: "username",
+//          as: "userInfo"
 //        }
 //   }
 // ], function (err, data) {
@@ -79,14 +79,16 @@ const messageSchema = new Schema({
 //         console.log(data);
 //         callback(null, data)
 //     });
+        
 // };
+
 
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
 companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
-
+//module.exports.messageSenders = messageSenders
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema

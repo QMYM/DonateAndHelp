@@ -48,7 +48,7 @@ class Message extends React.Component {
     axios.get('/recieveMessage')
     .then(function(response) {
       var mes = []
-      var obj = {}
+      var obj = {}  
       var rec = []
       for (var i = 0; i < response.data.length; i++) {
        if(response.data[i].reciver === x.state.sessionUser){
@@ -68,27 +68,18 @@ class Message extends React.Component {
   })
 
 
-   // this.getPhotoForMessages()
+    this.getPhotoForMessages()
 
  }
-  // getPhotoForMessages(){
-  //   var x = this
-  //   axios.get("/getPhotoForMessages").then(function(res){
-  //     var arr =[]
-  //     for(var i = 0; i< res.data.length; i++){
-  //       if(res.data[i].image !== undefined){
-  //         arr.push(res.data[i].image)
-  //          x.setState({items : arr})
-  //          console.log("my image",x.state.items)
-  //       }
+  getPhotoForMessages(){
+    var x = this
+    axios.get("/getPhotoForMessages").then(function(res){
+      console.log("bushra is here", res.data)
 
-  //     }
-
-
-  //   }).catch(function(err){
-  //     console.log("error",err)
-  //   })
-  // }
+    }).catch(function(err){
+      console.log("error",err)
+    })
+  }
   user (){
     var x = this;
     axios.get("/sessionName").then(function (res){
