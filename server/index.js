@@ -37,26 +37,24 @@ app.get("/fetchCompanyData", handler.fetchCompanyData)
 app.get('/imageSearch', handler.imageSearch)
 app.post("/search_beneficiary", handler.searchBeneficiary)
 app.get('/donorCam' , handler.donorCam)
+app.get('/companyCam' , handler.companyCam)
 app.get('/imageSearchDonor', handler.imageSearchDonor)
 app.post("/search_donor", handler.searchDonor)
 app.post('/removeMsg', handler.removeMsg)
-
-
-
 
 
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
 
-
 const PORT = process.env.PORT || 3000
-
 
 // var server =app.listen(PORT, () => {
 //   console.log(`The Port : ${PORT}`)
 // })
+
 app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)
 })
 // module.exports = server
+

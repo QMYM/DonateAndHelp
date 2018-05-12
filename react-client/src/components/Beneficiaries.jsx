@@ -16,10 +16,22 @@ class Beneficiaries extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-
+      camp : []
     }
     this.logout = this.logout.bind(this)
   }
+    componentDidMount() {
+    var x = this
+    axios.get('/donorCam')
+    .then(function (res) {
+      console.log(res.data)
+      x.setState({camp : res.data})  
+      // const camp=res.data.results.map(obj=>{})
+    }).catch(function (err) {
+      console.log(err)
+    })
+  }
+
   logout (){
     axios.get("/logout")
     .then(function (res) {
@@ -33,7 +45,7 @@ class Beneficiaries extends React.Component {
   render () {
     return (
       <div>
-      
+
         <nav className='navbar navbar-fixed-top navbar-default'>
     <div className='container'>
     <div className='navbar-header'>
@@ -65,7 +77,13 @@ class Beneficiaries extends React.Component {
     </div>
     </nav> 
     <br/>
+   <br/>
+      {this.state.camp.map(item =>
+        <div>
+          <h2>{item.campaignName}</h2>
+        </div>
 
+        )}
       </div>
       )
   }

@@ -42,6 +42,14 @@ var companyCampaigns = new Schema({
   username: {type: String}
 })
 
+var donorCampaigns = new Schema({
+  campaignName: {type: String},
+  campaignDescription: {type: String},
+  campaignAmount: {type: String},
+  campaignImage: {type: String},
+  username: {type: String}
+})
+
 
 const messageSchema = new Schema({
   sender:{
@@ -86,6 +94,7 @@ const messageSchema = new Schema({
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
 companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
+donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 //module.exports.messageSenders = messageSenders
@@ -93,4 +102,4 @@ module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema
 module.exports.companyCampaigns = companyCampaigns
-
+module.exports.donorCampaigns = donorCampaigns

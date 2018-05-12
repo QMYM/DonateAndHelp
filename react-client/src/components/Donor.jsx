@@ -36,7 +36,7 @@ class Donor extends React.Component {
 
   componentDidMount() {
     var x = this
-    axios.get('/donorCam')
+    axios.get('/companyCam')
     .then(function (res) {
       console.log(res.data)
       x.setState({camp : res.data})  

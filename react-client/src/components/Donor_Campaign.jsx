@@ -36,11 +36,14 @@ class Donor_Campaign extends React.Component {
     })
   };
 
-  submitCampaign(campaignName,campaignDescription,campaignAmount){
+
+  submitCampaign(campaignName,campaignDescription,campaignAmount , campaignImage){
     axios.post('/Donorcampaign', {
+
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
-      campaignAmount: this.state.campaignAmount
+      campaignAmount: this.state.campaignAmount,
+      campaignImage:this.state.campaignImage
     })
     .then(response => {
       console.log('campaign has been posted!')
@@ -55,15 +58,9 @@ class Donor_Campaign extends React.Component {
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/imageCampaign', {campaignImage: e.target.result})
-    .then(res => {
-     console.log("Image campaign has been uploaded!");
-   })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
-    
+    x.setState({
+      campaignImage:e.target.result
+    })
 
   }
 }
@@ -122,15 +119,15 @@ render(){
   </div>  <div className="form-group">
   <label for="usr">Name:</label>
   <input type="text" className="form-control w3-round-xlarge" id="usr"/>
+
   </div>
-  <span><img src = {this.state.campaignImage} /> </span>
+
   <form>
-  Choose image
   <input className='btn' type="file" name="image" onChange={this.uploadPhotoCampaign}/>
   </form>
   <br/>
   <button className="btn" onClick={
-    () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName)
+    () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName , this.state.campaignImage)
   } > Submit </button>
   </div>
   </div>

@@ -214,6 +214,7 @@ render () {
     </div>
     <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <a className="w3-button w3-light-grey" href="#"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send<i className="w3-margin-left fa  fa-chevron-circle-right"></i></a>
+
       <button className='btn' onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
     <hr/>
 
