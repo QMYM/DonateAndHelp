@@ -25,7 +25,7 @@ const Home = (props) => (<div >
   <span className='icon-bar' />
   </button>
   <ul className='navbar-nav mr-auto nav '>
-  <li>  <a herf='#Home'>Main</a></li>
+  <li>  <a href='#Home'>Main</a></li>
   <li ><a href='#About'>About</a></li>
   <li><a href='#Contact' >Contact</a></li>
   <li><a href='/theapp' >The App</a></li>

@@ -73,7 +73,7 @@ class Beneficiaries_Campaign extends React.Component {
     <span className='icon-bar' />
     </button>
     <ul className='navbar-nav mr-auto nav '>
-    <li><a href='/' to='/'>Home</a></li>
+    <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
     <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
     </ul>
     </div>
