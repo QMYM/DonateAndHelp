@@ -9,8 +9,8 @@ import {
   withRouter
 } from 'react-router-dom';
 import Message from './Message.jsx'
-import Campaign from './Campaign.jsx'
-import Profile_Donor from './Profile_Donor.jsx'
+import Beneficiaries_Campaign from './Beneficiaries_Campaign.jsx'
+import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 class Beneficiaries extends React.Component {
   constructor (props) {
@@ -46,7 +46,7 @@ class Beneficiaries extends React.Component {
     </button>
     <ul className='navbar-nav mr-auto nav '>
     <li>  <Link to='/'>Home</Link></li>
-    <li ><Link href='/campaign' to='/campaign'>Campaign</Link></li>
+    <li ><Link href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Beneficiaries_Campaign</Link></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>
@@ -55,7 +55,7 @@ class Beneficiaries extends React.Component {
     <ul className='nav navbar-nav navbar-right ' >
     <li> <a href='/search' className='icon-bar' >Search</a> </li>
     <li> <Link className='icon-bar' to='/message' replace >Message</Link> </li>
-    <li> <Link  className='icon-bar' to='/Profile_Donor'>Profile</Link> </li>
+    <li> <Link  className='icon-bar' to='/Beneficiaries_Profile'>Profile</Link> </li>
     <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
     </ul>
     </form>
@@ -65,7 +65,7 @@ class Beneficiaries extends React.Component {
     <br/>
 
     <div className="content">
-    <Route path="/Profile_Donor" render={()=><Profile_Donor component={Profile_Donor}/> } />
+    <Route path="/Beneficiaries_Profile" render={()=><BeneficiariesProfile /> } />
     <Route path="/Message" render={()=><Message /> } />
     <Route path="/Campaign" render={()=><Campaign /> } />
 
