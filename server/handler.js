@@ -375,7 +375,7 @@ exports.uploadImageCampaign = function(req, res){
 
  var image = req.body.campaignImage;
  console.log(image,"image in post server!");
- var save = new db.companyCampaigns({
+ var save = new db.userCompany({
   campaignImage:image
 })
  save.save(function(err,data){
@@ -386,7 +386,7 @@ exports.uploadImageCampaign = function(req, res){
   }
 })
 
- db.companyCampaigns.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
+ db.userCompany.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
    if(err){
      throw err
    }else{
@@ -404,11 +404,11 @@ exports.postCampaign = function(req, res){
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
 
-  db.companyCampaigns.findOne({username:req.session.user},function(err,data){
+  db.userCompany.findOne({username:req.session.user},function(err,data){
     if(err){
       throw err;
     } else {
-      var info = new db.companyCampaigns({
+      var info = new db.userCompany({
         campaignName:campaignName,
         campaignDescription:campaignDescription,
         campaignAmount:campaignAmount,
