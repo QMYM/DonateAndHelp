@@ -3,7 +3,6 @@ let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session');
 let saltRounds = 10
-var ObjectId = require('mongodb').ObjectID
 exports.Signup = function (req, res) {
   var username = req.body.username
   var password = req.body.password
@@ -115,7 +114,7 @@ exports.LoginCompany = function (req, res) {
 }
 
 exports.uploadImage = function(req,res){ // add a personal photo for the user
- console.log('mais mais ' , req.body.image)
+
  var image = req.body.image
  var save = new db.userCompany({
   image:image
@@ -124,7 +123,7 @@ exports.uploadImage = function(req,res){ // add a personal photo for the user
   if(err){
     throw err
   }else {
-    console.log("'here's the data", data)
+      console.log("saved!")
   }
 })
 
@@ -182,7 +181,7 @@ exports.addProfileCompany = function (req, res) {
   var address=req.body.address
 
   db.userCompany.findOne({username:req.session.user},function(err,data){
-    console.log('mais',data)
+   
 
     if(err){
       throw err
@@ -208,7 +207,7 @@ exports.addProfileCompany = function (req, res) {
 }
 
 exports.addProfileDonor = function (req, res) {
-  console.log(req.body,'donor donor')
+
   console.log('check the session donor', req.session.user )
   var name=req.body.name
   var contactNum=req.body.contactNum
@@ -216,7 +215,7 @@ exports.addProfileDonor = function (req, res) {
   var address=req.body.address
 
   db.userDonater.findOne({username:req.session.user},function(err,data){
-    console.log('mais',data)
+   
     if(err){
       throw err
     }else{
@@ -241,7 +240,7 @@ exports.addProfileDonor = function (req, res) {
 }
 
 exports.uploadImageDonor = function(req,res){ // add a personal photo for the user
-  console.log('mais mais ' , req.body.image)
+  
   var image = req.body.image
   var save = new db.userDonater({
     image:image
@@ -337,28 +336,10 @@ exports.sendMessage = function(req , res){
 }
 // exports.getPhotoForMessages = function (req, res){
   
-//   db.userCompany.aggregate([{$match:{$or: [{ reciver: req.session.username }, { sender: req.session.username }]}},
-//  {
-//    $lookup:
-//      {
-//        from: "userCompany",
-//        localField: "sender",
-//        foreignField: "user",
-//        as: "senderInfo"
-//      }
-
-// }
-
-// ], function (err, data) {
-//       if (err) {
-//         console.log(err);
-
-//       }
-//       //console.log(data[0].senderInfo);
-//       //res.send( data)
-
+//   db.messageSenders(function(err,data){
+//     if(err){throw err}else{
 //       res.send(data)
-//       console.log("hello mar7aba", data)
+//     }
 //   })
 
 // }
@@ -478,7 +459,6 @@ exports.fetchDonorData = function (req, res){
 exports.fetchCompanyData = function (req, res){
   console.log("check", req.session)
   db.userCompany.findOne({username: req.session.user}, function(err,data){
-    console.log("hello data", data)
     if(err){
       throw err
     }else{
