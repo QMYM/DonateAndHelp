@@ -22,12 +22,7 @@ var userDonater = new Schema({
   name: {type: String},
   contactNum: {type: String},
   description: {type: String},
-  address: {type: String},
-  campaignName: {type: String},
-  campaignDescription: {type: String},
-  campaignAmount: {type: String},
-  campaignImage: {type: String},
-  username: {type: String}
+  address: {type: String}
 })
 var userCompany = new Schema({
   username: {type: String},
@@ -37,20 +32,15 @@ var userCompany = new Schema({
   name: {type: String},
   contactNum: {type: String},
   description: {type: String},
-  address: {type: String},
+  address: {type: String}
+})
+var companyCampaigns = new Schema({
   campaignName: {type: String},
   campaignDescription: {type: String},
   campaignAmount: {type: String},
   campaignImage: {type: String},
   username: {type: String}
 })
-// var companyCampaigns = new Schema({
-//   campaignName: {type: String},
-//   campaignDescription: {type: String},
-//   campaignAmount: {type: String},
-//   campaignImage: {type: String},
-//   username: {type: String}
-// })
 
 
 const messageSchema = new Schema({
@@ -93,12 +83,12 @@ const messageSchema = new Schema({
 
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
-// companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
+companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema
-// module.exports.companyCampaigns = companyCampaigns
+module.exports.companyCampaigns = companyCampaigns
 

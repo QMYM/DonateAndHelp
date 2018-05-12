@@ -371,59 +371,51 @@ exports.reciveMessag = function (req , res) {
   })
 }
 
-exports.uploadImageCampaign = function(req, res){
+// exports.uploadImageCampaign = function(req, res){
 
- var image = req.body.campaignImage;
- console.log(image,"image in post server!");
- var save = new db.userCompany({
-  campaignImage:image
-})
- save.save(function(err,data){
-  if(err){
-    throw err
-  }else {
-    console.log("Campaign image has been posted", data);
-  }
-})
+//  var image = req.body.campaignImage;
+//  console.log(image,"image in post server!");
+//  var save = new db.companyCampaigns({
+//   campaignImage:image
+// })
+//  save.save(function(err,data){
+//   if(err){
+//     throw err
+//   }else {
+//     console.log("Campaign image has been posted", data);
+//   }
+// })
 
- db.userCompany.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
-   if(err){
-     throw err
-   }else{
-     res.send(data)
-   }
- })
+//  db.companyCampaigns.update({username: req.session.user}, { $set: { campaignImage: image }},function(err,data){
+//    if(err){
+//      throw err
+//    }else{
+//      res.send(data)
+//    }
+//  })
 
-}
+// }
 
 exports.postCampaign = function(req, res){
-
-  console.log(req.body);
-
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
+  var campaignImage = req.body.campaignImage
+   var info=new db.companyCampaigns({
+    campaignName: campaignName,
+    campaignDescription: campaignDescription,
+    campaignAmount: campaignAmount,
+    campaignImage: campaignImage,
+    username: req.session.user
+   })
 
-  db.userCompany.findOne({username:req.session.user},function(err,data){
-    if(err){
-      throw err;
-    } else {
-      var info = new db.userCompany({
-        campaignName:campaignName,
-        campaignDescription:campaignDescription,
-        campaignAmount:campaignAmount,
-        username:req.session.user
-      })
-      info.save(function(err,information){
-        if(err){
-          throw err;
-        } else {
-          console.log(information);
-          res.send(information);
-        }
-      })
+   info.save(function(err,data){
+    if (err){
+      throw err
+    }else{
+      res.sendStatus(201)
     }
-  })
+   })
 }
 
 exports.sessionName = function (req , res) {
