@@ -1,6 +1,17 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
+import Profile_Donor from './Profile_Donor.jsx'
+import Search_Donor from './Search_Donor.jsx'
+import Message from './Message.jsx'
 
 class Profile extends React.Component {
   constructor (props) {
@@ -87,9 +98,22 @@ axios.get("/fetchCompanyData").then(function(res){
  console.log("error",err)
 })
 }
+logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/"
+    }).catch(function (err){
+      console.log("logout err "  ,err)
+    })
+  }
+
 render () {
   return (
     <div>
+
+  
+
     <span><img src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"400px", height:"400px"}} /> </span>
     <form> 
     <label className="btn  btn-primary" style={{color:"black"}}>
