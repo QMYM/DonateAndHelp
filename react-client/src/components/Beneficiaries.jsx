@@ -67,7 +67,7 @@ class Beneficiaries extends React.Component {
     <div className="content">
     <Route path="/Beneficiaries_Profile" render={()=><BeneficiariesProfile /> } />
     <Route path="/Message" render={()=><Message /> } />
-    <Route path="/Campaign" render={()=><Campaign /> } />
+    <Route path="/Beneficiaries_Campaign" render={()=><Beneficiaries_Campaign /> } />
 
     </div>
 
