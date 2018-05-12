@@ -14,15 +14,31 @@ import Search_Donor from './Search_Donor.jsx'
 import Donor_Campaign from './Donor_Campaign.jsx'
 import Message from './Message.jsx'
 
+function searching(term){
+ return function(x){
+ return x.username.toLowerCase().includes(term.toLowerCase())
+ }
+}
+
+
 class Donor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      camp :[]
+      camp :[],
+      term:''
     }
     this.logout = this.logout.bind(this)
+    this.search=this.search.bind(this) 
+    
     
   }
+
+
+
+search(e){
+this.setState({term:e.target.value})
+}
 
   logout (){
     axios.get("/logout")
@@ -74,7 +90,11 @@ class Donor extends React.Component {
 
     <Router>
     <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
+   {/*} <li> <a href='/searchD' className='icon-bar' >Search</a> </li>*/}
+    <li style={{marginTop:10}}> Search: <input type="text" placeholder="Search"
+   onChange={this.search}
+   value={this.state.term}
+   /></li>
     <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
     <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
     <li> <a href ="#"onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
@@ -88,17 +108,20 @@ class Donor extends React.Component {
     </div>
     </div>
     </nav> 
-
+    
+  
+  
 
     <div className="container-fluid">
     <br/>
     <br/>
     <br/>
     <br/>
+
     <div id="pricing" className="container-fluid">
     <div className="row slideanim">
-    {this.state.camp.map( item =>
-      <div>
+    {this.state.camp.filter(searching(this.state.term)).map( item =>
+      <div key={item._id}>
 
       <div className="col-sm-4 col-xs-12">
       <div className="panel panel-default text-center">
