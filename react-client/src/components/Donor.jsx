@@ -66,7 +66,7 @@ class Donor extends React.Component {
     </button>
     <ul className='navbar-nav mr-auto nav '>
     <li>  <a herf='/home'>Home</a></li>
-    <li ><a href='/campaign'>DODO</a></li>
+    <li ><a href='/campaign'></a></li>
     </ul>
     </div>
     <div className='collapse navbar-collapse' id='myNavbar'>
@@ -74,10 +74,10 @@ class Donor extends React.Component {
 
     <Router>
     <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/searchD' className='icon-bar' >Search_Donor</a> </li>
+    <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
     <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
-    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
-    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profiler</a> </li>
+    <li> <a href ="#"onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
     <Route path='/message' component={Message} />
     <Route path='/campaign' component={Campaign} />
     <Route path='/Profile_Donor' component={Profile_Donor}/>
@@ -107,6 +107,7 @@ class Donor extends React.Component {
       </div>
       <div className="panel-body">
       <h2>From : {item.username}</h2>
+    <img  alt="Profile" style={{width:"300px"}} src = {item.campaignImage || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> 
 
       <p> {item.campaignDescription}</p>
       </div>

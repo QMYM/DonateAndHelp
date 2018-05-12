@@ -149,36 +149,7 @@ logout (){
 render () {
   return (
     <div>
-   <nav className='navbar navbar-fixed-top navbar-default'>
-    <div className='container'>
-    <div className='navbar-header'>
-    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    </button>
-    <ul className='navbar-nav mr-auto nav '>
-    <li>  <a herf='/home'>Home</a></li>
-    <li ><a href='#About'>DODO</a></li>
-    </ul>
-    </div>
-    <div className='collapse navbar-collapse' id='myNavbar'>
-    <form className=' '>
 
-    <Router>
-    <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/searchD' className='icon-bar' >Search_Donor</a> </li>
-    <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
-    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
-    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
-    <Route path='/Profile_Donor' component={Profile_Donor}/>
-    <Route path='/searchD' component={Search_Donor}/>
-    </ul>
-    </Router>
-    </form>
-    </div>
-    </div>
-    </nav> 
     <br/>
     <br/>
 
@@ -235,15 +206,24 @@ render () {
       <div id={item.sender} className="w3-container person" >
       <img className="w3-round  w3-animate-top" src={this.state.image}/>
       <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
-      <br/>{this.state.rightMes.map(mes =>
-        <div>
-        <p>{mes.message}</p>
-        </div>
+      <br/>
+      {this.state.rightMes.map(mes =>
+          <div className="msg messageReceived">
+      {mes.message}
+        <span className="timestamp">00:02</span>
+      </div>
         )
     }
+        <div>
+      <div className="msg messageSent">
+
+        <span className="timestamp">00:04</span>
+      </div>
+      
+    </div>
     <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <a className="w3-button w3-light-grey" href="#"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send<i className="w3-margin-left fa  fa-chevron-circle-right"></i></a>
-      <button onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
+      <button className='btn' onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
     <hr/>
 
     </div>

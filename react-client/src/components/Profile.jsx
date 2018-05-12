@@ -112,38 +112,7 @@ render () {
   return (
     <div>
 
-   <nav className='navbar navbar-fixed-top navbar-default'>
-    <div className='container'>
-    <div className='navbar-header'>
-    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    </button>
-    <ul className='navbar-nav mr-auto nav '>
-    <li>  <a herf='/home'>Home</a></li>
-    <li ><a href='#About'>DODO</a></li>
-    </ul>
-    </div>
-    <div className='collapse navbar-collapse' id='myNavbar'>
-    <form className=' '>
-
-    <Router>
-    <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/searchD' className='icon-bar' >Search_Donor</a> </li>
-    <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
-    <li> <a href='/Profile_Donor' className='icon-bar' to='/Profile_Donor'>Profile_Donor</a> </li>
-    <li> <a onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
-    <Route path='/message' component={Message} />
-    <Route path='/Profile_Donor' component={Profile_Donor}/>
-    <Route path='/searchD' component={Search_Donor}/>
-    </ul>
-    </Router>
-    </form>
-    </div>
-    </div>
-    </nav> 
-    <br/>
+  
 
     <span><img src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} style={{width:"400px", height:"400px"}} /> </span>
     <form> 
