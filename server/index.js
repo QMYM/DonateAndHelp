@@ -44,12 +44,19 @@ app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
 
+
 const PORT = process.env.PORT || 3000
 
-var server =app.listen(PORT, () => {
-  console.log(`The Port : ${PORT}`)
-})
 app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)
 })
-module.exports = server
+
+// const PORT = process.env.PORT || 3000
+
+// var server =app.listen(PORT, () => {
+//   console.log(`The Port : ${PORT}`)
+// })
+// app.listen(PORT, () => {
+//   console.log(`The Port : ${PORT}`)
+// })
+// module.exports = server
