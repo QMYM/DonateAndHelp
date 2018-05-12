@@ -98,6 +98,17 @@ axios.get("/fetchCompanyData").then(function(res){
 }).catch(function(err){
  console.log("error",err)
 })
+  axios.get('/donorCam' )
+  .then(res => {
+    var posts = []
+    for (var i = 0; i < res.data.length; i++) {
+     if(res.data[i].username === this.state.user){
+      posts.push(res.data[i])
+      x.setState({post : posts})
+    }
+  }
+
+})
 }
 
 logout (){
@@ -290,7 +301,7 @@ render () {
       <h3>{po.campaignDescription}</h3>
       </div>
       <a href="#" className="thumbnail">
-      <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Uploaded photo"/>
+      <img src={po.campaignImage || "http://bootdey.com/img/Content/avatar/avatar1.png" } alt="Uploaded photo"/>
       </a>
       </div>
       </div>
