@@ -377,10 +377,7 @@ exports.uploadImageCampaign = function(req, res){
 
 }
 
-exports.postCampaign = function(req, res){
-
-  console.log(req.body);
-
+exports.postCompanyCampaign = function (req , res) {
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
@@ -405,6 +402,13 @@ exports.postCampaign = function(req, res){
       })
     }
   })
+  
+}
+
+exports.postDonorCampaign = function(req, res){
+  console.log(req.body);
+
+
 }
 
 exports.sessionName = function (req , res) {

@@ -37,7 +37,7 @@ class Beneficiaries_Campaign extends React.Component {
   };
 
   submitCampaign(campaignName,campaignDescription,campaignAmount){
-  axios.post('/campaignInfo', {
+  axios.post('/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount
@@ -125,8 +125,9 @@ class Beneficiaries_Campaign extends React.Component {
 </div>
     <br/>
     <form>
-    <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
     Choose image
+    <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
+    
     </form>
     <br/>
     <button className="btn" onClick={
