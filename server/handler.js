@@ -377,34 +377,53 @@ exports.uploadImageCampaign = function(req, res){
 
 }
 
-exports.postCampaign = function(req, res){
-
-  console.log(req.body);
-
+exports.postCompanyCampaign = function (req , res) {
+  
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
+  var campaignImage = req.body.campaignImage
+   var info = new db.companyCampaigns({
+    campaignName: campaignName,
+    campaignDescription: campaignDescription,
+    campaignAmount: campaignAmount,
+    campaignImage: campaignImage,
+    username: req.session.user
+   })
 
-  db.companyCampaigns.findOne({username:req.session.user},function(err,data){
-    if(err){
-      throw err;
-    } else {
-      var info = new db.companyCampaigns({
-        campaignName:campaignName,
-        campaignDescription:campaignDescription,
-        campaignAmount:campaignAmount,
-        username:req.session.user
-      })
-      info.save(function(err,information){
-        if(err){
-          throw err;
-        } else {
-          console.log(information);
-          res.send(information);
-        }
-      })
+   info.save(function(err,data){
+    if (err){
+      throw err
+    }else{
+      res.sendStatus(201)
     }
   })
+  
+}
+
+exports.postDonorCampaign = function(req, res){
+    var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+  var campaignImage = req.body.campaignImage
+   var info = new db.companyCampaigns({
+    campaignName: campaignName,
+    campaignDescription: campaignDescription,
+    campaignAmount: campaignAmount,
+    campaignImage: campaignImage,
+    username: req.session.user
+   })
+
+   info.save(function(err,data){
+    if (err){
+      throw err
+    }else{
+      res.sendStatus(201)
+    }
+  })
+  
+
+
 }
 
 exports.sessionName = function (req , res) {
@@ -506,4 +525,3 @@ db.MessageSchema.remove({_id: Id}, function (err , done) {
   }
 })
 }
-

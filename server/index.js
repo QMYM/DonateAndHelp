@@ -24,7 +24,8 @@ app.get('/logout', handler.logout)
 app.post('/profile_company',handler.addProfileCompany)
 app.get('/recieveMessage', handler.reciveMessag)
 app.post('/imageCampaign', handler.uploadImageCampaign)
-app.post('/campaignInfo', handler.postCampaign)
+app.post('/Donorcampaign', handler.postDonorCampaign)
+app.post('/companycampaign', handler.postCompanyCampaign)
 app.post('/sendMessage' , handler.sendMessage)
 app.post('/Profile_Donor',handler.addProfileDonor)
 app.post('/photoDonor', handler.uploadImageDonor)
@@ -41,21 +42,18 @@ app.post("/search_donor", handler.searchDonor)
 app.post('/removeMsg', handler.removeMsg)
 
 
-
-
-
 app.get('/*' , (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
 })
 
-
 const PORT = process.env.PORT || 3000
-
 
 // var server =app.listen(PORT, () => {
 //   console.log(`The Port : ${PORT}`)
 // })
+
 app.listen(PORT, () => {
   console.log(`The Port : ${PORT}`)
 })
 // module.exports = server
+
