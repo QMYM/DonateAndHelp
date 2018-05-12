@@ -36,11 +36,12 @@ class Beneficiaries_Campaign extends React.Component {
     })
   };
 
-  submitCampaign(campaignName,campaignDescription,campaignAmount){
+  submitCampaign(campaignName,campaignDescription,campaignAmount, campaignImage ){
   axios.post('/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
-      campaignAmount: this.state.campaignAmount
+      campaignAmount: this.state.campaignAmount,
+      campaignImage:this.state.campaignImage
     })
   .then(response => {
     console.log('campaign has been posted!')
@@ -55,16 +56,7 @@ class Beneficiaries_Campaign extends React.Component {
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/imageCampaign', {campaignImage: e.target.result})
-    .then(res => {
-             console.log("Image campaign has been uploaded!");
-           })
-    .catch(function (error) {
-      console.log(error);
-    });
-   
-    
-
+    x.setState({campaignImage : e.target.result})
   }
 }
 
@@ -125,13 +117,11 @@ class Beneficiaries_Campaign extends React.Component {
 </div>
     <br/>
     <form>
-    Choose image
     <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
-    
     </form>
     <br/>
     <button className="btn" onClick={
-      () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName)
+      () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName , this.state.campaignImage)
     } > Submit </button>
       </div>
         </div>

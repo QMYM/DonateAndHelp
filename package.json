@@ -46,6 +46,7 @@
         "react": "^15.4.2",
         "react-bootstrap": "^0.32.1",
         "react-dom": "^15.4.2",
+        "react-filter": "0.0.7",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
         "react-scroll-parallax": "^1.3.3",
