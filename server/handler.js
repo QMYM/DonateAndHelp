@@ -174,7 +174,7 @@ exports.LoginDonater = function (req, res) {
 }
 
 exports.addProfileCompany = function (req, res) {
-  console.log(req.body,'hhhhhhhhhhh')
+  console.log(req.body,'add profile company')
   console.log('check the session ', req.session.user )
   var name=req.body.name
   var contactNum=req.body.contactNum
