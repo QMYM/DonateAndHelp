@@ -45,6 +45,7 @@ class Beneficiaries_Campaign extends React.Component {
     })
   .then(response => {
     console.log('campaign has been posted!')
+    window.location.reload();
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })
@@ -64,63 +65,56 @@ class Beneficiaries_Campaign extends React.Component {
 
    return (
     <div>
-        <nav className='navbar navbar-fixed-top navbar-default'>
-    <div className='container'>
-    <div className='navbar-header'>
-    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    </button>
-    <ul className='navbar-nav mr-auto nav '>
-    <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
-    <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
-    </ul>
-    </div>
-    <div className='collapse navbar-collapse' id='myNavbar'>
-    <form className=' '>
-    <Router>
-    <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/search' className='icon-bar' >Search</a> </li>
-    <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
-    <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
-    <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
-    <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
-    <Route path="/message" component={Message} />
-    </ul>
-    </Router>
-    </form>
-    </div>
-    </div>
-    </nav> 
-    <br/>
-    <br/>
-    <br/>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul">
+  <a  href="#">r</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
 
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+    </ul>
+   <ul className='navbar-nav mr-auto nav '>
+      <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+      <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+  </ul>
+    <form className="form-inline my-2 my-lg-0">
+      <Router>
+      <ul className='nav navbar-nav navbar-right ' >
+      <li> <a href='/search' className='icon-bar' >Search</a> </li>
+      <li> <a href='/message' className='icon-bar' to='/message' >Message</a> </li>
+      <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+      <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+      <li><a></a></li>
+      <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
+      <Route path="/message" component={Message} />
+      </ul>
+      </Router>
+      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"   onChange={this.search} value={this.state.term}/>
+      <button className="btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" type="submit"> <i className="fa fa-search"></i>Search</button>
+    </form>
+  </div>
+</nav>
+ 
 
     <Well>
       <div className="container">
         <div className='row'>
-        <div className="form-group">
   <label for="usr">Campain Name :</label>
   <input type="text" name="campaignName" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
-</div>
-  <div className="form-group">
   <label for="usr">Campain Description :</label>
   <input type="text" name="campaignDescription" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
-</div>  <div className="form-group">
   <label for="usr">Amount :</label>
-  <input type="text" name="campaignAmount" onChange={this.onChange} className="form-control w3-round-xlarge" id="usr"/>
-</div>  <div className="form-group">
-  <label for="usr">Name:</label>
-  <input type="text" className="form-control w3-round-xlarge" id="usr"/>
-</div>
+  <input type="number" name="campaignAmount" onChange={this.onChange} className="form-control w3-round-xlarge" id="usr"/>
+    <br/>
+    <br/>
     <br/>
     <form>
     <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
     </form>
     <br/>
-    <button className="btn" onClick={
+    <br/>
+    <button className="btn btn-raised btn-warning" onClick={
       () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName , this.state.campaignImage)
     } > Submit </button>
       </div>

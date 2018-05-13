@@ -93,11 +93,12 @@ render () {
 
     <div className="sign-up-htm">
     <div className="form-group group" >
-    <select value={this.state.value} onChange={this.alo}>
-
-    <option className="form-control" value= 'false'>Company</option>
-    <option value='true'>Donor</option>
-    </select>
+        <div className="input-group mb-3">
+        <select className="custom-select" value={this.state.value} onChange={this.alo}>
+        <option selected value='true'>Donor</option>
+        <option value= 'false'>Company</option>
+        </select>
+        </div>
 
     <br />
 

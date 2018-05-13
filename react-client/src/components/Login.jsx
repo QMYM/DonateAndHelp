@@ -68,64 +68,62 @@ class Login extends React.Component {
         <div className="login-html">
         <input id="tab-1" type="radio" name="tab" className="sign-in"  checked={true}/> <label for="tab-1" className="tab">Login In</label>
         <input id="tab-2" type="radio" name="tab" className="sign-up" /><label for="tab-2" className="tab"><a href='/signup'>Sign Up</a></label>
-       
+        
         <div className="login-form">
         <div className="sign-in-htm">
         <div className="group">
-           <select value={this.state.value} onChange={this.alo}>
-
-        <option value='false'>Donor</option>
-        <option value=''>company</option>
+        <div className="input-group mb-3">
+        <select className="custom-select" value={this.state.value} onChange={this.alo}>
+        <option selected value='false'>Donor</option>
+        <option value=''>Company</option>
         </select>
-
-        <br />
-
+        </div>
         <br />
         <label for="user" className="label">Username</label>
         <input id="user" type="text" className="input" 
-         onChange={
-            this.handlechangeUserName
-          }/>
+        onChange={
+          this.handlechangeUserName
+        }/>
         </div>
         <div className="group">
         <label for="pass" className="label">Password</label>
         <input id="pass" type="password" className="input" data-type="password"
         onChange={
-            this.handlechangePassword
-          }/>
+          this.handlechangePassword
+        }/>
         </div>
         <div className="group">
         <input id="check" type="checkbox" className="check" checked={true}/>
         <label for="check"><span className="icon"></span> Keep me Signed in</label>
         </div>
         <div className="group">
-               { this.state.value ? (
-                <div>
-        <input type="submit" className="button" value="Sign In"
-        onClick={
+        { this.state.value ? (
+          <div>
+          <input type="submit" className="button" value="Sign In"
+          onClick={
             this.submitLoginDonater
           }/>
           </div>
-         ) :
-               <div>
+          ) :
+        <div>
         <input type="submit" className="button" value="Sign In sss"
         onClick={
           this.submitLoginCompany
         } />
         </div>
-               }
-        </div>
-        <div className="hr"></div>
-        <div className="foot-lnk">
-        <a href="#forgot">Forgot Password?</a>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+      }
+      </div>
+      <div className="hr"></div>
+      <div className="foot-lnk">
+      <a href="#forgot">Forgot Password?</a>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
 
-        </div>
-        )
+      </div>
+      )
     };
   };
   export default Login

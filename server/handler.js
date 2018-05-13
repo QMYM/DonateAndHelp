@@ -173,8 +173,6 @@ exports.LoginDonater = function (req, res) {
 }
 
 exports.addProfileCompany = function (req, res) {
-  console.log(req.body,'add profile company')
-  console.log('check the session ', req.session.user )
   var name=req.body.name
   var contactNum=req.body.contactNum
   var description=req.body.description
@@ -207,8 +205,6 @@ exports.addProfileCompany = function (req, res) {
 }
 
 exports.addProfileDonor = function (req, res) {
-
-  console.log('check the session donor', req.session.user )
   var name=req.body.name
   var contactNum=req.body.contactNum
   var description=req.body.description
@@ -249,7 +245,7 @@ exports.uploadImageDonor = function(req,res){ // add a personal photo for the us
     if(err){
       throw err
     }else {
-     console.log("'here's the data", data)
+     console.log("here's the data", data)
    }
  })
 
@@ -355,7 +351,6 @@ exports.reciveMessag = function (req , res) {
 exports.uploadImageCampaign = function(req, res){
 
  var image = req.body.campaignImage;
- console.log(image,"image in post server!");
  var save = new db.companyCampaigns({
   campaignImage:image
 })
@@ -432,7 +427,6 @@ exports.sessionName = function (req , res) {
 
 exports.searchBeneficiary = function(req, res){
   var name = req.body.name;
-  //console.log(name, "i am a server");
   db.userDonater.findOne({name:name},function(err,data){
     if(err){
       throw err;
@@ -484,7 +478,6 @@ exports.fetchDonorData = function (req, res){
 }
 
 exports.fetchCompanyData = function (req, res){
-  console.log("check", req.session)
   db.userCompany.findOne({username: req.session.user}, function(err,data){
     if(err){
       throw err
@@ -496,7 +489,6 @@ exports.fetchCompanyData = function (req, res){
 
 exports.searchDonor = function(req, res){
   var name = req.body.name;
-  console.log(req.body.name, "donor search name");
   db.userCompany.findOne({name:name},function(err,data){
     if(err){
       throw err;

@@ -60,43 +60,38 @@ class Beneficiaries extends React.Component {
   render () {
     return (
       <div>
+<nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul">
+  <a  href="#">r</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
 
-      <nav className='navbar navbar-fixed-top navbar-default'>
-      <div className='container'>
-      <div className='navbar-header'>
-      <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-      <span className='icon-bar' />
-      <span className='icon-bar' />
-      <span className='icon-bar' />
-      </button>
-      <ul className='navbar-nav mr-auto nav '>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+    </ul>
+   <ul className='navbar-nav mr-auto nav '>
       <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
       <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
-      </ul>
-      </div>
-      <div className='collapse navbar-collapse' id='myNavbar'>
-      <form className=' '>
+  </ul>
+    <form className="form-inline my-2 my-lg-0">
       <Router>
       <ul className='nav navbar-nav navbar-right ' >
-      <li style={{marginTop:10}}> Search: <input type="text" placeholder="Search"
-      onChange={this.search}
-      value={this.state.term}
-      /></li>
       <li> <a href='/search' className='icon-bar' >Search</a> </li>
       <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
       <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
       <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+      <li><a></a></li>
       <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
       <Route path="/message" component={Message} />
       <Route path="/Beneficiaries_Campaign" component = {BeneficiariesCampaign} />
       </ul>
       </Router>
-      </form>
-      </div>
-      </div>
-      </nav> 
-      <br/>
-      <br/>
+      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"   onChange={this.search} value={this.state.term}/>
+      <button className="btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" type="submit"> <i className="fa fa-search"></i>Search</button>
+    </form>
+  </div>
+</nav>
+ 
       <br/>
       {this.state.camp.filter(searching(this.state.term)).map( item =>
         <div>

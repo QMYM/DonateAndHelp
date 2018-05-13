@@ -139,10 +139,11 @@ logout (){
 
 render () {
   return (
-    <div>
+    <div >
 
     <br/>
     <br/>
+    <a href="javascript:void(0)" className="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"  data-toggle="modal" data-target="#myModal" ><i className="fa fa-pencil"></i></a>
 
     <nav className="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding " style={{ width:250 , zIndex:3 ,top:50 }} id="mySidebar">
     
@@ -152,7 +153,7 @@ render () {
     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align"  data-toggle="modal" data-target="#myModal">New Message <i className="w3-padding fa fa-pencil"></i></a>
 
     {this.state.reciver.map(emp => 
-     <div>
+     <div >
      <div id="Demo1" className=" w3-animate-left">
      <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"  onClick={()=>this.openMail(emp)}>
      <div className="w3-container">
@@ -168,18 +169,17 @@ render () {
     <div id="id01" className="modal fade" id="myModal" >
     <div className="w3-modal-content w3-animate-zoom" >
     <div className="w3-container w3-padding w3-red" >
-    <span 
-    className="w3-button w3-red w3-right w3-xxlarge" data-dismiss="modal"><i className="fa fa-remove"></i></span>
+    <span  className="w3-button w3-red w3-right w3-xxlarge" data-dismiss="modal"><i className="fa fa-remove"></i></span>
     <h2>Send Mail</h2>
     </div>
     <div className="w3-panel">
     <label>To</label>
-    <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "user"/>
+    <input className=" w3-margin-bottom form-control" type="text"  onChange={this.onChange} name = "user"/>
     <label>Subject</label>
-    <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
+    <input className=" w3-margin-bottom form-control" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
     <div className="w3-section">
-    <a className="w3-button w3-red" data-dismiss="modal">Cancel  <i className="fa fa-remove"></i></a>
-    <a className="w3-button w3-light-grey w3-right" onClick={()=>this.sendMessage(this.state.user , this.state.text)}>Send  <i className="fa fa-paper-plane"></i></a> 
+    <button className="w3-button w3-red btn" data-dismiss="modal" >Cancel  <i className="fa fa-remove"></i></button>
+    <button className="btn w3-button w3-light-grey w3-right" onClick={()=>this.sendMessage(this.state.user , this.state.text)}>Send  <i className="fa fa-paper-plane"></i></button> 
     </div>    
     </div>
     </div>
@@ -189,13 +189,12 @@ render () {
 
     <div className="w3-main" >
     <i className="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" ></i>
-    <a href="javascript:void(0)" className="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" ><i className="fa fa-pencil"></i></a>
     <div style = {{marginLeft:300}}>
 
     {this.state.messages.map(item => 
       <div>
       <div id={item.sender} className="w3-container person" >
-      <img className="w3-round  w3-animate-top" src={this.state.image}/>
+      <img className="w3-round  w3-animate-top" src={this.state.image}/><br/><br/>
       <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
       <br/>
       {this.state.rightMes.map(mes =>
@@ -212,10 +211,14 @@ render () {
       </div>
       
     </div>
-    <input className="w3-input w3-border w3-margin-bottom" type="text"  onChange={this.onChange} name = "text" placeholder="What's on your mind?"/>
-    <a className="w3-button w3-light-grey" href="#"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send<i className="w3-margin-left fa  fa-chevron-circle-right"></i></a>
+    <div className="input-group mb-3">
+  <input  type="text"  onChange={this.onChange} name="text" className="form-control" placeholder="What's on your mind?"  aria-describedby="basic-addon2"/>
+  <div className="input-group-append">
+    <button className="btn btn-raised btn-info" type="button"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send <i className="w3-margin-left fa  fa-chevron-circle-right"></i></button>
+    <button className="btn btn-raised btn-danger" type="button"   onClick = {()=>this.remove(item.sender,item._id)}>Remove</button>
+  </div>
+</div>
 
-      <button className='btn' onClick = {()=>this.remove(item.sender,item._id)}> remove </button>
     <hr/>
 
     </div>

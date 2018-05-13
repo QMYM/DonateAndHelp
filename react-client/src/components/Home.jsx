@@ -8,52 +8,48 @@ import {
   withRouter
 } from 'react-router-dom'
 import axios from 'axios'
-import {Button} from 'react-bootstrap';
+import {Button , Navbar} from 'react-bootstrap';
 
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 import TheApp from './TheApp.jsx'
 
 const Home = (props) => (<div >
-
-  <nav className='navbar navbar-fixed-top navbar-default '>
-  <div className='container'>
-  <div className='navbar-header'>
-  <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-  <span className='icon-bar' />
-  <span className='icon-bar' />
-  <span className='icon-bar' />
+<div class="container">
+<nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul">
+  <a  href="#">r</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
-  <ul className='navbar-nav mr-auto nav '>
-  <li>  <a href='#Home'>Main</a></li>
+
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+    </ul>
+   <ul className='navbar-nav mr-auto nav '>
+  <li>  <a  herf='#Home'>Main</a></li>
   <li ><a href='#About'>About</a></li>
   <li><a href='#Contact' >Contact</a></li>
   <li><a href='/theapp' >The App</a></li>
   <Route path='/theapp' component={TheApp}   />
   </ul>
-  </div>
-  <div className='collapse navbar-collapse' id='myNavbar'>
-  <form className=' '>
-  <Router>
+    <form className="form-inline my-2 my-lg-0">
+     <Router>
   <ul className='nav navbar-nav navbar-right' >
   <li>
   <a href="/login" className='icon-bar' to='/login'>Login</a>
   </li>
   <li>
-  <a href="/signup" className='text-light '>Signup </a>
-  </li>
-  <li>
-  <a href="#" className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-  <i className="fa fa-search"></i>
-  </a></li>
+  <a href="/signup" >Signup </a>
+  </li><li><a></a></li>
   <Route path='/login' component={Login}   />
   <Route path='/signup' component={Signup}/>
   </ul>
   </Router>
-  </form>
+      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button className="btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" type="submit"> <i className="fa fa-search"></i>Search</button>
+    </form>
   </div>
-  </div>
-  </nav>
+</nav>
 
   <div className="bgimg-2 w3-display-container w3-opacity-min" id="Home">
   <div className="w3-display-middle" >
@@ -111,6 +107,8 @@ const Home = (props) => (<div >
   <div className="w3-row-padding w3-grayscale">
     <div className="w3-col l3 m6 w3-margin-bottom">
       <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3" alt="John" style={{width:"100%"}}/>
+     <br/>
+     <br/>
       <h3>Qays Trad</h3>
       <p className="w3-opacity">CEO & Founder</p>
       <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
@@ -118,6 +116,8 @@ const Home = (props) => (<div >
     </div>
     <div className="w3-col l3 m6 w3-margin-bottom">
       <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32207749_10204687882073435_1576086593419083776_n.jpg?_nc_cat=0&oh=bdede7d612bfa26c151908dc6ff63aa1&oe=5B9A74BB" alt="Jane" style={{width:"100%"}}/>
+      <br/>
+     <br/>
       <h3>Mohammed Duraidi</h3>
       <p className="w3-opacity">Sha7ad</p>
       <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
@@ -125,6 +125,8 @@ const Home = (props) => (<div >
     </div>
     <div className="w3-col l3 m6 w3-margin-bottom">
       <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/18527753_10154354095631852_7605981024395115852_n.jpg?_nc_cat=0&oh=99bda792ec1a737846eda8ad22c31edc&oe=5B8DF2C3" alt="Mike" style={{width:"100%"}}/>
+      <br/>
+     <br/>
       <h3>Mais Muhtaseb</h3>
       <p className="w3-opacity">Architect</p>
       <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
@@ -132,6 +134,8 @@ const Home = (props) => (<div >
     </div>
     <div className="w3-col l3 m6 w3-margin-bottom">
       <img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/27067119_10155568249638369_452583962590222091_n.jpg?_nc_cat=0&oh=d77b2bbfb5860f16dcf448fb1cb3dd7e&oe=5B8023B5" alt="Dan" style={{width:"100%"}}/>
+      <br/>
+     <br/>
       <h3>Yussur Alani</h3>
       <p className="w3-opacity">Architect</p>
       <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
@@ -180,7 +184,7 @@ const Home = (props) => (<div >
       <br/>
       <div className="row">
         <div className="col-md-12 form-group">
-          <button className="btn pull-right fa fa-paper-plane" type="submit">Send</button>
+          <button className="btn btn-raised btn-secondary pull-right fa fa-paper-plane" type="submit">  Send</button>
         </div>
       </div>
     </div>
@@ -202,6 +206,7 @@ const Home = (props) => (<div >
   </div>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" className="w3-hover-text-green">w3.css</a></p>
   </footer>
+  </div>
   </div>
   )
 export default Home
