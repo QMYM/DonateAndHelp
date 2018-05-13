@@ -24,12 +24,17 @@ class Beneficiaries_Profile extends React.Component {
      address:'',
      user:'',
      email:'' ,
-     post : []
-
+     post : [],
+     campaignName: '',
+     campaignDescription: '',
+     campaignAmount: '',
+     username: ''
    }
    this.onChange=this.onChange.bind(this);
    this.uploadPhoto=this.uploadPhoto.bind(this);
-
+   this.deleteCampaign=this.deleteCampaign.bind(this);
+   this.updateCampaign=this.updateCampaign.bind(this);
+   this.onChangeCampaign=this.onChangeCampaign.bind(this);
  }
 
  onChange(e){
@@ -87,6 +92,7 @@ submit(name,contactNum,description,address){
 }
 
 componentDidMount() { // this is the initial
+  console.log("Hi Download!")
   axios.get('/getImage')
   .then(response => {
 
@@ -106,6 +112,7 @@ componentDidMount() { // this is the initial
 fetchCompanyData(){
   var x = this
   axios.get("/fetchCompanyData").then(function(res){
+
     var user = res.data.username
     var email = res.data.email
     x.setState({
@@ -128,15 +135,51 @@ fetchCompanyData(){
 })
 }
 
-logout (){
-  axios.get("/logout")
-  .then(function (res) {
-    console.log('ea eshe ')
-    window.location.href="/"
-  }).catch(function (err){
-    console.log("logout err "  ,err)
+deleteCampaign(delCampaignID){
+  console.log(delCampaignID);
+  axios.post('/delCampaignComp', {
+      CampID: delCampaignID
+    })
+    .then(response => {
+      alert("campaign has been deleted!")
+      window.location.reload();
+      }).catch(error => {
+        alert("error in campaign deletion!", error)
+      })
+  }
+
+  onChangeCampaign(e){
+  this.setState({
+    [e.target.name]:e.target.value
   })
 }
+
+updateCampaign(campaignID,campaignName,campaignDescription,campaignAmount,username){
+  console.log("Update Campaign!");
+  axios.put('/editCampaignComp', {
+      campaignID:campaignID,
+      campaignName:campaignName,
+      campaignDescription:campaignDescription,
+      campaignAmount:campaignAmount,
+      username:username
+    })
+    .then(response => {
+      alert("campaign has been edited!");
+      window.location.reload();
+      }).catch(error => {
+        alert("error in campaign edit!")
+      })
+  }
+
+  logout (){
+    axios.get("/logout")
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href="/";
+    }).catch(function (err){
+      console.log("logout err " ,err);
+    })
+  }
 
 render () {
   return (
@@ -203,6 +246,10 @@ render () {
     <div className="modal-header">
     <h4 className="modal-title">Information</h4>
     <button type="button" className="close" data-dismiss="modal">&times;</button>
+<<<<<<< HEAD
+=======
+    <h4 className="modal-title">Edit Information</h4>
+>>>>>>> a68d773427ab38b9b4bec1e32ebd71ba22b2bb57
     </div>
     <div className="modal-body">
     <div className="input-group">
@@ -294,7 +341,7 @@ render () {
     <div className="col-md-8">
     <div className="profile-info-right">
     <ul className="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
-    <li className="active"><a href="#activities" data-toggle="tab">Campaign</a></li>
+    <li className="active"><a href="#activities" data-toggle="tab">Campaigns</a></li>
     <li><a href="#following" data-toggle="tab">FOLLOWING</a></li>
     </ul>
     <div className="tab-content">
@@ -324,10 +371,15 @@ render () {
       <span className="sr-only">Toggle Dropdown</span>
       </button>
       <ul className="dropdown-menu dropdown-menu-right" role="menu">
-      <li><a href="#">Delete</a></li>
+      <li><a href="#" onClick={()=> this.deleteCampaign(po._id)}>Delete</a></li>
       <li><a href="#">Edit</a></li>
+      <input type="text" className="form-control" name="campaignName" onChange={this.onChangeCampaign} placeholder="Campaign Name"/>
+      <input type="text" className="form-control" name="campaignDescription" onChange={this.onChangeCampaign} placeholder="Campaign Description"/>
+      <input type="text" className="form-control" name="campaignAmount" onChange={this.onChangeCampaign} placeholder="Campaign Amount"/>
+      <input type="text" className="form-control" name="username" onChange={this.onChangeCampaign} placeholder="Your Name"/>
       <li className="divider"></li>
-      <li><a href="#">Update</a></li>
+      <li><a href="#" onClick={()=> this.updateCampaign(po._id,this.state.campaignName,this.state.campaignDescription,this.state.campaignAmount,
+      this.state.username)}>Update</a></li>
       </ul>
       </div>
       <hr/>

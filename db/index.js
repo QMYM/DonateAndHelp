@@ -50,7 +50,6 @@ var donorCampaigns = new Schema({
   username: {type: String}
 })
 
-
 const messageSchema = new Schema({
   sender:{
     type: String,
