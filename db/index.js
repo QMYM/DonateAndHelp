@@ -42,6 +42,18 @@ var companyCampaigns = new Schema({
   username: {type: String}
 })
 
+<<<<<<< HEAD
+=======
+var donorCampaigns = new Schema({
+  campaignName: {type: String},
+  campaignDescription: {type: String},
+  campaignAmount: {type: String},
+  campaignImage: {type: String},
+  username: {type: String}
+})
+
+
+>>>>>>> e52806a47bd15c228dbc1dbed195d78c9b769cb6
 const messageSchema = new Schema({
   sender:{
     type: String,
@@ -85,6 +97,7 @@ const messageSchema = new Schema({
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)
 companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
+donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 //module.exports.messageSenders = messageSenders
@@ -92,3 +105,4 @@ module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema
 module.exports.companyCampaigns = companyCampaigns
+module.exports.donorCampaigns = donorCampaigns

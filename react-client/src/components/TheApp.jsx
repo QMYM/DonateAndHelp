@@ -20,6 +20,39 @@ class TheApp extends React.Component {
   render () {
     return (
       <div >
+  <nav className='navbar navbar-fixed-top navbar-default '>
+  <div className='container'>
+  <div className='navbar-header'>
+  <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
+  <span className='icon-bar' />
+  <span className='icon-bar' />
+  <span className='icon-bar' />
+  </button>
+  <ul className='navbar-nav mr-auto nav '>
+  <li>  <a href='/'>Main</a></li>
+  <li ><a href='/'>About</a></li>
+  <li><a href='/' >Contact</a></li>
+  <li><a href='/theapp' >The App</a></li>
+  </ul>
+  </div>
+  <div className='collapse navbar-collapse' id='myNavbar'>
+  <form className=' '>
+  <ul className='nav navbar-nav navbar-right' >
+  <li>
+  <a href="/login" className='icon-bar' to='/login'>Login</a>
+  </li>
+  <li>
+  <a href="/signup" className='text-light '>Signup </a>
+  </li>
+  <li>
+  <a href="#" className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+  <i className="fa fa-search"></i>
+  </a></li>
+  </ul>
+  </form>
+  </div>
+  </div>
+  </nav>
 
 <header className="w3-display-container w3-center">
   <button className="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onClick="document.getElementById('download').style.display='block'">Download <i className="fa fa-android"></i> <i className="fa fa-apple"></i> <i className="fa fa-windows"></i></button>

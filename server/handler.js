@@ -406,7 +406,7 @@ exports.postDonorCampaign = function(req, res){
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
   var campaignImage = req.body.campaignImage
-   var info = new db.companyCampaigns({
+   var info = new db.donorCampaigns({
     campaignName: campaignName,
     campaignDescription: campaignDescription,
     campaignAmount: campaignAmount,
@@ -457,12 +457,20 @@ exports.imageSearch = function (req, res){
 }
 
 exports.donorCam = function (req , res) {
-  db.companyCampaigns.find({} , function (err , data) {
+  db.donorCampaigns.find({} , function (err , data) {
     if(err){throw err}
       else{
         res.send(data);
       }
   })
+}
+exports.companyCam = function (req , res) {
+ db.companyCampaigns.find({} , function (err , data) {
+    if(err){throw err}
+      else{
+        res.send(data);
+      }
+  }) 
 }
 
 exports.fetchDonorData = function (req, res){
