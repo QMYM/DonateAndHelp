@@ -521,15 +521,51 @@ exports.imageSearchDonor = function (req, res){
   })
 }
 
-
 exports.removeMsg = function(req,res) {
   var user = req.body.user
   var Id = req.body.id
-db.MessageSchema.remove({_id: Id}, function (err , done) {
-  if(err){
-    throw err
-  }else{
-    res.sendStatus(201)
-  }
+  db.MessageSchema.remove({_id: Id}, function (err, done) {
+    if(err){
+      throw err
+    }else{
+      res.sendStatus(201)
+    }
+  })
+}
+
+exports.removeCampaignComp = function(req,res){
+  console.log(req.body.CampID, "delete campaign by ID");
+  var ID = req.body.CampID;
+  db.companyCampaigns.findOneAndRemove({_id: ID}, function(err,data){ 
+    if(err){
+      throw err
+    } else {
+      res.sendStatus(200);
+    }
+  })
+}
+
+exports.editCampaignComp = function(req,res){
+  console.log(req.body, "edit campaign in server!");
+  var campaignID = req.body.campaignID;
+  var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+  var username = req.body.username;
+  db.companyCampaigns.findOneAndUpdate({_id:campaignID}, {
+   campaignName:campaignName,
+   campaignDescription:campaignDescription,
+   campaignAmount:campaignAmount,
+   username:username
+  }, function(error, data){
+   if(error){
+    throw error
+  } else {
+    res.send(data);
+    }
+  
 })
 }
+
+
+  

@@ -41,6 +41,9 @@ app.get('/companyCam' , handler.companyCam)
 app.get('/imageSearchDonor', handler.imageSearchDonor)
 app.post("/search_donor", handler.searchDonor)
 app.post('/removeMsg', handler.removeMsg)
+app.post('/delCampaignComp', handler.removeCampaignComp)
+app.put('/editCampaignComp', handler.editCampaignComp)
+
 
 
 app.get('/*' , (req, res) => {
