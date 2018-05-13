@@ -23,7 +23,9 @@ class Message extends React.Component {
       sessionUser:'',
       items:[] ,
       rightMes:[],
-      reciver:[]
+      rightMes2:[],
+      reciver:[],
+      senderMess:[] 
     }
     this.sendMessage = this.sendMessage.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -43,38 +45,56 @@ class Message extends React.Component {
  }
 
   componentDidMount() {
+    this.getPhotoForMessages()
     var x = this
     x.user()
     axios.get('/recieveMessage')
     .then(function(response) {
       var mes = []
-      var obj = {}  
-      var rec = []
+      var mess = []
       for (var i = 0; i < response.data.length; i++) {
        if(response.data[i].reciver === x.state.sessionUser){
         mes.push(response.data[i])
         x.setState({messages : mes})
       }  
-      if(!obj[response.data[i].sender]){
-      obj[response.data[i].sender] = 0
+    
+      if(response.data[i].sender === x.state.sessionUser){
+        mess.push(response.data[i])
+        x.setState({senderMess : mess})
       }
+
     }
-     for(var key in obj){
-      rec.push(key)
-     } 
-
-        x.setState({reciver : rec})
-
   })
-
-
-    this.getPhotoForMessages()
-
  }
   getPhotoForMessages(){
     var x = this
+    var arr =[]
+    var arr2 = []
+    var obj = {}  
+      var rec = []
     axios.get("/getPhotoForMessages").then(function(res){
-      console.log("bushra is here", res.data)
+      for (var i = 0; i < res.data.length; i++) {
+        arr.push(res.data[i].userInfo)
+        arr2.push(res.data[i].userRole)
+      }
+
+     arr =  arr.concat(arr2)
+     for (var i = 0; i < arr.length; i++) {
+      for (var j = 0; j < arr[i].length; j++) {
+          if(!obj[arr[i][j].username]){
+      obj[arr[i][j]] = 0
+      }
+      }
+     }
+      for(var key in obj){
+      if(key !== x.state.sessionUser){
+      rec.push(key)    
+      }
+    }
+      console.log("bushra is here", arr ,"obj" ,  obj , "rec" , rec)
+     // } 
+     //    x.setState({reciver : rec})
+
 
     }).catch(function(err){
       console.log("error",err)
@@ -110,6 +130,7 @@ class Message extends React.Component {
   openMail(personName) {
     var i;
     var arr = []
+    var arr2 = []
     var x = $(".person");
     for (i = 0; i < x.length; i++) {
      x[i].style.display = "none";
@@ -124,7 +145,14 @@ class Message extends React.Component {
       document.getElementById(personName).style.display = "block";
     }
   }
+  for (var i = 0; i < this.state.senderMess.length; i++) {
+    if(this.state.senderMess[i].reciver === personName){
+      arr2.push(this.state.senderMess[i])
+    }
+  
+  }
   this.setState({rightMes : arr})
+  this.setState({rightMes2 : arr2})
 
 }
 logout (){
@@ -192,30 +220,36 @@ render () {
     <div style = {{marginLeft:300}}>
 
     {this.state.messages.map(item => 
-      <div>
+      <div key={item._id}>
       <div id={item.sender} className="w3-container person" >
-      <img className="w3-round  w3-animate-top" src={this.state.image}/><br/><br/>
       <h4><i className="fa fa-clock-o"></i> From {item.sender}, Sep 27, 2015.</h4>
       <br/>
+      {this.state.rightMes2.map(mes2 => 
+<div key={mes2._id}>
+      <div className="msg messageSent">
+        {mes2.message}
+        <span className="timestamp">{item.time.slice(11,16)}</span>
+        
+      </div>
+  
+</div>
+        )}
       {this.state.rightMes.map(mes =>
-          <div className="msg messageReceived">
+          <div key={mes._id} className="msg messageReceived">
       {mes.message}
-        <span className="timestamp">00:02</span>
+        <span className="timestamp">{item.time.slice(0,10)}</span>
+    <button className="btn btn-raised btn-danger" type="button"   onClick = {()=>this.remove(mes.sender,item._id)}>Remove</button>
+    <br/>
       </div>
         )
     }
         <div>
-      <div className="msg messageSent">
-
-        <span className="timestamp">00:04</span>
-      </div>
       
     </div>
     <div className="input-group mb-3">
   <input  type="text"  onChange={this.onChange} name="text" className="form-control" placeholder="What's on your mind?"  aria-describedby="basic-addon2"/>
   <div className="input-group-append">
     <button className="btn btn-raised btn-info" type="button"  onClick={()=>this.sendMessage(item.sender , this.state.text)}>Send <i className="w3-margin-left fa  fa-chevron-circle-right"></i></button>
-    <button className="btn btn-raised btn-danger" type="button"   onClick = {()=>this.remove(item.sender,item._id)}>Remove</button>
   </div>
 </div>
 

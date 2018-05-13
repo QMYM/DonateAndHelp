@@ -15,7 +15,6 @@ import Login from './Login.jsx'
 import TheApp from './TheApp.jsx'
 
 const Home = (props) => (<div >
-<div class="container">
 <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul">
   <a  href="#">r</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,8 +25,8 @@ const Home = (props) => (<div >
     <ul className="navbar-nav mr-auto">
     </ul>
    <ul className='navbar-nav mr-auto nav '>
-  <li>  <a  herf='#Home'>Main</a></li>
-  <li ><a href='#About'>About</a></li>
+  <li><a href='#Home'>Main</a></li>
+  <li><a href='#About'>About</a></li>
   <li><a href='#Contact' >Contact</a></li>
   <li><a href='/theapp' >The App</a></li>
   <Route path='/theapp' component={TheApp}   />
@@ -206,7 +205,6 @@ const Home = (props) => (<div >
   </div>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" className="w3-hover-text-green">w3.css</a></p>
   </footer>
-  </div>
   </div>
   )
 export default Home

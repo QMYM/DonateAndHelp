@@ -19,6 +19,7 @@ var userDonater = new Schema({
   email: {type: String},
   password: {type: String},
   image: {type: String},
+  image2: {type: String},
   name: {type: String},
   contactNum: {type: String},
   description: {type: String},
@@ -29,6 +30,7 @@ var userCompany = new Schema({
   email: {type: String},
   password: {type: String},
   image: {type: String},
+  image2: {type: String},
   name: {type: String},
   contactNum: {type: String},
   description: {type: String},
@@ -62,32 +64,41 @@ const messageSchema = new Schema({
   message:{
     type: String,
     required: true
+  },
+  time :{
+    type :Date , 
+    default:Date.now
   }
   
 });
 
- //MessageSchema = mongoose.model('MessageSchema', messageSchema)
-// var messageSenders = function (callback){
-//    MessageSchema.aggregate([
-//    {
-//      $lookup:
-//        {
-//          from: "userCompany",
-//          localField: "sender",
-//          foreignField: "username",
-//          as: "userInfo"
-//        }
-//   }
-// ], function (err, data) {
-//         if (err) {
-//           console.log(err);
-//             callback(err, null);
-//         }
-//         console.log(data);
-//         callback(null, data)
-//     });
-        
-// };
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
+var messageSenders = function (callback){
+ MessageSchema.aggregate([
+   {
+       $lookup: {
+          from: "usercompanies",
+          localField: "sender",
+          foreignField: "username",
+          as: "userRole"
+       }
+   },
+   {
+       $lookup: {
+           from: "userdonaters",
+           localField: "sender",
+           foreignField: "username",
+           as: "userInfo"
+       }
+   }] , function (err , data) {
+  if(err) {
+    callback(err , null)
+  }else{
+    callback(null , data)
+  }
+})
+};
+
 
 
 userCompany = mongoose.model('userCompany', userCompany)
@@ -96,7 +107,7 @@ companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
 donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
-//module.exports.messageSenders = messageSenders
+module.exports.messageSenders = messageSenders
 module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema

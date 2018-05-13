@@ -137,7 +137,41 @@ exports.uploadImage = function(req,res){ // add a personal photo for the user
 
 }
 
+exports.uploadImage2 = function(req,res){ // add a personal photo for the user
+ var image2 = req.body.image2
+ var save = new db.userCompany({
+  image2:image2
+})
+ save.save(function(err,data){
+  if(err){
+    throw err
+  }else {
+      console.log("saved!")
+  }
+})
+
+ db.userCompany.update({username: req.session.user}, { $set: { image2: image2 }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
+
+}
+
+
 exports.getImage = function(req,res){
+  db.userCompany.findOne({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else {
+      res.send(data)
+    }
+  })
+}
+
+exports.getImage2 = function(req,res){
   db.userCompany.findOne({username: req.session.user},function(err,data){
     if(err){
       throw err
@@ -259,7 +293,41 @@ exports.uploadImageDonor = function(req,res){ // add a personal photo for the us
 
 }
 
+exports.uploadImageDonor2 = function(req,res){ // add a personal photo for the user
+  
+  var image2 = req.body.image2
+  var save = new db.userDonater({
+    image2:image2
+  })
+  save.save(function(err,data){
+    if(err){
+      throw err
+    }else {
+     console.log("here's the data", data)
+   }
+ })
+
+  db.userDonater.update({username: req.session.user}, { $set: { image2: image2 }},function(err,data){
+   if(err){
+     throw err
+   }else{
+     res.send(data)
+   }
+ })
+
+}
+
 exports.getImageDonor = function(req,res){
+  db.userDonater.findOne({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else {
+      res.send(data)
+    }
+  })
+}
+
+exports.getImageDonor2 = function(req,res){
   db.userDonater.findOne({username: req.session.user},function(err,data){
     if(err){
       throw err
@@ -330,15 +398,14 @@ exports.sendMessage = function(req , res){
 
 })
 }
-// exports.getPhotoForMessages = function (req, res){
-  
-//   db.messageSenders(function(err,data){
-//     if(err){throw err}else{
-//       res.send(data)
-//     }
-//   })
+exports.getPhotoForMessages = function (req, res){
+  db.messageSenders(function(err,data){
+    if(err){throw err}else{
+      res.send(data)
+    }
+  })
 
-// }
+}
 
 
 exports.reciveMessag = function (req , res) {
@@ -560,4 +627,37 @@ exports.editCampaignComp = function(req,res){
 }
 
 
+exports.removeCampaignDonor = function(req,res){
+  console.log(req.body.CampID, "delete campaign by ID");
+  var ID = req.body.CampID;
+  db.donorCampaigns.findOneAndRemove({_id: ID}, function(err,data){ 
+    if(err){
+      throw err
+    } else {
+      res.sendStatus(200);
+    }
+  })
+}
+
+exports.editCampaignDonor = function(req,res){
+  console.log(req.body , "edit campaign in server!");
+  var campaignID = req.body.campaignID;
+  var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+  var username = req.body.username;
+  db.donorCampaigns.findOneAndUpdate({_id:campaignID}, {
+   campaignName:campaignName,
+   campaignDescription:campaignDescription,
+   campaignAmount:campaignAmount,
+   username:username
+  }, function(error, data){
+   if(error){
+    throw error
+  } else {
+    res.send(data);
+    }
   
+})
+}
+

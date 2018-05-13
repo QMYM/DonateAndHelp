@@ -28,13 +28,14 @@ class Beneficiaries_Profile extends React.Component {
      campaignName: '',
      campaignDescription: '',
      campaignAmount: '',
-     username: ''
+     id :''
    }
    this.onChange=this.onChange.bind(this);
    this.uploadPhoto=this.uploadPhoto.bind(this);
    this.deleteCampaign=this.deleteCampaign.bind(this);
    this.updateCampaign=this.updateCampaign.bind(this);
    this.onChangeCampaign=this.onChangeCampaign.bind(this);
+   this.theId = this.theId.bind(this);
  }
 
  onChange(e){
@@ -74,14 +75,13 @@ submit(name,contactNum,description,address){
     });
   }
 }
-
   uploadPhoto2(photo){  // post the photo and get the photo in the same time
    var x=this
    var file = photo.target.files[0]
    var fileReader = new FileReader();
    fileReader.readAsDataURL(file);
    fileReader.onload = function(e) {
-    axios.post('/photo', {image2: e.target.result})
+    axios.post('/photo2', {image2: e.target.result})
     .then(res => {
              x.componentDidMount() // here i'm getting the photo from database
            })
@@ -91,11 +91,21 @@ submit(name,contactNum,description,address){
   }
 }
 
+
+getLargeImage (){
+  var x = this
+  axios.get('/getImage2')
+  .then(function (res) {
+    var post = res.data
+    x.setState({image2:post.image2})
+  }).catch(function (err) {
+    console.log(err)
+  })
+}
+
 componentDidMount() { // this is the initial
-  console.log("Hi Download!")
   axios.get('/getImage')
   .then(response => {
-
     const posts = response['data']
      this.setState({  //changing the state to the new image that i fetch it from database
        image:posts.image
@@ -107,7 +117,9 @@ componentDidMount() { // this is the initial
   .catch(function (error) {
    console.log(error);
  });
+  this.getLargeImage()
 }
+
 
 fetchCompanyData(){
   var x = this
@@ -154,14 +166,14 @@ deleteCampaign(delCampaignID){
   })
 }
 
-updateCampaign(campaignID,campaignName,campaignDescription,campaignAmount,username){
+updateCampaign(campaignID,campaignName,campaignDescription,campaignAmount , name){
   console.log("Update Campaign!");
   axios.put('/editCampaignComp', {
       campaignID:campaignID,
       campaignName:campaignName,
       campaignDescription:campaignDescription,
       campaignAmount:campaignAmount,
-      username:username
+      username : name
     })
     .then(response => {
       alert("campaign has been edited!");
@@ -170,7 +182,9 @@ updateCampaign(campaignID,campaignName,campaignDescription,campaignAmount,userna
         alert("error in campaign edit!")
       })
   }
-
+theId(id){
+  this.setState({id : id})
+}
   logout (){
     axios.get("/logout")
     .then(function (res) {
@@ -219,37 +233,30 @@ render () {
     <div className="container">
     <div className="profile">     
     <div className="container">
-    <img  className="image-lg "  alt="Profile" src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> 
+    <img  className="image-lg "  alt="Profile" src = {this.state.image2 || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> 
     <div className="middle ">
     <div className="text ">
     <label className="btn" style={{color:"black"}}>
-    <input  type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto}/> Update Your Image
+    <input  type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto2}/> Update Your Image
     </label>
     </div>
     </div>
     </div>
-
     <label style={{color:"black"}}>
     <div className="text-block">
     </div>
-
     </label>
-    
-    </div>
+     </div>
     </div> 
     </form>
+
+
     <div className="modal fade" id="myModal" role="dialog">
     <div className="modal-dialog">
-
-
     <div className="modal-content">
     <div className="modal-header">
     <h4 className="modal-title">Information</h4>
     <button type="button" className="close" data-dismiss="modal">&times;</button>
-<<<<<<< HEAD
-=======
-    <h4 className="modal-title">Edit Information</h4>
->>>>>>> a68d773427ab38b9b4bec1e32ebd71ba22b2bb57
     </div>
     <div className="modal-body">
     <div className="input-group">
@@ -267,13 +274,11 @@ render () {
     <input type="text" className="form-control" name="description" onChange={this.onChange} placeholder="description"/>
     </div>
     <br/>
-
     <div className="input-group">
     <span className="input-group-addon"><i className="fa fa-automobile"></i></span>
     <input type="text" className="form-control" name="address" onChange={this.onChange} placeholder="address"/>
     </div>
     <br/>
-
     </div>
     <div className="modal-footer">
     <button type="button" className="btn btn-raised btn-info" data-dismiss="modal" onClick={()=>this.submit(this.state.name,this.state.contactNum,
@@ -282,6 +287,45 @@ render () {
     </div>
     </div>
     </div>
+
+    <div className="modal fade" id="myModal2" role="dialog2">
+    <div className="modal-dialog">
+    <div className="modal-content">
+    <div className="modal-header">
+    <h4 className="modal-title">Information</h4>
+    <button type="button" className="close" data-dismiss="modal">&times;</button>
+    <h4 className="modal-title">Edit Information</h4>
+    </div>
+    <div className="modal-body">
+    <div className="input-group">
+    <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
+    <input type="text" className="form-control" name="campaignName" onChange={this.onChangeCampaign} placeholder="Campaign Name"/>
+    </div>
+    <br/>
+    <div className="input-group">
+    <span className="input-group-addon"><i className="fa fa-address-card-o"></i></span>
+      <input type="text" className="form-control" name="campaignDescription" onChange={this.onChangeCampaign} placeholder="Campaign Description"/>
+    </div>
+    <br/>
+    <div className="input-group">
+    <input type="text" className="form-control" name="description" onChange={this.onChange} placeholder="description"/>
+    </div>
+    <br/>
+    <div className="input-group">
+    <span className="input-group-addon"><i className="fa fa-automobile"></i></span>
+      <input type="text" className="form-control" name="campaignAmount" onChange={this.onChangeCampaign} placeholder="Campaign Amount"/>
+    </div>
+    <br/>
+    </div>
+    <div className="modal-footer">
+      <button type="button" className="btn btn-raised btn-info" data-dismiss="modal" onClick={()=> this.updateCampaign(this.state.id,this.state.campaignName,
+        this.state.campaignDescription,this.state.campaignAmount , this.state.user)}>Update</button>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
     <div className="container">
     <div className="user-profile">
     <div className="row">
@@ -289,11 +333,11 @@ render () {
     <div className="profile-info-left" >
     <div className="text-center">
     <div className="container">
-    <Image circle  className="avatar "  alt="Profile image example" src = {this.state.image2 || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> 
+    <Image circle  className="avatar "  alt="Profile image example" src = {this.state.image || "https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg"} /> 
     <div className="middle ">
     <div className="text ">
     <label className="btn" style={{color:"black"}}>
-    <input  type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto2}/> Update Your Image
+    <input  type = "file" name="image" id="photo" style={{display:"none"}} onChange={this.uploadPhoto}/> Update Your Image
     </label>
     </div>
     </div>
@@ -350,7 +394,7 @@ render () {
     {this.state.post.map(po =>
       <div className="media activity-item">
       <a href="#" className="pull-left">
-      <img src={this.state.image2 || "http://bootdey.com/img/Content/avatar/avatar3.png"} alt="Avatar" className="media-object avatar"/>
+      <img src={this.state.image || "http://bootdey.com/img/Content/avatar/avatar3.png"} alt="Avatar" className="media-object avatar"/>
       </a>
       <div className="media-body">
       <p className="activity-title"><a href="#">{this.state.user}</a> posted something <small className="text-muted">- 1h ago</small></p>
@@ -372,14 +416,7 @@ render () {
       </button>
       <ul className="dropdown-menu dropdown-menu-right" role="menu">
       <li><a href="#" onClick={()=> this.deleteCampaign(po._id)}>Delete</a></li>
-      <li><a href="#">Edit</a></li>
-      <input type="text" className="form-control" name="campaignName" onChange={this.onChangeCampaign} placeholder="Campaign Name"/>
-      <input type="text" className="form-control" name="campaignDescription" onChange={this.onChangeCampaign} placeholder="Campaign Description"/>
-      <input type="text" className="form-control" name="campaignAmount" onChange={this.onChangeCampaign} placeholder="Campaign Amount"/>
-      <input type="text" className="form-control" name="username" onChange={this.onChangeCampaign} placeholder="Your Name"/>
-      <li className="divider"></li>
-      <li><a href="#" onClick={()=> this.updateCampaign(po._id,this.state.campaignName,this.state.campaignDescription,this.state.campaignAmount,
-      this.state.username)}>Update</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#myModal2" onClick={()=> this.theId(po._id)}>Edit</a></li>
       </ul>
       </div>
       <hr/>
