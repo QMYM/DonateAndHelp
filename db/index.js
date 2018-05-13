@@ -42,8 +42,6 @@ var companyCampaigns = new Schema({
   username: {type: String}
 })
 
-<<<<<<< HEAD
-=======
 var donorCampaigns = new Schema({
   campaignName: {type: String},
   campaignDescription: {type: String},
@@ -52,8 +50,6 @@ var donorCampaigns = new Schema({
   username: {type: String}
 })
 
-
->>>>>>> e52806a47bd15c228dbc1dbed195d78c9b769cb6
 const messageSchema = new Schema({
   sender:{
     type: String,
