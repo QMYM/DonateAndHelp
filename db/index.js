@@ -42,7 +42,6 @@ var companyCampaigns = new Schema({
   username: {type: String}
 })
 
-
 const messageSchema = new Schema({
   sender:{
     type: String,
@@ -93,4 +92,3 @@ module.exports.userDonater = userDonater
 module.exports.userCompany = userCompany
 module.exports.MessageSchema = MessageSchema
 module.exports.companyCampaigns = companyCampaigns
-
