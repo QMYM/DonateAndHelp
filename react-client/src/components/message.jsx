@@ -68,34 +68,32 @@ class Message extends React.Component {
  }
   getPhotoForMessages(){
     var x = this
-    var arr =[]
-    var arr2 = []
+    var arr = [] ; 
+    var arr2 = [];
     var obj = {}  
       var rec = []
     axios.get("/getPhotoForMessages").then(function(res){
       for (var i = 0; i < res.data.length; i++) {
+        if(res.data[i].userInfo.length !== 0){
         arr.push(res.data[i].userInfo)
+        }
+        if(res.data[i].userRole.length !== 0){
         arr2.push(res.data[i].userRole)
+        }
       }
-
      arr =  arr.concat(arr2)
-     for (var i = 0; i < arr.length; i++) {
-      for (var j = 0; j < arr[i].length; j++) {
-          if(!obj[arr[i][j].username]){
-      obj[arr[i][j]] = 0
-      }
-      }
-     }
-      for(var key in obj){
-      if(key !== x.state.sessionUser){
-      rec.push(key)    
+   var merged = [].concat.apply([], arr);
+   for (var i = 0; i < merged.length; i++) {
+    for (var j = 0; j < merged.length; j++) {
+      if(merged[i].username === merged[j].username){
+        rec.push(merged[i])
+        merged.splice(i , 1)
       }
     }
-      console.log("bushra is here", arr ,"obj" ,  obj , "rec" , rec)
-     // } 
-     //    x.setState({reciver : rec})
 
-
+   }
+      console.log( "value" , rec)
+       x.setState({reciver : rec})
     }).catch(function(err){
       console.log("error",err)
     })
@@ -183,9 +181,9 @@ render () {
     {this.state.reciver.map(emp => 
      <div >
      <div id="Demo1" className=" w3-animate-left">
-     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"  onClick={()=>this.openMail(emp)}>
+     <a href="javascript:void(0)" className="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"  onClick={()=>this.openMail(emp.username)}>
      <div className="w3-container">
-     <img className=" img-circle w3-margin-right" src={this.state.image} style={{width:"70px" , hight:"70px"}} /><span className="w3-opacity w3-large">{emp}</span>
+     <img className=" img-circle w3-margin-right" src={emp.image} style={{width:"70px" , hight:"70px"}} /><span className="w3-opacity w3-large">{emp.username}</span>
      </div>
      </a>
      </div>
