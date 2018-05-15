@@ -1,4 +1,4 @@
- var assert = require('chai').assert
+var assert = require('chai').assert
  var handler = require('../server/handler')
  var server = require('../server/index')
  var db = require('../db/index')
@@ -358,8 +358,3 @@ describe('companyCampaigns', function () {
     })
   })
 })
-
-
-
-
-

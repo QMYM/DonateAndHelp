@@ -22,6 +22,10 @@ class Signup extends React.Component {
     this.setState({value: event.target.value})
   }
 
+   sayHello() {
+        return 'hello';
+    }
+
   onChange (e) { // change the state for the input text
     this.setState({
       [e.target.name]: e.target.value
@@ -55,7 +59,10 @@ class Signup extends React.Component {
       this.conPass.value = ''
     }
   };
-
+ handleClick() {
+    // Do something here
+    return {}
+  }
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
 
   	if (confirmPassword === password) {
