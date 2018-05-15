@@ -7,16 +7,13 @@ import {
   Link,
   Redirect,
   withRouter
-} from 'react-router-dom';
-import {Well} from 'react-bootstrap';
+} from 'react-router-dom'
+import {Well} from 'react-bootstrap'
 import Message from './Message.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
-
-
 class Beneficiaries_Campaign extends React.Component {
-
-	constructor (props) {
+  constructor (props) {
     super(props)
     this.state = {
       campaignName: '',
@@ -24,10 +21,10 @@ class Beneficiaries_Campaign extends React.Component {
       campaignAmount: '',
       campaignImage: ''
     }
-    
-    this.onChange = this.onChange.bind(this);
-    this.submitCampaign = this.submitCampaign.bind(this);
-    this.uploadPhotoCampaign = this.uploadPhotoCampaign.bind(this);
+
+    this.onChange = this.onChange.bind(this)
+    this.submitCampaign = this.submitCampaign.bind(this)
+    this.uploadPhotoCampaign = this.uploadPhotoCampaign.bind(this)
   }
 
   onChange (e) {
@@ -36,103 +33,91 @@ class Beneficiaries_Campaign extends React.Component {
     })
   };
 
-  submitCampaign(campaignName,campaignDescription,campaignAmount, campaignImage ){
-  axios.post('/companycampaign', {
+  submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
+    axios.post('/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
-      campaignImage:this.state.campaignImage
+      campaignImage: this.state.campaignImage
     })
-  .then(response => {
-    console.log('campaign has been posted!');
-    alert("A campaign has been created!");
+      .then(response => {
+        console.log('campaign has been posted!')
+        window.location.reload()
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })
-    }
-
-  uploadPhotoCampaign(photo){  
-   var x=this;
-   var file = photo.target.files[0];
-   var fileReader = new FileReader();
-   fileReader.readAsDataURL(file);
-   fileReader.onload = function(e) {
-    x.setState({campaignImage : e.target.result})
   }
-}
 
-  render(){
+  uploadPhotoCampaign (photo) {
+    var x = this
+    var file = photo.target.files[0]
+    var fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function (e) {
+      x.setState({campaignImage: e.target.result})
+    }
+  }
 
-   return (
-    <div>
-        <nav className='navbar navbar-fixed-top navbar-default'>
-    <div className='container'>
-    <div className='navbar-header'>
-    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    <span className='icon-bar' />
-    </button>
-    <ul className='navbar-nav mr-auto nav '>
-    <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
-    <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
-    </ul>
-    </div>
-    <div className='collapse navbar-collapse' id='myNavbar'>
-    <form className=' '>
-    <Router>
-    <ul className='nav navbar-nav navbar-right ' >
-    <li> <a href='/search' className='icon-bar' >Search</a> </li>
-    <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
-    <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
-    <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
-    <Route path="/Beneficiaries_Profile" component={BeneficiariesProfile} />
-    <Route path="/message" component={Message} />
-    </ul>
-    </Router>
-    </form>
-    </div>
-    </div>
-    </nav> 
-    <br/>
-    <br/>
-    <br/>
+  render () {
+    return (
+      <div>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
+          <a href='#'>r</a>
+          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon' />
+          </button>
 
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav mr-auto' />
+            <ul className='navbar-nav mr-auto nav '>
+              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+              <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+            </ul>
+            <form className='form-inline my-2 my-lg-0'>
+              <Router>
+                <ul className='nav navbar-nav navbar-right ' >
+                  <li> <a href='/search' className='icon-bar' >Search</a> </li>
+                  <li> <a href='/message' className='icon-bar' to='/message' >Message</a> </li>
+                  <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+                  <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+                  <li><a /></li>
+                  <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
+                  <Route path='/message' component={Message} />
+                </ul>
+              </Router>
+              <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
+              <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
+            </form>
+          </div>
+        </nav>
 
-    <Well>
-      <div className="container">
-        <div className='row'>
-        <div className="form-group">
-  <label for="usr">Campain Name :</label>
-  <input type="text" name="campaignName" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
-</div>
-  <div className="form-group">
-  <label for="usr">Campain Description :</label>
-  <input type="text" name="campaignDescription" onChange={this.onChange}  className="form-control w3-round-xlarge" id="usr"/>
-</div>  <div className="form-group">
-  <label for="usr">Amount :</label>
-  <input type="text" name="campaignAmount" onChange={this.onChange} className="form-control w3-round-xlarge" id="usr"/>
-</div>  <div className="form-group">
-  <label for="usr">Name:</label>
-  <input type="text" className="form-control w3-round-xlarge" id="usr"/>
-</div>
-    <br/>
-    <form>
-    <input type="file" name="image" onChange={this.uploadPhotoCampaign}/>
-    </form>
-    <br/>
-    <button className="btn" onClick={
-      () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount , this.state.beneficiaryName , this.state.campaignImage)
-    } > Submit </button>
+        <Well>
+          <div className='container'>
+            <div className='row'>
+              <label for='usr'>Campain Name :</label>
+              <input type='text' name='campaignName' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
+              <label for='usr'>Campain Description :</label>
+              <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
+              <label for='usr'>Amount :</label>
+              <input type='number' name='campaignAmount' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
+              <br />
+              <br />
+              <br />
+              <form>
+                <input type='file' name='image' onChange={this.uploadPhotoCampaign} />
+              </form>
+              <br />
+              <br />
+              <button className='btn btn-raised btn-warning' onClick={
+                () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
+              } > Submit </button>
+            </div>
+          </div>
+        </Well>
       </div>
-        </div>
-    </Well>
-    </div>
 
     )
-
- }
-
+  }
 };
 
-export default Beneficiaries_Campaign;
+export default Beneficiaries_Campaign
