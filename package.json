@@ -45,6 +45,7 @@
         "path": "^0.12.7",
         "react": "^15.4.2",
         "react-bootstrap": "^0.32.1",
+        "react-credit-cards": "^0.7.0",
         "react-dom": "^15.4.2",
         "react-filter": "0.0.7",
         "react-router": "^4.2.0",

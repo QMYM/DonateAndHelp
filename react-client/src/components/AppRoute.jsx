@@ -16,7 +16,6 @@ import Search_Beneficiary from './Search_Beneficiary.jsx'
 import TheApp from './TheApp.jsx'
 import Search_Donor from './Search_Donor.jsx'
 
-
 class AppRoute extends React.Component {
   constructor (props) {
     super(props)
