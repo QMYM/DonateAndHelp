@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/Donate')
 // mongoose.connect('mongodb://admin:admin@ds113700.mlab.com:13700/g-db')
 var db = mongoose.connection
@@ -53,53 +53,51 @@ var donorCampaigns = new Schema({
 })
 
 const messageSchema = new Schema({
-  sender:{
+  sender: {
     type: String,
     required: true
   },
-  reciver:  {
+  reciver: {
     type: String,
     required: true
   },
-  message:{
+  message: {
     type: String,
     required: true
   },
-  time :{
-    type :Date , 
-    default:Date.now
+  time: {
+    type: Date,
+    default: Date.now
   }
-  
-});
+
+})
 
 MessageSchema = mongoose.model('MessageSchema', messageSchema)
-var messageSenders = function (callback){
- MessageSchema.aggregate([
-   {
-       $lookup: {
-          from: "usercompanies",
-          localField: "sender",
-          foreignField: "username",
-          as: "userRole"
-       }
-   },
-   {
-       $lookup: {
-           from: "userdonaters",
-           localField: "sender",
-           foreignField: "username",
-           as: "userInfo"
-       }
-   }] , function (err , data) {
-  if(err) {
-    callback(err , null)
-  }else{
-    callback(null , data)
-  }
-})
-};
-
-
+var messageSenders = function (callback) {
+  MessageSchema.aggregate([
+    {
+      $lookup: {
+        from: 'usercompanies',
+        localField: 'sender',
+        foreignField: 'username',
+        as: 'userRole'
+      }
+    },
+    {
+      $lookup: {
+        from: 'userdonaters',
+        localField: 'sender',
+        foreignField: 'username',
+        as: 'userInfo'
+      }
+    }], function (err, data) {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, data)
+    }
+  })
+}
 
 userCompany = mongoose.model('userCompany', userCompany)
 userDonater = mongoose.model('userDonater', userDonater)

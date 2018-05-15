@@ -28,20 +28,16 @@ class Signup extends React.Component {
     })
   };
 
-
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-
-
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Company', {username: username,
           email: email,
           password: password
         }).then(function (res) {
-          window.location.href="/beneficiaries"
+          window.location.href = '/beneficiaries'
 
           // go to the home page
-
         }).catch(function (err) {
           alert('this username is exist')
         })
@@ -57,118 +53,116 @@ class Signup extends React.Component {
   };
 
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
         axios.post('/Donater', {username: username,
-         email: email,
-         password: password
-       }).then(function (res) {
-        console.log('hello')
-        window.location.href="/donor"
+          email: email,
+          password: password
+        }).then(function (res) {
+          console.log('hello')
+          window.location.href = '/donor'
    	 // go to the home page
-    }).catch(function (err) {
-     alert('this username is exist')
-   })
-  } else {
-    alert('enter your password')
-  }
-} else {
-  console.log('cococ  ', confirmPassword)
-  alert("password doesn't match,rewrite it again")
-  this.pass.value = ''
-  this.conPass.value = ''
-}
-};
+        }).catch(function (err) {
+          alert('this username is exist')
+        })
+      } else {
+        alert('enter your password')
+      }
+    } else {
+      console.log('cococ  ', confirmPassword)
+      alert("password doesn't match,rewrite it again")
+      this.pass.value = ''
+      this.conPass.value = ''
+    }
+  };
 
-render () {
-  return (
+  render () {
+    return (
 
-    <div className='containter text-center'>
-    <div className="login-wrap">
-    <div className="login-html">
-    <input id="tab-1" type="radio" name="tab" className="sign-in" /><label for="tab-1" className="tab"><a href ='/login'>Login In</a></label>
-   <input id="tab-2" type="radio" name="tab" className="sign-up" checked={true}/><label for="tab-2" className="tab">Sign Up</label>
-    <div className="login-form">
+      <div className='containter text-center'>
+        <div className='login-wrap'>
+          <div className='login-html'>
+            <input id='tab-1' type='radio' name='tab' className='sign-in' /><label for='tab-1' className='tab'><a href='/login'>Login In</a></label>
+            <input id='tab-2' type='radio' name='tab' className='sign-up' checked /><label for='tab-2' className='tab'>Sign Up</label>
+            <div className='login-form'>
 
-    <div className="sign-up-htm">
-    <div className="form-group group" >
-        <div className="input-group mb-3">
-        <select className="custom-select" value={this.state.value} onChange={this.alo}>
-        <option selected value='true'>Donor</option>
-        <option value= 'false'>Company</option>
-        </select>
+              <div className='sign-up-htm'>
+                <div className='form-group group' >
+                  <div className='input-group mb-3'>
+                    <select className='custom-select' value={this.state.value} onChange={this.alo}>
+                      <option selected value='true'>Donor</option>
+                      <option value='false'>Company</option>
+                    </select>
+                  </div>
+
+                  <br />
+
+                  <label for='user' className='label'>Username</label>
+                  <input id='user' type='text' className='input'
+                    name='username'
+                    onChange={
+                      this.onChange
+
+                    } />
+                </div>
+                <div className='group'>
+                  <label for='pass' className='label'>Email Address</label>
+                  <input id='pass' type='text' className='input'
+                    name='email'
+                    onChange={
+                      this.onChange
+                    } />
+                </div>
+                <div className='group'>
+                  <label for='pass' className='label'>Password</label>
+                  <input id='pass' type='password' className='input' data-type='password'
+                    name='password'
+                    onChange={
+                      this.onChange
+                    }
+                    ref={el => this.pass = el} />
+                </div>
+                <div className='group'>
+                  <label for='pass' className='label'>Repeat Password</label>
+                  <input id='pass' type='password' className='input' data-type='password'
+                    name='confirmPassword'
+                    onChange={
+                      this.onChange
+                    }
+                    ref={el => this.conPass = el} />
+                </div>
+
+                <div className='group'>
+                  { this.state.value === 'true' ? (
+                    <div>
+
+                      <input type='submit' className='button' value='Sign Up' onClick={
+
+                        () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+                      } />
+                    </div>
+                  )
+                    : <div>
+                      <input type='submit' className='button' value='SignupYUSUR ' onClick={
+
+                        () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
+                      } />
+                    </div> }
+                </div>
+
+                <div className='hr' />
+                <div className='foot-lnk'>
+                  <label for='tab-1'>Already Member?</label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-    <br />
+      </div>
 
-    <label for="user" className="label">Username</label>
-    <input id="user" type="text" className="input"
-    name='username'
-    onChange={
-      this.onChange
-
-    }/>
-    </div>
-    <div className="group">
-    <label for="pass" className="label">Email Address</label>
-    <input id="pass" type="text" className="input"
-    name='email'
-    onChange={
-      this.onChange
-    }/>
-    </div>
-    <div className="group">
-    <label for="pass" className="label">Password</label>
-    <input id="pass" type="password" className="input" data-type="password"
-    name='password'
-    onChange={
-      this.onChange
-    }
-    ref={el => this.pass = el}/>
-    </div>
-    <div className="group">
-    <label for="pass" className="label">Repeat Password</label>
-    <input id="pass" type="password" className="input" data-type="password"
-    name='confirmPassword'
-    onChange={
-      this.onChange
-    }
-    ref={el => this.conPass = el}/>
-    </div>
-
-    <div className="group">
-    { this.state.value === 'true' ? (
-      <div>
-
-      <input type="submit" className="button" value="Sign Up"  onClick={
-
-        () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
-      }  />
-       </div>
-      ) : 
-    <div>
-    <input type="submit" className="button" value="SignupYUSUR "   onClick={
-
-      () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
-    } />  
-    </div> }
-    </div>
-
-    <div className="hr"></div>
-    <div className="foot-lnk">
-    <label for="tab-1">Already Member?</label>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-  </div>
-
-  )
-}
+    )
+  }
 };
 
-export default Signup;
+export default Signup
