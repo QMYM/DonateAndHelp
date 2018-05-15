@@ -15,9 +15,17 @@ module.exports = {
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+           presets: ['es2015', 'react', 'stage-0']
         }
       }
     ]
-  }
+  },
+
+      "test": {
+      "presets": [
+        [
+          "env",{"targets": {"node": "current"}}
+        ]
+      ]
+    }
 }

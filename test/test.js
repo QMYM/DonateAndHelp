@@ -1,15 +1,16 @@
 var assert = require('chai').assert
-var handler = require('../server/handler')
-var server = require('../server/index')
-var db = require('../db/index')
-var chai = require('chai')
-var assert = chai.assert // Using Assert style
-var expect = chai.expect // Using Expect style
-var should = chai.should()
-var chai = require('chai'),
-  chaiHttp = require('chai-http')
+ var handler = require('../server/handler')
+ var server = require('../server/index')
+ var db = require('../db/index')
+var chai = require('chai');  
+var assert = chai.assert;    // Using Assert style
+var expect = chai.expect;    // Using Expect style
+var should = chai.should();
+  var chai = require('chai')
+  , chaiHttp = require('chai-http');
+ 
+ chai.use(chaiHttp);
 
-chai.use(chaiHttp)
 
 describe('removeMsg', function () {
   it('it should sendStatus(201) to the client', function (done) {
