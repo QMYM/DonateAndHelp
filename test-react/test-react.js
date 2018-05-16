@@ -13,6 +13,11 @@
  import Donor_Campaign from '../react-client/src/components/Donor_Campaign.jsx';
  import Donor_Profile from '../react-client/src/components/Donor_Profile.jsx';
  import TheApp from '../react-client/src/components/TheApp.jsx';
+ import AppRoute from '../react-client/src/components/AppRoute.jsx';
+ import Beneficiaries from '../react-client/src/components/Beneficiaries.jsx';
+ import Beneficiaries_Campaign from '../react-client/src/components/Beneficiaries_Campaign.jsx';
+ import Beneficiaries_Profile from '../react-client/src/components/Beneficiaries_Profile.jsx';
+ import Donor from '../react-client/src/components/Donor.jsx';
  import ShallowRenderer from 'react-test-renderer/shallow';
  import sinon from 'sinon';
  import { configure } from 'enzyme';
@@ -92,7 +97,6 @@
 
 
  })
-
 
  describe('Home', function() {
 
@@ -176,7 +180,7 @@
  describe('Donor_Campaign', function() {
 
    it('should be a stateful class component', function() {
-    expect(React.Component.isPrototypeOf(TheApp)).to.be.true;
+    expect(React.Component.isPrototypeOf(Donor_Campaign)).to.be.true;
   });
 
    it('renders without exploding', () => {
@@ -223,4 +227,135 @@
     expect(wrapper.type()).to.equal('div')
   });
 
+   it('renders without exploding', () => {
+    const wrapper = shallow(<AppRoute/>);
+    expect(wrapper.find('button')).to.have.length(0)
+  });
+
  })
+
+
+ describe('AppRoute', function() {
+
+   it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(AppRoute)).to.be.true;
+  });
+
+   it('renders without exploding', () => {
+    const wrapper = shallow(<AppRoute/>);
+    expect(wrapper.find('Route')).to.have.length(13)
+  });
+
+ })
+
+
+ describe('Beneficiaries', function() {
+
+   it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(Beneficiaries)).to.be.true;
+  });
+
+   it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries/>);
+    expect(wrapper.find('div')).to.have.length(9)
+  });
+
+   it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries/>);
+    expect(wrapper.find('li')).to.have.length(7)
+  });
+
+   it('renders without exploding', () => {
+    const wrapper = shallow(<div><p>ENTER YOUR AMOUNT</p></div>);
+    expect(wrapper.text()).to.equal('ENTER YOUR AMOUNT');
+  });
+
+   it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries/>);
+    expect(wrapper.find('button')).to.have.length(5)
+  });
+
+ })
+
+
+ describe('Beneficiaries_Campaign', function() {
+
+  it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(Beneficiaries_Campaign)).to.be.true;
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Campaign/>);
+    expect(wrapper.find('div')).to.have.length(4)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Campaign/>);
+    expect(wrapper.find('li')).to.have.length(7)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Campaign/>);
+    expect(wrapper.find('input')).to.have.length(5)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<div><label for='usr'>Campain Description :</label></div>);
+    expect(wrapper.text()).to.equal('Campain Description :');
+  });
+
+})
+
+
+ describe('Beneficiaries_Profile', function() {
+
+  it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(Beneficiaries_Profile)).to.be.true;
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Profile/>);
+    expect(wrapper.find('div')).to.have.length(51)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Profile/>);
+    expect(wrapper.find('li')).to.have.length(14)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Beneficiaries_Profile/>);
+    expect(wrapper.find('input')).to.have.length(11)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<div><h4 className='modal-title'>Information</h4></div>);
+    expect(wrapper.text()).to.equal('Information');
+  });
+
+})
+
+ describe('Donor', function() {
+
+  it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(Donor)).to.be.true;
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Donor/>);
+    expect(wrapper.find('li')).to.have.length(6)
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Donor/>);
+    expect(wrapper.find('button')).to.have.length(5)
+  });
+
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<div><p>ENTER YOUR AMOUNT</p></div>);
+    expect(wrapper.text()).to.equal('ENTER YOUR AMOUNT');
+  });
+  
+})
+
