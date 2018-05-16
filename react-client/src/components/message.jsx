@@ -68,38 +68,26 @@ class Message extends React.Component {
   getPhotoForMessages () {
     var x = this
     var arr = []
-    var arr2 = []
     var obj = {}
     var rec = []
-    var reccc = []
+    var test = [];
     axios.get('/getPhotoForMessages').then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
-          arr.push(res.data[i].userInfo)
+          if (!arr.includes(res.data[i].userInfo[0].username) && res.data[i].userInfo[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
+            test.push(res.data[i].userInfo);
+            arr.push(res.data[i].userInfo[0].username)            
+          }
         }
         if (res.data[i].userRole.length !== 0) {
-          arr2.push(res.data[i].userRole)
-        }
-      }
-      arr = arr.concat(arr2)
-      var merged = [].concat.apply([], arr)
-      for (var i = 0; i < merged.length; i++) {
-        for (var j = 0; j < merged.length; j++) {
-          if (merged[i].username === merged[j].username) {
-            reccc.push(merged[i])
-            merged.splice(i, 1)
+          if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
+            test.push(res.data[i].userRole);
+            arr.push(res.data[i].userRole[0].username)
           }
         }
       }
-      for (var i = 0; i < reccc.length; i++) {
-        for (var j = 0; j < x.state.senderMess.length; j++) {
-          if (x.state.senderMess[j].reciver === reccc[i].username) {
-            rec.push(reccc[i])
-          }
-        }
-      }
-
-      x.setState({reciver: rec})
+       var merged = [].concat.apply([], test)
+      x.setState({reciver: merged})
     }).catch(function (err) {
       console.log('error', err)
     })
