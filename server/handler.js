@@ -87,7 +87,7 @@ exports.logout = function (req, res) { // logout and destroy session
     res.sendStatus(200)
   })
 }
-
+  
 exports.LoginCompany = function (req, res) {
   var username = req.body.userName
   var password = req.body.password
@@ -200,13 +200,35 @@ exports.LoginDonater = function (req, res) {
   })
 }
 
+
+exports.getInfoForProfilePage = function(req,res){
+  db.userCompany.find({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
+  })
+}
+
+
+exports.getInfoForProfilePageforDonor = function(req,res){
+  db.userDonater.find({username: req.session.user},function(err,data){
+    if(err){
+      throw err
+    }else{
+      res.send(data)
+    }
+  })
+}
+
 exports.addProfileCompany = function (req, res) {
   var name = req.body.name
   var contactNum = req.body.contactNum
   var description = req.body.description
   var address = req.body.address
 
-  db.userCompany.findOne({username: req.session.user}, function (err, data) {
+  db.userCompany.findOneAndUpdate({username:req.session.user}, {$set:{name:name,contactNum:contactNum,description:description,address:address}}, function (err, data) {
     if (err) {
       throw err
     } else {
@@ -223,8 +245,10 @@ exports.addProfileCompany = function (req, res) {
           res.send(information)
         }
       })
+     
+
     }
-  })
+   })
 }
 
 exports.addProfileDonor = function (req, res) {
@@ -233,7 +257,8 @@ exports.addProfileDonor = function (req, res) {
   var description = req.body.description
   var address = req.body.address
 
-  db.userDonater.findOne({username: req.session.user}, function (err, data) {
+ 
+  db.userDonater.findOneAndUpdate({username:req.session.user}, {$set:{name:name,contactNum:contactNum,description:description,address:address}}, function (err, data) {
     if (err) {
       throw err
     } else {
@@ -250,8 +275,10 @@ exports.addProfileDonor = function (req, res) {
           res.send(information)
         }
       })
+     
+
     }
-  })
+   })
 }
 
 exports.uploadImageDonor = function (req, res) { // add a personal photo for the user
@@ -567,12 +594,11 @@ exports.editCampaignComp = function (req, res) {
   var campaignDescription = req.body.campaignDescription
   var campaignAmount = req.body.campaignAmount
   var username = req.body.username
-  db.companyCampaigns.findOneAndUpdate({_id: campaignID}, {
+  db.companyCampaigns.update({_id: campaignID}, { $set: { 
     campaignName: campaignName,
     campaignDescription: campaignDescription,
     campaignAmount: campaignAmount,
-    username: username
-  }, function (error, data) {
+    username: username }}, function (error, data) {
     if (error) {
       throw error
     } else {

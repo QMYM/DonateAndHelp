@@ -14,7 +14,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
-
+app.get("/getInfoForProfilePageforDonor", handler.getInfoForProfilePageforDonor)
+app.get("/getInfoForProfilePage", handler.getInfoForProfilePage)
 app.get('/getImage', handler.getImage)
 app.get('/getImage2', handler.getImage2)
 app.post('/loginCompany', handler.LoginCompany)

@@ -22,7 +22,7 @@ class Search extends React.Component {
   }
 
   handleSearchInput (evt) {
-    console.log(evt.target.value)
+    console.log(evt.target.value,"joos")
     this.setState({ searchInput: evt.target.value })
   }
 

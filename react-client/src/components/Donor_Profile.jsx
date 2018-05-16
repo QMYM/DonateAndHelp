@@ -27,7 +27,10 @@ class Donor_Profile extends React.Component {
       user: '',
       email: '',
       post: [],
-      id: ''
+      id: '',
+       newDescription:'',
+      newPhone:'',
+      newAdress:''
     }
     this.onChange = this.onChange.bind(this)
     this.uploadPhoto = this.uploadPhoto.bind(this)
@@ -42,8 +45,23 @@ class Donor_Profile extends React.Component {
       [e.target.name]: e.target.value
     })
   }
+   getInfoForProfilePageforDonor(){
+    var x = this
+    axios.get("/getInfoForProfilePageforDonor").then(function(res){
+      var alo = res.data[0]
+      console.log("i'm here tho!",res.data[0])
+        x.setState({
+          newDescription:alo.description,
+           newPhone:alo.contactNum,
+           newAdress: alo.address
+          })
+    }).catch(function(err){
+      console.lof(err)
+    })
+  }
 
   submit (name, contactNum, description, address) {
+    var x = this
     axios.post('/Profile_Donor', {
       // image: this.state.image,
       name: this.state.name,
@@ -52,8 +70,17 @@ class Donor_Profile extends React.Component {
       address: this.state.address
     })
       .then(response => {
-        console.log('profile has been updated')
+        //console.log('profile has been updated')
         // should go to the home page from here
+        var alo = response.data
+        console.log('profile has been updated',response.data)
+        // should go to the home page from here
+         x.setState({
+          newDescription:alo.description,
+           newPhone:alo.contactNum,
+           newAdress: alo.address
+          })
+
       }).catch(error => {
         alert('wrong in profile update')
       })
@@ -68,7 +95,7 @@ class Donor_Profile extends React.Component {
       axios.post('/photoDonor', {image: e.target.result})
         .then(res => {
           console.log('hello Donor image', res)
-          x.componentDidMount() // here i'm getting the photo from database
+          window.location.reload() // here i'm getting the photo from database
         })
         .catch(function (error) {
           console.log(error)
@@ -83,7 +110,7 @@ class Donor_Profile extends React.Component {
     fileReader.onload = function (e) {
       axios.post('/photoDonor2', {image2: e.target.result})
         .then(res => {
-          x.componentDidMount() // here i'm getting the photo from database
+          window.location.reload() // here i'm getting the photo from database
         })
         .catch(function (error) {
           console.log(error)
@@ -102,6 +129,7 @@ class Donor_Profile extends React.Component {
       })
   }
   componentDidMount () { // this is the initial
+    this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
     axios.get('/getImageDonor')
       .then(response => {
@@ -256,10 +284,7 @@ class Donor_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='Name' />
-                </div>
+               
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
@@ -362,10 +387,11 @@ class Donor_Profile extends React.Component {
                     <p>Some Discription</p>
                   </div>
                   <div className='section'>
-                    <h3>Statistics</h3>
+                    <h3>Information</h3>
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
-                    <p className='fa fa-phone'> contactNum</p><br />
-                    <p className='  fa fa-automobile'> address</p>
+                    <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
+                    <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />
+                    <p className='  fa fa-automobile'>Address: {this.state.newAdress}</p>
                   </div>
                   <div className='section'>
                     <h3>Social</h3>

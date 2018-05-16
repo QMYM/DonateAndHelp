@@ -232,7 +232,7 @@ class Message extends React.Component {
               <div id='Demo1' className=' w3-animate-left'>
                 <a href='javascript:void(0)' className='w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey' onClick={() => this.openMail(emp.username)}>
                   <div className='w3-container'>
-                    <img className=' img-circle w3-margin-right' src={emp.image} style={{width: '70px', hight: '70px'}} /><span className='w3-opacity w3-large'>{emp.username}</span>
+                    <img className=' img-circle w3-margin-right' src={emp.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq'} style={{width: '70px', hight: '70px'}} /><span className='w3-opacity w3-large'>{emp.username}</span>
                   </div>
                 </a>
                     <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
@@ -293,7 +293,7 @@ class Message extends React.Component {
                     <div key={mes._id} className='msg messageReceived'>
                       {mes.message}
                       <span className='timestamp'>{item.time.slice(0, 10)}</span>
-                      <button className='btn btn-raised btn-danger' type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
+                      <button className='btn btn-raised btn-danger' className="center block" type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
                       <br />
                     </div>
                   )

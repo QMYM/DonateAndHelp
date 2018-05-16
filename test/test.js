@@ -309,8 +309,34 @@ describe('sessionName', function () {
   })
 })
 
+
+describe('getInfoForProfilePageforDonor', function () {
+  it('it should GET all the getInfoForProfilePageforDonor', function (done) {
+    chai.request(server)
+      .get('/getInfoForProfilePageforDonor')
+      .end(function (err, res) {
+        res.should.have.status(200)
+
+        done()
+      })
+  })
+})
+
+
+describe('getInfoForProfilePage', function () {
+  it('it should GET all the getInfoForProfilePage', function (done) {
+    chai.request(server)
+      .get('/getInfoForProfilePage')
+      .end(function (err, res) {
+        res.should.have.status(200)
+
+        done()
+      })
+  })
+})
+
 describe('getPhotoForMessages', function () {
-  it('it should GET all the sessionNames', function (done) {
+  it('it should GET all the getPhotoForMessages ', function (done) {
     chai.request(server)
       .get('/getPhotoForMessages')
       .end(function (err, res) {
