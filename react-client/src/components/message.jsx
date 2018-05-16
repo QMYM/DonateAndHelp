@@ -26,17 +26,20 @@ class Message extends React.Component {
       rightMes2: [],
       reciver: [],
       senderMess: [],
-      allMessages: []
+      allMessages: [],
+      messageForDOM:""
     }
     this.sendMessage = this.sendMessage.bind(this)
     this.onChange = this.onChange.bind(this)
     this.openMail = this.openMail.bind(this)
     this.remove = this.remove.bind(this)
+    this.close = this.close.bind(this)
+    this.delete = this.delete.bind(this)
   }
   remove (user, id) {
     axios.post('/removeMsg', {user: user, id: id})
       .then(function (res) {
-        console.log('done', res)
+        
         window.location.reload()
       }).catch(function (err) {
         console.log('err', err)
@@ -61,6 +64,7 @@ class Message extends React.Component {
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
+
           }
         }
       })
@@ -110,10 +114,22 @@ class Message extends React.Component {
     var x = this
     axios.post('/sendMessage', {user: to, text: text})
       .then(function (res) {
-        window.location.reload()
+        x.setState({
+          messageForDOM:" Your Message has been sent"
+        })
+        setTimeout(function(){
+     window.location.reload()
+   },1000)
+          console.log('done', x.state.messageForDOM)
+       
+
       }).catch(function (err) {
-        window.location.reload()
-        alert('fuck off')
+          x.setState({
+          messageForDOM:" User Not Found!"
+        })
+        setTimeout(function(){
+     window.location.reload()
+   },1000)
       })
   }
 
@@ -143,6 +159,10 @@ class Message extends React.Component {
     this.setState({rightMes: arr})
     this.setState({rightMes2: arr2})
   }
+
+  close(){
+ document.getElementById("closeMenShanAlllah").style.display = 'none'
+  }
   logout () {
     axios.get('/logout')
       .then(function (res) {
@@ -152,22 +172,61 @@ class Message extends React.Component {
         console.log('logout err ', err)
       })
   }
+  delete(delteUserName){
+    var x = this
+    axios.post("/deleteAllMessages",{user:delteUserName}).then(function(res){
+        x.setState({
+          messageForDOM:" Your Messages has been Deleted!"
+        })
+        setTimeout(function(){
+     window.location.reload()
+   },1000)
+    }).catch(function(err){
+      console.log("oh there's a error! oh my god!@!@!!")
+    })
+  }
 
   render () {
     return (
       <div >
+           <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
+          <a href='#'></a>
+          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon' />
+          </button>
+
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav mr-auto' />
+            <ul className='navbar-nav mr-auto nav '>
+              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+             
+            </ul>
+            <form className='form-inline my-2 my-lg-0'>
+              <Router>
+                <ul className='nav navbar-nav navbar-right ' >
+                  <li> <a href='/search' className='icon-bar' >Search</a> </li>
+                  <li> <a href='/message' className='icon-bar' to='/message' >Message</a> </li>
+                  <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+                  <li><a /></li>
+                </ul>
+              </Router>
+              <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' />
+              <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
+            </form>
+          </div>
+        </nav>
+
 
         <br />
         <br />
         <a href='javascript:void(0)' className='w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right' data-toggle='modal' data-target='#myModal' ><i className='fa fa-pencil' /></a>
 
-        <nav className='w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding ' style={{ width: 250, zIndex: 3, top: 50 }} id='mySidebar'>
+        <nav className='w3-sidebar w3-dark-grey w3-collapse w3-top w3-large w3-padding ' style={{ width: 250, zIndex: 3, top: 65 }} id='mySidebar' >
 
           <a href='javascript:void(0)' title='Close Sidemenu'
 
-            className='w3-bar-item w3-button w3-hide-large w3-large' >Close <i className='fa fa-remove' /></a>
+            className='w3-bar-item w3-button w3-hide-large w3-large'>Close <i className='fa fa-remove' /></a>
           <a href='javascript:void(0)' className='w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align' data-toggle='modal' data-target='#myModal'>New Message <i className='w3-padding fa fa-pencil' /></a>
-
           {this.state.reciver.map(emp =>
             <div >
               <div id='Demo1' className=' w3-animate-left'>
@@ -176,16 +235,22 @@ class Message extends React.Component {
                     <img className=' img-circle w3-margin-right' src={emp.image} style={{width: '70px', hight: '70px'}} /><span className='w3-opacity w3-large'>{emp.username}</span>
                   </div>
                 </a>
+                    <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
+          <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
               </div>
             </div>
-          )}
-          <a href='#' className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent</a>
-          <a href='#' className='w3-bar-item w3-button'><i className='fa fa-trash w3-margin-right' />Trash</a>
+       
+         
+      
+
+            )}
         </nav>
-        <div id='id01' className='modal fade' id='myModal' >
-          <div className='w3-modal-content w3-animate-zoom' >
+        <div id="closeMenShanAlllah">
+        <div className='modal' id='myModal' >
+
+          <div className='w3-modal-content w3-animate-zoom'  >
             <div className='w3-container w3-padding w3-red' >
-              <span className='w3-button w3-red w3-right w3-xxlarge' data-dismiss='modal'><i className='fa fa-remove' /></span>
+              <span className='w3-button w3-red w3-right w3-xxlarge' data-dismiss='modal' onClick={this.close}><i className='fa fa-remove' /></span>
               <h2>Send Mail</h2>
             </div>
             <div className='w3-panel'>
@@ -194,11 +259,12 @@ class Message extends React.Component {
               <label>Subject</label>
               <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='text' placeholder="What's on your mind?" />
               <div className='w3-section'>
-                <button className='w3-button w3-red btn' data-dismiss='modal' >Cancel  <i className='fa fa-remove' /></button>
+                <button className='w3-button w3-red btn' data-dismiss='modal'  onClick={this.close}>Cancel  <i className='fa fa-remove' /></button>
                 <button className='btn w3-button w3-light-grey w3-right' onClick={() => this.sendMessage(this.state.user, this.state.text)}>Send  <i className='fa fa-paper-plane' /></button>
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         <div className='w3-overlay w3-hide-large w3-animate-opacity' title='Close Sidemenu' id='myOverlay' />
@@ -210,7 +276,7 @@ class Message extends React.Component {
             {this.state.messages.map(item =>
               <div key={item._id}>
                 <div id={item.sender} className='w3-container person' >
-                  <h4><i className='fa fa-clock-o' /> From {item.sender}, Sep 27, 2015.</h4>
+                  <h4><i className='fa fa-clock-o' /> From {item.sender}, {item.time.slice(0, 10)}.</h4>
                   <br />
                   {this.state.rightMes2.map(mes2 =>
                     <div key={mes2._id}>
@@ -219,6 +285,7 @@ class Message extends React.Component {
                         <span className='timestamp'>{item.time.slice(11, 16)}</span>
 
                       </div>
+              
 
                     </div>
                   )}
@@ -239,8 +306,15 @@ class Message extends React.Component {
                     </div>
                   </div>
 
+                  <br />
+                  <br />
+           
                   <hr />
-
+                  <br />
+                  <br />
+                <div className="container">
+             <h3 style= {{color:"green"}} className="text-center">{this.state.messageForDOM}</h3>
+              </div>
                 </div>
               </div>
             )}

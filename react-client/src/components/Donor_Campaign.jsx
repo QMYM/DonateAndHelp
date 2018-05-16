@@ -21,7 +21,8 @@ class Donor_Campaign extends React.Component {
       campaignName: '',
       campaignDescription: '',
       campaignAmount: '',
-      campaignImage: ''
+      campaignImage: '',
+      messageForDom:''
     }
 
     this.onChange = this.onChange.bind(this)
@@ -36,6 +37,7 @@ class Donor_Campaign extends React.Component {
   };
 
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
+    var x = this
     axios.post('/Donorcampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
@@ -43,8 +45,13 @@ class Donor_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then(response => {
-        console.log('campaign has been posted!')
-        window.location.reload()
+        //console.log('campaign has been posted!')
+          x.setState({
+          messageForDOM:" You have done campaign"
+        })
+        setTimeout(function(){
+     window.location.reload()
+   },1000)
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })
@@ -75,7 +82,7 @@ class Donor_Campaign extends React.Component {
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'>r</a>
+          <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -115,8 +122,10 @@ class Donor_Campaign extends React.Component {
               <label for='usr'>Items :</label>
               <input type='number' className='form-control w3-round-xlarge' id='usr' />
             </div>
+
             <br />
             <br />
+            <h3 style= {{color:"green"}} className="text-center">{this.state.messageForDOM}</h3>
             <form>
               <input className='btn' type='file' name='image' onChange={this.uploadPhotoCampaign} />
             </form>

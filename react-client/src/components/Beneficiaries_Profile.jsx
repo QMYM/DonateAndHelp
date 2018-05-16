@@ -195,7 +195,7 @@ class Beneficiaries_Profile extends React.Component {
       <div style={{background: 'white'}} >
 
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'>r</a>
+          <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -365,10 +365,10 @@ class Beneficiaries_Profile extends React.Component {
                   <div className='section'>
                     <h3>Social</h3>
                     <ul className='list-unstyled list-social'>
-                      <li><a href='#'><i className='fa fa-twitter' /> </a></li>
-                      <li><a href='#'><i className='fa fa-facebook' /> </a></li>
-                      <li><a href='#'><i className='fa fa-dribbble' /> </a></li>
-                      <li><a href='#'><i className='fa fa-linkedin' /> </a></li>
+                      <li><a href="https://twitter.com/" target="_blank">Visit Twitter<bh /> <bh /><i className='fa fa-twitter' /> </a></li> 
+                      <li><a href="https://www.facebook.com/" target="_blank">Visit Facebook <bh /> <bh /> <i className='fa fa-facebook' /> </a></li>
+                      <li><a href="https://dribbble.com/" target="_blank">Visit Dribbble <bh /> <bh /><i className='fa fa-dribbble' /> </a></li>
+                      <li><a href="https://www.linkedin.com/" target="_blank">Visit linkedin<bh /> <bh /><i className='fa fa-linkedin' /> </a></li>
                     </ul>
                   </div>
                 </div>

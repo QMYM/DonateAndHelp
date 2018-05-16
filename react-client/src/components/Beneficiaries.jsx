@@ -14,7 +14,7 @@ import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 function searching (term) {
   return function (x) {
-    return x.username.toLowerCase().includes(term.toLowerCase())
+    return x.campaignName.toLowerCase().includes(term.toLowerCase())
   }
 }
 
@@ -32,6 +32,7 @@ class Beneficiaries extends React.Component {
     var x = this
     axios.get('/donorCam')
       .then(function (res) {
+        console.log("hola hola", res.data)
         x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
@@ -56,7 +57,7 @@ class Beneficiaries extends React.Component {
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'>r</a>
+          <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -98,8 +99,9 @@ class Beneficiaries extends React.Component {
                   <h2>From : {item.username}</h2>
                   <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
 
-                  <p> {item.campaignDescription}</p>
+                 
                 </div>
+                 <p> {item.campaignDescription}</p>
                 <div className='panel-footer'>
                   <h3>{item.campaignAmount}</h3><h3>JOD</h3>
                   <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Donate</button>

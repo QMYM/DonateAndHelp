@@ -612,3 +612,18 @@ exports.editCampaignDonor = function (req, res) {
     }
   })
 }
+
+
+exports.deleteAllMessages = function (req,res){
+var user = req.body.user
+
+
+db.MessageSchema.remove({sender:user}, function (err, done) {
+    if (err) {
+      throw err
+    } else {
+      res.sendStatus(201)
+    }
+  })
+
+}
