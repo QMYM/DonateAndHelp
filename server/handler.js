@@ -4,6 +4,7 @@ let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
 exports.Signup = function (req, res) {
+  console.log("ress" , req.body)
   var username = req.body.username
   var password = req.body.password
   var email = req.body.email
