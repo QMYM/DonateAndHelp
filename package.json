@@ -70,6 +70,7 @@
         "react-shallow-renderer": "^1.1.4",
         "render-shallow": "^1.1.0",
         "sinon": "^5.0.7",
+        "sinon-chai": "^3.0.0",
         "w3-css": "^4.1.0"
     }
 }
