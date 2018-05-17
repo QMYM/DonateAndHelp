@@ -2,21 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
-import {
-  Scene,
-  Router,
-  Actions,
-  Reducer,
-  ActionConst,
-  Overlay,
-  Tabs,
-  Modal,
-  Drawer,
-  Stack,
-  Lightbox,
-} from 'react-native-router-flux';
 
-export default class App extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +46,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-    <View style={styles.container}>
+      <View style={styles.container}>
       <Text>Welcome To our App</Text>
       <Text>User Name : </Text>
       <TextInput
@@ -89,6 +76,7 @@ export default class App extends React.Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -97,3 +85,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+module.exports = Signup;
