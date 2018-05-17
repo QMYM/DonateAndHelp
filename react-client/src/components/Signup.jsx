@@ -143,14 +143,14 @@ class Signup extends React.Component {
                   { this.state.value === 'true' ? (
                     <div>
 
-                      <input type='submit' className='button' value='Sign Up' onClick={
+                      <input type='submit' className='button' value='Signup' onClick={
 
                         () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
                       } />
                     </div>
                   )
                     : <div>
-                      <input type='submit' className='button' value='SignupYUSUR ' onClick={
+                      <input type='submit' className='button' value='Signup ' onClick={
 
                         () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
                       } />

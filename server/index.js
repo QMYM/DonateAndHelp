@@ -14,7 +14,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
-
+app.get("/getInfoForProfilePageforDonor", handler.getInfoForProfilePageforDonor)
+app.get("/getInfoForProfilePage", handler.getInfoForProfilePage)
 app.get('/getImage', handler.getImage)
 app.get('/getImage2', handler.getImage2)
 app.post('/loginCompany', handler.LoginCompany)
@@ -50,6 +51,7 @@ app.post('/delCampaignDonor', handler.removeCampaignDonor)
 app.post('/delCampaignComp', handler.removeCampaignComp)
 app.put('/editCampaignDonor', handler.editCampaignDonor)
 app.put('/editCampaignComp', handler.editCampaignComp)
+app.post('/deleteAllMessages', handler.deleteAllMessages)
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
@@ -58,20 +60,20 @@ app.get('/*', (req, res) => {
 const PORT = process.env.PORT || 3000
 
 
-var server =app.listen(PORT, () => {
-  console.log(`The Port : ${PORT}`)
-})
+// var server =app.listen(PORT, () => {
+//   console.log(`The Port : ${PORT}`)
+// })
 
 // app.listen(PORT, () => {
 //   console.log(`The Port : ${PORT}`)
 // })
- module.exports = server
+ // module.exports = server
 
 
-// if (!module.parent) {
-//   app.listen(PORT, () => {
-//     console.log(`The Port : ${PORT}`)
-//   })
-// }
-// module.exports = app
+if (!module.parent) {
+  app.listen(PORT, () => {
+    console.log(`The Port : ${PORT}`)
+  })
+}
+module.exports = app
 
