@@ -51,27 +51,31 @@ class Signup extends React.Component {
       >
         Scarlet Screen
       </Text>
-      <Text>Welcome To our App</Text>
       <Text>User Name : </Text>
-      <TextInput
+      <TextInput 
+      style = {styles.input}
       placeholder="Type here your username!"
       onChangeText={(username) => this.setState({username})}
       />
       <Text>Email : </Text>
       
-      <TextInput
+      <TextInput style = {styles.input}
       placeholder="Type here your email!"
       onChangeText={(email) => this.setState({email})}
       />
       <Text>Password : </Text>
 
-      <TextInput secureTextEntry={true}
+      <TextInput
+      style = {styles.input}
+       secureTextEntry={true}
       placeholder="Type here your password"
       onChangeText={(password) => this.setState({password})}
       />
       <Text> Confirm Password : </Text>
 
-       <TextInput secureTextEntry={true}
+       <TextInput 
+       style = {styles.input}
+       secureTextEntry={true}
       placeholder="Type here your password"
       onChangeText={(confirmPassword) => this.setState({confirmPassword})}
       />
@@ -93,6 +97,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+      width:200 , 
+      margin: 5,
+      height: 40,
+      borderColor: '#7a42f4',
+   }
 });
 
 module.exports = Signup;
