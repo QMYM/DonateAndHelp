@@ -19,7 +19,8 @@ class Beneficiaries_Campaign extends React.Component {
       campaignName: '',
       campaignDescription: '',
       campaignAmount: '',
-      campaignImage: ''
+      campaignImage: '',
+      massageForDOM:''
     }
 
     this.onChange = this.onChange.bind(this)
@@ -34,6 +35,7 @@ class Beneficiaries_Campaign extends React.Component {
   };
 
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
+    var x = this
     axios.post('/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
@@ -41,8 +43,13 @@ class Beneficiaries_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then(response => {
-        console.log('campaign has been posted!')
-        window.location.reload()
+        //console.log('campaign has been posted!')
+        x.setState({
+          messageForDOM:" You have done campaign"
+        })
+        setTimeout(function(){
+     window.location.reload()
+   },1000)
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })
@@ -62,7 +69,7 @@ class Beneficiaries_Campaign extends React.Component {
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'>r</a>
+          <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -94,13 +101,12 @@ class Beneficiaries_Campaign extends React.Component {
         <Well>
           <div className='container'>
             <div className='row'>
-              <label for='usr'>Campain Name :</label>
+              <label for='usr'>Campaign Name :</label>
               <input type='text' name='campaignName' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <label for='usr'>Campain Description :</label>
+              <label for='usr'>Campaign Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <label for='usr'>Amount :</label>
               <input type='number' name='campaignAmount' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <br />
               <br />
               <br />
               <form>
@@ -108,12 +114,17 @@ class Beneficiaries_Campaign extends React.Component {
               </form>
               <br />
               <br />
+              
+               
+
               <button className='btn btn-raised btn-warning' onClick={
                 () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
               } > Submit </button>
             </div>
           </div>
         </Well>
+          <h3 style= {{color:"green"}} className="text-center">{this.state.messageForDOM}</h3>
+
       </div>
 
     )

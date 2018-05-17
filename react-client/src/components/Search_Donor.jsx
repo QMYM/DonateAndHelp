@@ -2,7 +2,13 @@
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
 class Search_Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -64,6 +70,33 @@ class Search_Donor extends React.Component {
   render () {
 		 return (
   <div>
+   <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
+          <a href='#'></a>
+          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon' />
+          </button>
+
+          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul className='navbar-nav mr-auto' />
+            <ul className='navbar-nav mr-auto nav '>
+              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+             
+            </ul>
+            <form className='form-inline my-2 my-lg-0'>
+              <Router>
+                <ul className='nav navbar-nav navbar-right ' >
+                  <li> <a href='/search' className='icon-bar' >Search</a> </li>
+                  <li> <a href='/message' className='icon-bar' to='/message' >Message</a> </li>
+                  <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+                  <li><a /></li>
+                </ul>
+              </Router>
+            </form>
+          </div>
+        </nav>
+
+
+  
         {console.log(this.state.searchOut)}
         <div className='container' >
       <div className='row'>
