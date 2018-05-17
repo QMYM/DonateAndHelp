@@ -20,9 +20,9 @@ class Home extends React.Component {
       <View style={styles.container}>
       <Text>
       welcome Home
-      <Button onPress={() => Actions.Signup()}
-            title="Signup"></Button>
       </Text>
+      <Button onPress={() => Actions.Signup()}
+            title="Signup" />
       
       </View>
       );
