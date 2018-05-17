@@ -106,7 +106,7 @@ class Login extends React.Component {
                     </div>
                   )
                     : <div>
-                      <input type='submit' className='button' value='Sign In sss'
+                      <input type='submit' className='button' value='Sign In'
                         onClick={
                           this.submitLoginCompany
                         } />

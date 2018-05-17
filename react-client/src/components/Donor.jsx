@@ -17,7 +17,7 @@ import Message from './Message.jsx'
 
 function searching (term) {
   return function (x) {
-    return x.username.toLowerCase().includes(term.toLowerCase())
+    return x.campaignName.toLowerCase().includes(term.toLowerCase())
   }
 }
 
@@ -73,11 +73,11 @@ class Donor extends React.Component {
   }
 
   render () {
-    console.log(this.state.camp)
+    // console.log(this.state.camp)
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'>r</a>
+          <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -114,7 +114,7 @@ class Donor extends React.Component {
 
           <div id='pricing' className='container-fluid'>
             <div className='row slideanim'>
-              {this.state.camp.map(item =>
+               {this.state.camp.filter(searching(this.state.term)).map(item =>
                 <div key={item._id}>
 
                   <div className=' col-xs-12'>
@@ -126,8 +126,9 @@ class Donor extends React.Component {
                         <h2>From : {item.username}</h2>
                         <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
 
-                        <p> {item.campaignDescription}</p>
+                        
                       </div>
+                      <p> {item.campaignDescription}</p>
                       <div className='panel-footer'>
                         <h3>{item.campaignAmount}</h3><h3>JOD</h3>
                         <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Donate</button>
