@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import { AppRegistry,StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
 import axios from 'axios'
-import promise from 'promise'
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,15 +13,7 @@ export default class App extends React.Component {
      email:''
    }
  }
-//  _onPressButton(username) {
-//   // Alert.alert("Hi " , text)
-//   console.log("ddddaa")
-//     axios.get('http://192.168.1.105:3000/donorCam')
-//     .then(function (res) {
-//       console.log("hello2" , res)
-//     })
-//   // this.user()
-// }
+
   send (username,password,email) { // sending post reqeust to the server
     console.log("good Click" , username)
     axios.post('http://192.168.1.105:3000/Donater',
@@ -36,13 +29,6 @@ export default class App extends React.Component {
     })
 }
 
-// user(){
-//   console.log("aaa")
-//     axios.get('https://192.168.1.105/donorCam')
-//     .then(function (res) {
-//       console.log("hello2" , res)
-//     })
-//   }
 
   render() {
     return (
