@@ -23,6 +23,9 @@ class Home extends React.Component {
       </Text>
       <Button onPress={() => Actions.Signup()}
             title="Signup" />
+            
+            <Button onPress={() => Actions.Login()}
+            title="Login" />
       
       </View>
       );
