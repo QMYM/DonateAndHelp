@@ -30,7 +30,8 @@ class Donor_Profile extends React.Component {
       id: '',
        newDescription:'',
       newPhone:'',
-      newAdress:''
+      newAdress:'',
+      newName:''
     }
     this.onChange = this.onChange.bind(this)
     this.uploadPhoto = this.uploadPhoto.bind(this)
@@ -53,7 +54,8 @@ class Donor_Profile extends React.Component {
         x.setState({
           newDescription:alo.description,
            newPhone:alo.contactNum,
-           newAdress: alo.address
+           newAdress: alo.address,
+           newName:alo.name
           })
     }).catch(function(err){
       console.lof(err)
@@ -78,7 +80,8 @@ class Donor_Profile extends React.Component {
          x.setState({
           newDescription:alo.description,
            newPhone:alo.contactNum,
-           newAdress: alo.address
+           newAdress: alo.address,
+           newName:alo.name
           })
 
       }).catch(error => {
@@ -237,7 +240,7 @@ class Donor_Profile extends React.Component {
             <form className='form-inline my-2 my-lg-0'>
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
-                  {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
+                   <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
                   <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
@@ -275,8 +278,7 @@ class Donor_Profile extends React.Component {
             </div>
           </div>
         </form>
-
-        <div className='modal fade' id='myModal' role='dialog'>
+ <div className='modal fade' id='myModal' role='dialog'>
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>
@@ -284,7 +286,10 @@ class Donor_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-               
+                  <div className='input-group'>
+                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
+                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
@@ -388,6 +393,7 @@ class Donor_Profile extends React.Component {
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
+                    <p className='glyphicon glyphicon-user'>nickname: {this.state.newName}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
                     <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
                     <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />

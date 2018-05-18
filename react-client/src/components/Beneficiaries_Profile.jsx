@@ -31,7 +31,8 @@ class Beneficiaries_Profile extends React.Component {
       id: '',
       newDescription:'',
       newPhone:'',
-      newAdress:''
+      newAdress:'',
+      newName:''
     }
     this.onChange = this.onChange.bind(this)
     this.uploadPhoto = this.uploadPhoto.bind(this)
@@ -54,7 +55,8 @@ class Beneficiaries_Profile extends React.Component {
         x.setState({
           newDescription:alo.description,
            newPhone:alo.contactNum,
-           newAdress: alo.address
+           newAdress: alo.address,
+           newName:alo.name
           })
     }).catch(function(err){
       console.lof(err)
@@ -77,7 +79,8 @@ class Beneficiaries_Profile extends React.Component {
          x.setState({
           newDescription:alo.description,
            newPhone:alo.contactNum,
-           newAdress: alo.address
+           newAdress: alo.address,
+           newName:alo.name
           })
       }).catch(error => {
         alert('wrong in profile update')
@@ -276,7 +279,11 @@ class Beneficiaries_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-                
+                 <div className='input-group'>
+                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
+                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                </div>
+                <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='contactNum' />
@@ -310,6 +317,11 @@ class Beneficiaries_Profile extends React.Component {
                 <h4 className='modal-title'>Edit Information</h4>
               </div>
               <div className='modal-body'>
+               <div className='input-group'>
+                 <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
+                 <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='Name' />
+               </div>
+                <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
                   <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
@@ -379,6 +391,7 @@ class Beneficiaries_Profile extends React.Component {
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
+                    <p className='glyphicon glyphicon-user'>nickname: {this.state.newName}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
                     <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
                     <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />
