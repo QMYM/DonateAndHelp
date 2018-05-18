@@ -20,13 +20,13 @@ module.exports = {
       }
     ]
   }
-  // ,
+  ,
 
-  //     "test": {
-  //     "presets": [
-  //       [
-  //         "env",{"targets": {"node": "current"}}
-  //       ]
-  //     ]
-  //   }
+      "test": {
+      "presets": [
+        [
+          "env",{"targets": {"node": "current"}}
+        ]
+      ]
+    }
 }
