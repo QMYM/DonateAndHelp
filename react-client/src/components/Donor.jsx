@@ -92,6 +92,7 @@ class Donor extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
+                  <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
                   <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
