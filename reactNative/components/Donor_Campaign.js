@@ -1,28 +1,35 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import axios from 'axios'
+import { Actions } from 'react-native-router-flux'; 
 
-class HomeScreen extends React.Component {
-  render() {
+class Donor_Campaign extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+  
+     
+   }
+ }
+ render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
+      <View style={styles.container}>
+      <Text>
+      welcome Donor_Campaign
+      </Text>
       </View>
-    );
+      );
   }
 }
 
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
 
-export default createBottomTabNavigator({
-  HomeScreen: { screen: HomeScreen , title : SettingsScreen },
-  SettingsScreen: { screen: SettingsScreen  , title : SettingsScreen},
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
+
+module.exports = Donor_Campaign;

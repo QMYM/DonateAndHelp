@@ -16,7 +16,6 @@ class Signup extends React.Component {
  }
 
   send (username,email,password , confirmPassword) { // sending post reqeust to the server
-    console.log("good Click" , username)
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
     axios.post('http://192.168.1.81:3000/Donater',
@@ -27,7 +26,6 @@ class Signup extends React.Component {
     })
     .then(function (res) {
         Actions.Donor()
-        console.log('hello3' , res)
 
     }).catch(function (err) {
       console.log("err" , err)
@@ -41,16 +39,9 @@ class Signup extends React.Component {
     }
 }
 
-
-
   render() {
     return (
       <View style={styles.container}>
-      <Text
-        onPress={() => Actions.gray()} // New Code
-      >
-        Scarlet Screen
-      </Text>
       <Text>User Name : </Text>
       <TextInput 
       style = {styles.input}
@@ -58,13 +49,11 @@ class Signup extends React.Component {
       onChangeText={(username) => this.setState({username})}
       />
       <Text>Email : </Text>
-      
       <TextInput style = {styles.input}
       placeholder="Type here your email!"
       onChangeText={(email) => this.setState({email})}
       />
       <Text>Password : </Text>
-
       <TextInput
       style = {styles.input}
        secureTextEntry={true}
@@ -72,14 +61,12 @@ class Signup extends React.Component {
       onChangeText={(password) => this.setState({password})}
       />
       <Text> Confirm Password : </Text>
-
        <TextInput 
        style = {styles.input}
        secureTextEntry={true}
       placeholder="Type here your password"
       onChangeText={(confirmPassword) => this.setState({confirmPassword})}
       />
-  
         <Button
       onPress={() => this.send(this.state.username,this.state.email , this.state.password,this.state.confirmPassword)}
       title="Sign up"

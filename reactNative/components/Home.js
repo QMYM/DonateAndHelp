@@ -11,11 +11,7 @@ class Home extends React.Component {
      
    }
  }
-
-
-
-
-  render() {
+ render() {
     return (
       <View style={styles.container}>
       <Text>
