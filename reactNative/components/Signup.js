@@ -19,7 +19,7 @@ class Signup extends React.Component {
     console.log("good Click" , username)
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.81:3000/Donater',
+    axios.post('http://192.168.1.128:3000/Donater',
      {
       username: username,
       email:email,
@@ -36,7 +36,7 @@ class Signup extends React.Component {
         Alert.alert('enter your password')
       }
     } else {
-      console.log('cococ  ', confirmPassword)
+      
       Alert.alert("password doesn't match,rewrite it again")
     }
 }
