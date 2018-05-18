@@ -13,7 +13,6 @@ import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 function searching (term) {
-  console.log("hello world", term)
   return function (x) {
     return x.campaignName.toLowerCase().includes(term.toLowerCase())
   }

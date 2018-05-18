@@ -21,7 +21,7 @@ class Login extends React.Component {
       password: this.state.password
     })
       .then(response => {
-        Actions.Home()
+        Actions.Donor()
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')
@@ -31,11 +31,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text
-        onPress={() => Actions.Home()} // New Code
-      >
-       pp
-      </Text>
       <Text>Welcome To our App</Text>
       <Text>User Name : </Text>
       <TextInput

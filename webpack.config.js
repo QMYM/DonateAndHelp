@@ -19,7 +19,7 @@ module.exports = {
         }
       }
     ]
-   }
+  }
   ,
 
       "test": {
@@ -28,5 +28,5 @@ module.exports = {
           "env",{"targets": {"node": "current"}}
         ]
       ]
-    } 
+    }
 }
