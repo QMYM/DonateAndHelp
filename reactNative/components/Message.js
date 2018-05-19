@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Image} from 'react-native';
+import { StyleSheet , Text, View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 import { Button , Avatar} from 'react-native-elements';
@@ -83,6 +83,7 @@ class Message extends React.Component {
   }
 
   render() {
+    console.log('thiss ' , this.state.messages)
     return (
       <View style={styles.container}>
       <Text>
@@ -103,7 +104,7 @@ class Message extends React.Component {
         )
     }
     {this.state.messages.map( item => 
-      <View>
+      <View key={ item._id }>
         <Text>{item.sender}</Text>
         <Text>{item.message}</Text>
       </View>

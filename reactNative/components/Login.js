@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker} from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
@@ -17,7 +17,7 @@ class Login extends React.Component {
 
 
   submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.128:3000/loginDonater', {
+    axios.post('http://192.168.1.65:3000/loginDonater', {
       userName: this.state.userName,
       password: this.state.password
     })
@@ -29,7 +29,7 @@ class Login extends React.Component {
       })
   }; 
   submitLoginCompany () {
-    axios.post('http://192.168.1.128:3000/loginCompany', {
+    axios.post('http://192.168.1.65:3000//loginCompany', {
       userName: this.state.userName,
       password: this.state.password
     })
