@@ -69,7 +69,7 @@ class Search_Donor extends React.Component {
 
   render () {
 		 return (
-  <div>
+  <div > 
    <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
           <a href='#'></a>
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
@@ -98,8 +98,15 @@ class Search_Donor extends React.Component {
 
   
         {console.log(this.state.searchOut)}
+
+
         <div className='container' >
+      <div className='col-10'>
       <div className='row'>
+        <h2>here you can search on any beneficiaries  </h2>
+      </div>
+      <br />
+      <br />
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
         </div>

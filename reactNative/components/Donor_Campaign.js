@@ -3,7 +3,7 @@ import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndica
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 
-class Home extends React.Component {
+class Donor_Campaign extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,19 +12,13 @@ class Home extends React.Component {
    }
  }
  render() {
-  return (
-    <View style={styles.container}>
-    <Text>
-    welcome Home
-    </Text>
-    <Button onPress={() => Actions.Signup()}
-    title="Signup" />
-
-    <Button onPress={() => Actions.Login()}
-    title="Login" />
-
-    </View>
-    );
+    return (
+      <View style={styles.container}>
+      <Text>
+      welcome Donor_Campaign
+      </Text>
+      </View>
+      );
   }
 }
 
@@ -38,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Home;
+module.exports = Donor_Campaign;

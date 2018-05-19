@@ -14,6 +14,9 @@ import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Home from "./components/Home"
 import Donor from "./components/Donor"
+import Donor_Campaign from "./components/Donor_Campaign"
+import Message from "./components/Message"
+import Profile_Donor from "./components/Profile_Donor"
 
 
 export default class App extends React.Component {
@@ -24,8 +27,6 @@ export default class App extends React.Component {
    }
  }
 
-
-
   render() {
     return (
     <Router>
@@ -34,11 +35,12 @@ export default class App extends React.Component {
           component={Home}
           title="Home"
           initial
+
         />
         <Scene
           key="Login"
           component={Login}
-          title="Gray"
+          title="Login"
         />
       
           <Scene key="Signup"
@@ -50,6 +52,21 @@ export default class App extends React.Component {
            hideNavBar={true}
           component={Donor}
           title="Donor"
+          
+        />
+        <Scene key="Donor_Campaign"
+          component={Donor_Campaign}
+          title="Donor_Campaign"
+          
+        />
+        <Scene key="Message"
+          component={Message}
+          title="Message"
+          
+        />
+        <Scene key="Profile_Donor"
+          component={Profile_Donor}
+          title="Profile_Donor"
           
         />
       </Scene>

@@ -15,13 +15,15 @@ class Login extends React.Component {
  }
 
 
-  submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.81:3000/loginDonater', {
+  submitLoginDonor () { // send post request to the server
+    console.log("hi login page")
+    axios.post('http://192.168.1.146:3000/loginDonater', {
       userName: this.state.userName,
       password: this.state.password
     })
       .then(response => {
-        Actions.Home()
+        console.log("hi login", userName, password);
+         Actions.Profile_Donor()
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')
@@ -31,11 +33,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text
-        onPress={() => Actions.Home()} // New Code
-      >
-       pp
-      </Text>
       <Text>Welcome To our App</Text>
       <Text>User Name : </Text>
       <TextInput
@@ -51,10 +48,11 @@ class Login extends React.Component {
       />
    
   
-        <Button
-      onPress={() => this.submitLoginDonater()}
+      <Button
+      onPress={() => this.submitLoginDonor()}
       title="Login"
       />
+      
       </View>
       );
   }

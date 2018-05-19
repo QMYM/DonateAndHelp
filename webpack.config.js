@@ -19,7 +19,8 @@ module.exports = {
         }
       }
     ]
-  },
+  }
+  ,
 
     //   "test": {
     //   "presets": [

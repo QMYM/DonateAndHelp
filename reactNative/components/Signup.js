@@ -3,6 +3,7 @@ import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndica
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
+
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -16,21 +17,21 @@ class Signup extends React.Component {
  }
 
   send (username,email,password , confirmPassword) { // sending post reqeust to the server
-    console.log("good Click" , username)
+    console.log("Hi Sign up!!");
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.81:3000/Donater',
+    axios.post('http://192.168.1.146:3000/Donater',
      {
-      username: username,
-      email:email,
-      password:password
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
     })
     .then(function (res) {
-        Actions.Donor()
-        console.log('hello3' , res)
+      //console.log(res, "Hi res axios")
+        Actions.Profile_Donor()
 
     }).catch(function (err) {
-      console.log("err" , err)
+      console.log("error in axios" , err)
     })
   }else {
         Alert.alert('enter your password')
@@ -41,41 +42,34 @@ class Signup extends React.Component {
     }
 }
 
-
-
   render() {
     return (
       <View style={styles.container}>
-      <Text
-        onPress={() => Actions.gray()} // New Code
-      >
-        Scarlet Screen
-      </Text>
-      <Text>Welcome To our App</Text>
       <Text>User Name : </Text>
-      <TextInput
+      <TextInput 
+      style = {styles.input}
       placeholder="Type here your username!"
       onChangeText={(username) => this.setState({username})}
       />
       <Text>Email : </Text>
-      
-      <TextInput
+      <TextInput style = {styles.input}
       placeholder="Type here your email!"
       onChangeText={(email) => this.setState({email})}
       />
       <Text>Password : </Text>
-
-      <TextInput secureTextEntry={true}
+      <TextInput
+      style = {styles.input}
+       secureTextEntry={true}
       placeholder="Type here your password"
       onChangeText={(password) => this.setState({password})}
       />
       <Text> Confirm Password : </Text>
-
-       <TextInput secureTextEntry={true}
+       <TextInput 
+       style = {styles.input}
+       secureTextEntry={true}
       placeholder="Type here your password"
       onChangeText={(confirmPassword) => this.setState({confirmPassword})}
       />
-  
         <Button
       onPress={() => this.send(this.state.username,this.state.email , this.state.password,this.state.confirmPassword)}
       title="Sign up"
@@ -93,6 +87,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+      width:200 , 
+      margin: 5,
+      height: 40,
+      borderColor: '#7a42f4',
+   }
 });
 
 module.exports = Signup;
