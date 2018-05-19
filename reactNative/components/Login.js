@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
@@ -10,15 +10,16 @@ class Login extends React.Component {
     super(props);
     this.state = {
      userName: '',
-      password: ''
-     
+     password:'' , 
+     user:''  
    }
  }
 
-  submitLoginDonater (userName , password) { // send post request to the server
-    axios.post('http://192.168.1.65:3000/loginDonater', {
-      userName: userName,
-      password: password
+
+  submitLoginDonater () { // send post request to the server
+    axios.post('http://192.168.1.128:3000/loginDonater', {
+      userName: this.state.userName,
+      password: this.state.password
     })
       .then(response => {
         Actions.Donor()
@@ -26,30 +27,67 @@ class Login extends React.Component {
       }).catch(error => {
         alert('password or username is wrong')
       })
-  };
+  }; 
+  submitLoginCompany () {
+    axios.post('http://192.168.1.128:3000/loginCompany', {
+      userName: this.state.userName,
+      password: this.state.password
+    })
+   .then(response => {
+        Actions.Donor()
+        // should go to the home page from here
+      }).catch(error => {
+        alert('password or username is wrong')
+      })
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
-      <Text>Welcome To our App</Text>
+          <View>
+         <Text style = {styles.text}> Choose Your Career !</Text>
+
+    <Picker selectedValue = {this.state.user} onValueChange = {(itemValue) => this.setState({user:itemValue})}>
+               <Picker.Item label = "Company" value=''/>
+               <Picker.Item label = "Donor" value='false' />
+               
+            </Picker>
+          
+         
+      </View>
       <Text>User Name : </Text>
       <TextInput
-      placeholder="Type here your username!"
+      placeholder="Enter your username!"
       onChangeText={(userName) => this.setState({userName})}
       />
     
       <Text>Password : </Text>
 
       <TextInput secureTextEntry={true}
-      placeholder="Type here your password"
+      placeholder="Enter your password"
       onChangeText={(password) => this.setState({password})}
       />
-   
-  
-        <Button
-      onPress={() => this.submitLoginDonater(this.state.userName , this.state.password)}
-      title="Login"
-      />
+
+    { this.state.user === 'false' ? (
+                    <View>
+                      
+         <Button
+      onPress={() => this.submitLoginDonater()}
+      title="Login Donor"
+      />                    
+      </View>
+                  )
+                    : 
+                    <View>
+                      
+              <Button
+      onPress={() => this.submitLoginCompany()}
+      title="Login Company"
+      />                    
+
+      </View>
+    }
       </View>
       );
   }
@@ -63,6 +101,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+      width:200 , 
+      margin: 5,
+      height: 40,
+      borderColor: '#7a42f4',
+   },
+   text: {
+      fontSize: 30,
+      alignSelf: 'center',
+      color: 'red'
+   }
 });
+
 
 module.exports = Login;

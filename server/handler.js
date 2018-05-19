@@ -181,6 +181,7 @@ exports.getImage2 = function (req, res) {
 }
 
 exports.LoginDonater = function (req, res) {
+console.log("jackel", req.body)
   var username = req.body.userName
   var password = req.body.password
   db.userDonater.findOne({ // searching for the username in the schema

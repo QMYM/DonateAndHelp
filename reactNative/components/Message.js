@@ -16,7 +16,7 @@ class Message extends React.Component {
       rightMes: [],
       rightMes2: [],
       reciver: [],
-      senderMess: [],
+      senderMess: [],  
       allMessages: [],
       messageForDOM:""
     }
