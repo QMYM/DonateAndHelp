@@ -4,6 +4,10 @@ let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
 
+exports.navtiveLogin = function(req , res){
+  console.log(req.body)
+}
+
 exports.Signup = function (req, res) {
   console.log("ress Signup" , req.body)
   var username = req.body.username
@@ -178,6 +182,7 @@ exports.getImage2 = function (req, res) {
 }
 
 exports.LoginDonater = function (req, res) {
+console.log("jackel", req.body)
   var username = req.body.userName
   var password = req.body.password
   db.userDonater.findOne({ // searching for the username in the schema

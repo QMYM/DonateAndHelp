@@ -22,10 +22,6 @@ class Signup extends React.Component {
     this.setState({value: event.target.value})
   }
 
-   sayHello() {
-        return 'hello';
-    }
-
   onChange (e) { // change the state for the input text
     this.setState({
       [e.target.name]: e.target.value
@@ -55,10 +51,6 @@ class Signup extends React.Component {
       this.conPass.value = ''
     }
   };
- handleClick() {
-    // Do something here
-    return {}
-  }
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
   	if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
@@ -85,14 +77,12 @@ class Signup extends React.Component {
 
   render () {
     return (
-
       <div className='containter text-center'>
         <div className='login-wrap'>
           <div className='login-html'>
             <input id='tab-1' type='radio' name='tab' className='sign-in' /><label for='tab-1' className='tab'><a href='/login'>Login In</a></label>
             <input id='tab-2' type='radio' name='tab' className='sign-up' checked /><label for='tab-2' className='tab'>Sign Up</label>
             <div className='login-form'>
-
               <div className='sign-up-htm'>
                 <div className='form-group group' >
                   <div className='input-group mb-3'>
@@ -101,9 +91,7 @@ class Signup extends React.Component {
                       <option value='false'>Company</option>
                     </select>
                   </div>
-
-                  <br />
-
+                 <br />
                   <label for='user' className='label'>Username</label>
                   <input id='user' type='text' className='input'
                     name='username'
