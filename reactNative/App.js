@@ -10,18 +10,8 @@ import {
 
 } from 'react-native-router-flux';
 
-<<<<<<< HEAD
-import Signup from "./components/Signup"
-import Login from "./components/Login"
-import Home from "./components/Home"
-import Donor from "./components/Donor"
-import Donor_Campaign from "./components/Donor_Campaign"
-import Message from "./components/Message"
-import Profile_Donor from "./components/Profile_Donor"
-=======
-import AppRoute from "./components/AppRoute"
->>>>>>> b04db4869c0a16eea67e7e50748f124d38dbf2ed
 
+import AppRoute from "./components/AppRoute"
 
 export default class App extends React.Component {
   constructor(props) {
