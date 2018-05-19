@@ -3,8 +3,9 @@ let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
+
 exports.Signup = function (req, res) {
-  console.log("ress" , req.body)
+  console.log("ress Signup" , req.body)
   var username = req.body.username
   var password = req.body.password
   var email = req.body.email
@@ -223,17 +224,18 @@ exports.getInfoForProfilePageforDonor = function(req,res){
 }
 
 exports.addProfileCompany = function (req, res) {
-  var name = req.body.name
-  var contactNum = req.body.contactNum
+  console.log("hello company!!", req.body);
+  //var name = req.body.name
+  var contactNum = req.body.phoneNum
   var description = req.body.description
   var address = req.body.address
 
-  db.userCompany.findOneAndUpdate({username:req.session.user}, {$set:{name:name,contactNum:contactNum,description:description,address:address}}, function (err, data) {
+  db.userCompany.findOneAndUpdate({username:req.session.user}, {$set:{contactNum:contactNum,description:description,address:address}}, function (err, data) {
     if (err) {
       throw err
     } else {
       var info = new db.userCompany({
-        name: name,
+        //name: name,
         contactNum: contactNum,
         description: description,
         address: address
@@ -256,8 +258,6 @@ exports.addProfileDonor = function (req, res) {
   var contactNum = req.body.contactNum
   var description = req.body.description
   var address = req.body.address
-
- 
   db.userDonater.findOneAndUpdate({username:req.session.user}, {$set:{name:name,contactNum:contactNum,description:description,address:address}}, function (err, data) {
     if (err) {
       throw err
@@ -275,10 +275,10 @@ exports.addProfileDonor = function (req, res) {
           res.send(information)
         }
       })
-     
+      
 
     }
-   })
+  })
 }
 
 exports.uploadImageDonor = function (req, res) { // add a personal photo for the user
