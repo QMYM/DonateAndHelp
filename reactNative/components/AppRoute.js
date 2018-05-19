@@ -17,6 +17,8 @@ import Donor_Campaign from "./Donor_Campaign"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
 import Beneficiaries from "./Beneficiaries"
+import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
+import Beneficiaries_Tab from "./Beneficiaries_Tab"
 
 export default class AppRoute extends React.Component {
   constructor(props) {
@@ -30,7 +32,8 @@ export default class AppRoute extends React.Component {
     return (
     <Router>
       <Scene key="root">
-        <Scene key="Home"
+        <Scene 
+          key="Home"
           component={Home}
           title="Home"
           initial = {true}
@@ -72,8 +75,11 @@ export default class AppRoute extends React.Component {
           key="Beneficiaries"
           component={Beneficiaries}
           title="Beneficiaries"
-
-          
+        />
+        <Scene
+          key="Beneficiaries_Tab"
+          component={Beneficiaries_Tab}
+          title="Beneficiaries_Tab"
         />
       </Scene>
     </Router>

@@ -34,7 +34,7 @@ class Login extends React.Component {
       password: this.state.password
     })
    .then(response => {
-        Actions.Donor_Tab()
+        Actions.Beneficiaries_Tab()
         // should go to the home page from here
       }).catch(error => {
         alert('password or username is wrong')
