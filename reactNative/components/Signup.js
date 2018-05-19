@@ -29,7 +29,7 @@ class Signup extends React.Component {
       user: ''
     })
     .then(function (res) {
-        Actions.Donor()
+        Actions.Donor_Tab()
 
     }).catch(function (err) {
       console.log("err" , err)
@@ -53,7 +53,7 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
       user: ''
     })
     .then(function (res) {
-        Actions.Donor()
+        Actions.Beneficiaries_Tab()
 
     }).catch(function (err) {
       console.log("err" , err)
