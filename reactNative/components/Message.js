@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet , Text, View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
+import { Modal ,TouchableHighlight ,  StyleSheet , Text, View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 import { Button , Avatar} from 'react-native-elements';
@@ -18,14 +18,16 @@ class Message extends React.Component {
       reciver: [],
       senderMess: [],  
       allMessages: [],
-      messageForDOM:""
+      messageForDOM:"",
+       modalVisible: false,
+       check:true
     }
   }
   componentDidMount () {
     var x = this
     x.user()
     x.getPhotoForMessages();
-    axios.get('http://192.168.1.65:3000/recieveMessage')
+    axios.get('http://172.20.10.2:3000/recieveMessage')
     .then(function (response) {
       var mes = []
       var mess = []
@@ -47,7 +49,7 @@ class Message extends React.Component {
 
   user () {
     var x = this
-    axios.get('http://192.168.1.65:3000/sessionName')
+    axios.get('http://172.20.10.2:3000/sessionName')
     .then(function (res) {
       x.setState({sessionUser: res.data})
     }).catch(function (err) {
@@ -59,7 +61,7 @@ class Message extends React.Component {
     var arr = []
     var rec = []
     var test = [];
-    axios.get('http://192.168.1.65:3000/getPhotoForMessages')
+    axios.get('http://172.20.10.2:3000/getPhotoForMessages')
     .then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
@@ -81,14 +83,47 @@ class Message extends React.Component {
       console.log('error', err)
     })
   }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
 
   render() {
-    console.log('thiss ' , this.state.messages)
+   
     return (
       <View style={styles.container}>
+           <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.');
+          }}>
+          <View style={{marginTop: 22}}>
+            <View>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+
       <Text>
       welcome Message
       </Text>
+   
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}>
+          <Text>Show Modal</Text>
+        </TouchableHighlight>
+        
       <View>
       {this.state.reciver.map(item => 
         <View key={ item._id }>

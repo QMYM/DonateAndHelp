@@ -17,7 +17,7 @@ class Login extends React.Component {
 
 
   submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.83:3000/loginDonater', {
+    axios.post('http://172.20.10.2:3000/loginDonater', {
       userName: this.state.userName,
       password: this.state.password
     })
@@ -29,7 +29,7 @@ class Login extends React.Component {
       })
   }; 
   submitLoginCompany () {
-    axios.post('http://192.168.1.65:3000//loginCompany', {
+    axios.post('http://172.20.10.2:3000//loginCompany', {
       userName: this.state.userName,
       password: this.state.password
     })
