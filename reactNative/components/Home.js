@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
+import { Button } from 'react-native-elements';
 
 class Home extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Home extends React.Component {
             
             <Button onPress={() => Actions.Login()}
             title="Login" />
-      
+
       </View>
       );
   }
@@ -31,6 +32,7 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    margin:10 , 
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',

@@ -26,7 +26,6 @@ class Message extends React.Component {
       rightMes2: [],
       reciver: [],
       senderMess: [],
-      allMessages: [],
       messageForDOM:""
     }
     this.sendMessage = this.sendMessage.bind(this)
@@ -54,7 +53,6 @@ class Message extends React.Component {
       .then(function (response) {
         var mes = []
         var mess = []
-        x.setState({allMessages: response.data})
         for (var i = 0; i < response.data.length; i++) {
           if (response.data[i].reciver === x.state.sessionUser) {
             mes.push(response.data[i])

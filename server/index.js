@@ -14,6 +14,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+
+app.post('/navtiveLogin' , handler.navtiveLogin)
 app.get("/getInfoForProfilePageforDonor", handler.getInfoForProfilePageforDonor)
 app.get("/getInfoForProfilePage", handler.getInfoForProfilePage)
 app.get('/getImage', handler.getImage)

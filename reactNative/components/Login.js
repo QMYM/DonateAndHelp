@@ -1,24 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
+import { Button } from 'react-native-elements';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     username: '',
-     email:'' 
+     userName: '',
+      password: ''
      
    }
  }
 
-
-  submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.81:3000/loginDonater', {
-      userName: this.state.userName,
-      password: this.state.password
+  submitLoginDonater (userName , password) { // send post request to the server
+    axios.post('http://192.168.1.65:3000/loginDonater', {
+      userName: userName,
+      password: password
     })
       .then(response => {
         Actions.Donor()
@@ -35,7 +35,7 @@ class Login extends React.Component {
       <Text>User Name : </Text>
       <TextInput
       placeholder="Type here your username!"
-      onChangeText={(username) => this.setState({username})}
+      onChangeText={(userName) => this.setState({userName})}
       />
     
       <Text>Password : </Text>
@@ -47,7 +47,7 @@ class Login extends React.Component {
    
   
         <Button
-      onPress={() => this.submitLoginDonater()}
+      onPress={() => this.submitLoginDonater(this.state.userName , this.state.password)}
       title="Login"
       />
       </View>

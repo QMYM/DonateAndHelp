@@ -18,7 +18,7 @@ class Signup extends React.Component {
   send (username,email,password , confirmPassword) { // sending post reqeust to the server
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.81:3000/Donater',
+    axios.post('http://192.168.1.65:3000/Donater',
      {
       username: username,
       email:email,
