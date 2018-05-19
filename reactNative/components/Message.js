@@ -83,6 +83,10 @@ class Message extends React.Component {
       console.log('error', err)
     })
   }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
 
   render() {
    
@@ -113,6 +117,12 @@ class Message extends React.Component {
       welcome Message
       </Text>
    
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}>
+          <Text>Show Modal</Text>
+        </TouchableHighlight>
         
       <View>
       {this.state.reciver.map(item => 
@@ -136,12 +146,6 @@ class Message extends React.Component {
 
       )}
     </View>
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Button title="Show Modal"/>
-        </TouchableHighlight>
     </View>
     );
   }
