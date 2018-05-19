@@ -15,20 +15,23 @@ class Message extends React.Component {
       rightMes: [],
       rightMes2: [],
       reciver: [],
-      senderMess: [],
+      senderMess: [],  
       allMessages: [],
       messageForDOM:""
     }
   }
 
+
+
+
  render() {
+
     return (
       <View style={styles.container}>
       <Text>
       welcome Message
       </Text>
-      <View>
-      </View>
+ 
       </View>
       );
   }
