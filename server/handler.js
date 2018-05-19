@@ -3,6 +3,10 @@ let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
+
+exports.navtiveLogin = function(req , res){
+  console.log(req.body)
+}
 exports.Signup = function (req, res) {
   console.log("ress" , req.body)
   var username = req.body.username

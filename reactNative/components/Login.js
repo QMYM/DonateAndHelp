@@ -3,6 +3,7 @@ import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndica
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
+import { Button } from 'react-native-elements';
 
 class Login extends React.Component {
   constructor(props) {
@@ -87,8 +88,6 @@ class Login extends React.Component {
 
       </View>
     }
-  
-      
       </View>
       );
   }
