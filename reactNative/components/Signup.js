@@ -21,7 +21,6 @@ class Signup extends React.Component {
 
  }
 
-<<<<<<< HEAD
   send (username,email,password , confirmPassword) { // sending post reqeust to the server
     console.log("Hi Sign up!!");
   if (confirmPassword === password) {
@@ -31,7 +30,7 @@ class Signup extends React.Component {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
-=======
+
   submitDonater (username,email,password , confirmPassword) { // sending post reqeust to the server
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
@@ -41,7 +40,6 @@ class Signup extends React.Component {
       email:email,
       password:password,
       user: ''
->>>>>>> b04db4869c0a16eea67e7e50748f124d38dbf2ed
     })
     .then(function (res) {
       //console.log(res, "Hi res axios")
