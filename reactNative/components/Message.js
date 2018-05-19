@@ -19,15 +19,15 @@ class Message extends React.Component {
       senderMess: [],  
       allMessages: [],
       messageForDOM:"",
-       modalVisible: false,
-       check:true
+      modalVisible: false,
+      check:true
     }
   }
   componentDidMount () {
     var x = this
     x.user()
     x.getPhotoForMessages();
-    axios.get('http://172.20.10.2:3000/recieveMessage')
+    axios.get('http://192.168.1.4:3000/recieveMessage')
     .then(function (response) {
       var mes = []
       var mess = []
@@ -49,7 +49,7 @@ class Message extends React.Component {
 
   user () {
     var x = this
-    axios.get('http://172.20.10.2:3000/sessionName')
+    axios.get('http://192.168.1.4:3000/sessionName')
     .then(function (res) {
       x.setState({sessionUser: res.data})
     }).catch(function (err) {
@@ -61,7 +61,7 @@ class Message extends React.Component {
     var arr = []
     var rec = []
     var test = [];
-    axios.get('http://172.20.10.2:3000/getPhotoForMessages')
+    axios.get('http://192.168.1.4:3000/getPhotoForMessages')
     .then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
@@ -86,44 +86,65 @@ class Message extends React.Component {
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+  sendMessage (to, text) {
+    var x = this
+    axios.post('http://192.168.1.4:3000/sendMessage', {user: to, text: text})
+    .then(function (res) {
+      x.setState({
+        messageForDOM:" Your Message has been sent"
+      })
+    }).catch(function (err) {
+      x.setState({
+        messageForDOM:" User Not Found!"
+      })
+    })
+  }
 
 
   render() {
    
     return (
       <View style={styles.container}>
-           <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 22}}>
-            <View>
-              <Text>Hello World!</Text>
+      <Modal
+      animationType="slide"
+      transparent={false}
+      visible={this.state.modalVisible}
+      onRequestClose={() => {
+        alert('Modal has been closed.');
+      }}>
+      <View style={{marginTop: 22}}>
+      <Text>Send Message</Text>
+      <Text>To</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
+      <TextInput
+      style = {styles.input}
+      placeholder="Enter your user!"
+      onChangeText={(user) => this.setState({user})}
+      />
+      <Text>Subject</Text>
+      <TextInput
+      style = {styles.input}
+      placeholder="Enter your user!"
+      onChangeText={(text) => this.setState({text})}
+      />
+      <Button
+      onPress={() => this.sendMessage(this.state.user, this.state.text)}
+      title="Send"
+      />   
+      <Button title="Close"  onPress={() => {
+        this.setModalVisible(!this.state.modalVisible);
+      }}/>
+      </View>
+      </Modal>
 
       <Text>
       welcome Message
       </Text>
-   
-        <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Text>Show Modal</Text>
-        </TouchableHighlight>
-        
+      
+      <Button title="Show Modal"  onPress={() => {
+        this.setModalVisible(true);
+      }}/>
+      
       <View>
       {this.state.reciver.map(item => 
         <View key={ item._id }>
@@ -140,8 +161,8 @@ class Message extends React.Component {
     }
     {this.state.messages.map( item => 
       <View key={ item._id }>
-        <Text>{item.sender}</Text>
-        <Text>{item.message}</Text>
+      <Text>{item.sender}</Text>
+      <Text>{item.message}</Text>
       </View>
 
       )}

@@ -10,7 +10,8 @@
         "test": "mocha",
         "test-react": "mocha 'test-react/test-react.{js,jsx}' --recursive --compilers js:babel-register,jsx:babel-register",
         "react": "webpack -d --watch",
-        "server": "nodemon server/index.js"
+        "server": "nodemon server/index.js",
+        "heroku-postbuild": "webpack -d "
     },
     "repository": {
         "type": "git",

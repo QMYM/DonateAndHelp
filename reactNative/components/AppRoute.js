@@ -14,6 +14,7 @@ import Login from "./Login"
 import Home from "./Home"
 import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
+import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
 import Beneficiaries from "./Beneficiaries"
 
@@ -54,6 +55,12 @@ export default class AppRoute extends React.Component {
         <Scene key="Donor_Campaign"
           component={Donor_Campaign}
           title="Donor_Campaign"
+          
+        />
+        <Scene key="Donor_Tab"
+          component={Donor_Tab}
+           hideNavBar={true}
+          title="Donor_Tab"
           
         />
         <Scene key="Message"
