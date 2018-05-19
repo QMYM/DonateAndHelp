@@ -56,7 +56,8 @@ class Donor extends React.Component {
         
    <Button  onPress={() => Actions.Donor_Campaign()}
             title="Campain"/>
-
+<Button  onPress={() => Actions.Message()}
+            title="Message"/>
       </View>
       );
   }
