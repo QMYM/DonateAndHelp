@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker} from 'react-native';
+import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
@@ -21,7 +21,7 @@ class Signup extends React.Component {
   submitDonater (username,email,password , confirmPassword) { // sending post reqeust to the server
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.128:3000/Donater',
+    axios.post('http://172.20.10.2:3000/Donater',
      {
       username: username,
       email:email,
@@ -45,7 +45,7 @@ class Signup extends React.Component {
 submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
      if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.128:3000/Company',
+    axios.post('http://172.20.10.2:3000/Company',
      {
       username: username,
       email:email,
@@ -71,6 +71,7 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
    
     return (  
         <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View>
          <Text style = {styles.text}> Choose Your Career !</Text>
 
@@ -126,6 +127,8 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
       title="Sign up Donor"
       />
                     </View>}
+    </KeyboardAvoidingView>
+                    
       </View>
       );
   }
