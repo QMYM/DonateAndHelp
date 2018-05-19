@@ -25,7 +25,7 @@ class Message extends React.Component {
     var x = this
     x.user()
     x.getPhotoForMessages();
-    axios.get('http://192.168.1.65:3000/recieveMessage')
+    axios.get('http://192.168.1.128:3000/recieveMessage')
     .then(function (response) {
       var mes = []
       var mess = []
@@ -47,7 +47,7 @@ class Message extends React.Component {
 
   user () {
     var x = this
-    axios.get('http://192.168.1.65:3000/sessionName')
+    axios.get('http://192.168.1.128:3000/sessionName')
     .then(function (res) {
       x.setState({sessionUser: res.data})
     }).catch(function (err) {
@@ -59,7 +59,7 @@ class Message extends React.Component {
     var arr = []
     var rec = []
     var test = [];
-    axios.get('http://192.168.1.65:3000/getPhotoForMessages')
+    axios.get('http://192.168.1.128:3000/getPhotoForMessages')
     .then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
