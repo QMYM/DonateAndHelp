@@ -17,7 +17,7 @@ class Donor extends React.Component {
 
    componentDidMount () {
     var x = this
-    axios.get('http://192.168.1.83:3000/companyCam')
+    axios.get('http://192.168.1.65:3000/companyCam')
       .then(function (res) {
         console.log(res.data)
         x.setState({camp: res.data})
@@ -26,14 +26,6 @@ class Donor extends React.Component {
         console.log(err)
       })
   }
-
-  //  handlechangeAmount (evt) { // change the state for the input text
-  //   var amount = evt.target.value
-  //   this.setState({
-  //     amount: amount
-  //   })
-  //   // this.input.value="";
-  // };
 
   render() {
     return (
