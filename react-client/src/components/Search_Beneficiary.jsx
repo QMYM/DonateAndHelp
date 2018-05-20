@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import Message from './Message.jsx'
+import Message from './message.jsx'
 import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 

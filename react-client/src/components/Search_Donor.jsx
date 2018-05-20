@@ -12,7 +12,7 @@ import {
 
 import Donor_Profile from './Donor_Profile.jsx'
 import Donor_Campaign from './Donor_Campaign.jsx'
-import Message from './Message.jsx'
+import Message from './message.jsx'
 
 class Search_Donor extends React.Component {
   constructor (props) {
