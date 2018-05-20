@@ -214,7 +214,6 @@ class Message extends React.Component {
           </div>
         </nav>
 
-
         <br />
         <br />
         <a href='javascript:void(0)' className='w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right' data-toggle='modal' data-target='#myModal' ><i className='fa fa-pencil' /></a>
@@ -237,10 +236,6 @@ class Message extends React.Component {
           <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
               </div>
             </div>
-       
-         
-      
-
             )}
         </nav>
         <div id="closeMenShanAlllah">
@@ -281,10 +276,7 @@ class Message extends React.Component {
                       <div className='msg messageSent'>
                         {mes2.message}
                         <span className='timestamp'>{item.time.slice(11, 16)}</span>
-
                       </div>
-              
-
                     </div>
                   )}
                   {this.state.rightMes.map(mes =>
@@ -303,10 +295,8 @@ class Message extends React.Component {
                       <button className='btn btn-raised btn-info' type='button' onClick={() => this.sendMessage(item.sender, this.state.text)}>Send <i className='w3-margin-left fa  fa-chevron-circle-right' /></button>
                     </div>
                   </div>
-
                   <br />
                   <br />
-           
                   <hr />
                   <br />
                   <br />
