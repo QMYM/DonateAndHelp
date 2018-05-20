@@ -196,7 +196,7 @@ class Message extends React.Component {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
-              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+              <li><a href='/' to='/'>Home</a></li>
              
             </ul>
             <form className='form-inline my-2 my-lg-0'>
