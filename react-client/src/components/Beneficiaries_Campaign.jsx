@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router-dom'
 import {Well} from 'react-bootstrap'
-import Message from './Message.jsx'
+import Message from './message.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 class Beneficiaries_Campaign extends React.Component {

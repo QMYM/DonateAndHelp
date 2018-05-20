@@ -12,7 +12,7 @@ import {Image} from 'react-bootstrap'
 
 import Donor_Campaign from './Donor_Campaign.jsx'
 import Search_Donor from './Search_Donor.jsx'
-import Message from './Message.jsx'
+import Message from './message.jsx'
 
 class Donor_Profile extends React.Component {
   constructor (props) {
