@@ -78,6 +78,7 @@ export default class AppRoute extends React.Component {
         />
         <Scene
           key="Beneficiaries_Tab"
+           hideNavBar={true}
           component={Beneficiaries_Tab}
           title="Beneficiaries_Tab"
         />

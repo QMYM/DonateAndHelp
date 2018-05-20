@@ -8,6 +8,12 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+
+
+import Signup from './Signup.jsx'
+import Login from './Login.jsx'
+import Home from './Home.jsx'
+
 class TheApp extends React.Component {
   constructor (props) {
     super(props)
@@ -19,39 +25,38 @@ class TheApp extends React.Component {
   render () {
     return (
       <div >
-        <nav className='navbar navbar-fixed-top navbar-default '>
-          <div className='container'>
-            <div className='navbar-header'>
-              <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-                <span className='icon-bar' />
-                <span className='icon-bar' />
-                <span className='icon-bar' />
-              </button>
-              <ul className='navbar-nav mr-auto nav '>
-                <li>  <a href='/'>Main</a></li>
-                <li ><a href='/'>About</a></li>
-                <li><a href='/' >Contact</a></li>
-                <li><a href='/theapp' >The App</a></li>
-              </ul>
-            </div>
-            <div className='collapse navbar-collapse' id='myNavbar'>
-              <form className=' '>
-                <ul className='nav navbar-nav navbar-right' >
-                  <li>
-                    <a href='/login' className='icon-bar' to='/login'>Login</a>
-                  </li>
-                  <li>
-                    <a href='/signup' className='text-light '>Signup </a>
-                  </li>
-                  <li>
-                    <a href='#' className='w3-bar-item w3-button w3-hide-small w3-right w3-hover-red'>
-                      <i className='fa fa-search' />
-                    </a></li>
-                </ul>
-              </form>
-            </div>
-          </div>
-        </nav>
+<nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
+    <a href='#'></a>
+    <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <span className='navbar-toggler-icon' />
+    </button>
+
+    <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+      <ul className='navbar-nav mr-auto' />
+      <ul className='navbar-nav mr-auto nav '>
+        <li><a href='/'>Main</a></li>
+        <li><a href='/'>About</a></li>
+        <li><a href='/' >Contact</a></li>
+        <li><a href='/theapp' >The App</a></li>
+      </ul>
+      <form className='form-inline my-2 my-lg-0'>
+        <Router>
+          <ul className='nav navbar-nav navbar-right' >
+            <li>
+              <a href='/login' className='icon-bar' to='/login'>Login</a>
+            </li>
+            <li>
+              <a href='/signup' >Signup </a>
+            </li><li><a /></li>
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+          </ul>
+        </Router>
+        <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' />
+        <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
+      </form>
+    </div>
+  </nav>
 
         <header className='w3-display-container w3-center'>
           <button className='w3-button w3-block w3-green w3-hide-large w3-hide-medium' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button>
