@@ -7,18 +7,45 @@ class Donor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false,
+  
+      camp: [],
+      amount: '',
+      term: ''
      
    }
  }
 
+   componentDidMount () {
+    var x = this
+    axios.get('http://192.168.1.83:3000/companyCam')
+      .then(function (res) {
+        console.log(res.data)
+        x.setState({camp: res.data})
+      // const camp=res.data.results.map(obj=>{})
+      }).catch(function (err) {
+        console.log(err)
+      })
+  }
+
+  //  handlechangeAmount (evt) { // change the state for the input text
+  //   var amount = evt.target.value
+  //   this.setState({
+  //     amount: amount
+  //   })
+  //   // this.input.value="";
+  // };
+
   render() {
     return (
-      <View style={styles.container}>
 
-      <Text>
-      welcome donor
-      </Text>
+      <View style={styles.container}>
+        {this.state.camp.map(item => 
+        
+       <View style={styles.campview}>
+        <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
+        <Text>{item.campaignDescription}</Text>
+      </View>
+      )}
       </View>
       );
   }
@@ -31,6 +58,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  campview:{
+      marginTop :10,
+      marginBottom :10,
+       width: 300,
+       height: 80,
+      backgroundColor: 'white',
+       borderRadius: 10,
+       borderWidth: 3,
+        borderColor: '#d6d7da',
   },
 });
 
