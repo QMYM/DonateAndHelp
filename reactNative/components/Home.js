@@ -17,6 +17,21 @@ export default class Home extends React.Component {
    }
  }
  render() {
+// <<<<<<< HEAD
+//   return (
+//     <View style={styles.container}>
+//     <Text>
+//     welcome Home
+//     </Text>
+//     <Button onPress={() => Actions.Signup()}
+//     title="Signup" />
+
+//     <Button onPress={() => Actions.Login()}
+//     title="Login" />
+
+//     </View>
+//     );
+// =======
     return (
         <View>
         
@@ -39,6 +54,7 @@ export default class Home extends React.Component {
         </View>
 
       );
+
   }
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { AppRegistry,StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
 import axios from 'axios'
 import { TabNavigator } from 'react-navigation'; // Version can be specified in package.json
-
 import {
   Scene,
   Router,
@@ -24,13 +23,12 @@ import Beneficiaries_Tab from "./Beneficiaries_Tab"
 export default class AppRoute extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-   
+    this.state = { 
    }
  }
 
-  render() {
-    return (
+ render() {
+  return (
     <Router>
       <Scene key="root">
         <Scene 
@@ -90,8 +88,8 @@ export default class AppRoute extends React.Component {
         />
       </Scene>
     </Router>
-      );
-  }
+    );
+}
 }
 
 const styles = StyleSheet.create({

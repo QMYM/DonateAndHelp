@@ -389,7 +389,7 @@ class Donor_Profile extends React.Component {
                         <li><a data-toggle='modal' data-target='#myModal'>Edit</a></li>
                       </ul>
                     </div>
-                    <p>Some Discription</p>
+                    <p>Some Description</p>
                   </div>
                   <div className='section'>
                     <h3>Information</h3>

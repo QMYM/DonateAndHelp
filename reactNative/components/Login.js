@@ -15,6 +15,9 @@ class Login extends React.Component {
    }
  }
 
+  submitLoginDonor () { // send post request to the server
+    console.log("hi login page")
+    axios.post('http://192.168.1.146:3000/loginDonater', {
 
   submitLoginDonater () { // send post request to the server
     axios.post('http://192.168.1.65:3000/loginDonater', {
@@ -66,12 +69,26 @@ class Login extends React.Component {
         
         <Text>Password : </Text>
 
+<<<<<<< HEAD
         <TextInput 
         style = {styles.input}
         secureTextEntry={true}
         placeholder="Enter your password"
         onChangeText={(password) => this.setState({password})}
         />
+=======
+      <TextInput 
+       style = {styles.input}
+      secureTextEntry={true}
+      placeholder="Enter your password"
+      onChangeText={(password) => this.setState({password})}
+      />
+  
+      <Button
+      onPress={() => this.submitLoginDonor()}
+      title="Login"
+      />
+>>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
 
         { this.state.user === 'false' ? (
           <View>
