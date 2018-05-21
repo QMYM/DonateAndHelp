@@ -196,7 +196,7 @@ class Message extends React.Component {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
-              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+              <li><a href='/' to='/'>Home</a></li>
              
             </ul>
             <form className='form-inline my-2 my-lg-0'>
@@ -213,7 +213,6 @@ class Message extends React.Component {
             </form>
           </div>
         </nav>
-
 
         <br />
         <br />
@@ -237,10 +236,6 @@ class Message extends React.Component {
           <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
               </div>
             </div>
-       
-         
-      
-
             )}
         </nav>
         <div id="closeMenShanAlllah">
@@ -281,10 +276,7 @@ class Message extends React.Component {
                       <div className='msg messageSent'>
                         {mes2.message}
                         <span className='timestamp'>{item.time.slice(11, 16)}</span>
-
                       </div>
-              
-
                     </div>
                   )}
                   {this.state.rightMes.map(mes =>
@@ -303,10 +295,8 @@ class Message extends React.Component {
                       <button className='btn btn-raised btn-info' type='button' onClick={() => this.sendMessage(item.sender, this.state.text)}>Send <i className='w3-margin-left fa  fa-chevron-circle-right' /></button>
                     </div>
                   </div>
-
                   <br />
                   <br />
-           
                   <hr />
                   <br />
                   <br />

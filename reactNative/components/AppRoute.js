@@ -13,8 +13,11 @@ import Login from "./Login"
 import Home from "./Home"
 import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
+import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
 import Beneficiaries from "./Beneficiaries"
+import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
+import Beneficiaries_Tab from "./Beneficiaries_Tab"
 
 export default class AppRoute extends React.Component {
   constructor(props) {
@@ -59,10 +62,26 @@ export default class AppRoute extends React.Component {
     component={Beneficiaries}
     title="Beneficiaries"   
     />
+    <Scene key="Donor_Tab"
+    component={Donor_Tab}
+    hideNavBar={true}
+    title="Donor_Tab"
+    />
+    <Scene
+    key="Beneficiaries"
+    component={Beneficiaries}
+    title="Beneficiaries"
+    />
+    <Scene
+    key="Beneficiaries_Tab"
+    hideNavBar={true}
+    component={Beneficiaries_Tab}
+    title="Beneficiaries_Tab"
+    />
     </Scene>
     </Router>
     );
- }
+}
 }
 
 const styles = StyleSheet.create({

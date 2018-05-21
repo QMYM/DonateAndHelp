@@ -13,7 +13,7 @@ import Cards from 'react-credit-cards'
 import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
 import Donor_Campaign from './Donor_Campaign.jsx'
-import Message from './Message.jsx'
+import Message from './message.jsx'
 
 function searching (term) {
   return function (x) {
