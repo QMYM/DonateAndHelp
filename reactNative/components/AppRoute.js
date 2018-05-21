@@ -16,6 +16,7 @@ import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
+import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
 import Beneficiaries_Tab from "./Beneficiaries_Tab"
@@ -69,6 +70,11 @@ export default class AppRoute extends React.Component {
         <Scene key="Message"
           component={Message}
           title="Message"
+          
+        />
+        <Scene key="Message_Reciver"
+          component={Message_Reciver}
+          title="Message_Reciver"
           
         />
           <Scene
