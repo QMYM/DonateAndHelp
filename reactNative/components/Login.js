@@ -15,6 +15,9 @@ class Login extends React.Component {
    }
  }
 
+  submitLoginDonor () { // send post request to the server
+    console.log("hi login page")
+    axios.post('http://192.168.1.146:3000/loginDonater', {
 
   submitLoginDonater () { // send post request to the server
     axios.post('http://192.168.1.65:3000/loginDonater', {
@@ -22,6 +25,7 @@ class Login extends React.Component {
       password: this.state.password
     })
       .then(response => {
+        console.log("hi login", userName, password);
         Actions.Donor_Tab()
         // should go to the home page from here
       }).catch(error => {
@@ -29,7 +33,7 @@ class Login extends React.Component {
       })
   }; 
   submitLoginCompany () {
-    axios.post('http://192.168.1.65:3000/loginCompany', {
+    axios.post('http://192.168.1.146:3000/loginCompany', {
       userName: this.state.userName,
       password: this.state.password
     })
@@ -71,6 +75,11 @@ class Login extends React.Component {
       secureTextEntry={true}
       placeholder="Enter your password"
       onChangeText={(password) => this.setState({password})}
+      />
+  
+      <Button
+      onPress={() => this.submitLoginDonor()}
+      title="Login"
       />
 
     { this.state.user === 'false' ? (
