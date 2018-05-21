@@ -4,16 +4,8 @@ let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
 
-<<<<<<< HEAD
-exports.Signup = function (req, res) {
-=======
-exports.navtiveLogin = function(req , res){
-  console.log(req.body)
-}
 
 exports.Signup = function (req, res) {
-  console.log("ress Signup" , req.body)
->>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
   var username = req.body.username
   var password = req.body.password
   var email = req.body.email
@@ -232,11 +224,6 @@ exports.getInfoForProfilePageforDonor = function(req,res){
 }
 
 exports.addProfileCompany = function (req, res) {
-<<<<<<< HEAD
-=======
-  console.log("hello company!!", req.body);
-  //var name = req.body.name
->>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
   var contactNum = req.body.phoneNum
   var description = req.body.description
   var address = req.body.address
