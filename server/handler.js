@@ -4,11 +4,7 @@ let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
 
-exports.navtiveLogin = function(req , res){
-  console.log(req.body)
-}
 exports.Signup = function (req, res) {
-  console.log("ress" , req.body)
   var username = req.body.username
   var password = req.body.password
   var email = req.body.email
@@ -181,7 +177,6 @@ exports.getImage2 = function (req, res) {
 }
 
 exports.LoginDonater = function (req, res) {
-console.log("jackel", req.body)
   var username = req.body.userName
   var password = req.body.password
   db.userDonater.findOne({ // searching for the username in the schema
@@ -581,7 +576,6 @@ exports.removeMsg = function (req, res) {
 }
 
 exports.removeCampaignComp = function (req, res) {
-  console.log(req.body.CampID, 'delete campaign by ID')
   var ID = req.body.CampID
   db.companyCampaigns.findOneAndRemove({_id: ID}, function (err, data) {
     if (err) {
@@ -593,7 +587,6 @@ exports.removeCampaignComp = function (req, res) {
 }
 
 exports.editCampaignComp = function (req, res) {
-  console.log(req.body, 'edit campaign in server!')
   var campaignID = req.body.campaignID
   var campaignName = req.body.campaignName
   var campaignDescription = req.body.campaignDescription
@@ -613,7 +606,6 @@ exports.editCampaignComp = function (req, res) {
 }
 
 exports.removeCampaignDonor = function (req, res) {
-  console.log(req.body.CampID, 'delete campaign by ID')
   var ID = req.body.CampID
   db.donorCampaigns.findOneAndRemove({_id: ID}, function (err, data) {
     if (err) {
@@ -625,7 +617,6 @@ exports.removeCampaignDonor = function (req, res) {
 }
 
 exports.editCampaignDonor = function (req, res) {
-  console.log(req.body, 'edit campaign in server!')
   var campaignID = req.body.campaignID
   var campaignName = req.body.campaignName
   var campaignDescription = req.body.campaignDescription
