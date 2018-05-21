@@ -12,7 +12,6 @@ class Message extends React.Component {
       text: '',
       messages: [],
       sessionUser: '',
-      items: [],
       rightMes: [],
       rightMes2: [],
       reciver: [],
@@ -27,7 +26,7 @@ class Message extends React.Component {
     var x = this
     x.user()
     x.getPhotoForMessages();
-    axios.get('http://192.168.1.83:3000/recieveMessage')
+    axios.get('http://192.168.1.65:3000/recieveMessage')
     .then(function (response) {
       var mes = []
       var mess = []
@@ -49,7 +48,7 @@ class Message extends React.Component {
 
   user () {
     var x = this
-    axios.get('http://192.168.1.83:3000/sessionName')
+    axios.get('http://192.168.1.65:3000/sessionName')
     .then(function (res) {
       x.setState({sessionUser: res.data})
     }).catch(function (err) {
@@ -61,7 +60,7 @@ class Message extends React.Component {
     var arr = []
     var rec = []
     var test = [];
-    axios.get('http://192.168.1.83:3000/getPhotoForMessages')
+    axios.get('http://192.168.1.65:3000/getPhotoForMessages')
     .then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
@@ -88,8 +87,9 @@ class Message extends React.Component {
   }
   sendMessage (to, text) {
     var x = this
-    axios.post('http://192.168.1.83:3000/sendMessage', {user: to, text: text})
+    axios.post('http://192.168.1.65:3000/sendMessage', {user: to, text: text})
     .then(function (res) {
+      console.log(res , "ress")
       x.setState({
         messageForDOM:" Your Message has been sent"
       })
@@ -100,6 +100,22 @@ class Message extends React.Component {
     })
   }
 
+  openMail (personName) {
+    var arr = []
+    var arr2 = []
+    for (var i = 0; i < this.state.messages.length; i++) {
+      if (this.state.messages[i].sender === personName) {
+        arr.push(this.state.messages[i])
+      }
+    }
+    for (var i = 0; i < this.state.senderMess.length; i++) {
+      if (this.state.senderMess[i].reciver === personName) {
+        arr2.push(this.state.senderMess[i])
+      }
+    }
+    this.setState({rightMes: arr})
+    this.setState({rightMes2: arr2})
+  }
 
   render() {
    
@@ -114,8 +130,8 @@ class Message extends React.Component {
       }}>
       <View style={{marginTop: 22}}>
       <Text>Send Message</Text>
-      <Text>To</Text>
 
+      <Text>To</Text>
       <TextInput
       style = {styles.input}
       placeholder="Enter your user!"
@@ -124,7 +140,7 @@ class Message extends React.Component {
       <Text>Subject</Text>
       <TextInput
       style = {styles.input}
-      placeholder="Enter your user!"
+      placeholder="Enter your text!"
       onChangeText={(text) => this.setState({text})}
       />
       <Button
@@ -152,19 +168,18 @@ class Message extends React.Component {
         rounded
         size="xlarge"
         source={{uri: item.image}}
-        onPress={() => console.log("Works!")}
+      onPress={() => Actions.Message_Reciver({text : item.username , message : this.state.messages , sender : this.state.senderMess})}
         activeOpacity={0.7}
         />
         <Text>{item.username}</Text>
         </View>
         )
     }
-    {this.state.messages.map( item => 
-      <View key={ item._id }>
-      <Text>{item.sender}</Text>
-      <Text>{item.message}</Text>
-      </View>
 
+    {this.state.rightMes.map(item => 
+<View>
+  <Text>{item.message}</Text>
+</View>
       )}
     </View>
     </View>
@@ -175,10 +190,9 @@ class Message extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

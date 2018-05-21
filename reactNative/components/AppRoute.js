@@ -15,6 +15,7 @@ import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
+import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
 import Beneficiaries_Tab from "./Beneficiaries_Tab"
@@ -29,56 +30,63 @@ export default class AppRoute extends React.Component {
  render() {
   return (
     <Router>
-    <Scene key="root">
-    <Scene key="Home"
-    component={Home}
-    title="Home"
-    initial = {true}
-    />
-    <Scene
-    key="Login"
-    component={Login}
-    title="Login"
-    />
-    <Scene key="Signup"
-    component={Signup}
-    title="Signup"
-    />
-    <Scene key="Donor"
-    hideNavBar={true}
-    component={Donor}
-    title="Donor"
-    />
-    <Scene key="Donor_Campaign"
-    component={Donor_Campaign}
-    title="Donor_Campaign"
-    />
-    <Scene key="Message"
-    component={Message}
-    title="Message"
-    />
-    <Scene
-    key="Beneficiaries"
-    component={Beneficiaries}
-    title="Beneficiaries"   
-    />
-    <Scene key="Donor_Tab"
-    component={Donor_Tab}
-    hideNavBar={true}
-    title="Donor_Tab"
-    />
-    <Scene
-    key="Beneficiaries"
-    component={Beneficiaries}
-    title="Beneficiaries"
-    />
-    <Scene
-    key="Beneficiaries_Tab"
-    hideNavBar={true}
-    component={Beneficiaries_Tab}
-    title="Beneficiaries_Tab"
-    />
-    </Scene>
+      <Scene key="root">
+        <Scene 
+          key="Home"
+          component={Home}
+          title="Home"
+          initial = {true}
+        />
+        <Scene
+          key="Login"
+          component={Login}
+          title="Login"
+        />
+      
+          <Scene key="Signup"
+          component={Signup}
+          title="Signup"
+          
+        />
+          <Scene key="Donor"
+           hideNavBar={true}
+          component={Donor}
+          title="Donor"
+          
+        />
+        <Scene key="Donor_Campaign"
+          component={Donor_Campaign}
+          title="Donor_Campaign"
+          
+        />
+        <Scene key="Donor_Tab"
+          component={Donor_Tab}
+           hideNavBar={true}
+          title="Donor_Tab"
+          
+        />
+        <Scene key="Message"
+          component={Message}
+          title="Message"
+          
+        />
+        <Scene key="Message_Reciver"
+          component={Message_Reciver}
+          title="Message_Reciver"
+          
+        />
+          <Scene
+          key="Beneficiaries"
+          component={Beneficiaries}
+          title="Beneficiaries"
+        />
+        <Scene
+          key="Beneficiaries_Tab"
+           hideNavBar={true}
+          component={Beneficiaries_Tab}
+          title="Beneficiaries_Tab"
+        />
+      </Scene>
     </Router>
     );
 }

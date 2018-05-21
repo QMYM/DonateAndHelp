@@ -196,7 +196,6 @@ class Message extends React.Component {
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
-              <li><a href='/' to='/'>Home</a></li>
              
             </ul>
             <form className='form-inline my-2 my-lg-0'>
@@ -232,7 +231,7 @@ class Message extends React.Component {
                     <img className=' img-circle w3-margin-right' src={emp.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq'} style={{width: '70px', hight: '70px'}} /><span className='w3-opacity w3-large'>{emp.username}</span>
                   </div>
                 </a>
-                    <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
+         <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
           <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
               </div>
             </div>

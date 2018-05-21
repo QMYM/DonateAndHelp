@@ -14,7 +14,6 @@ class Signup extends React.Component {
       confirmPassword: '',
       user: 'true'
    }
-
  }
 
   send (username,email,password , confirmPassword) { // sending post reqeust to the server
@@ -55,7 +54,11 @@ class Signup extends React.Component {
 submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
      if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
+<<<<<<< HEAD
+    axios.post('http://192.168.1.65:3000/Company',
+=======
     axios.post('http://192.168.1.146:3000/Company',
+>>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
      {
       username: username,
       email:email,
@@ -78,7 +81,6 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
   };
 
   render() {
-   
     return (  
         <View style={styles.container}>
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
