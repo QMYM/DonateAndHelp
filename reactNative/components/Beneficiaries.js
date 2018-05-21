@@ -18,9 +18,7 @@ class Beneficiaries extends React.Component {
     var x = this
     axios.get('http://192.168.1.83:3000/donorCam')
       .then(function (res) {
-        console.log(res.data)
         x.setState({camp: res.data})
-      // const camp=res.data.results.map(obj=>{})
       }).catch(function (err) {
         console.log(err)
       })

@@ -12,7 +12,6 @@ class Message extends React.Component {
       text: '',
       messages: [],
       sessionUser: '',
-      items: [],
       rightMes: [],
       rightMes2: [],
       reciver: [],
@@ -191,10 +190,9 @@ class Message extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
