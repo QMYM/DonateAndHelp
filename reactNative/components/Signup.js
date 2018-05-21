@@ -15,7 +15,6 @@ class Signup extends React.Component {
       confirmPassword: '',
       user: 'true'
    }
-
  }
 
   submitDonater (username,email,password , confirmPassword) { // sending post reqeust to the server
