@@ -28,7 +28,7 @@ class Login extends React.Component {
       })
     }; 
     submitLoginCompany () {
-      axios.post('http://192.168.1.65:3000/loginCompany', {
+      axios.post('https://qaysdonate.herokuapp.com/loginCompany', {
         userName: this.state.userName,
         password: this.state.password
       })
