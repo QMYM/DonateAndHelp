@@ -19,6 +19,7 @@ import Message from "./Message"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
 import Beneficiaries_Tab from "./Beneficiaries_Tab"
+import Image from "./Image"
 
 export default class AppRoute extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class AppRoute extends React.Component {
           component={Home}
           title="Home"
           initial = {true}
+          
         />
         <Scene
           key="Login"
@@ -81,6 +83,13 @@ export default class AppRoute extends React.Component {
            hideNavBar={true}
           component={Beneficiaries_Tab}
           title="Beneficiaries_Tab"
+        />
+
+         <Scene
+          key="Image"
+          component={Image}
+          title="Image"
+         
         />
       </Scene>
     </Router>
