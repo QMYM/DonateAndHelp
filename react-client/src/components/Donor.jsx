@@ -13,7 +13,7 @@ import Cards from 'react-credit-cards'
 import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
 import Donor_Campaign from './Donor_Campaign.jsx'
-import Message from './message.jsx'
+import Donor_Message from './Donor_Message.jsx'
 
 function searching (term) {
   return function (x) {
@@ -68,13 +68,13 @@ class Donor extends React.Component {
   };
 
   submitDonate (amount ) {
-    alert("Thanks For Donation"); 
     axios.post('/editAmount' , {amount:amount , user : this.state.user })
     .then(function (res) {
+    alert("Thanks For Donation"); 
       window.location.reload()
     })
     .catch(function (err) {
-      console.log(err)
+      alert("the amount is so high")
     })
   }
   user(name){
@@ -101,11 +101,11 @@ class Donor extends React.Component {
                 <ul className='nav navbar-nav navbar-right ' >
                   {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
                   <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
-                  <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+                  <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
-                  <Route path='/message' component={Message} />
+                  <Route path='/Donor_Message' component={Donor_Message} />
                   <Route path='/Donor_Campaign' component={Donor_Campaign} />
                   <Route path='/Donor_Profile' component={Donor_Profile} />
                   <Route path='/searchD' component={Search_Donor} />
