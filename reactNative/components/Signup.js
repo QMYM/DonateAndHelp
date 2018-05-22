@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
+ 
 
 class Signup extends React.Component {
   constructor(props) {
@@ -14,22 +15,13 @@ class Signup extends React.Component {
       confirmPassword: '',
       user: 'true'
    }
- }
 
-  send (username,email,password , confirmPassword) { // sending post reqeust to the server
-    console.log("Hi Sign up!!");
-  if (confirmPassword === password) {
-   if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.146:3000/Donater',
-     {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
+ }
 
   submitDonater (username,email,password , confirmPassword) { // sending post reqeust to the server
   if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('http://192.168.1.146:3000/Donater',
+    axios.post('http://192.168.1.83:3000/Donater',
      {
       username: username,
       email:email,
@@ -37,11 +29,10 @@ class Signup extends React.Component {
       user: ''
     })
     .then(function (res) {
-      //console.log(res, "Hi res axios")
-     
         Actions.Donor_Tab()
+
     }).catch(function (err) {
-      console.log("error in axios" , err)
+      console.log("err" , err)
     })
   }else {
         Alert.alert('enter your password')
@@ -54,11 +45,7 @@ class Signup extends React.Component {
 submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
      if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-<<<<<<< HEAD
-    axios.post('http://192.168.1.65:3000/Company',
-=======
-    axios.post('http://192.168.1.146:3000/Company',
->>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
+    axios.post('http://192.168.1.83:3000/Company',
      {
       username: username,
       email:email,
@@ -81,9 +68,11 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
   };
 
   render() {
+   
     return (  
         <View style={styles.container}>
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled keyboardVerticalOffset={100}>
+      <ScrollView>
         <View>
          <Text style = {styles.text}> Choose Your Career !</Text>
 
@@ -139,6 +128,7 @@ submitCompany (username, email, password, confirmPassword) { // sending post req
       title="Sign up Donor"
       />
                     </View>}
+        </ScrollView>
     </KeyboardAvoidingView>
                     
       </View>

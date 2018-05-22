@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView } from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
@@ -14,10 +14,6 @@ class Login extends React.Component {
      user:''  
    }
  }
-
-  submitLoginDonor () { // send post request to the server
-    console.log("hi login page")
-    axios.post('http://192.168.1.146:3000/loginDonater', {
 
   submitLoginDonater () { // send post request to the server
     axios.post('http://192.168.1.65:3000/loginDonater', {
@@ -49,6 +45,8 @@ class Login extends React.Component {
       return (
         <View style={styles.container}>
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <ScrollView>
+
         <View>
         <Text style = {styles.text}> Choose Your Career !</Text>
 
@@ -69,26 +67,12 @@ class Login extends React.Component {
         
         <Text>Password : </Text>
 
-<<<<<<< HEAD
         <TextInput 
         style = {styles.input}
         secureTextEntry={true}
         placeholder="Enter your password"
         onChangeText={(password) => this.setState({password})}
         />
-=======
-      <TextInput 
-       style = {styles.input}
-      secureTextEntry={true}
-      placeholder="Enter your password"
-      onChangeText={(password) => this.setState({password})}
-      />
-  
-      <Button
-      onPress={() => this.submitLoginDonor()}
-      title="Login"
-      />
->>>>>>> 7917cacfa9dd0808d2dc8a84e8c35e2ced9e077f
 
         { this.state.user === 'false' ? (
           <View>
@@ -109,7 +93,9 @@ class Login extends React.Component {
 
         </View>
       }
+      </ScrollView>
       </KeyboardAvoidingView>
+
       </View>
       );
     }
