@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView } from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView  , Button} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
-import { Button } from 'react-native-elements';
+import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
 
 class Login extends React.Component {
   constructor(props) {
@@ -43,21 +43,30 @@ class Login extends React.Component {
 
     render() {
       return (
-        <View style={styles.container}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-      <ScrollView>
-
+   <Container>
         <View>
+        </View>
+        <Content>
         <Text style = {styles.text}> Choose Your Career !</Text>
-
         <Picker selectedValue = {this.state.user} onValueChange = {(itemValue) => this.setState({user:itemValue})}>
         <Picker.Item label = "Company" value=''/>
         <Picker.Item label = "Donor" value='false' />
-        
         </Picker>
-        
-        
-        </View>
+          <Form>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input 
+               style = {styles.input}
+        onChangeText={(userName) => this.setState({userName})}/>
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input />
+            </Item>
+          </Form>
+      
+        <View style={styles.container}>
+
         <Text>User Name : </Text>
         <TextInput
         style = {styles.input}
@@ -93,10 +102,10 @@ class Login extends React.Component {
 
         </View>
       }
-      </ScrollView>
-      </KeyboardAvoidingView>
-
       </View>
+        </Content>
+      
+      </Container>
       );
     }
   }
