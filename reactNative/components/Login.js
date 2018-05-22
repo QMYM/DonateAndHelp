@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView } from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
@@ -45,6 +45,8 @@ class Login extends React.Component {
       return (
         <View style={styles.container}>
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <ScrollView>
+
         <View>
         <Text style = {styles.text}> Choose Your Career !</Text>
 
@@ -91,7 +93,9 @@ class Login extends React.Component {
 
         </View>
       }
+      </ScrollView>
       </KeyboardAvoidingView>
+
       </View>
       );
     }
