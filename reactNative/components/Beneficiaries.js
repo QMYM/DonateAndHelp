@@ -23,7 +23,7 @@ class Beneficiaries extends React.Component {
 
   componentDidMount () {
     var x = this
-    axios.get('http://192.168.1.83:3000/donorCam')
+    axios.get('https://qaysdonate.herokuapp.com/donorCam')
       .then(function (res) {
         x.setState({camp: res.data})
       }).catch(function (err) {
