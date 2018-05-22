@@ -27,10 +27,12 @@ class Donor extends React.Component {
     this.state = {
       camp: [],
       amount: '',
-      term: ''
+      term: '' , 
+      user : ''
     }
     this.logout = this.logout.bind(this)
     this.search = this.search.bind(this)
+    this.user = this.user.bind(this)
     this.handlechangeAmount = this.handlechangeAmount.bind(this)
   }
 
@@ -52,9 +54,7 @@ class Donor extends React.Component {
     var x = this
     axios.get('/companyCam')
       .then(function (res) {
-        console.log(res.data)
         x.setState({camp: res.data})
-      // const camp=res.data.results.map(obj=>{})
       }).catch(function (err) {
         console.log(err)
       })
@@ -65,15 +65,23 @@ class Donor extends React.Component {
     this.setState({
       amount: amount
     })
-    // this.input.value="";
   };
 
-  submitDonate () {
-    console.log('Donate')
+  submitDonate (amount ) {
+    alert("Thanks For Donation"); 
+    axios.post('/editAmount' , {amount:amount , user : this.state.user })
+    .then(function (res) {
+      window.location.reload()
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+  }
+  user(name){
+    this.setState({user:name})
   }
 
   render () {
-    // console.log(this.state.camp)
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
@@ -124,7 +132,7 @@ class Donor extends React.Component {
                         <h1>{item.campaignName}</h1>
                       </div>
                       <div className='panel-body'>
-                        <h2>From : {item.username}</h2>
+                        <h2 >From : {item.username}</h2>
                         <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
 
                         
@@ -132,7 +140,7 @@ class Donor extends React.Component {
                       <p> {item.campaignDescription}</p>
                       <div className='panel-footer'>
                         <h3>{item.campaignAmount}</h3><h3>JOD</h3>
-                        <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Donate</button>
+                        <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={()=> this.user(item._id)}>Donate</button>
                       </div>
                     </div>
                   </div>
@@ -174,7 +182,7 @@ class Donor extends React.Component {
                 </div>
                 <div className='modal-footer'>
                   <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
-                  <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitDonate}>Donate</button>
+                  <button type='button' className='btn btn-default' data-dismiss='modal' onClick={() => this.submitDonate(this.state.amount)}>Donate</button>
                 </div>
               </div>
 

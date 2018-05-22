@@ -103,7 +103,7 @@ class Beneficiaries extends React.Component {
                 </div>
                  <p> {item.campaignDescription}</p>
                 <div className='panel-footer'>
-                  <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                  <h3>{item.campaignAmount}</h3><h3>Items</h3>
                   <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Donate</button>
                 </div>
               </div>

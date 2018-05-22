@@ -120,7 +120,7 @@ class Donor_Campaign extends React.Component {
               <label for='usr'>Campaign Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <label for='usr'>Items :</label>
-              <input type='number' className='form-control w3-round-xlarge' id='usr' />
+              <input type='number' className='form-control w3-round-xlarge' id='usr'  onChange={this.onChange} name='campaignAmount'/>
             </div>
 
             <br />
@@ -130,7 +130,7 @@ class Donor_Campaign extends React.Component {
               <input className='btn' type='file' name='image' onChange={this.uploadPhotoCampaign} />
             </form>
             <button className='btn btn-raised btn-warning' onClick={
-              () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
+              () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.campaignAmount, this.state.beneficiaryName, this.state.campaignImage)
             } > Submit </button>
           </div>
         </Well>

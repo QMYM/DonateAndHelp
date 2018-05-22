@@ -15,8 +15,8 @@ class Home extends React.Component {
  }
  render() {
     return (
-     <View style={styles.container}>
-
+     <Container>
+      <Content >
      <Text>
      welcome Home
      </Text>
@@ -26,7 +26,8 @@ class Home extends React.Component {
             <Button onPress={() => Actions.Login()}>
             <Text>Login </Text>
           </Button>
-          </View>
+           </Content>
+     </Container>
       );
 
   }

@@ -50,7 +50,6 @@ class Donor_Profile extends React.Component {
     var x = this
     axios.get("/getInfoForProfilePageforDonor").then(function(res){
       var alo = res.data[0]
-      console.log("i'm here tho!",res.data[0])
         x.setState({
           newDescription:alo.description,
            newPhone:alo.contactNum,
@@ -58,21 +57,19 @@ class Donor_Profile extends React.Component {
            newName:alo.name
           })
     }).catch(function(err){
-      console.lof(err)
+      console.log(err)
     })
   }
 
   submit (name, contactNum, description, address) {
     var x = this
     axios.post('/Profile_Donor', {
-      // image: this.state.image,
       name: this.state.name,
       contactNum: this.state.contactNum,
       description: this.state.description,
       address: this.state.address
     })
       .then(response => {
-        //console.log('profile has been updated')
         // should go to the home page from here
         var alo = response.data
         console.log('profile has been updated',response.data)
@@ -420,7 +417,7 @@ class Donor_Profile extends React.Component {
                     <div className='tab-pane fade in active' id='activities'>
 
                       {this.state.post.map(po =>
-                        <div className='media activity-item'>
+                        <div className='media activity-item' key={po._id}>
                           <a href='#' className='pull-left'>
                             <img src={this.state.image || 'http://bootdey.com/img/Content/avatar/avatar3.png'} alt='Avatar' className='media-object avatar' />
                           </a>
