@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/Donate')
-// mongoose.connect('mongodb://admin:admin@ds113700.mlab.com:13700/g-db')
+// mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate')
 var db = mongoose.connection
 
 db.on('error', function () {

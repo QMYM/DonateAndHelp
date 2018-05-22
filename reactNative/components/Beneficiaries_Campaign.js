@@ -25,9 +25,7 @@ class Beneficiaries_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then(response => {
-        console.log('campaign has been posted!')
-         
-    
+        console.log('campaign has been posted!')  
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })

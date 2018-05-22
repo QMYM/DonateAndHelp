@@ -2,7 +2,6 @@ import React from 'react';
 import { AppRegistry,StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
 import axios from 'axios'
 import { TabNavigator } from 'react-navigation'; // Version can be specified in package.json
-
 import {
   Scene,
   Router,
@@ -16,6 +15,7 @@ import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
+import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
 import Beneficiaries_Tab from "./Beneficiaries_Tab"
@@ -24,13 +24,12 @@ import Image from "./Image"
 export default class AppRoute extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-   
+    this.state = { 
    }
  }
 
-  render() {
-    return (
+ render() {
+  return (
     <Router>
       <Scene key="root">
         <Scene 
@@ -73,6 +72,11 @@ export default class AppRoute extends React.Component {
           title="Message"
           
         />
+        <Scene key="Message_Reciver"
+          component={Message_Reciver}
+          title="Message_Reciver"
+          
+        />
           <Scene
           key="Beneficiaries"
           component={Beneficiaries}
@@ -93,8 +97,8 @@ export default class AppRoute extends React.Component {
         />
       </Scene>
     </Router>
-      );
-  }
+    );
+}
 }
 
 const styles = StyleSheet.create({
