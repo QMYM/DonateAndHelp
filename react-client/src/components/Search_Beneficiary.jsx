@@ -9,7 +9,7 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import Message from './message.jsx'
+import BeneficiariesMessage from './Beneficiaries_Message.jsx'
 import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
@@ -91,12 +91,13 @@ class Search extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   <li> <a href='/search' className='icon-bar' >Search</a> </li>
-                  <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
+                  <li> <a href='/Beneficiaries_Message' className='icon-bar' to='/Beneficiaries_Message' replace >Message</a> </li>
                   <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
                   <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+
                   <li><a /></li>
                   <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
-                  <Route path='/message' component={Message} />
+                  <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
                   <Route path='/Beneficiaries_Campaign' component={BeneficiariesCampaign} />
                 </ul>
               </Router>

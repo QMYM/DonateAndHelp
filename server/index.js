@@ -53,6 +53,7 @@ app.post('/delCampaignComp', handler.removeCampaignComp)
 app.put('/editCampaignDonor', handler.editCampaignDonor)
 app.put('/editCampaignComp', handler.editCampaignComp)
 app.post('/deleteAllMessages', handler.deleteAllMessages)
+app.post('/editAmount' , handler.editAmount)
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
