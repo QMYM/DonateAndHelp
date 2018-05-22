@@ -16,7 +16,7 @@ class Login extends React.Component {
  }
 
   submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.65:3000/loginDonater', {
+    axios.post('https://qaysdonate.herokuapp.com/loginDonater', {
       userName: this.state.userName,
       password: this.state.password
     })
@@ -33,6 +33,7 @@ class Login extends React.Component {
         password: this.state.password
       })
       .then(response => {
+
         Actions.Beneficiaries_Tab()
         // should go to the home page from here
       }).catch(error => {

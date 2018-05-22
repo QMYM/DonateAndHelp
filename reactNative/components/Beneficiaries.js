@@ -3,6 +3,13 @@ import { Modal , TouchableHighlight ,  StyleSheet, Text, View , TextInput  , But
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 
+
+function searching (term) {
+  return function (x) {
+    return x.campaignName.toLowerCase().includes(term.toLowerCase())
+  }
+}
+
 class Beneficiaries extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +34,8 @@ class Beneficiaries extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.camp.map(item => 
+<TextInput  placeholder='Search' onChangeText={(term) => this.setState({term})}  />
+        {this.state.camp.filter(searching(this.state.term)).map(item => 
         
        <View style={styles.campview}>
         <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
