@@ -9,7 +9,8 @@ import {
   withRouter
 } from 'react-router-dom'
 import {Well} from 'react-bootstrap'
-import Message from './message.jsx'
+
+import BeneficiariesMessage from './Beneficiaries_Message.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 class Beneficiaries_Campaign extends React.Component {
@@ -84,12 +85,12 @@ class Beneficiaries_Campaign extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   <li> <a href='/search' className='icon-bar' >Search</a> </li>
-                  <li> <a href='/message' className='icon-bar' to='/message' >Message</a> </li>
+                  <li> <a href='/Beneficiaries_Message' className='icon-bar' to='/Beneficiaries_Message' >Message</a> </li>
                   <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
                   <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
                   <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
-                  <Route path='/message' component={Message} />
+                  <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
                 </ul>
               </Router>
               <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />

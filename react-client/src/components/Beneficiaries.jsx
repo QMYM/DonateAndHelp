@@ -8,7 +8,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
-import Message from './message.jsx'
+import BeneficiariesMessage from './Beneficiaries_Message.jsx'
 import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
 
@@ -27,6 +27,10 @@ class Beneficiaries extends React.Component {
     }
     this.search = this.search.bind(this)
     this.logout = this.logout.bind(this)
+    this.submitCompany = this.submitCompany.bind(this)
+  }
+  submitCompany(){
+    console.log("Done")
   }
   componentDidMount () {
     var x = this
@@ -72,12 +76,12 @@ class Beneficiaries extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   <li> <a href='/search' className='icon-bar' >Search</a> </li>
-                  <li> <a href='/message' className='icon-bar' to='/message' replace >Message</a> </li>
+                  <li> <a href='/Beneficiaries_Message' className='icon-bar' to='/Beneficiaries_Message' replace >Message</a> </li>
                   <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
                   <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
                   <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
-                  <Route path='/message' component={Message} />
+                  <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
                   <Route path='/Beneficiaries_Campaign' component={BeneficiariesCampaign} />
                 </ul>
               </Router>
@@ -103,7 +107,7 @@ class Beneficiaries extends React.Component {
                 </div>
                  <p> {item.campaignDescription}</p>
                 <div className='panel-footer'>
-                  <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                  <h3>{item.campaignAmount}</h3><h3>Items</h3>
                   <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal'>Donate</button>
                 </div>
               </div>
@@ -129,7 +133,7 @@ class Beneficiaries extends React.Component {
               </div>
               <div className='modal-footer'>
                 <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
-                <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitDonate}>Donate</button>
+                <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitCompany}>Take</button>
               </div>
             </div>
 

@@ -12,7 +12,7 @@ import {
 
 import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
-import Message from './message.jsx'
+import Donor_Message from './Donor_Message.jsx'
 
 class Donor_Campaign extends React.Component {
   constructor (props) {
@@ -97,11 +97,12 @@ class Donor_Campaign extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
-                  <li> <a href='/message' className='icon-bar' to='/message'>Message</a> </li>
+                  <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+
                   <li><a /></li>
-                  <Route path='/message' component={Message} />
+                  <Route path='/Donor_Message' component={Donor_Message} />
                   <Route path='/Donor_Profile' component={Donor_Profile} />
                   <Route path='/searchD' component={Search_Donor} />
                 </ul>
@@ -120,7 +121,7 @@ class Donor_Campaign extends React.Component {
               <label for='usr'>Campaign Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <label for='usr'>Items :</label>
-              <input type='number' className='form-control w3-round-xlarge' id='usr' />
+              <input type='number' className='form-control w3-round-xlarge' id='usr'  onChange={this.onChange} name='campaignAmount'/>
             </div>
 
             <br />
@@ -130,7 +131,7 @@ class Donor_Campaign extends React.Component {
               <input className='btn' type='file' name='image' onChange={this.uploadPhotoCampaign} />
             </form>
             <button className='btn btn-raised btn-warning' onClick={
-              () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
+              () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.campaignAmount, this.state.beneficiaryName, this.state.campaignImage)
             } > Submit </button>
           </div>
         </Well>

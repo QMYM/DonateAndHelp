@@ -647,3 +647,30 @@ db.MessageSchema.remove({sender:user}, function (err, done) {
   })
 
 }
+
+exports.editAmount  = function (req , res) {
+  var username = req.body.user
+  var amount = parseInt(req.body.amount)
+  db.companyCampaigns.findOne({_id : username},
+    function (err , data) {
+    if(err){
+      throw err ; 
+    }else { 
+      var prevAmount = parseInt(data.campaignAmount) ; 
+      if (prevAmount  < amount){
+        res.sendStatus(401) ; 
+
+      }else{
+        amount = prevAmount - amount ;  
+        db.companyCampaigns.update({_id : username} , {$set : {campaignAmount : amount.toString()}} , function (err , data) {
+          if(err ){
+            throw err
+          }else{
+            res.send(data);
+          }
+        })
+      }
+    }
+  })
+
+}

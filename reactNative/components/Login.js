@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView } from 'react-native';
+import { StyleSheet, Text, View , TextInput   , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView  , Button} from 'react-native';
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
-import { Button } from 'react-native-elements';
+import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
 
 class Login extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Login extends React.Component {
  }
 
   submitLoginDonater () { // send post request to the server
-    axios.post('http://192.168.1.83:3000/loginDonater', {
+    axios.post('https://qaysdonate.herokuapp.com/loginDonater', {
       userName: this.state.userName,
       password: this.state.password
     })
@@ -26,18 +26,9 @@ class Login extends React.Component {
       }).catch(error => {
         alert('password or username is wrong')
       })
-// <<<<<<< HEAD
-//   }; 
-//   submitLoginCompany () {
-//     axios.post('http://192.168.1.83:3000/loginCompany', {
-//       userName: this.state.userName,
-//       password: this.state.password
-//     })
-//    .then(response => {
-// =======
     }; 
     submitLoginCompany () {
-      axios.post('http://192.168.1.65:3000/loginCompany', {
+      axios.post('https://qaysdonate.herokuapp.com/loginCompany', {
         userName: this.state.userName,
         password: this.state.password
       })
@@ -53,37 +44,29 @@ class Login extends React.Component {
 
     render() {
       return (
-        <View style={styles.container}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-      <ScrollView>
-
-        <View>
+   <Container>
+        <Content>
         <Text style = {styles.text}> Choose Your Career !</Text>
-
         <Picker selectedValue = {this.state.user} onValueChange = {(itemValue) => this.setState({user:itemValue})}>
         <Picker.Item label = "Company" value=''/>
         <Picker.Item label = "Donor" value='false' />
-        
         </Picker>
-        
-        
-        </View>
-        <Text>User Name : </Text>
-        <TextInput
-        style = {styles.input}
-        placeholder="Enter your username!"
-        onChangeText={(userName) => this.setState({userName})}
-        />
-        
-        <Text>Password : </Text>
-
-        <TextInput 
-        style = {styles.input}
+          <Form>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input 
+               style = {styles.input}
+             onChangeText={(userName) => this.setState({userName})}/>
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input 
+               style = {styles.input}
         secureTextEntry={true}
-        placeholder="Enter your password"
-        onChangeText={(password) => this.setState({password})}
-        />
-
+        onChangeText={(password) => this.setState({password})}/>
+            </Item>
+          </Form>
+      
         { this.state.user === 'false' ? (
           <View>
           
@@ -103,10 +86,9 @@ class Login extends React.Component {
 
         </View>
       }
-      </ScrollView>
-      </KeyboardAvoidingView>
-
-      </View>
+      
+        </Content>
+      </Container>
       );
     }
   }
