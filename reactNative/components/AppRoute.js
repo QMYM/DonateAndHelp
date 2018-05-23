@@ -19,7 +19,7 @@ import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
 import Beneficiaries_Tab from "./Beneficiaries_Tab"
-import Image from "./Image"
+import ImagePickerExample from "./ImagePickerExample"
 
 export default class AppRoute extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class AppRoute extends React.Component {
           key="Home"
           component={Home}
           title="Home"
-          initial = {true}
+          
           
         />
         <Scene
@@ -90,9 +90,10 @@ export default class AppRoute extends React.Component {
         />
 
          <Scene
-          key="Image"
-          component={Image}
-          title="Image"
+          key="ImagePickerExample"
+          component={ImagePickerExample}
+          title="ImagePickerExample"
+          initial = {true}
          
         />
       </Scene>
