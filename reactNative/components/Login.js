@@ -45,8 +45,6 @@ class Login extends React.Component {
     render() {
       return (
    <Container>
-        <View>
-        </View>
         <Content>
         <Text style = {styles.text}> Choose Your Career !</Text>
         <Picker selectedValue = {this.state.user} onValueChange = {(itemValue) => this.setState({user:itemValue})}>
@@ -58,32 +56,17 @@ class Login extends React.Component {
               <Label>Username</Label>
               <Input 
                style = {styles.input}
-        onChangeText={(userName) => this.setState({userName})}/>
+             onChangeText={(userName) => this.setState({userName})}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input />
+              <Input 
+               style = {styles.input}
+        secureTextEntry={true}
+        onChangeText={(password) => this.setState({password})}/>
             </Item>
           </Form>
       
-        <View style={styles.container}>
-
-        <Text>User Name : </Text>
-        <TextInput
-        style = {styles.input}
-        placeholder="Enter your username!"
-        onChangeText={(userName) => this.setState({userName})}
-        />
-        
-        <Text>Password : </Text>
-
-        <TextInput 
-        style = {styles.input}
-        secureTextEntry={true}
-        placeholder="Enter your password"
-        onChangeText={(password) => this.setState({password})}
-        />
-
         { this.state.user === 'false' ? (
           <View>
           
@@ -103,9 +86,8 @@ class Login extends React.Component {
 
         </View>
       }
-      </View>
-        </Content>
       
+        </Content>
       </Container>
       );
     }
