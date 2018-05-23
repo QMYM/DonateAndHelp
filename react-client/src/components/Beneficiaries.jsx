@@ -27,6 +27,10 @@ class Beneficiaries extends React.Component {
     }
     this.search = this.search.bind(this)
     this.logout = this.logout.bind(this)
+    this.submitCompany = this.submitCompany.bind(this)
+  }
+  submitCompany(){
+    console.log("Done")
   }
   componentDidMount () {
     var x = this
@@ -129,7 +133,7 @@ class Beneficiaries extends React.Component {
               </div>
               <div className='modal-footer'>
                 <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
-                <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitDonate}>Donate</button>
+                <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitCompany}>Take</button>
               </div>
             </div>
 

@@ -37,9 +37,11 @@ class Beneficiaries extends React.Component {
 <TextInput  placeholder='Search' onChangeText={(term) => this.setState({term})}  />
         {this.state.camp.filter(searching(this.state.term)).map(item => 
         
-       <View style={styles.campview}>
+       <View style={styles.campview} key={item._id}>
         <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
         <Text>{item.campaignDescription}</Text>
+        <Button 
+        title="take"/>
       </View>
       )}
       </View>
