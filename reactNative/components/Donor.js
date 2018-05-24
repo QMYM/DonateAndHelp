@@ -51,7 +51,6 @@ class Donor extends React.Component {
     return (
 
         <Container>
-      <Text>Search :</Text>
         <Header searchBar rounded>
           <Item>
             <Icon name="ios-search" />

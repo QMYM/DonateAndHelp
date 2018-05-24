@@ -33,7 +33,11 @@ export default class AppRoute extends React.Component {
           key="Home"
           component={Home}
           title="Home"
+          hideNavBar={true}
           initial = {true}
+          
+          
+
         />
         <Scene
           key="Login"
@@ -89,8 +93,7 @@ export default class AppRoute extends React.Component {
           key="ImagePickerExample"
           component={ImagePickerExample}
           title="ImagePickerExample"
-          
-          
+
          
         />
       </Scene>
