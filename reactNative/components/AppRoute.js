@@ -1,7 +1,4 @@
 import React from 'react';
-import { AppRegistry,StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
-import axios from 'axios'
-import { TabNavigator } from 'react-navigation'; // Version can be specified in package.json
 import {
   Scene,
   Router,
@@ -36,6 +33,8 @@ export default class AppRoute extends React.Component {
           key="Home"
           component={Home}
           title="Home"
+           hideNavBar={true}
+          initial = {true}
           
           
         />
@@ -93,7 +92,6 @@ export default class AppRoute extends React.Component {
           key="ImagePickerExample"
           component={ImagePickerExample}
           title="ImagePickerExample"
-          initial = {true}
          
         />
       </Scene>
