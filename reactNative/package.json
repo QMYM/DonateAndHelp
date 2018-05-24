@@ -23,15 +23,11 @@
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "chai": "^4.1.2",
     "enzyme-drivers": "^2.0.3",
     "expo": "^27.0.2",
     "jest-enzyme": "^6.0.0",
-=======
-    "expo": "^27.0.1",
     "native-base": "^2.4.5",
->>>>>>> ce7f149a9e941fac5ae4b6d334f52b968db49e78
     "promise": "^8.0.1",
     "react": "16.3.1",
     "react-native": "~0.55.2",
