@@ -1,24 +1,21 @@
 import React from 'react';
-import { AppRegistry,StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert} from 'react-native';
-import axios from 'axios'
-import { TabNavigator } from 'react-navigation'; // Version can be specified in package.json
 import {
   Scene,
-  Router,
-  Actions
+  Router
 } from 'react-native-router-flux';
 
-import Signup from "./Signup"
+import Beneficiaries_Tab from "./Beneficiaries_Tab"
 import Login from "./Login"
 import Home from "./Home"
 import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
+import Signup from "./Signup"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
 import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
-import Beneficiaries_Tab from "./Beneficiaries_Tab"
+
 import ImagePickerExample from "./ImagePickerExample"
 
 export default class AppRoute extends React.Component {
@@ -36,8 +33,7 @@ export default class AppRoute extends React.Component {
           key="Home"
           component={Home}
           title="Home"
-          
-          
+          initial = {true}
         />
         <Scene
           key="Login"
@@ -93,7 +89,8 @@ export default class AppRoute extends React.Component {
           key="ImagePickerExample"
           component={ImagePickerExample}
           title="ImagePickerExample"
-          initial = {true}
+          
+          
          
         />
       </Scene>
@@ -101,12 +98,3 @@ export default class AppRoute extends React.Component {
     );
 }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

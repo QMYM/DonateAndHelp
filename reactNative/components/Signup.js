@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View , TextInput  , Button , FlatList, ActivityIndicator,  Alert , Picker , KeyboardAvoidingView , ScrollView} from 'react-native';
 import axios from 'axios'
-import promise from 'promise'
+//import promise from 'promise'
 import { Actions } from 'react-native-router-flux'; 
 import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
 
