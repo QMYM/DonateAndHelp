@@ -286,22 +286,22 @@ class Donor_Profile extends React.Component {
               <div className='modal-body'>
                   <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='Campaign Name' />
+                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
-                  <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='contactNum' />
+                  <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
-                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='description' />
+                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='Description' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-automobile' /></span>
-                  <input type='text' className='form-control' name='address' onChange={this.onChange} placeholder='address' />
+                  <input type='text' className='form-control' name='address' onChange={this.onChange} placeholder='Address' />
                 </div>
                 <br />
               </div>
