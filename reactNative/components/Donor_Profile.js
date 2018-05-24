@@ -53,29 +53,29 @@ class Donor_Profile extends React.Component {
     })
   }
 
-  // fetchDonorData () {
-  //   var x = this;
-  //   axios.get('/fetchDonorData').then(function (res) {
-  //     var user = res.data.username
-  //     var email = res.data.email
-  //     x.setState({
-  //       user: user,
-  //       email: email
-  //     })
-  //   }).catch(function (err) {
-  //     console.log('error', err)
-  //   })
-  //   axios.get('/donorCam')
-  //   .then(res => {
-  //     var posts = []
-  //     for (var i = 0; i < res.data.length; i++) {
-  //       if (res.data[i].username === this.state.user) {
-  //         posts.push(res.data[i])
-  //         x.setState({post: posts})
-  //       }
-  //     }
-  //   })
-  // }
+  fetchDonorData () {
+    var x = this;
+    axios.get('https://qaysdonate.herokuapp.com/fetchDonorData').then(function (res) {
+      var user = res.data.username
+      var email = res.data.email
+      x.setState({
+        user: user,
+        email: email
+      })
+    }).catch(function (err) {
+      console.log('error', err)
+    })
+    axios.get('/donorCam')
+    .then(res => {
+      var posts = []
+      for (var i = 0; i < res.data.length; i++) {
+        if (res.data[i].username === this.state.user) {
+          posts.push(res.data[i])
+          x.setState({post: posts})
+        }
+      }
+    })
+  }
 
 
   getLargeImage () {

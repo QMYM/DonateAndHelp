@@ -281,22 +281,22 @@ class Beneficiaries_Profile extends React.Component {
               <div className='modal-body'>
                  <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
-                  <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='contactNum' />
+                  <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
-                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='description' />
+                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='Description' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-automobile' /></span>
-                  <input type='text' className='form-control' name='address' onChange={this.onChange} placeholder='address' />
+                  <input type='text' className='form-control' name='address' onChange={this.onChange} placeholder='Address' />
                 </div>
                 <br />
               </div>
@@ -318,10 +318,6 @@ class Beneficiaries_Profile extends React.Component {
               </div>
               <div className='modal-body'>
                <div className='input-group'>
-                 <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                 <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='Name' />
-               </div>
-                <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
                   <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
@@ -330,10 +326,6 @@ class Beneficiaries_Profile extends React.Component {
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
                   <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Campaign Description' />
-                </div>
-                <br />
-                <div className='input-group'>
-                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='description' />
                 </div>
                 <br />
                 <div className='input-group'>
@@ -387,14 +379,14 @@ class Beneficiaries_Profile extends React.Component {
                         <li><a data-toggle='modal' data-target='#myModal'>Edit</a></li>
                       </ul>
                     </div>
-                    <p>Some Description</p>
+                    <p className='fa fa-address-card-o'> Description: {this.state.newDescription}</p><br />
+                    
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
-                    <p className='glyphicon glyphicon-user'>nickname: {this.state.newName}</p><br />
+                    <p className='glyphicon glyphicon-user'>Nickname: {this.state.newName}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
-                    <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
-                    <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />
+                    <p className='fa fa-phone'>Phone-Number: {this.state.newPhone}</p><br />
                     <p className='  fa fa-automobile'>Address: {this.state.newAdress}</p>
                   </div>
                   <div className='section'>
@@ -429,6 +421,7 @@ class Beneficiaries_Profile extends React.Component {
                               <div>
                                 <h2>Campaign Name : {po.campaignName}</h2>
                                 <h3>{po.campaignDescription}</h3>
+                                <h3>{po.campaignAmount}</h3>
                               </div>
                               <a href='#' className='thumbnail'>
                                 <img src={po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'} alt='Uploaded photo' style={{width: '300px', hight: '300px'}} />
