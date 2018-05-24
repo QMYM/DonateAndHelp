@@ -286,7 +286,7 @@ class Donor_Profile extends React.Component {
               <div className='modal-body'>
                   <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='Campaign Name' />
                 </div>
                 <br />
                 <div className='input-group'>
@@ -330,10 +330,6 @@ class Donor_Profile extends React.Component {
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
                   <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Campaign Description' />
-                </div>
-                <br />
-                <div className='input-group'>
-                  <input type='text' className='form-control' name='description' onChange={this.onChange} placeholder='description' />
                 </div>
                 <br />
                 <div className='input-group'>
@@ -387,14 +383,13 @@ class Donor_Profile extends React.Component {
                         <li><a data-toggle='modal' data-target='#myModal'>Edit</a></li>
                       </ul>
                     </div>
-                    <p>Some Description</p>
+                    <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
                     <p className='glyphicon glyphicon-user'>nickname: {this.state.newName}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
                     <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
-                    <p className='fa fa-address-card-o'> description: {this.state.newDescription}</p><br />
                     <p className='  fa fa-automobile'>Address: {this.state.newAdress}</p>
                   </div>
                   <div className='section'>
