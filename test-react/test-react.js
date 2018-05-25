@@ -1,3 +1,4 @@
+ 
  var App = require('../react-client/src/components/Signup.jsx')
  var chai = require('chai')
  var expect = chai.expect;
@@ -7,7 +8,8 @@
  import Signup from '../react-client/src/components/Signup.jsx';
  import Login from '../react-client/src/components/Login.jsx';
  import Home from '../react-client/src/components/Home.jsx';
- import Message from '../react-client/src/components/message.jsx';
+ import Message_Donor from '../react-client/src/components/Donor_Message.jsx';
+ import Message_Beneficiary from '../react-client/src/components/Beneficiaries_Message.jsx';
  import Search_Beneficiary from '../react-client/src/components/Search_Beneficiary.jsx';
  import Search_Donor from '../react-client/src/components/Search_Donor.jsx';
  import Donor_Campaign from '../react-client/src/components/Donor_Campaign.jsx';
@@ -112,10 +114,10 @@
  })
 
 
- describe('Message', function() {
+ describe('Message_Donor', function() {
 
   it('should be a stateful class component', function() {
-    expect(React.Component.isPrototypeOf(Message)).to.be.true;
+    expect(React.Component.isPrototypeOf(Message_Donor)).to.be.true;
   });
 
   it('renders without exploding', () => {
@@ -129,7 +131,31 @@
   });
 
   it('renders without exploding', () => {
-    const wrapper = shallow(<Message />);
+    const wrapper = shallow(<Message_Donor />);
+    expect(wrapper.type()).to.equal('div')
+  });
+
+})
+
+
+  describe('Message_Beneficiary', function() {
+
+  it('should be a stateful class component', function() {
+    expect(React.Component.isPrototypeOf(Message_Beneficiary)).to.be.true;
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<div><label>To</label></div>);
+    expect(wrapper.text()).to.equal('To');
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<div><label>Subject</label></div>);
+    expect(wrapper.text()).to.equal('Subject');
+  });
+
+  it('renders without exploding', () => {
+    const wrapper = shallow(<Message_Beneficiary />);
     expect(wrapper.type()).to.equal('div')
   });
 
@@ -243,7 +269,7 @@
 
    it('renders without exploding', () => {
     const wrapper = shallow(<AppRoute/>);
-    expect(wrapper.find('Route')).to.have.length(13)
+    expect(wrapper.find('Route')).to.have.length(14)
   });
 
  })
@@ -315,7 +341,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('div')).to.have.length(51)
+    expect(wrapper.find('div')).to.have.length(52)
   });
 
   it('renders without exploding', () => {
@@ -325,7 +351,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('input')).to.have.length(11)
+    expect(wrapper.find('input')).to.have.length(12)
   });
 
   it('renders without exploding', () => {
@@ -343,7 +369,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Donor/>);
-    expect(wrapper.find('li')).to.have.length(6)
+    expect(wrapper.find('li')).to.have.length(7)
   });
 
   it('renders without exploding', () => {
