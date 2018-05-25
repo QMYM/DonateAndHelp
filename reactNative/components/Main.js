@@ -20,16 +20,38 @@ class Main extends React.Component {
     return (
 
       <Container style={styles.container}>
-        <Content>
-          <Text>  Signup</Text>
+        <Content style={styles.yussur}>
+         
 
-          <Button
+          <Button  style={{
+       borderWidth:1,
+       borderColor:'rgba(0,0,0,0.2)',
+       alignItems:'center',
+       justifyContent:'center',
+       width:100,
+       height:100,
+       backgroundColor:'orange',
+       borderRadius:100,
+       marginTop:10,
+       marginLeft:10,
+     }}
            onPress={() => {Actions.Signup()}}>
           <Text> Signup</Text>
           </Button>
 
-          <Text> Login</Text>
-          <Button 
+          
+          <Button style={{
+       borderWidth:1,
+       borderColor:'rgba(0,0,0,0.2)',
+       alignItems:'center',
+       justifyContent:'center',
+       width:100,
+       height:100,
+       backgroundColor:'orange',
+       borderRadius:100,
+        marginTop:10,
+        marginLeft:10,
+     }}
           onPress={() => {Actions.Login()}}>
           <Text> Login</Text>
           </Button>
@@ -45,6 +67,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D3D3D3',
   },
+  yussur:{
+  marginTop:30,
+  
+  },
+
 });
 
 
