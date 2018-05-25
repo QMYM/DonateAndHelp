@@ -1,21 +1,21 @@
 import React from 'react';
 import {
   Scene,
-  Router,
-  Actions
+  Router
 } from 'react-native-router-flux';
 
-import Signup from "./Signup"
+import Beneficiaries_Tab from "./Beneficiaries_Tab"
 import Login from "./Login"
 import Home from "./Home"
 import Donor from "./Donor"
 import Donor_Campaign from "./Donor_Campaign"
+import Signup from "./Signup"
 import Donor_Tab from "./Donor_Tab"
 import Message from "./Message"
 import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
-import Beneficiaries_Tab from "./Beneficiaries_Tab"
+
 import ImagePickerExample from "./ImagePickerExample"
 
 export default class AppRoute extends React.Component {
@@ -33,10 +33,11 @@ export default class AppRoute extends React.Component {
           key="Home"
           component={Home}
           title="Home"
-           hideNavBar={true}
+          hideNavBar={true}
           initial = {true}
           
           
+
         />
         <Scene
           key="Login"
@@ -92,6 +93,7 @@ export default class AppRoute extends React.Component {
           key="ImagePickerExample"
           component={ImagePickerExample}
           title="ImagePickerExample"
+
          
         />
       </Scene>

@@ -136,6 +136,7 @@ class Donor_Profile extends React.Component {
          <Container>
         <Header />
         <Content>
+        
          <Image
         style={styles.stretch2}
 
@@ -146,7 +147,7 @@ class Donor_Profile extends React.Component {
         style={styles.stretch}
          source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
        />
-
+        
         <Text>About Me</Text>
         <Text>Some Description</Text>
         <Text>Phone Number: </Text>      
@@ -191,12 +192,17 @@ class Donor_Profile extends React.Component {
       paddingTop: 22
     },
     stretch2: {
-      width: 100,
-      height: 200
-    },
+      width: 400,
+      height: 200,
+   justifyContent: 'center',
+   alignItems: 'center'
+      },
     stretch: {
-      width: 50,
-      height: 100
+      marginLeft:10,
+      width: 150,
+      height: 150,
+      borderRadius: 150/2,
+      
     }
   })
 
