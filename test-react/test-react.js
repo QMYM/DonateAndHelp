@@ -25,8 +25,8 @@
  import { configure } from 'enzyme';
  import { shallow } from 'enzyme';
  import Adapter from 'enzyme-adapter-react-15';
- configure({ adapter: new Adapter() });
 
+ configure({ adapter: new Adapter() });
 
  describe('Signup', function() {
 
@@ -341,7 +341,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('div')).to.have.length(52)
+    expect(wrapper.find('div')).to.have.length(51)
   });
 
   it('renders without exploding', () => {
@@ -351,7 +351,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('input')).to.have.length(12)
+    expect(wrapper.find('input')).to.have.length(10)
   });
 
   it('renders without exploding', () => {

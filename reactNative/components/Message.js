@@ -1,9 +1,8 @@
 import React from 'react';
-import { Modal ,TouchableHighlight ,  StyleSheet , Text, View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
+import { Modal ,TouchableHighlight ,  StyleSheet , View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Button , Avatar} from 'react-native-elements';
-
+import { Container, Header, Content, Thumbnail, Text  , Button} from 'native-base';
 class Message extends React.Component {
   constructor (props) {
     super(props);
@@ -120,7 +119,9 @@ class Message extends React.Component {
   render() {
    
     return (
-      <View style={styles.container}>
+      <Container>
+        <Header />
+        <Content>
       <Modal
       animationType="slide"
       transparent={false}
@@ -145,11 +146,11 @@ class Message extends React.Component {
       />
       <Button
       onPress={() => this.sendMessage(this.state.user, this.state.text)}
-      title="Send"
-      />   
-      <Button title="Close"  onPress={() => {
+      > <Text>Send</Text>
+        </Button>
+      <Button onPress={() => {
         this.setModalVisible(!this.state.modalVisible);
-      }}/>
+      }}><Text>Close</Text></Button>
       </View>
       </Modal>
 
@@ -157,32 +158,29 @@ class Message extends React.Component {
       welcome Message
       </Text>
       
-      <Button title="Show Modal"  onPress={() => {
+      <Button onPress={() => {
         this.setModalVisible(true);
-      }}/>
+      }}>
+      <Text>Show Modal</Text>
+      </Button>
       
       <View>
       {this.state.reciver.map(item => 
         <View key={ item._id }>
-        <Avatar
-        rounded
-        size="xlarge"
-        source={{uri: item.image}}
+        <Text
       onPress={() => Actions.Message_Reciver({text : item.username , message : this.state.messages , sender : this.state.senderMess})}
-        activeOpacity={0.7}
-        />
-        <Text>{item.username}</Text>
+        >
+     <Thumbnail large 
+       source={{uri: item.image}} 
+       />
+        {item.username}</Text>
+
         </View>
         )
     }
-
-    {this.state.rightMes.map(item => 
-<View>
-  <Text>{item.message}</Text>
-</View>
-      )}
     </View>
-    </View>
+     </Content>
+      </Container>
     );
   }
 }

@@ -1,26 +1,16 @@
 import React from 'react';
-import { Modal ,TouchableHighlight ,  StyleSheet , Text, View , TextInput , FlatList, ActivityIndicator , Alert , Image} from 'react-native';
+import {  StyleSheet  , TextInput  , Alert } from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Button , Avatar} from 'react-native-elements';
-
+import { Avatar} from 'react-native-elements';
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button } from 'native-base';
 class Message extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      user: '',
       text: '',
-      messages: [],
-      sessionUser: '',
-      items: [],
       rightMes: [],
       rightMes2: [],
-      reciver: [],
-      senderMess: [],  
-      allMessages: [],
-      messageForDOM:"",
-      modalVisible: false,
-      check:true
     }
   }
 
@@ -58,20 +48,63 @@ this.openMail(this.props.text ,this.props.message  , this.props.sender)
     this.setState({rightMes2: arr2})
   }
 
+  remove (user, id) {
+    axios.post('/removeMsg', {user: user, id: id})
+      .then(function (res) {
+        
+      }).catch(function (err) {
+        console.log('err', err)
+      })
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+     <Container>
+        <Header />
+        <Content>
+   {this.state.rightMes.map(item => 
       
    
-   {this.state.rightMes.map(item => 
-<View>
-  <Text>{item.message}</Text>
-</View>
+          <SwipeRow
+            leftOpenValue={75}
+            rightOpenValue={-75}
+            left={
+              <Button success onPress={() => this.remove(item.sender , item._id)}>
+                <Icon active name="add" />
+              </Button>
+            }
+            body={
+              <View>
+                <Text>{item.message}</Text>
+              </View>
+            }
+            right={
+              <Button danger onPress={() => alert('Trash')}>
+                <Icon active name="trash" />
+              </Button>
+            }
+          />
       )}
    {this.state.rightMes2.map(item =>
-<View>
-  <Text style={styles.sender}>{item.message}</Text>
-</View>
+
+          <SwipeRow
+            leftOpenValue={75}
+            rightOpenValue={-75}
+            left={
+              <Button success onPress={() => this.remove(item.sender , item._id)}>
+                <Icon active name="add" />
+              </Button>
+            }
+            body={
+              <View>
+              <Text style={styles.sender}>{item.message}</Text>
+              </View>
+            }
+            right={
+              <Button danger onPress={() => alert('Trash')}>
+                <Icon active name="trash" />
+              </Button>
+            } />
     )}  
      <TextInput 
      placeholder="Aa"
@@ -79,9 +112,12 @@ this.openMail(this.props.text ,this.props.message  , this.props.sender)
       onChangeText={(text) => this.setState({text})}
       />
       <Button
-      title="Send"
-      onPress={()=> this.sendMessage(this.props.text , this.state.text)}/>
-    </View>
+      onPress={()=> this.sendMessage(this.props.text , this.state.text)}>
+      <Text>Send</Text>
+          </Button>
+
+        </Content>
+      </Container>
     );
   }
 }
