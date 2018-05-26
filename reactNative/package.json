@@ -27,6 +27,7 @@
     "enzyme-drivers": "^2.0.3",
     "expo": "^27.0.2",
     "jest-enzyme": "^6.0.0",
+    "expo": "^27.0.1",
     "native-base": "^2.4.5",
     "promise": "^8.0.1",
     "react": "16.3.1",

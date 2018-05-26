@@ -1,32 +1,21 @@
+
 var assert = require('chai').assert
- var handler = require('../server/handler')
- var server = require('../server/index')
- var db = require('../db/index')
+var handler = require('../server/handler')
+var server = require('../server/index')
+var db = require('../db/index')
 var chai = require('chai');  
 var assert = chai.assert;    // Using Assert style
 var expect = chai.expect;    // Using Expect style
 var should = chai.should();
-
-
-
-
-   chaiHttp = require('chai-http');
+chaiHttp = require('chai-http');
  
- chai.use(chaiHttp);
-
-
-
+chai.use(chaiHttp);
 
 describe('getImage', function(){
   it('should be exist', function(){
     should.exist(handler.getImage);
   });
 })
-
-
-
-
-
 
 describe('deleteAllMessages', function () {
   it('it should sendStatus(201) to the client', function (done) {
@@ -39,7 +28,6 @@ describe('deleteAllMessages', function () {
       })
   })
 })
-
 
 describe('removeMsg', function () {
   it('it should sendStatus(201) to the client', function (done) {
@@ -65,7 +53,6 @@ describe('removeCampaignDonor', function () {
   })
 })
 
-
 describe('editCampaignDonor', function () {
   it('it should sendStatus(200) to the client', function (done) {
     chai.request(server)
@@ -89,7 +76,6 @@ describe('editCampaignComp', function () {
       })
   })
 })
-
 
 describe('removeCampaignComp', function () {
   it('it should sendStatus(200) to the client', function (done) {
@@ -138,7 +124,6 @@ describe('uploadImageDonor2', function () {
       })
   })
 })
-
 
 describe('uploadImageDonor', function () {
   it('it should sendStatus(200) if it sending the data to the client', function (done) {
@@ -199,8 +184,6 @@ describe('/postDonorCampaign', function () {
       })
   })
 })
-
-
 
 describe('/uploadImageCampaign', function () {
   it('it should sendStatus(200) if it sending the data to the client', function (done) {
@@ -297,6 +280,7 @@ describe('LoginDonater', function () {
       })
   })
 })
+
 describe('sessionName', function () {
   it('it should GET all the sessionNames', function (done) {
     chai.request(server)
@@ -309,7 +293,6 @@ describe('sessionName', function () {
   })
 })
 
-
 describe('getInfoForProfilePageforDonor', function () {
   it('it should GET all the getInfoForProfilePageforDonor', function (done) {
     chai.request(server)
@@ -321,7 +304,6 @@ describe('getInfoForProfilePageforDonor', function () {
       })
   })
 })
-
 
 describe('getInfoForProfilePage', function () {
   it('it should GET all the getInfoForProfilePage', function (done) {
@@ -346,7 +328,6 @@ describe('getPhotoForMessages', function () {
       })
   })
 })
-
 
 describe('getImage', function () {
   it('it should GET all the getImage', function (done) {
@@ -408,7 +389,6 @@ describe('getImageDonor', function () {
   })
 })
 
-
 describe('getImageDonor2', function () {
   it('it should GET all the getImageDonor', function (done) {
     chai.request(server)
@@ -432,6 +412,7 @@ describe('fetchDonorData', function () {
       })
   })
 })
+
 describe('fetchCompanyData', function () {
   it('it should fetching the data from the userCompany schema', function (done) {
     chai.request(server)
@@ -455,6 +436,7 @@ describe('imageSearch', function () {
       })
   })
 })
+
 describe('imageSearchDonor', function () {
   it('it should GET the image for a specefic user from doantorSchema', function (done) {
     chai.request(server)
@@ -466,6 +448,7 @@ describe('imageSearchDonor', function () {
       })
   })
 })
+
 describe('recieveMessage', function () {
   it('it should GET all the Messages', function (done) {
     chai.request(server)
@@ -515,8 +498,6 @@ describe('companyCam', function () {
       })
   })
 })
-
-
 
 describe('userCompany', function () {
   describe('#delete()', function () {
