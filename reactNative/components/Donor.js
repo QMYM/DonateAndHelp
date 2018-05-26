@@ -14,15 +14,11 @@ class Donor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-  
       camp: [],
       amount: '',
-      term: ''
-     
+      term: ''  
    }
  }
-
-
 
    componentDidMount () {
     var x = this

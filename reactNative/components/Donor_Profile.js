@@ -27,34 +27,118 @@ class Donor_Profile extends React.Component {
   }
 
   getInfoForProfilePageforDonor(){
-    var x = this;
-    axios.get('https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor').then(function(res){
+    var x = this
+    axios.get("https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor").then(function(res){
       var alo = res.data[0]
-      console.log("i'm here tho!",res.data[0])
-      x.setState({
-        newDescription:alo.description,
-        newPhone:alo.contactNum,
-        newAdress: alo.address,
-        newName:alo.name
-      })
+        x.setState({
+          newDescription:alo.description,
+           newPhone:alo.contactNum,
+           newAdress: alo.address,
+           newName:alo.name
+          })
     }).catch(function(err){
-      console.lof(err)
+      console.log(err)
     })
   }
 
-
-  logout () {
-    axios.get('https://qaysdonate.herokuapp.com/logout')
-    .then(function (res) {
-      console.log('logged out')
-      Actions.Home()
-    }).catch(function (err) {
-      console.log('logout err', err)
+  submit (name, contactNum, description, address) {
+    var x = this
+    axios.post('https://qaysdonate.herokuapp.com/Profile_Donor', {
+      name: this.state.name,
+      contactNum: this.state.contactNum,
+      description: this.state.description,
+      address: this.state.address
     })
+      .then(response => {
+        // should go to the home page from here
+        var alo = response.data
+        console.log('profile has been updated',response.data)
+        // should go to the home page from here
+         x.setState({
+          newDescription:alo.description,
+           newPhone:alo.contactNum,
+           newAdress: alo.address,
+           newName:alo.name
+          })
+
+      }).catch(error => {
+        alert('wrong in profile update')
+      })
+  }
+
+  uploadPhoto (photo) { // post the photo and get the photo in the same time
+    var x = this
+    var file = photo.target.files[0]
+    var fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function (e) {
+      axios.post('https://qaysdonate.herokuapp.com/photoDonor', {image: e.target.result})
+        .then(res => {
+          console.log('hello Donor image', res)
+          window.location.reload() // here i'm getting the photo from database
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+  uploadPhoto2 (photo) { // post the photo and get the photo in the same time
+    var x = this
+    var file = photo.target.files[0]
+    var fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = function (e) {
+      axios.post('https://qaysdonate.herokuapp.com/photoDonor2', {image2: e.target.result})
+        .then(res => {
+          window.location.reload() // here i'm getting the photo from database
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+  }
+
+  getLargeImage () {
+    var x = this
+    axios.get('https://qaysdonate.herokuapp.com/getImageDonor2')
+      .then(function (res) {
+        var post = res.data
+        x.setState({image2: post.image2})
+      }).catch(function (err) {
+        console.log(err)
+      })
+  }
+  componentDidMount () { // this is the initial
+    this.getInfoForProfilePageforDonor()
+    this.fetchDonorData()
+    axios.get('https://qaysdonate.herokuapp.com/getImageDonor')
+      .then(response => {
+        this.fetchDonorData()
+        const posts = response['data']
+        this.setState({ // changing the state to the new image that i fetch it from database
+          image: posts.image
+          // image2:posts.image
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    var x = this
+    axios.get('https://qaysdonate.herokuapp.com/donorCam')
+      .then(res => {
+        var posts = []
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].username === this.state.user) {
+            posts.push(res.data[i])
+            x.setState({post: posts})
+          }
+        }
+      })
+    this.getLargeImage()
   }
 
   fetchDonorData () {
-    var x = this;
+    var x = this
     axios.get('https://qaysdonate.herokuapp.com/fetchDonorData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
@@ -65,69 +149,51 @@ class Donor_Profile extends React.Component {
     }).catch(function (err) {
       console.log('error', err)
     })
-    axios.get('/donorCam')
-    .then(res => {
-      var posts = []
-      for (var i = 0; i < res.data.length; i++) {
-        if (res.data[i].username === this.state.user) {
-          posts.push(res.data[i])
-          x.setState({post: posts})
-        }
-      }
-    })
   }
 
-
-  getLargeImage () {
-    var x = this
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor2')
-    .then(function (res) {
-      var post = res.data
-      x.setState({image2: post.image2})
-    }).catch(function (err) {
-      console.log(err)
+  deleteCampaign (delCampaignID) {
+    axios.post('https://qaysdonate.herokuapp.com/delCampaignDonor', {
+      CampID: delCampaignID
     })
-  }
-  
-  componentDidMount () { // this is the initial
-    this.getInfoForProfilePageforDonor()
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor')
-    .then(response => {
-      const posts = response['data']
-        this.setState({ // changing the state to the new image that i fetch it from database
-          image: posts.image
-          // image2:posts.image
-        })
-        this.fetchDonorData()
+      .then(response => {
+        alert('campaign has been deleted!')
+        window.location.reload()
+      }).catch(error => {
+        alert('error in campaign deletion!', error)
       })
-    .catch(function (error) {
-      console.log(error)
-    })
-    this.getLargeImage()
   }
 
+ 
 
-  editInfo(contactNum, description, address) { 
-    var x = this;
-    console.log("Edit Information in axios mais mais", contactNum, description, address);
-    axios.post('https://qaysdonate.herokuapp.com/Profile_Donor',
-    {
-      contactNum: this.state.contactNum,
-      description: this.state.description,
-      address: this.state.address
+  updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
+    axios.put('https://qaysdonate.herokuapp.com/editCampaignDonor', {
+      campaignID: campaignID,
+      campaignName: campaignName,
+      campaignDescription: campaignDescription,
+      campaignAmount: campaignAmount,
+      username: name
     })
-    .then(response => {
-     console.log("success in updating profile!", response);
-     var info = response.data;
-     x.setState({
-       newContactNum: info.contactNum,
-       newDescription: info.description,
-       newAddress: info.address
-     })
-   }).catch(error => {
-    console.log("wrong in updating profile!", error);
-  })
- };
+      .then(response => {
+        alert('campaign has been edited!')
+        window.location.reload()
+      }).catch(error => {
+        alert('error in campaign edit!')
+      })
+  }
+
+  theId (id) {
+    this.setState({id: id})
+  }
+
+  logout () {
+    axios.get('https://qaysdonate.herokuapp.com/logout')
+      .then(function (res) {
+        console.log('ea eshe ')
+        window.location.href = '/'
+      }).catch(function (err) {
+        console.log('logout err ', err)
+      })
+  }
 
     // keyboardType={"numeric"}
 
@@ -183,6 +249,14 @@ class Donor_Profile extends React.Component {
         <Text>{this.state.newDescription}</Text>
         <Text>{this.state.newAddress}</Text>
         </Container>
+        <Content style={{textAlign :'center'}}>
+        {this.state.post.map(po =>
+          <View key={po._id}>
+          <Text>Campaign Name : {po.campaignName}</Text>
+          <Text>{po.campaignDescription}</Text>
+          </View>
+          )}
+         </Content>
         </Content>
          </Container>
 
