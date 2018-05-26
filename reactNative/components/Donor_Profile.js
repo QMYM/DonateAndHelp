@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button } from 'native-base';
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -187,12 +187,37 @@ class Donor_Profile extends React.Component {
 
         {this.state.post.map(po => 
          <View>
+         <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Body>
           <Text>{po.campaignName}</Text>
-          <Text>{po.campaignDescription}</Text>
-          <Image
-        style={styles.post}
+                  <Text note>{po.campaignDescription}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image
+              
+         style={{height: 200, width: null, flex: 1}}
          source={{uri : po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
-       />
+               />
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="thumbs-up" />
+                  <Text>Edit</Text>
+                </Button>
+              </Left>
+              
+              <Right>
+                <Text>11h ago</Text>
+              </Right>
+            </CardItem>
+          </Card>
+        </Content>
          </View>
           )}
 
