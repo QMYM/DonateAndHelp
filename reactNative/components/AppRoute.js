@@ -15,8 +15,6 @@ import Message from "./Message"
 import Message_Reciver from "./Message_Reciver"
 import Beneficiaries from "./Beneficiaries"
 import Beneficiaries_Campaign from "./Beneficiaries_Campaign"
-import Donor_Profile from "./Donor_Profile"
-
 
 import ImagePickerExample from "./ImagePickerExample"
 
@@ -96,13 +94,6 @@ export default class AppRoute extends React.Component {
           component={ImagePickerExample}
           title="ImagePickerExample"
 
-         
-        />
-         <Scene
-          key="Donor_Profile"
-          component={Donor_Profile}
-          title="Donor_Profile"
-          
          
         />
       </Scene>

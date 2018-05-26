@@ -17,12 +17,15 @@ class Donor extends React.Component {
   
       camp: [],
       amount: '',
-      term: ''
+      term: '' ,
+      modalVisible: false,
      
    }
  }
 
-
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
    componentDidMount () {
     var x = this
@@ -35,7 +38,7 @@ class Donor extends React.Component {
   }
 
   submitDonate (amount ) {
-    axios.post('/editAmount' , {amount:amount , user : this.state.user })
+    axios.post('https://qaysdonate.herokuapp.com/editAmount' , {amount:amount , user : this.state.user })
     .then(function (res) {
     alert("Thanks For Donation"); 
       window.location.reload()
@@ -62,17 +65,45 @@ class Donor extends React.Component {
           </Button>
         </Header>
         <Content style={{textAlign :'center'}}>
- 
+
+              <Modal
+      animationType="slide"
+      transparent={false}
+      visible={this.state.modalVisible}
+      onRequestClose={() => {
+        alert('Modal has been closed.');
+      }}>
+      <View style={{marginTop: 22}}>
+      <Text>Payment</Text>
+
+      <Text>Amount</Text>
+      <TextInput
+      style = {styles.input}
+      placeholder="Enter your user!"
+      onChangeText={(amount) => this.setState({amount})}
+      />
+      <Text>Card Number</Text>
+      <TextInput
+      style = {styles.input}
+      placeholder="Enter your text!"
+      />
+      <Button
+      onPress={() => {this.submitDonate(this.state.amount) , this.setModalVisible(!this.state.modalVisible)}}
+      > <Text>Send</Text>
+        </Button>
+      </View>
+      </Modal>
+
         {this.state.camp.filter(searching(this.state.term)).map(item => 
         
        <View style={styles.campview} key={item._id}>
 
         <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
         <Text>{item.campaignDescription}</Text>
-        <Button 
-        onPress ={()=>this.submitDonate(this.user(item._id))}>
+        <Text>{item.campaignAmount}</Text><Text>JD</Text>
+          <Button onPress={() => {this.setModalVisible(true)  , this.user(item._id)}} >
         <Text>Donate </Text>
-        </Button>
+      </Button>
 
       </View>
       )}

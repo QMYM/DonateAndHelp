@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
-import { Button } from 'react-native-elements'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button } from 'native-base';
+
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -147,7 +147,7 @@ class Donor_Profile extends React.Component {
         style={styles.stretch}
          source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
        />
-        <Container style={styles.center}>
+        
         <Text>About Me</Text>
         <Text>Some Description</Text>
         <Text>Phone Number: </Text>      
@@ -166,23 +166,19 @@ class Donor_Profile extends React.Component {
         placeholder="Type here your address!"
         onChangeText={(address) => this.setState({address})}
         />
-       
-        <Button  icon={{name: 'done'}} style={styles.btn}
+        <Button
         onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
-         title="done_outline"
-        />
-       
+
+        ><Text>Done</Text></Button>
         <Button
         onPress={() => this.logout()}
-         title="logout" />
-       
+        ><Text>Logout</Text></Button>
         <Text>Information</Text>
         <Text>{this.state.newName}</Text>
         <Text>{this.state.email}</Text>
         <Text>{this.state.newContactNum}</Text>
         <Text>{this.state.newDescription}</Text>
         <Text>{this.state.newAddress}</Text>
-        </Container>
         </Content>
          </Container>
 
@@ -198,29 +194,16 @@ class Donor_Profile extends React.Component {
     stretch2: {
       width: 400,
       height: 200,
-      justifyContent: 'center',
-      alignItems: 'center'
+   justifyContent: 'center',
+   alignItems: 'center'
       },
     stretch: {
       marginLeft:10,
       width: 150,
       height: 150,
       borderRadius: 150/2,
-      marginTop:-60,
-      borderWidth: 1,
       
-    },
-  
-    center:{
-      alignItems: 'center',
-     
-    },
-    btn:{
-      marginTop:10,
-      width: 150,
-
-    },
-   
+    }
   })
 
   module.exports = Donor_Profile;
