@@ -165,12 +165,17 @@ class Donor_Profile extends React.Component {
     console.log("wrong in updating profile!", error);
   })
  };
-
+uploadPhoto(photo){
+  console.log(photo)
+}
  render(){
   return (
    <Container>
    <Header />
    <Content>
+    <Button
+  onPress={() => this.uploadPhoto}
+  ><Text>Upload the pic</Text></Button>
 
    <Modal
    animationType="slide"
