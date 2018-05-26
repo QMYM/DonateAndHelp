@@ -269,16 +269,13 @@ class Donor_Profile extends React.Component {
                   </div>
                 </div>
               </div>
-
               <label style={{color: 'black'}}>
                 <div className='text-block' />
-
               </label>
-
             </div>
           </div>
         </form>
- <div className='modal fade' id='myModal' role='dialog'>
+        <div className='modal fade' id='myModal' role='dialog'>
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
+import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
-import { Button } from 'react-native-elements'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -19,18 +18,26 @@ class Donor_Profile extends React.Component {
       image2: '',
       name: '',
       user: '',
+      modalVisible: false,
+      edit: false,
       email: '',
       post: [],
       id: '',
       newName: ''
     }
   }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+  setEdit(visible) {
+    this.setState({edit: visible});
+  }
+
 
   getInfoForProfilePageforDonor(){
     var x = this;
     axios.get('https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor').then(function(res){
       var alo = res.data[0]
-      console.log("i'm here tho!",res.data[0])
       x.setState({
         newDescription:alo.description,
         newPhone:alo.contactNum,
@@ -38,7 +45,7 @@ class Donor_Profile extends React.Component {
         newName:alo.name
       })
     }).catch(function(err){
-      console.lof(err)
+      console.log(err)
     })
   }
 
@@ -65,7 +72,7 @@ class Donor_Profile extends React.Component {
     }).catch(function (err) {
       console.log('error', err)
     })
-    axios.get('/donorCam')
+    axios.get('https://qaysdonate.herokuapp.com/donorCam')
     .then(res => {
       var posts = []
       for (var i = 0; i < res.data.length; i++) {
@@ -106,10 +113,40 @@ class Donor_Profile extends React.Component {
     this.getLargeImage()
   }
 
+  deleteCampaign (delCampaignID) {
+    console.log(delCampaignID)
+    axios.post('https://qaysdonate.herokuapp.com//delCampaignDonor', {
+      CampID: delCampaignID
+    })
+    .then(response => {
+      alert('campaign has been deleted!')
+    }).catch(error => {
+      alert('error in campaign deletion!', error)
+    })
+  }
+
+  updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
+    axios.put('https://qaysdonate.herokuapp.com//editCampaignDonor', {
+      campaignID: campaignID,
+      campaignName: campaignName,
+      campaignDescription: campaignDescription,
+      campaignAmount: campaignAmount,
+      username: name
+    })
+    .then(response => {
+      alert('campaign has been edited!')
+      window.location.reload()
+    }).catch(error => {
+      alert('error in campaign edit!')
+    })
+  }
+
+  theId (id) {
+    this.setState({id: id})
+  }
 
   editInfo(contactNum, description, address) { 
     var x = this;
-    console.log("Edit Information in axios mais mais", contactNum, description, address);
     axios.post('https://qaysdonate.herokuapp.com/Profile_Donor',
     {
       contactNum: this.state.contactNum,
@@ -128,99 +165,190 @@ class Donor_Profile extends React.Component {
     console.log("wrong in updating profile!", error);
   })
  };
+uploadPhoto(photo){
+  console.log(photo)
+}
+ render(){
+  return (
+   <Container>
+   <Header />
+   <Content>
+    <Button
+  onPress={() => this.uploadPhoto}
+  ><Text>Upload the pic</Text></Button>
 
-    // keyboardType={"numeric"}
+   <Modal
+   animationType="slide"
+   transparent={false}
+   visible={this.state.modalVisible}
+   onRequestClose={() => {
+    alert('Modal has been closed.');
+  }}>
+  <View style={{marginTop: 22}}>
+  <Text>Information</Text>
+  <Text>Phone Number: </Text>      
+  <TextInput
+  placeholder="Type here your phone number!"
+  keyboardType="numeric" 
+  onChangeText={(contactNum) => this.setState({contactNum})}
+  />
+  <Text>Description: </Text>
+  <TextInput
+  placeholder="Type here a description!"
+  onChangeText={(description) => this.setState({description})}
+  />
+  <Text>Address: </Text>
+  <TextInput
+  placeholder="Type here your address!"
+  onChangeText={(address) => this.setState({address})}
+  />
+  <Button
+  onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
 
-    render(){
-      return (
-         <Container>
-        <Header />
-        <Content>
-        
-         <Image
-        style={styles.stretch2}
+  ><Text>Done</Text></Button>
+  <Button onPress={() => {
+    this.setModalVisible(!this.state.modalVisible);
+  }}><Text>Close</Text></Button>
+  </View>
+  </Modal>
 
-         source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
 
-       />
-       <Image
-        style={styles.stretch}
-         source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
-       />
-        <Container style={styles.center}>
-        <Text>About Me</Text>
-        <Text>Some Description</Text>
-        <Text>Phone Number: </Text>      
-        <TextInput
-        placeholder="Type here your phone number!"
-        keyboardType="numeric" 
-        onChangeText={(contactNum) => this.setState({contactNum})}
-        />
-        <Text>Description: </Text>
-        <TextInput
-        placeholder="Type here a description!"
-        onChangeText={(description) => this.setState({description})}
-        />
-        <Text>Address: </Text>
-        <TextInput
-        placeholder="Type here your address!"
-        onChangeText={(address) => this.setState({address})}
-        />
-       
-        <Button  icon={{name: 'done'}} style={styles.btn}
-        onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
-         title="done_outline"
-        />
-       
-        <Button
-        onPress={() => this.logout()}
-         title="logout" />
-       
-        <Text>Information</Text>
-        <Text>{this.state.newName}</Text>
-        <Text>{this.state.email}</Text>
-        <Text>{this.state.newContactNum}</Text>
-        <Text>{this.state.newDescription}</Text>
-        <Text>{this.state.newAddress}</Text>
-        </Container>
-        </Content>
-         </Container>
+  <Modal
+  animationType="slide"
+  transparent={false}
+  visible={this.state.edit}
+  onRequestClose={() => {
+    alert('Modal has been closed.');
+  }}>
+  <View style={{marginTop: 22}}>
+  <Text>Edit</Text>
+  <Text>Campaign Name: </Text>
+  <TextInput
+  placeholder="Type here your campaignName!"
+  onChangeText={(campaignName) => this.setState({campaignName})}
+  />
 
-        )
-    }
+  <Text>Campaign Description: </Text>
+   <TextInput
+  placeholder="Type here your campaignDescription!"
+  onChangeText={(campaignDescription) => this.setState({campaignDescription})}
+  />
+
+  <Text>Campaign Amount: </Text>
+   <TextInput
+  placeholder="Type here your campaignAmount!"
+  onChangeText={(campaignAmount) => this.setState({campaignAmount})}
+  />
+
+  <Button
+  onPress={() => this.updateCampaign(this.state.id, this.state.campaignName,
+   this.state.campaignDescription, this.state.campaignAmount, this.state.user)}
+  ><Text>Update</Text></Button>
+
+  <Button onPress={() => {
+    this.setEdit(!this.state.edit);
+  }}><Text>Close</Text></Button>
+  </View>
+  </Modal>
+
+  <Image
+  style={styles.stretch2}
+
+  source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+
+  />
+  <Image
+  style={styles.stretch}
+  source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+  />
+
+  <Text>About Me</Text>
+  <Text>Some Description</Text>
+
+  {this.state.post.map(po => 
+   <View>
+   <Content>
+   <Card>
+   <CardItem>
+   <Left>
+   <Body>
+   <Text>{po.campaignName}</Text>
+   <Text note>{po.campaignDescription}</Text>
+   </Body>
+   </Left>
+   </CardItem>
+   <CardItem cardBody>
+   <Image
+
+   style={{height: 200, width: null, flex: 1}}
+   source={{uri : po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
+   />
+   </CardItem>
+   <CardItem>
+   <Left>
+   <Button transparent onPress={() => {this.theId(po._id) , this.setEdit(true)}}>
+   <Icon active name="edit" />
+   <Text>Edit</Text>
+   </Button>
+   </Left>
+   <Body>
+   <Button transparent onPress={() => this.deleteCampaign(po._id)}>
+   <Icon active name="delete" />
+   <Text>Delete</Text>
+   </Button>
+   </Body>
+   <Right>
+   <Text>11h ago</Text>
+   </Right>
+   </CardItem>
+   </Card>
+   </Content>
+   </View>
+   )}
+
+  <Button onPress={() => {
+    this.setModalVisible(true);
+  }}>
+  <Text>Edit Information</Text>
+  </Button>
+  <Button
+  onPress={() => this.logout()}
+  ><Text>Logout</Text></Button>
+  <Text>Information</Text>
+  <Text>{this.state.newName}</Text>
+  <Text>{this.state.email}</Text>
+  <Text>{this.state.newContactNum}</Text>
+  <Text>{this.state.newDescription}</Text>
+  <Text>{this.state.newAddress}</Text>
+  </Content>
+  </Container>
+  )
+}
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22
+  },
+  stretch2: {
+    width: 400,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  stretch: {
+    marginLeft:10,
+    width: 150,
+    height: 150,
+    borderRadius: 150/2,
+  },
+  post: {
+    marginLeft:10,
+    width: 150,
+    height: 150,
+
   }
+})
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22
-    },
-    stretch2: {
-      width: 400,
-      height: 200,
-      justifyContent: 'center',
-      alignItems: 'center'
-      },
-    stretch: {
-      marginLeft:10,
-      width: 150,
-      height: 150,
-      borderRadius: 150/2,
-      marginTop:-60,
-      borderWidth: 1,
-      
-    },
-  
-    center:{
-      alignItems: 'center',
-     
-    },
-    btn:{
-      marginTop:10,
-      width: 150,
-
-    },
-   
-  })
-
-  module.exports = Donor_Profile;
+module.exports = Donor_Profile;
