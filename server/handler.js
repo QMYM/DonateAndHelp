@@ -1,9 +1,9 @@
+
 let db = require('../db/index')
 let helper = require('../helper/uitilty')
 let bcrypt = require('bcrypt')
 let session = require('express-session')
 let saltRounds = 10
-
 
 exports.Signup = function (req, res) {
   var username = req.body.username
@@ -206,7 +206,7 @@ exports.getInfoForProfilePage = function(req,res){
   db.userCompany.find({username: req.session.user},function(err,data){
     if(err){
       throw err
-    }else{
+    } else {
       res.send(data)
     }
   })
@@ -217,7 +217,7 @@ exports.getInfoForProfilePageforDonor = function(req,res){
   db.userDonater.find({username: req.session.user},function(err,data){
     if(err){
       throw err
-    }else{
+    } else {
       res.send(data)
     }
   })
@@ -390,6 +390,7 @@ exports.sendMessage = function (req, res) {
     }
   })
 }
+
 exports.getPhotoForMessages = function (req, res) {
   db.messageSenders(function (err, data) {
     if (err) { throw err } else {
@@ -417,7 +418,6 @@ exports.uploadImageCampaign = function (req, res) {
       console.log('Campaign image has been posted', data)
     }
   })
-
   db.companyCampaigns.update({username: req.session.user}, { $set: { campaignImage: image }}, function (err, data) {
     if (err) {
       throw err
@@ -439,7 +439,6 @@ exports.postCompanyCampaign = function (req, res) {
     campaignImage: campaignImage,
     username: req.session.user
   })
-
   info.save(function (err, data) {
     if (err) {
       throw err
@@ -507,6 +506,7 @@ exports.donorCam = function (req, res) {
     }
   })
 }
+
 exports.companyCam = function (req, res) {
   db.companyCampaigns.find({}, function (err, data) {
     if (err) { throw err } else {
@@ -633,12 +633,9 @@ exports.editCampaignDonor = function (req, res) {
   })
 }
 
-
 exports.deleteAllMessages = function (req,res){
-var user = req.body.user
-
-
-db.MessageSchema.remove({sender:user}, function (err, done) {
+  var user = req.body.user
+  db.MessageSchema.remove({sender:user}, function (err, done) {
     if (err) {
       throw err
     } else {
@@ -655,13 +652,13 @@ exports.editAmount  = function (req , res) {
     function (err , data) {
     if(err){
       throw err ; 
-    }else { 
+    } else { 
       var prevAmount = parseInt(data.campaignAmount) ; 
       if (prevAmount  < amount){
         res.sendStatus(401) ; 
 
-      }else{
-        amount = prevAmount - amount ;  
+      } else {
+        amount = prevAmount - amount;  
         db.companyCampaigns.update({_id : username} , {$set : {campaignAmount : amount.toString()}} , function (err , data) {
           if(err ){
             throw err

@@ -1,18 +1,19 @@
-var mongoose = require('mongoose')
+
+var mongoose = require('mongoose') // Import mongoose module
 mongoose.Promise = global.Promise
-// mongoose.connect('mongodb://localhost/Donate')
-mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate')
-var db = mongoose.connection
+// mongoose.connect('mongodb://localhost/Donate') 
+mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate') // This is to connect the backend to
+// an external DB hosted on https://mlab.com/
+var db = mongoose.connection // Create mongoose connection for mongodb
 
 db.on('error', function () {
   console.log('mongoose connection error')
-})
-
+}) // This will apply if there is a problem on mongoose connection for mongodb
 db.once('open', function () {
   console.log('mongoose connected successfully')
-})
+}) // This will apply if mongoose is connected successfully for mongodb
 
-var Schema = mongoose.Schema
+var Schema = mongoose.Schema // Create a mongoose schema 
 
 var userDonater = new Schema({
   username: {type: String},
@@ -24,7 +25,8 @@ var userDonater = new Schema({
   contactNum: {type: String},
   description: {type: String},
   address: {type: String}
-})
+}) // This schema is for donors
+
 var userCompany = new Schema({
   username: {type: String},
   email: {type: String},
@@ -35,14 +37,15 @@ var userCompany = new Schema({
   contactNum: {type: String},
   description: {type: String},
   address: {type: String}
-})
+}) // This schema is for beneficiaries
+
 var companyCampaigns = new Schema({
   campaignName: {type: String},
   campaignDescription: {type: String},
   campaignAmount: {type: String},
   campaignImage: {type: String},
   username: {type: String}
-})
+}) // This schema is for beneficary campaigns
 
 var donorCampaigns = new Schema({
   campaignName: {type: String},
@@ -50,7 +53,7 @@ var donorCampaigns = new Schema({
   campaignAmount: {type: String},
   campaignImage: {type: String},
   username: {type: String}
-})
+}) // This schema is for donor campaigns
 
 const messageSchema = new Schema({
   sender: {
@@ -70,9 +73,10 @@ const messageSchema = new Schema({
     default: Date.now
   }
 
-})
+}) // This schema is for messaging
 
-MessageSchema = mongoose.model('MessageSchema', messageSchema)
+MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
+
 var messageSenders = function (callback) {
   MessageSchema.aggregate([
     {
@@ -97,13 +101,14 @@ var messageSenders = function (callback) {
       callback(null, data)
     }
   })
-}
+} 
 
-userCompany = mongoose.model('userCompany', userCompany)
-userDonater = mongoose.model('userDonater', userDonater)
-companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns)
-donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
-MessageSchema = mongoose.model('MessageSchema', messageSchema)
+userCompany = mongoose.model('userCompany', userCompany) // Create a model from beneficaries schema
+userDonater = mongoose.model('userDonater', userDonater) // Create a model from donors schema
+companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns) // Create a model from beneficary campaigns 
+// schema
+donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns) // Create a model from donor campaigns schema
+MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
 
 module.exports.messageSenders = messageSenders
 module.exports.userDonater = userDonater
