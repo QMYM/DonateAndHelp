@@ -1,3 +1,4 @@
+// This is the home page of the donor after logging in
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
@@ -30,10 +31,10 @@ class Donor extends React.Component {
       term: '' , 
       user : ''
     }
-    this.logout = this.logout.bind(this)
-    this.search = this.search.bind(this)
-    this.user = this.user.bind(this)
-    this.handlechangeAmount = this.handlechangeAmount.bind(this)
+    this.logout = this.logout.bind(this);
+    this.search = this.search.bind(this);
+    this.user = this.user.bind(this);
+    this.handlechangeAmount = this.handlechangeAmount.bind(this);
   }
 
   search (e) {
@@ -50,7 +51,7 @@ class Donor extends React.Component {
       })
   }
 
-  componentDidMount () {
+  componentDidMount () { // Retrieve the beneficiary campagins in the home page when the home page is loaded
     var x = this
     axios.get('/companyCam')
       .then(function (res) {
@@ -67,7 +68,7 @@ class Donor extends React.Component {
     })
   };
 
-  submitDonate (amount ) {
+  submitDonate (amount ) { // Donate for the beneficary campagin rendered in the home page
     axios.post('/editAmount' , {amount:amount , user : this.state.user })
     .then(function (res) {
     alert("Thanks For Donation"); 
@@ -77,6 +78,7 @@ class Donor extends React.Component {
       alert("the amount is so high")
     })
   }
+
   user(name){
     this.setState({user:name})
   }
