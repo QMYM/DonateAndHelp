@@ -68,6 +68,7 @@ class Donor_Campaign extends React.Component {
       })
     }
   }
+  
   logout () {
     axios.get('/logout')
       .then(function (res) {

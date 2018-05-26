@@ -29,26 +29,26 @@ class Message extends React.Component {
       senderMess: [],
       messageForDOM:""
     }
-    this.sendMessage = this.sendMessage.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.openMail = this.openMail.bind(this)
-    this.remove = this.remove.bind(this)
-    this.close = this.close.bind(this)
-    this.delete = this.delete.bind(this)
-  }
-  remove (user, id) {
-    axios.post('/removeMsg', {user: user, id: id})
-      .then(function (res) {
-        
-        window.location.reload()
-      }).catch(function (err) {
-        console.log('err', err)
-      })
+    this.sendMessage = this.sendMessage.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.openMail = this.openMail.bind(this);
+    this.remove = this.remove.bind(this);
+    this.close = this.close.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
-  componentDidMount () {
-    this.getPhotoForMessages()
-    var x = this
+  remove (user, id) { // Remove a single message
+    axios.post('/removeMsg', {user: user, id: id})
+      .then(function (res) {
+        window.location.reload();
+      }).catch(function (err) {
+        console.log('err', err);
+      })
+  } 
+
+  componentDidMount () { // It will retrieve the history messages information when the messages page is loaded
+    this.getPhotoForMessages();
+    var x = this;
     x.user()
     axios.get('/recieveMessage')
       .then(function (response) {
@@ -59,20 +59,19 @@ class Message extends React.Component {
             mes.push(response.data[i])
             x.setState({messages: mes})
           }
-
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
-
           }
         }
       })
   }
+
   getPhotoForMessages () {
-    var x = this
-    var arr = []
-    var obj = {}
-    var rec = []
+    var x = this;
+    var arr = [];
+    var obj = {};
+    var rec = [];
     var test = [];
     axios.get('/getPhotoForMessages').then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
@@ -95,8 +94,9 @@ class Message extends React.Component {
       console.log('error', err)
     })
   }
-  user () {
-    var x = this
+
+  user () { // This will retrieve the username of the user who is currently logged in 
+    var x = this;
     axios.get('/sessionName').then(function (res) {
       x.setState({sessionUser: res.data})
     }).catch(function (err) {
@@ -109,6 +109,7 @@ class Message extends React.Component {
       [e.target.name]: e.target.value
     })
   }
+
   sendMessage (to, text) {
     var x = this
     axios.post('/sendMessage', {user: to, text: text})
@@ -132,7 +133,7 @@ class Message extends React.Component {
       })
   }
 
-  openMail (personName) {
+  openMail (personName) { // Create a new message
     var i
     var arr = []
     var arr2 = []
@@ -160,8 +161,9 @@ class Message extends React.Component {
   }
 
   close(){
- document.getElementById("closeMenShanAlllah").style.display = 'none'
+   document.getElementById("closeMenShanAlllah").style.display = 'none' // Close the message window
   }
+
   logout () {
     axios.get('/logout')
       .then(function (res) {
@@ -171,8 +173,9 @@ class Message extends React.Component {
         console.log('logout err ', err)
       })
   }
-  delete(delteUserName){
-    var x = this
+
+  delete(delteUserName){ // Delete all messages
+    var x = this;
     axios.post("/deleteAllMessages",{user:delteUserName}).then(function(res){
         x.setState({
           messageForDOM:" Your Messages has been Deleted!"
@@ -255,7 +258,7 @@ class Message extends React.Component {
             <div className='w3-panel'>
               <label>To</label>
               <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='user' />
-              <label>Subject</label>
+              <label>Text</label>
               <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='text' placeholder="What's on your mind?" />
               <div className='w3-section'>
                 <button className='w3-button w3-red btn' data-dismiss='modal'  onClick={this.close}>Cancel  <i className='fa fa-remove' /></button>
