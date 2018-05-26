@@ -35,8 +35,6 @@ export default class AppRoute extends React.Component {
           title="Home"
           hideNavBar={true}
           initial = {true}
-          
-          
 
         />
         <Scene

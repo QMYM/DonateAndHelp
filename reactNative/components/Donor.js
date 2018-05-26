@@ -14,34 +14,32 @@ class Donor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-  
       camp: [],
       amount: '',
       term: '' ,
       modalVisible: false,
-     
-   }
- }
+    }
+  }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-   componentDidMount () {
+  componentDidMount () {
     var x = this
     axios.get('https://qaysdonate.herokuapp.com/companyCam')
-      .then(function (res) {
-        x.setState({camp: res.data})
-      }).catch(function (err) {
-        console.log(err)
-      })
+    .then(function (res) {
+      x.setState({camp: res.data})
+    }).catch(function (err) {
+      console.log(err)
+    })
   }
 
   submitDonate (amount ) {
     axios.post('https://qaysdonate.herokuapp.com/editAmount' , {amount:amount , user : this.state.user })
     .then(function (res) {
-    alert("Thanks For Donation"); 
-      window.location.reload()
+      alert("Thanks For Donation"); 
+      Actions.refresh(key:'Donor_Tab')
     })
     .catch(function (err) {
       alert("the amount is so high")
@@ -53,20 +51,20 @@ class Donor extends React.Component {
   render() {
     return (
 
-        <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search" onChangeText={(term) => this.setState({term})} />
-            <Icon name="ios-people" />
-          </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
-        </Header>
-        <Content style={{textAlign :'center'}}>
+      <Container>
+      <Header searchBar rounded>
+      <Item>
+      <Icon name="ios-search" />
+      <Input placeholder="Search" onChangeText={(term) => this.setState({term})} />
+      <Icon name="ios-people" />
+      </Item>
+      <Button transparent>
+      <Text>Search</Text>
+      </Button>
+      </Header>
+      <Content style={{textAlign :'center'}}>
 
-              <Modal
+      <Modal
       animationType="slide"
       transparent={false}
       visible={this.state.modalVisible}
@@ -88,26 +86,24 @@ class Donor extends React.Component {
       placeholder="Enter your text!"
       />
       <Button
-      onPress={() => {this.submitDonate(this.state.amount) , this.setModalVisible(!this.state.modalVisible)}}
-      > <Text>Send</Text>
-        </Button>
+      onPress={() => {this.submitDonate(this.state.amount) , this.setModalVisible(!this.state.modalVisible) }}
+      > <Text>Donate</Text>
+      </Button>
       </View>
       </Modal>
 
-        {this.state.camp.filter(searching(this.state.term)).map(item => 
-        
+      {this.state.camp.filter(searching(this.state.term)).map(item => 
        <View style={styles.campview} key={item._id}>
+       <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
+       <Text>{item.campaignDescription}</Text>
+       <Text>{item.campaignAmount}</Text><Text>JD</Text>
+       <Button onPress={() => {this.setModalVisible(true)  , this.user(item._id)}} >
+       <Text>Donate </Text>
+       </Button>
 
-        <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
-        <Text>{item.campaignDescription}</Text>
-        <Text>{item.campaignAmount}</Text><Text>JD</Text>
-          <Button onPress={() => {this.setModalVisible(true)  , this.user(item._id)}} >
-        <Text>Donate </Text>
-      </Button>
-
-      </View>
-      )}
-        </Content>
+       </View>
+       )}
+      </Content>
       </Container>
       );
   }
@@ -122,14 +118,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   campview:{
-      marginTop :10,
-      marginBottom :10,
-       width: 300,
-       height: 80,
-      backgroundColor: 'white',
-       borderRadius: 10,
-       borderWidth: 3,
-        borderColor: '#d6d7da',
+    marginTop :10,
+    marginBottom :10,
+    width: 300,
+    height: 80,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: '#d6d7da',
   },
 });
 
