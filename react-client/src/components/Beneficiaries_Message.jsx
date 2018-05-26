@@ -252,7 +252,7 @@ class Beneficiaries_Message extends React.Component {
             <div className='w3-panel'>
               <label>To</label>
               <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='user' />
-              <label>Subject</label>
+              <label>Text</label>
               <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='text' placeholder="What's on your mind?" />
               <div className='w3-section'>
                 <button className='w3-button w3-red btn' data-dismiss='modal'  onClick={this.close}>Cancel  <i className='fa fa-remove' /></button>

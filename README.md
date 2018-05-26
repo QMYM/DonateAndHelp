@@ -3,7 +3,7 @@
 
 - Project title:
 
- Our project name is "DonateAndHelp" which is a platform on a website and mobile application that connects beneficiaries with donors in order to recieve money donations from donors in response to the campaigns uploaded by beneficiaries on the platform. In addtion, donors can create campaigns for items they want to donate for beneficiaries.
+ Our project name is "DonateAndHelp" which is a platform on a website and mobile application that connects beneficiaries with donors in order to receive money donations from donors in response to the campaigns uploaded by beneficiaries on the platform. In addition, donors can create campaigns for items they want to donate for beneficiaries.
 
 - Motivation:
 

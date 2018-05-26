@@ -35,11 +35,11 @@ app.post('/loginCompany', handler.LoginCompany) // This function is responsible 
 app.post('/loginDonater', handler.LoginDonater) // This function is responsible for the login of the donor
 app.post('/Donater', handler.Signup) // This function is responsible for the signup of the donor
 app.post('/Company', handler.SignupCompany) // This function is responsible for the signup of the beneficiary
-app.post('/photo', handler.uploadImage) // This function will upload the profile image of the donor in the
+app.post('/photo', handler.uploadImage) // This function will upload the profile image of the beneficiary in the
 // profile page
 app.post('/photo2', handler.uploadImage2) // This function will upload the background image of the beneficiary in the
 // profile page
-app.get('/logout', handler.logout) // This function for the logout
+app.get('/logout', handler.logout) // This function for the Logout of the existing and currently logged in user
 app.post('/profile_company', handler.addProfileCompany) // This function is for adding/editing the beneficiary 
 // profile information in the profile page
 app.get('/recieveMessage', handler.reciveMessag) // This function is responsible for recieving messages

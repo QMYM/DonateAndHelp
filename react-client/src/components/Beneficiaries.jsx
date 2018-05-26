@@ -1,3 +1,4 @@
+// The is the home page of the beneficiary after logging in
 import React from 'react'
 import $ from 'jquery'
 import axios from 'axios'
@@ -29,14 +30,16 @@ class Beneficiaries extends React.Component {
     this.logout = this.logout.bind(this)
     this.submitCompany = this.submitCompany.bind(this)
   }
+
   submitCompany(){
     console.log("Done")
   }
-  componentDidMount () {
+
+  componentDidMount () { // Retrieve the donor campagins in the beneficiary home page when the home page is loaded
     var x = this
     axios.get('/donorCam')
       .then(function (res) {
-        console.log("hola hola", res.data)
+        console.log(res.data)
         x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
@@ -50,7 +53,7 @@ class Beneficiaries extends React.Component {
   logout () {
     axios.get('/logout')
       .then(function (res) {
-        console.log('ea eshe ')
+        console.log('Logged out')
         window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)

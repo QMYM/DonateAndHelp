@@ -1,3 +1,4 @@
+// This is the welcoming home page that any user can navigate before logging in
 import React from 'react'
 import $ from 'jquery'
 import {

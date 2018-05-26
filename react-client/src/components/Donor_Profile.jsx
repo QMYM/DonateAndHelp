@@ -86,7 +86,7 @@ class Donor_Profile extends React.Component {
       })
   }
 
-  uploadPhoto (photo) { // post the photo and get the photo in the same time
+  uploadPhoto (photo) { // post the profile image and get it at the same time
     var x = this
     var file = photo.target.files[0]
     var fileReader = new FileReader()
@@ -102,7 +102,8 @@ class Donor_Profile extends React.Component {
         })
     }
   }
-  uploadPhoto2 (photo) { // post the photo and get the photo in the same time
+
+  uploadPhoto2 (photo) { // post the background image and get it at the same time
     var x = this
     var file = photo.target.files[0]
     var fileReader = new FileReader()
@@ -118,7 +119,7 @@ class Donor_Profile extends React.Component {
     }
   }
 
-  getLargeImage () {
+  getLargeImage () { // Get the background image
     var x = this
     axios.get('/getImageDonor2')
       .then(function (res) {
@@ -128,7 +129,8 @@ class Donor_Profile extends React.Component {
         console.log(err)
       })
   }
-  componentDidMount () { // this is the initial
+
+  componentDidMount () {  // Retrieve the profile information and images when the profile page is uploaded and refreshed  
     this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
     axios.get('/getImageDonor')
@@ -267,16 +269,13 @@ class Donor_Profile extends React.Component {
                   </div>
                 </div>
               </div>
-
               <label style={{color: 'black'}}>
                 <div className='text-block' />
-
               </label>
-
             </div>
           </div>
         </form>
- <div className='modal fade' id='myModal' role='dialog'>
+        <div className='modal fade' id='myModal' role='dialog'>
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>

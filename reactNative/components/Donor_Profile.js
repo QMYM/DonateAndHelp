@@ -249,6 +249,8 @@ class Donor_Profile extends React.Component {
         <Text>{this.state.newDescription}</Text>
         <Text>{this.state.newAddress}</Text>
         </Container>
+
+
         <Content style={{textAlign :'center'}}>
         {this.state.post.map(po =>
           <View key={po._id}>
@@ -257,6 +259,8 @@ class Donor_Profile extends React.Component {
           </View>
           )}
          </Content>
+
+         
         </Content>
          </Container>
 
