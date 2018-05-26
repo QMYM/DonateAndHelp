@@ -16,6 +16,13 @@ class Donor extends React.Component {
     this.state = {
       camp: [],
       amount: '',
+<<<<<<< HEAD
+      term: ''  
+   }
+ }
+
+   componentDidMount () {
+=======
       term: '' ,
       modalVisible: false,
     }
@@ -26,6 +33,7 @@ class Donor extends React.Component {
   }
 
   componentDidMount () {
+>>>>>>> 0f3d8c1551538870a1d9e45f5040c4ac2bb0027c
     var x = this
     axios.get('https://qaysdonate.herokuapp.com/companyCam')
     .then(function (res) {
