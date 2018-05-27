@@ -28,14 +28,15 @@ class Donor_Profile extends React.Component {
 
   getInfoForProfilePageforDonor(){
     var x = this
-    axios.get("https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor").then(function(res){
+    axios.get("https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor")
+    .then(function(res){
       var alo = res.data[0]
-        x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
+      x.setState({
+        newDescription:alo.description,
+        newPhone:alo.contactNum,
+        newAdress: alo.address,
+        newName:alo.name
+      })
     }).catch(function(err){
       console.log(err)
     })
@@ -49,22 +50,22 @@ class Donor_Profile extends React.Component {
       description: this.state.description,
       address: this.state.address
     })
-      .then(response => {
+    .then(response => {
         // should go to the home page from here
         var alo = response.data
         console.log('profile has been updated',response.data)
         // should go to the home page from here
-         x.setState({
+        x.setState({
           newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
+          newPhone:alo.contactNum,
+          newAdress: alo.address,
+          newName:alo.name
+        })
 
       }).catch(error => {
         alert('wrong in profile update')
       })
-  }
+    }
 
   uploadPhoto (photo) { // post the photo and get the photo in the same time
     var x = this
@@ -73,13 +74,13 @@ class Donor_Profile extends React.Component {
     fileReader.readAsDataURL(file)
     fileReader.onload = function (e) {
       axios.post('https://qaysdonate.herokuapp.com/photoDonor', {image: e.target.result})
-        .then(res => {
-          console.log('hello Donor image', res)
+      .then(res => {
+        console.log('hello Donor image', res)
           window.location.reload() // here i'm getting the photo from database
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+      .catch(function (error) {
+        console.log(error)
+      })
     }
   }
   uploadPhoto2 (photo) { // post the photo and get the photo in the same time
@@ -89,51 +90,51 @@ class Donor_Profile extends React.Component {
     fileReader.readAsDataURL(file)
     fileReader.onload = function (e) {
       axios.post('https://qaysdonate.herokuapp.com/photoDonor2', {image2: e.target.result})
-        .then(res => {
+      .then(res => {
           window.location.reload() // here i'm getting the photo from database
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+      .catch(function (error) {
+        console.log(error)
+      })
     }
   }
 
   getLargeImage () {
     var x = this
     axios.get('https://qaysdonate.herokuapp.com/getImageDonor2')
-      .then(function (res) {
-        var post = res.data
-        x.setState({image2: post.image2})
-      }).catch(function (err) {
-        console.log(err)
-      })
+    .then(function (res) {
+      var post = res.data
+      x.setState({image2: post.image2})
+    }).catch(function (err) {
+      console.log(err)
+    })
   }
   componentDidMount () { // this is the initial
     this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
     axios.get('https://qaysdonate.herokuapp.com/getImageDonor')
-      .then(response => {
-        this.fetchDonorData()
-        const posts = response['data']
+    .then(response => {
+      this.fetchDonorData()
+      const posts = response['data']
         this.setState({ // changing the state to the new image that i fetch it from database
           image: posts.image
           // image2:posts.image
         })
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+    .catch(function (error) {
+      console.log(error)
+    })
     var x = this
     axios.get('https://qaysdonate.herokuapp.com/donorCam')
-      .then(res => {
-        var posts = []
-        for (var i = 0; i < res.data.length; i++) {
-          if (res.data[i].username === this.state.user) {
-            posts.push(res.data[i])
-            x.setState({post: posts})
-          }
+    .then(res => {
+      var posts = []
+      for (var i = 0; i < res.data.length; i++) {
+        if (res.data[i].username === this.state.user) {
+          posts.push(res.data[i])
+          x.setState({post: posts})
         }
-      })
+      }
+    })
     this.getLargeImage()
   }
 
@@ -155,15 +156,15 @@ class Donor_Profile extends React.Component {
     axios.post('https://qaysdonate.herokuapp.com/delCampaignDonor', {
       CampID: delCampaignID
     })
-      .then(response => {
-        alert('campaign has been deleted!')
-        window.location.reload()
-      }).catch(error => {
-        alert('error in campaign deletion!', error)
-      })
+    .then(response => {
+      alert('campaign has been deleted!')
+      window.location.reload()
+    }).catch(error => {
+      alert('error in campaign deletion!', error)
+    })
   }
 
- 
+
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
     axios.put('https://qaysdonate.herokuapp.com/editCampaignDonor', {
@@ -173,12 +174,12 @@ class Donor_Profile extends React.Component {
       campaignAmount: campaignAmount,
       username: name
     })
-      .then(response => {
-        alert('campaign has been edited!')
-        window.location.reload()
-      }).catch(error => {
-        alert('error in campaign edit!')
-      })
+    .then(response => {
+      alert('campaign has been edited!')
+      window.location.reload()
+    }).catch(error => {
+      alert('error in campaign edit!')
+    })
   }
 
   theId (id) {
@@ -187,118 +188,117 @@ class Donor_Profile extends React.Component {
 
   logout () {
     axios.get('https://qaysdonate.herokuapp.com/logout')
-      .then(function (res) {
-        console.log('ea eshe ')
-        window.location.href = '/'
-      }).catch(function (err) {
-        console.log('logout err ', err)
-      })
+    .then(function (res) {
+      console.log('ea eshe ')
+      window.location.href = '/'
+    }).catch(function (err) {
+      console.log('logout err ', err)
+    })
   }
 
     // keyboardType={"numeric"}
 
     render(){
       return (
-         <Container>
-        <Header />
-        <Content>
-        
-         <Image
-        style={styles.stretch2}
+       <Container>
+       <Header />
+       <Content>
 
-         source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+       <Image
+       style={styles.stretch2}
+
+       source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
 
        />
        <Image
-        style={styles.stretch}
-         source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+       style={styles.stretch}
+       source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
        />
-        <Container style={styles.center}>
-        <Text>About Me</Text>
-        <Text>Some Description</Text>
-        <Text>Phone Number: </Text>      
-        <TextInput
-        placeholder="Type here your phone number!"
-        keyboardType="numeric" 
-        onChangeText={(contactNum) => this.setState({contactNum})}
-        />
-        <Text>Description: </Text>
-        <TextInput
-        placeholder="Type here a description!"
-        onChangeText={(description) => this.setState({description})}
-        />
-        <Text>Address: </Text>
-        <TextInput
-        placeholder="Type here your address!"
-        onChangeText={(address) => this.setState({address})}
-        />
+       <Container style={styles.center}>
+       <Text>About Me</Text>
+       <Text>Some Description</Text>
+       <Text>Phone Number: </Text>      
+       <TextInput
+       placeholder="Type here your phone number!"
+       keyboardType="numeric" 
+       onChangeText={(contactNum) => this.setState({contactNum})}
+       />
+       <Text>Description: </Text>
+       <TextInput
+       placeholder="Type here a description!"
+       onChangeText={(description) => this.setState({description})}
+       />
+       <Text>Address: </Text>
+       <TextInput
+       placeholder="Type here your address!"
+       onChangeText={(address) => this.setState({address})}
+       />
        
-        <Button  icon={{name: 'done'}} style={styles.btn}
-        onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
-         title="done_outline"
-        />
+       <Button  icon={{name: 'done'}} style={styles.btn}
+       onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
+       title="done_outline"
+       />
        
-        <Button
-        onPress={() => this.logout()}
-         title="logout" />
+       <Button
+       onPress={() => this.logout()}
+       title="logout" />
        
-        <Text>Information</Text>
-        <Text>{this.state.newName}</Text>
-        <Text>{this.state.email}</Text>
-        <Text>{this.state.newContactNum}</Text>
-        <Text>{this.state.newDescription}</Text>
-        <Text>{this.state.newAddress}</Text>
-        </Container>
-
-
-        <Content style={{textAlign :'center'}}>
-        {this.state.post.map(po =>
-          <View key={po._id}>
-          <Text>Campaign Name : {po.campaignName}</Text>
-          <Text>{po.campaignDescription}</Text>
-          </View>
-          )}
+       <Text>Information</Text>
+       <Text>{this.state.newName}</Text>
+       <Text>{this.state.email}</Text>
+       <Text>{this.state.newContactNum}</Text>
+       <Text>{this.state.newDescription}</Text>
+       <Text>{this.state.newAddress}</Text>
+       </Container>
+       {this.state.post.map(po => 
+         <View key={po._id}>
+         <Content>
+         <Card>
+         <CardItem>
+         <Left>
+         <Body>
+         <Text>{po.campaignName}</Text>
+         <Text note>{po.campaignDescription}</Text>
+         </Body>
+         </Left>
+         </CardItem>
+         <CardItem cardBody>
+         <Image
          </Content>
-
-         
-        </Content>
          </Container>
+         )
+       }
+     }
 
-        )
-    }
-  }
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22
-    },
-    stretch2: {
-      width: 400,
-      height: 200,
-      justifyContent: 'center',
-      alignItems: 'center'
+     const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        paddingTop: 22
       },
-    stretch: {
-      marginLeft:10,
-      width: 150,
-      height: 150,
-      borderRadius: 150/2,
-      marginTop:-60,
-      borderWidth: 1,
-      
-    },
-  
-    center:{
-      alignItems: 'center',
-     
-    },
-    btn:{
-      marginTop:10,
-      width: 150,
+      stretch2: {
+        width: 400,
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      stretch: {
+        marginLeft:10,
+        width: 150,
+        height: 150,
+        borderRadius: 150/2,
+        marginTop:-60,
+        borderWidth: 1,
 
-    },
-   
-  })
+      },
+      center:{
+        alignItems: 'center',        
+      },
+      btn:{
+        marginTop:10,
+        width: 150,
 
-  module.exports = Donor_Profile;
+      },
+
+    })
+
+    module.exports = Donor_Profile;
