@@ -22,7 +22,7 @@ class Donor_Campaign extends React.Component {
       campaignDescription: '',
       campaignAmount: '',
       campaignImage: '',
-      messageForDom:''
+      messageForDom: ''
     }
 
     this.onChange = this.onChange.bind(this)
@@ -45,13 +45,13 @@ class Donor_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then(response => {
-        //console.log('campaign has been posted!')
-          x.setState({
-          messageForDOM:" You have done campaign"
+        // console.log('campaign has been posted!')
+        x.setState({
+          messageForDOM: ' You have done campaign'
         })
-        setTimeout(function(){
-     window.location.reload()
-   },1000)
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
       }).catch(error => {
         alert('wrong in posting a campaign!')
       })
@@ -68,7 +68,7 @@ class Donor_Campaign extends React.Component {
       })
     }
   }
-  
+
   logout () {
     axios.get('/logout')
       .then(function (res) {
@@ -83,7 +83,7 @@ class Donor_Campaign extends React.Component {
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -122,12 +122,12 @@ class Donor_Campaign extends React.Component {
               <label for='usr'>Campaign Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <label for='usr'>Items :</label>
-              <input type='number' className='form-control w3-round-xlarge' id='usr'  onChange={this.onChange} name='campaignAmount'/>
+              <input type='number' className='form-control w3-round-xlarge' id='usr' onChange={this.onChange} name='campaignAmount' />
             </div>
 
             <br />
             <br />
-            <h3 style= {{color:"green"}} className="text-center">{this.state.messageForDOM}</h3>
+            <h3 style={{color: 'green'}} className='text-center'>{this.state.messageForDOM}</h3>
             <form>
               <input className='btn' type='file' name='image' onChange={this.uploadPhotoCampaign} />
             </form>

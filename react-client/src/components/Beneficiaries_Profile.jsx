@@ -29,10 +29,10 @@ class Beneficiaries_Profile extends React.Component {
       campaignDescription: '',
       campaignAmount: '',
       id: '',
-      newDescription:'',
-      newPhone:'',
-      newAdress:'',
-      newName:''
+      newDescription: '',
+      newPhone: '',
+      newAdress: '',
+      newName: ''
     }
     this.onChange = this.onChange.bind(this)
     this.uploadPhoto = this.uploadPhoto.bind(this)
@@ -47,18 +47,18 @@ class Beneficiaries_Profile extends React.Component {
       [e.target.name]: e.target.value
     })
   }
-  getInfoForProfilePage(){
+  getInfoForProfilePage () {
     var x = this
-    axios.get("/getInfoForProfilePage").then(function(res){
+    axios.get('/getInfoForProfilePage').then(function (res) {
       var alo = res.data[0]
-      console.log("i'm here tho!",res.data[0])
-        x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
-    }).catch(function(err){
+      console.log("i'm here tho!", res.data[0])
+      x.setState({
+        newDescription: alo.description,
+        newPhone: alo.contactNum,
+        newAdress: alo.address,
+        newName: alo.name
+      })
+    }).catch(function (err) {
       console.lof(err)
     })
   }
@@ -73,15 +73,15 @@ class Beneficiaries_Profile extends React.Component {
       address: this.state.address
     })
       .then(response => {
-          var alo = response.data
-        console.log('profile has been updated',response.data)
+        var alo = response.data
+        console.log('profile has been updated', response.data)
         // should go to the home page from here
-         x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
+        x.setState({
+          newDescription: alo.description,
+          newPhone: alo.contactNum,
+          newAdress: alo.address,
+          newName: alo.name
+        })
       }).catch(error => {
         alert('wrong in profile update')
       })
@@ -95,7 +95,7 @@ class Beneficiaries_Profile extends React.Component {
     fileReader.onload = function (e) {
       axios.post('/photo', {image: e.target.result})
         .then(res => {
-          window.location.reload()      // here i'm getting the photo from database
+          window.location.reload() // here i'm getting the photo from database
         })
         .catch(function (error) {
           console.log(error)
@@ -110,7 +110,7 @@ class Beneficiaries_Profile extends React.Component {
     fileReader.onload = function (e) {
       axios.post('/photo2', {image2: e.target.result})
         .then(res => {
-          window.location.reload()   // here i'm getting the photo from database
+          window.location.reload() // here i'm getting the photo from database
         })
         .catch(function (error) {
           console.log(error)
@@ -223,7 +223,7 @@ class Beneficiaries_Profile extends React.Component {
       <div style={{background: 'white'}} >
 
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -279,7 +279,7 @@ class Beneficiaries_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-                 <div className='input-group'>
+                <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
                   <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
                 </div>
@@ -317,30 +317,30 @@ class Beneficiaries_Profile extends React.Component {
                 <h4 className='modal-title'>Edit Information</h4>
               </div>
               <div className='modal-body'>
-               <div className='input-group'>
                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                  <div className='input-group'>
+                    <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
+                    <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                  </div>
+                  <br />
+                  <div className='input-group'>
+                    <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
+                    <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Campaign Description' />
+                  </div>
+                  <br />
+                  <div className='input-group'>
+                    <span className='input-group-addon'><i className='fa fa-automobile' /></span>
+                    <input type='text' className='form-control' name='campaignAmount' onChange={this.onChangeCampaign} placeholder='Campaign Amount' />
+                  </div>
+                  <br />
                 </div>
-                <br />
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
-                  <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Campaign Description' />
+                <div className='modal-footer'>
+                  <button type='button' className='btn btn-raised btn-info' data-dismiss='modal' onClick={() => this.updateCampaign(this.state.id, this.state.campaignName,
+                    this.state.campaignDescription, this.state.campaignAmount, this.state.user)}>Update</button>
                 </div>
-                <br />
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='fa fa-automobile' /></span>
-                  <input type='text' className='form-control' name='campaignAmount' onChange={this.onChangeCampaign} placeholder='Campaign Amount' />
-                </div>
-                <br />
-              </div>
-              <div className='modal-footer'>
-                <button type='button' className='btn btn-raised btn-info' data-dismiss='modal' onClick={() => this.updateCampaign(this.state.id, this.state.campaignName,
-                  this.state.campaignDescription, this.state.campaignAmount, this.state.user)}>Update</button>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
         <div className='container'>
@@ -381,7 +381,7 @@ class Beneficiaries_Profile extends React.Component {
                       </ul>
                     </div>
                     <p className='fa fa-address-card-o'> Description: {this.state.newDescription}</p><br />
-                    
+
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
@@ -393,10 +393,10 @@ class Beneficiaries_Profile extends React.Component {
                   <div className='section'>
                     <h3>Social</h3>
                     <ul className='list-unstyled list-social'>
-                      <li><a href="https://twitter.com/" target="_blank">Visit Twitter<bh /> <bh /><i className='fa fa-twitter' /> </a></li> 
-                      <li><a href="https://www.facebook.com/" target="_blank">Visit Facebook <bh /> <bh /> <i className='fa fa-facebook' /> </a></li>
-                      <li><a href="https://dribbble.com/" target="_blank">Visit Dribbble <bh /> <bh /><i className='fa fa-dribbble' /> </a></li>
-                      <li><a href="https://www.linkedin.com/" target="_blank">Visit linkedin<bh /> <bh /><i className='fa fa-linkedin' /> </a></li>
+                      <li><a href='https://twitter.com/' target='_blank'>Visit Twitter<bh /> <bh /><i className='fa fa-twitter' /> </a></li>
+                      <li><a href='https://www.facebook.com/' target='_blank'>Visit Facebook <bh /> <bh /> <i className='fa fa-facebook' /> </a></li>
+                      <li><a href='https://dribbble.com/' target='_blank'>Visit Dribbble <bh /> <bh /><i className='fa fa-dribbble' /> </a></li>
+                      <li><a href='https://www.linkedin.com/' target='_blank'>Visit linkedin<bh /> <bh /><i className='fa fa-linkedin' /> </a></li>
                     </ul>
                   </div>
                 </div>

@@ -28,10 +28,10 @@ class Donor_Profile extends React.Component {
       email: '',
       post: [],
       id: '',
-       newDescription:'',
-      newPhone:'',
-      newAdress:'',
-      newName:''
+      newDescription: '',
+      newPhone: '',
+      newAdress: '',
+      newName: ''
     }
     this.onChange = this.onChange.bind(this)
     this.uploadPhoto = this.uploadPhoto.bind(this)
@@ -46,17 +46,17 @@ class Donor_Profile extends React.Component {
       [e.target.name]: e.target.value
     })
   }
-   getInfoForProfilePageforDonor(){
+  getInfoForProfilePageforDonor () {
     var x = this
-    axios.get("/getInfoForProfilePageforDonor").then(function(res){
+    axios.get('/getInfoForProfilePageforDonor').then(function (res) {
       var alo = res.data[0]
-        x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
-    }).catch(function(err){
+      x.setState({
+        newDescription: alo.description,
+        newPhone: alo.contactNum,
+        newAdress: alo.address,
+        newName: alo.name
+      })
+    }).catch(function (err) {
       console.log(err)
     })
   }
@@ -72,15 +72,14 @@ class Donor_Profile extends React.Component {
       .then(response => {
         // should go to the home page from here
         var alo = response.data
-        console.log('profile has been updated',response.data)
+        console.log('profile has been updated', response.data)
         // should go to the home page from here
-         x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
-
+        x.setState({
+          newDescription: alo.description,
+          newPhone: alo.contactNum,
+          newAdress: alo.address,
+          newName: alo.name
+        })
       }).catch(error => {
         alert('wrong in profile update')
       })
@@ -130,7 +129,7 @@ class Donor_Profile extends React.Component {
       })
   }
 
-  componentDidMount () {  // Retrieve the profile information and images when the profile page is uploaded and refreshed  
+  componentDidMount () { // Retrieve the profile information and images when the profile page is uploaded and refreshed
     this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
     axios.get('/getImageDonor')
@@ -225,7 +224,7 @@ class Donor_Profile extends React.Component {
     return (
       <div style={{background: 'white'}}>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -239,12 +238,12 @@ class Donor_Profile extends React.Component {
             <form className='form-inline my-2 my-lg-0'>
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
-                   <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
+                  <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
                   <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
-                  
+
                   <Route path='/Donor_Message' component={Donor_Message} />
                   <Route path='/Donor_Campaign' component={Donor_Campaign} />
                   <Route path='/searchD' component={Search_Donor} />
@@ -283,7 +282,7 @@ class Donor_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-                  <div className='input-group'>
+                <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
                   <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
                 </div>
@@ -394,10 +393,10 @@ class Donor_Profile extends React.Component {
                   <div className='section'>
                     <h3>Social</h3>
                     <ul className='list-unstyled list-social'>
-                    <li><a href="https://twitter.com/" target="_blank">Visit Twitter<bh /> <bh /><i className='fa fa-twitter' /> </a></li> 
-                      <li><a href="https://www.facebook.com/" target="_blank">Visit Facebook <bh /> <bh /> <i className='fa fa-facebook' /> </a></li>
-                      <li><a href="https://dribbble.com/" target="_blank">Visit Dribbble <bh /> <bh /><i className='fa fa-dribbble' /> </a></li>
-                      <li><a href="https://www.linkedin.com/" target="_blank">Visit linkedin<bh /> <bh /><i className='fa fa-linkedin' /> </a></li>
+                      <li><a href='https://twitter.com/' target='_blank'>Visit Twitter<bh /> <bh /><i className='fa fa-twitter' /> </a></li>
+                      <li><a href='https://www.facebook.com/' target='_blank'>Visit Facebook <bh /> <bh /> <i className='fa fa-facebook' /> </a></li>
+                      <li><a href='https://dribbble.com/' target='_blank'>Visit Dribbble <bh /> <bh /><i className='fa fa-dribbble' /> </a></li>
+                      <li><a href='https://www.linkedin.com/' target='_blank'>Visit linkedin<bh /> <bh /><i className='fa fa-linkedin' /> </a></li>
                     </ul>
                   </div>
                 </div>

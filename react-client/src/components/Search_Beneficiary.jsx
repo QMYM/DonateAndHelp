@@ -27,7 +27,7 @@ class Search extends React.Component {
   }
 
   handleSearchInput (evt) {
-    console.log(evt.target.value,"joos")
+    console.log(evt.target.value, 'joos')
     this.setState({ searchInput: evt.target.value })
   }
 
@@ -75,39 +75,38 @@ class Search extends React.Component {
   render () {
 		 return (
   <div>
-    <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
-          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
+      <a href='#' />
+      <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
 
-          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
-              <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
-              <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
-            </ul>
+          <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
+          <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+        </ul>
             <form className='form-inline my-2 my-lg-0'>
-              <Router>
+          <Router>
                 <ul className='nav navbar-nav navbar-right ' >
-                  <li> <a href='/search' className='icon-bar' >Search</a> </li>
-                  <li> <a href='/Beneficiaries_Message' className='icon-bar' to='/Beneficiaries_Message' replace >Message</a> </li>
-                  <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
-                  <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+              <li> <a href='/search' className='icon-bar' >Search</a> </li>
+              <li> <a href='/Beneficiaries_Message' className='icon-bar' to='/Beneficiaries_Message' replace >Message</a> </li>
+              <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
+              <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
 
-                  <li><a /></li>
-                  <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
-                  <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
-                  <Route path='/Beneficiaries_Campaign' component={BeneficiariesCampaign} />
-                </ul>
+              <li><a /></li>
+              <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
+              <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
+              <Route path='/Beneficiaries_Campaign' component={BeneficiariesCampaign} />
+            </ul>
               </Router>
-              <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
-              <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
-            </form>
+          <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
+          <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
+        </form>
           </div>
-        </nav>
+    </nav>
 
-  
         {console.log(this.state.searchOut)}
         <div className='container' >
       <div className='row'>
