@@ -26,7 +26,7 @@ class Beneficiaries_Message extends React.Component {
       rightMes2: [],
       reciver: [],
       senderMess: [],
-      messageForDOM:""
+      messageForDOM: ''
     }
     this.sendMessage = this.sendMessage.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -38,7 +38,6 @@ class Beneficiaries_Message extends React.Component {
   remove (user, id) {
     axios.post('/removeMsg', {user: user, id: id})
       .then(function (res) {
-        
         window.location.reload()
       }).catch(function (err) {
         console.log('err', err)
@@ -62,7 +61,6 @@ class Beneficiaries_Message extends React.Component {
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
-
           }
         }
       })
@@ -72,23 +70,23 @@ class Beneficiaries_Message extends React.Component {
     var arr = []
     var obj = {}
     var rec = []
-    var test = [];
+    var test = []
     axios.get('/getPhotoForMessages').then(function (res) {
       for (var i = 0; i < res.data.length; i++) {
         if (res.data[i].userInfo.length !== 0) {
           if (!arr.includes(res.data[i].userInfo[0].username) && res.data[i].userInfo[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
-            test.push(res.data[i].userInfo);
-            arr.push(res.data[i].userInfo[0].username)            
+            test.push(res.data[i].userInfo)
+            arr.push(res.data[i].userInfo[0].username)
           }
         }
         if (res.data[i].userRole.length !== 0) {
           if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
-            test.push(res.data[i].userRole);
+            test.push(res.data[i].userRole)
             arr.push(res.data[i].userRole[0].username)
           }
         }
       }
-       var merged = [].concat.apply([], test)
+      var merged = [].concat.apply([], test)
       x.setState({reciver: merged})
     }).catch(function (err) {
       console.log('error', err)
@@ -113,21 +111,19 @@ class Beneficiaries_Message extends React.Component {
     axios.post('/sendMessage', {user: to, text: text})
       .then(function (res) {
         x.setState({
-          messageForDOM:" Your Message has been sent"
+          messageForDOM: ' Your Message has been sent'
         })
-        setTimeout(function(){
-     window.location.reload()
-   },1000)
-          console.log('done', x.state.messageForDOM)
-       
-
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
+        console.log('done', x.state.messageForDOM)
       }).catch(function (err) {
-          x.setState({
-          messageForDOM:" User Not Found!"
+        x.setState({
+          messageForDOM: ' User Not Found!'
         })
-        setTimeout(function(){
-     window.location.reload()
-   },1000)
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
       })
   }
 
@@ -158,8 +154,8 @@ class Beneficiaries_Message extends React.Component {
     this.setState({rightMes2: arr2})
   }
 
-  close(){
- document.getElementById("closeMenShanAlllah").style.display = 'none'
+  close () {
+    document.getElementById('closeMenShanAlllah').style.display = 'none'
   }
   logout () {
     axios.get('/logout')
@@ -170,16 +166,16 @@ class Beneficiaries_Message extends React.Component {
         console.log('logout err ', err)
       })
   }
-  delete(delteUserName){
+  delete (delteUserName) {
     var x = this
-    axios.post("/deleteAllMessages",{user:delteUserName}).then(function(res){
-        x.setState({
-          messageForDOM:" Your Messages has been Deleted!"
-        })
-        setTimeout(function(){
-     window.location.reload()
-   },1000)
-    }).catch(function(err){
+    axios.post('/deleteAllMessages', {user: delteUserName}).then(function (res) {
+      x.setState({
+        messageForDOM: ' Your Messages has been Deleted!'
+      })
+      setTimeout(function () {
+        window.location.reload()
+      }, 1000)
+    }).catch(function (err) {
       console.log("oh there's a error! oh my god!@!@!!")
     })
   }
@@ -188,7 +184,7 @@ class Beneficiaries_Message extends React.Component {
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -235,32 +231,32 @@ class Beneficiaries_Message extends React.Component {
                     <img className=' img-circle w3-margin-right' src={emp.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq'} style={{width: '70px', hight: '70px'}} /><span className='w3-opacity w3-large'>{emp.username}</span>
                   </div>
                 </a>
-         <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
-          <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
+                <button className='w3-bar-item w3-button'><i className='fa fa-paper-plane w3-margin-right' />Sent </button>
+                <button className='w3-bar-item w3-button' onClick={() => this.delete(emp.username)} > <i className='fa fa-trash w3-margin-right' />Trash </button>
               </div>
             </div>
-            )}
+          )}
         </nav>
-        <div id="closeMenShanAlllah">
-        <div className='modal' id='myModal' >
+        <div id='closeMenShanAlllah'>
+          <div className='modal' id='myModal' >
 
-          <div className='w3-modal-content w3-animate-zoom'  >
-            <div className='w3-container w3-padding w3-red' >
-              <span className='w3-button w3-red w3-right w3-xxlarge' data-dismiss='modal' onClick={this.close}><i className='fa fa-remove' /></span>
-              <h2>Send Mail</h2>
-            </div>
-            <div className='w3-panel'>
-              <label>To</label>
-              <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='user' />
-              <label>Text</label>
-              <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='text' placeholder="What's on your mind?" />
-              <div className='w3-section'>
-                <button className='w3-button w3-red btn' data-dismiss='modal'  onClick={this.close}>Cancel  <i className='fa fa-remove' /></button>
-                <button className='btn w3-button w3-light-grey w3-right' onClick={() => this.sendMessage(this.state.user, this.state.text)}>Send  <i className='fa fa-paper-plane' /></button>
+            <div className='w3-modal-content w3-animate-zoom' >
+              <div className='w3-container w3-padding w3-red' >
+                <span className='w3-button w3-red w3-right w3-xxlarge' data-dismiss='modal' onClick={this.close}><i className='fa fa-remove' /></span>
+                <h2>Send Mail</h2>
+              </div>
+              <div className='w3-panel'>
+                <label>To</label>
+                <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='user' />
+                <label>Text</label>
+                <input className=' w3-margin-bottom form-control' type='text' onChange={this.onChange} name='text' placeholder="What's on your mind?" />
+                <div className='w3-section'>
+                  <button className='w3-button w3-red btn' data-dismiss='modal' onClick={this.close}>Cancel  <i className='fa fa-remove' /></button>
+                  <button className='btn w3-button w3-light-grey w3-right' onClick={() => this.sendMessage(this.state.user, this.state.text)}>Send  <i className='fa fa-paper-plane' /></button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
         <div className='w3-overlay w3-hide-large w3-animate-opacity' title='Close Sidemenu' id='myOverlay' />
@@ -286,7 +282,7 @@ class Beneficiaries_Message extends React.Component {
                     <div key={mes._id} className='msg messageReceived'>
                       {mes.message}
                       <span className='timestamp'>{item.time.slice(0, 10)}</span>
-                      <button className='btn btn-raised btn-danger' className="center block" type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
+                      <button className='btn btn-raised btn-danger' className='center block' type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
                       <br />
                     </div>
                   )
@@ -303,9 +299,9 @@ class Beneficiaries_Message extends React.Component {
                   <hr />
                   <br />
                   <br />
-                <div className="container">
-             <h3 style= {{color:"green"}} className="text-center">{this.state.messageForDOM}</h3>
-              </div>
+                  <div className='container'>
+                    <h3 style={{color: 'green'}} className='text-center'>{this.state.messageForDOM}</h3>
+                  </div>
                 </div>
               </div>
             )}

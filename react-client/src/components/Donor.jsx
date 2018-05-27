@@ -1,20 +1,16 @@
 // This is the home page of the donor after logging in
 import React from 'react'
-import $ from 'jquery'
 import axios from 'axios'
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
+  Route
 } from 'react-router-dom'
 import Cards from 'react-credit-cards'
 
-import Donor_Profile from './Donor_Profile.jsx'
-import Search_Donor from './Search_Donor.jsx'
-import Donor_Campaign from './Donor_Campaign.jsx'
-import Donor_Message from './Donor_Message.jsx'
+import DonorProfile from './Donor_Profile.jsx'
+import SearchDonor from './Search_Donor.jsx'
+import DonorCampaign from './Donor_Campaign.jsx'
+import DonorMessage from './Donor_Message.jsx'
 
 function searching (term) {
   return function (x) {
@@ -28,13 +24,13 @@ class Donor extends React.Component {
     this.state = {
       camp: [],
       amount: '',
-      term: '' , 
-      user : ''
+      term: '',
+      user: ''
     }
-    this.logout = this.logout.bind(this);
-    this.search = this.search.bind(this);
-    this.user = this.user.bind(this);
-    this.handlechangeAmount = this.handlechangeAmount.bind(this);
+    this.logout = this.logout.bind(this)
+    this.search = this.search.bind(this)
+    this.user = this.user.bind(this)
+    this.handlechangeAmount = this.handlechangeAmount.bind(this)
   }
 
   search (e) {
@@ -68,26 +64,26 @@ class Donor extends React.Component {
     })
   };
 
-  submitDonate (amount ) { // Donate for the beneficary campagin rendered in the home page
-    axios.post('/editAmount' , {amount:amount , user : this.state.user })
-    .then(function (res) {
-    alert("Thanks For Donation"); 
-      window.location.reload()
-    })
-    .catch(function (err) {
-      alert("the amount is so high")
-    })
+  submitDonate (amount) { // Donate for the beneficary campagin rendered in the home page
+    axios.post('/editAmount', {amount: amount, user: this.state.user })
+      .then(function (res) {
+        alert('Thanks For Donation')
+        window.location.reload()
+      })
+      .catch(function (err) {
+        alert('the amount is so high')
+      })
   }
 
-  user(name){
-    this.setState({user:name})
+  user (name) {
+    this.setState({user: name})
   }
 
   render () {
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -102,15 +98,15 @@ class Donor extends React.Component {
               <Router>
                 <ul className='nav navbar-nav navbar-right ' >
                   {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
-                  <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
+                  <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
                   <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
-                  <Route path='/Donor_Message' component={Donor_Message} />
-                  <Route path='/Donor_Campaign' component={Donor_Campaign} />
-                  <Route path='/Donor_Profile' component={Donor_Profile} />
-                  <Route path='/searchD' component={Search_Donor} />
+                  <Route path='/Donor_Message' component={DonorMessage} />
+                  <Route path='/Donor_Campaign' component={DonorCampaign} />
+                  <Route path='/Donor_Profile' component={DonorProfile} />
+                  <Route path='/searchD' component={SearchDonor} />
                 </ul>
               </Router>
               <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
@@ -125,7 +121,7 @@ class Donor extends React.Component {
 
           <div id='pricing' className='container-fluid'>
             <div className='row slideanim'>
-               {this.state.camp.filter(searching(this.state.term)).map(item =>
+              {this.state.camp.filter(searching(this.state.term)).map(item =>
                 <div key={item._id}>
 
                   <div className=' col-xs-12'>
@@ -137,12 +133,11 @@ class Donor extends React.Component {
                         <h2 >From : {item.username}</h2>
                         <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
 
-                        
                       </div>
                       <p> {item.campaignDescription}</p>
                       <div className='panel-footer'>
                         <h3>{item.campaignAmount}</h3><h3>JOD</h3>
-                        <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={()=> this.user(item._id)}>Donate</button>
+                        <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
                       </div>
                     </div>
                   </div>
