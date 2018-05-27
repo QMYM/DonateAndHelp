@@ -28,7 +28,7 @@ class Donor_Profile extends React.Component {
 
   getInfoForProfilePageforDonor(){
     var x = this
-    axios.get("https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor")
+    axios.get("https://donatandhelp.herokuapp.com/getInfoForProfilePageforDonor")
     .then(function(res){
       var alo = res.data[0]
       x.setState({
@@ -44,7 +44,7 @@ class Donor_Profile extends React.Component {
 
   submit (name, contactNum, description, address) {
     var x = this
-    axios.post('https://qaysdonate.herokuapp.com/Profile_Donor', {
+    axios.post('https://donatandhelp.herokuapp.com/Profile_Donor', {
       name: this.state.name,
       contactNum: this.state.contactNum,
       description: this.state.description,
@@ -73,7 +73,7 @@ class Donor_Profile extends React.Component {
     var fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = function (e) {
-      axios.post('https://qaysdonate.herokuapp.com/photoDonor', {image: e.target.result})
+      axios.post('https://donatandhelp.herokuapp.com/photoDonor', {image: e.target.result})
       .then(res => {
         console.log('hello Donor image', res)
           window.location.reload() // here i'm getting the photo from database
@@ -89,7 +89,7 @@ class Donor_Profile extends React.Component {
     var fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = function (e) {
-      axios.post('https://qaysdonate.herokuapp.com/photoDonor2', {image2: e.target.result})
+      axios.post('https://donatandhelp.herokuapp.com/photoDonor2', {image2: e.target.result})
       .then(res => {
           window.location.reload() // here i'm getting the photo from database
         })
@@ -101,7 +101,7 @@ class Donor_Profile extends React.Component {
 
   getLargeImage () {
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor2')
+    axios.get('https://donatandhelp.herokuapp.com/getImageDonor2')
     .then(function (res) {
       var post = res.data
       x.setState({image2: post.image2})
@@ -112,7 +112,7 @@ class Donor_Profile extends React.Component {
   componentDidMount () { // this is the initial
     this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor')
+    axios.get('https://donatandhelp.herokuapp.com/getImageDonor')
     .then(response => {
       this.fetchDonorData()
       const posts = response['data']
@@ -125,7 +125,7 @@ class Donor_Profile extends React.Component {
       console.log(error)
     })
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/donorCam')
+    axios.get('https://donatandhelp.herokuapp.com/donorCam')
     .then(res => {
       var posts = []
       for (var i = 0; i < res.data.length; i++) {
@@ -140,7 +140,7 @@ class Donor_Profile extends React.Component {
 
   fetchDonorData () {
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/fetchDonorData').then(function (res) {
+    axios.get('https://donatandhelp.herokuapp.com/fetchDonorData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
       x.setState({
@@ -153,7 +153,7 @@ class Donor_Profile extends React.Component {
   }
 
   deleteCampaign (delCampaignID) {
-    axios.post('https://qaysdonate.herokuapp.com/delCampaignDonor', {
+    axios.post('https://donatandhelp.herokuapp.com/delCampaignDonor', {
       CampID: delCampaignID
     })
     .then(response => {
@@ -167,7 +167,7 @@ class Donor_Profile extends React.Component {
 
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
-    axios.put('https://qaysdonate.herokuapp.com/editCampaignDonor', {
+    axios.put('https://donatandhelp.herokuapp.com/editCampaignDonor', {
       campaignID: campaignID,
       campaignName: campaignName,
       campaignDescription: campaignDescription,
@@ -187,7 +187,7 @@ class Donor_Profile extends React.Component {
   }
 
   logout () {
-    axios.get('https://qaysdonate.herokuapp.com/logout')
+    axios.get('https://donatandhelp.herokuapp.com/logout')
     .then(function (res) {
       console.log('ea eshe ')
       window.location.href = '/'

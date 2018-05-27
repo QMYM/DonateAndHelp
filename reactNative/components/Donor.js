@@ -16,13 +16,6 @@ class Donor extends React.Component {
     this.state = {
       camp: [],
       amount: '',
-<<<<<<< HEAD
-      term: ''  
-   }
- }
-
-   componentDidMount () {
-=======
       term: '' ,
       modalVisible: false,
     }
@@ -33,9 +26,8 @@ class Donor extends React.Component {
   }
 
   componentDidMount () {
->>>>>>> 0f3d8c1551538870a1d9e45f5040c4ac2bb0027c
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/companyCam')
+    axios.get('https://donatandhelp.herokuapp.com/companyCam')
     .then(function (res) {
       x.setState({camp: res.data})
     }).catch(function (err) {
@@ -44,7 +36,7 @@ class Donor extends React.Component {
   }
 
   submitDonate (amount ) {
-    axios.post('https://qaysdonate.herokuapp.com/editAmount' , {amount:amount , user : this.state.user })
+    axios.post('https://donatandhelp.herokuapp.com/editAmount' , {amount:amount , user : this.state.user })
     .then(function (res) {
       alert("Thanks For Donation"); 
       Actions.refresh(key:'Donor_Tab')

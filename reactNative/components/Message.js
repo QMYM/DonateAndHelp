@@ -25,7 +25,7 @@ class Message extends React.Component {
     var x = this
     x.user()
     x.getPhotoForMessages()
-    axios.get('https://qaysdonate.herokuapp.com/recieveMessage')
+    axios.get('https://donatandhelp.herokuapp.com/recieveMessage')
       .then(function (response) {
         var mes = []
         var mess = []
@@ -45,7 +45,7 @@ class Message extends React.Component {
 
   user () {
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/sessionName')
+    axios.get('https://donatandhelp.herokuapp.com/sessionName')
       .then(function (res) {
         x.setState({sessionUser: res.data})
       }).catch(function (err) {
@@ -57,7 +57,7 @@ class Message extends React.Component {
     var arr = []
     var rec = []
     var test = []
-    axios.get('https://qaysdonate.herokuapp.com/getPhotoForMessages')
+    axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
       .then(function (res) {
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].userInfo.length !== 0) {
@@ -84,7 +84,7 @@ class Message extends React.Component {
   }
   sendMessage (to, text) {
     var x = this
-    axios.post('https://qaysdonate.herokuapp.com/sendMessage', {user: to, text: text})
+    axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
         console.log(res, 'ress')
         x.setState({
