@@ -262,8 +262,10 @@ class Donor_Profile extends React.Component {
          </Body>
          </Left>
          </CardItem>
-         <CardItem cardBody>
-         <Image
+         </Card>
+         </Content>
+         </View>
+         )}
          </Content>
          </Container>
          )

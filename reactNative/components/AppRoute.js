@@ -4,7 +4,7 @@ import {
   Router
 } from 'react-native-router-flux'
 
-import Beneficiaries_Tab from './Beneficiaries_Tab'
+import BeneficiariesTab from './Beneficiaries_Tab'
 import Login from './Login'
 import Home from './Home'
 import Donor from './Donor'
