@@ -7,6 +7,9 @@ import { Container, Header, Content, Button, Text } from 'native-base'
 import { Drawer } from 'native-base'
 
 import Signup from './Signup'
+import Aboutus from './Aboutus'
+import Contactus from './Contactus'
+
 class Main extends React.Component {
   constructor (props) {
     super(props)
@@ -44,14 +47,48 @@ class Main extends React.Component {
             justifyContent: 'center',
             width: 100,
             height: 100,
-            backgroundColor: 'orange',
+            backgroundColor: 'blue',
             borderRadius: 100,
             marginTop: 10,
             marginLeft: 10
           }}
           onPress={() => { Actions.Login() }}>
-            <Text> Login</Text>
+            <Text>Login</Text>
           </Button>
+
+          <Button style={{
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 100,
+            height: 100,
+            backgroundColor: 'green',
+            borderRadius: 100,
+            marginTop: 10,
+            marginLeft: 10
+          }}
+          onPress={() => { Actions.Aboutus() }}>
+            <Text>AboutUs</Text>
+          </Button>
+
+         <Button style={{
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 100,
+            height: 100,
+            backgroundColor: 'orange',
+            borderRadius: 100,
+            marginTop: 10,
+            marginLeft: 10
+          }}
+            onPress={() => { Actions.Contactus() }}>
+            <Text>Contact</Text>
+          </Button>
+
+
         </Content>
       </Container>
     )

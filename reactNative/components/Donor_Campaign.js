@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator,
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 
+
 class Donor_Campaign extends React.Component {
   constructor (props) {
     super(props)
@@ -34,24 +35,26 @@ class Donor_Campaign extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text>Campaign Name : </Text>
+        
         <TextInput
           placeholder='Type here your Campaign Name!'
 
           onChangeText={(campaignName) => this.setState({campaignName})}
         />
-        <Text>Campaign Description : </Text>
+        
         <TextInput
-          placeholder='Type here your Campaign Name!'
+          placeholder='Type here your Campaign Description!'
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
         />
-        <Text>Amount : </Text>
+       
         <TextInput
-          placeholder='Type here your Campaign Name!'
+          placeholder='Type here your Amount!'
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
         />
 
-        <Button onPress={
+        <Button 
+
+        onPress={
           () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
         } title='Submit' />
       </View>
