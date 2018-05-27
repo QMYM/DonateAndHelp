@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
@@ -39,6 +39,7 @@ class Home extends React.Component {
       this.drawer._root.open()
     }
     return (
+      
       <Drawer
         type={this.state.drawerType}
         animation={this.state.animation}
@@ -70,11 +71,19 @@ class Home extends React.Component {
               <Button onPress={() => { openDrawer() }}>
                 <Icon ios='ios-menu' android='md-menu' style={{fontSize: 20, color: 'black'}} />
               </Button>
+
             </Content>
 
           </Header>
+         <Text>hi yussur</Text>
+         
         </Container>
+
+  <Image source={{uri: 'http://www.dsscotland.org.uk/wordpress/wp-content/uploads/2015/05/contact-us.jpg'}} 
+       />
       </Drawer>
+     
+    
     )
   }
 }
