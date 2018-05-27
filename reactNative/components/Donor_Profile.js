@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
+import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
-import { Button } from 'react-native-elements'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -19,17 +18,25 @@ class Donor_Profile extends React.Component {
       image2: '',
       name: '',
       user: '',
+      modalVisible: false,
+      edit: false,
       email: '',
       post: [],
       id: '',
       newName: ''
     }
   }
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+  setEdit(visible) {
+    this.setState({edit: visible});
+  }
+
 
   getInfoForProfilePageforDonor(){
-    var x = this
-    axios.get("https://donatandhelp.herokuapp.com/getInfoForProfilePageforDonor")
-    .then(function(res){
+    var x = this;
+    axios.get('https://donatandhelp.herokuapp.com/getInfoForProfilePageforDonor').then(function(res){
       var alo = res.data[0]
       x.setState({
         newDescription:alo.description,
@@ -42,62 +49,41 @@ class Donor_Profile extends React.Component {
     })
   }
 
-  submit (name, contactNum, description, address) {
-    var x = this
-    axios.post('https://donatandhelp.herokuapp.com/Profile_Donor', {
-      name: this.state.name,
-      contactNum: this.state.contactNum,
-      description: this.state.description,
-      address: this.state.address
+
+  logout () {
+    axios.get('https://donatandhelp.herokuapp.com/logout')
+    .then(function (res) {
+      console.log('logged out')
+      Actions.Home()
+    }).catch(function (err) {
+      console.log('logout err', err)
     })
-    .then(response => {
-        // should go to the home page from here
-        var alo = response.data
-        console.log('profile has been updated',response.data)
-        // should go to the home page from here
-        x.setState({
-          newDescription:alo.description,
-          newPhone:alo.contactNum,
-          newAdress: alo.address,
-          newName:alo.name
-        })
-
-      }).catch(error => {
-        alert('wrong in profile update')
-      })
-    }
-
-  uploadPhoto (photo) { // post the photo and get the photo in the same time
-    var x = this
-    var file = photo.target.files[0]
-    var fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function (e) {
-      axios.post('https://donatandhelp.herokuapp.com/photoDonor', {image: e.target.result})
-      .then(res => {
-        console.log('hello Donor image', res)
-          window.location.reload() // here i'm getting the photo from database
-        })
-      .catch(function (error) {
-        console.log(error)
-      })
-    }
   }
-  uploadPhoto2 (photo) { // post the photo and get the photo in the same time
-    var x = this
-    var file = photo.target.files[0]
-    var fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function (e) {
-      axios.post('https://donatandhelp.herokuapp.com/photoDonor2', {image2: e.target.result})
-      .then(res => {
-          window.location.reload() // here i'm getting the photo from database
-        })
-      .catch(function (error) {
-        console.log(error)
+
+  fetchDonorData () {
+    var x = this;
+    axios.get('https://donatandhelp.herokuapp.com/fetchDonorData').then(function (res) {
+      var user = res.data.username
+      var email = res.data.email
+      x.setState({
+        user: user,
+        email: email
       })
-    }
+    }).catch(function (err) {
+      console.log('error', err)
+    })
+    axios.get('https://donatandhelp.herokuapp.com/donorCam')
+    .then(res => {
+      var posts = []
+      for (var i = 0; i < res.data.length; i++) {
+        if (res.data[i].username === this.state.user) {
+          posts.push(res.data[i])
+          x.setState({post: posts})
+        }
+      }
+    })
   }
+
 
   getLargeImage () {
     var x = this
@@ -109,47 +95,22 @@ class Donor_Profile extends React.Component {
       console.log(err)
     })
   }
+  
   componentDidMount () { // this is the initial
     this.getInfoForProfilePageforDonor()
-    this.fetchDonorData()
     axios.get('https://donatandhelp.herokuapp.com/getImageDonor')
     .then(response => {
-      this.fetchDonorData()
       const posts = response['data']
         this.setState({ // changing the state to the new image that i fetch it from database
           image: posts.image
           // image2:posts.image
         })
+        this.fetchDonorData()
       })
     .catch(function (error) {
       console.log(error)
     })
-    var x = this
-    axios.get('https://donatandhelp.herokuapp.com/donorCam')
-    .then(res => {
-      var posts = []
-      for (var i = 0; i < res.data.length; i++) {
-        if (res.data[i].username === this.state.user) {
-          posts.push(res.data[i])
-          x.setState({post: posts})
-        }
-      }
-    })
     this.getLargeImage()
-  }
-
-  fetchDonorData () {
-    var x = this
-    axios.get('https://donatandhelp.herokuapp.com/fetchDonorData').then(function (res) {
-      var user = res.data.username
-      var email = res.data.email
-      x.setState({
-        user: user,
-        email: email
-      })
-    }).catch(function (err) {
-      console.log('error', err)
-    })
   }
 
   deleteCampaign (delCampaignID) {
@@ -158,13 +119,10 @@ class Donor_Profile extends React.Component {
     })
     .then(response => {
       alert('campaign has been deleted!')
-      window.location.reload()
     }).catch(error => {
       alert('error in campaign deletion!', error)
     })
   }
-
-
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
     axios.put('https://donatandhelp.herokuapp.com/editCampaignDonor', {
@@ -186,94 +144,184 @@ class Donor_Profile extends React.Component {
     this.setState({id: id})
   }
 
-  logout () {
-    axios.get('https://donatandhelp.herokuapp.com/logout')
-    .then(function (res) {
-      console.log('ea eshe ')
-      window.location.href = '/'
-    }).catch(function (err) {
-      console.log('logout err ', err)
+  editInfo(contactNum, description, address) { 
+    var x = this;
+    axios.post('https://donatandhelp.herokuapp.com/Profile_Donor',
+    {
+      contactNum: this.state.contactNum,
+      description: this.state.description,
+      address: this.state.address
     })
-  }
+    .then(response => {
+     console.log("success in updating profile!", response);
+     var info = response.data;
+     x.setState({
+       newContactNum: info.contactNum,
+       newDescription: info.description,
+       newAddress: info.address
+     })
+   }).catch(error => {
+    console.log("wrong in updating profile!", error);
+  })
+ };
 
-    // keyboardType={"numeric"}
+ render(){
+  return (
+   <Container>
+   <Header />
+   <Content>
 
-    render(){
-      return (
-       <Container>
-       <Header />
-       <Content>
+   <Modal
+   animationType="slide"
+   transparent={false}
+   visible={this.state.modalVisible}
+   onRequestClose={() => {
+    alert('Modal has been closed.');
+  }}>
+  <View style={{marginTop: 22}}>
+  <Text>Information</Text>
+  <Text>Phone Number: </Text>      
+  <TextInput
+  placeholder="Type here your phone number!"
+  keyboardType="numeric" 
+  onChangeText={(contactNum) => this.setState({contactNum})}
+  />
+  <Text>Description: </Text>
+  <TextInput
+  placeholder="Type here a description!"
+  onChangeText={(description) => this.setState({description})}
+  />
+  <Text>Address: </Text>
+  <TextInput
+  placeholder="Type here your address!"
+  onChangeText={(address) => this.setState({address})}
+  />
+  <Button
+  onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
 
-       <Image
-       style={styles.stretch2}
+  ><Text>Done</Text></Button>
+  <Button onPress={() => {
+    this.setModalVisible(!this.state.modalVisible);
+  }}><Text>Close</Text></Button>
+  </View>
+  </Modal>
 
-       source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
 
-       />
-       <Image
-       style={styles.stretch}
-       source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
-       />
-       <Container style={styles.center}>
-       <Text>About Me</Text>
-       <Text>Some Description</Text>
-       <Text>Phone Number: </Text>      
-       <TextInput
-       placeholder="Type here your phone number!"
-       keyboardType="numeric" 
-       onChangeText={(contactNum) => this.setState({contactNum})}
-       />
-       <Text>Description: </Text>
-       <TextInput
-       placeholder="Type here a description!"
-       onChangeText={(description) => this.setState({description})}
-       />
-       <Text>Address: </Text>
-       <TextInput
-       placeholder="Type here your address!"
-       onChangeText={(address) => this.setState({address})}
-       />
-       
-       <Button  icon={{name: 'done'}} style={styles.btn}
-       onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
-       title="done_outline"
-       />
-       
-       <Button
-       onPress={() => this.logout()}
-       title="logout" />
-       
-       <Text>Information</Text>
-       <Text>{this.state.newName}</Text>
-       <Text>{this.state.email}</Text>
-       <Text>{this.state.newContactNum}</Text>
-       <Text>{this.state.newDescription}</Text>
-       <Text>{this.state.newAddress}</Text>
-       </Container>
-       {this.state.post.map(po => 
-         <View key={po._id}>
-         <Content>
-         <Card>
-         <CardItem>
-         <Left>
-         <Body>
-         <Text>{po.campaignName}</Text>
-         <Text note>{po.campaignDescription}</Text>
-         </Body>
-         </Left>
-         </CardItem>
-         </Card>
-         </Content>
-         </View>
-         )}
-         </Content>
-         </Container>
-         )
-       }
-     }
+  <Modal
+  animationType="slide"
+  transparent={false}
+  visible={this.state.edit}
+  onRequestClose={() => {
+    alert('Modal has been closed.');
+  }}>
+  <View style={{marginTop: 22}}>
+  <Text>Edit</Text>
+  <Text>Campaign Name: </Text>
+  <TextInput
+  placeholder="Type here your campaignName!"
+  onChangeText={(campaignName) => this.setState({campaignName})}
+  />
 
-     const styles = StyleSheet.create({
-      container: {
+  <Text>Campaign Description: </Text>
+   <TextInput
+  placeholder="Type here your campaignDescription!"
+  onChangeText={(campaignDescription) => this.setState({campaignDescription})}
+  />
+
+  <Text>Campaign Amount: </Text>
+   <TextInput
+  placeholder="Type here your campaignAmount!"
+  onChangeText={(campaignAmount) => this.setState({campaignAmount})}
+  />
+
+  <Button
+  onPress={() => this.updateCampaign(this.state.id, this.state.campaignName,
+   this.state.campaignDescription, this.state.campaignAmount, this.state.user)}
+  ><Text>Update</Text></Button>
+
+  <Button onPress={() => {
+    this.setEdit(!this.state.edit);
+  }}><Text>Close</Text></Button>
+  </View>
+  </Modal>
+
+  <Image
+  style={styles.stretch2}
+
+  source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+
+  />
+  <Image
+  style={styles.stretch}
+  source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+  />
+
+  <Text>About Me</Text>
+  <Text>Some Description</Text>
+
+  {this.state.post.map(po => 
+   <View>
+   <Content>
+   <Card>
+   <CardItem>
+   <Left>
+   <Body>
+   <Text>{po.campaignName}</Text>
+   <Text note>{po.campaignDescription}</Text>
+   </Body>
+   </Left>
+   </CardItem>
+   <CardItem cardBody>
+   <Image
+
+   style={{height: 200, width: null, flex: 1}}
+   source={{uri : po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
+   />
+   </CardItem>
+   <CardItem>
+   <Left>
+   <Button transparent onPress={() => {this.theId(po._id) , this.setEdit(true)}}>
+   <Icon active name="edit" />
+   <Text>Edit</Text>
+   </Button>
+   </Left>
+   <Body>
+   <Button transparent onPress={() => this.deleteCampaign(po._id)}>
+   <Icon active name="delete" />
+   <Text>Delete</Text>
+   </Button>
+   </Body>
+   <Right>
+   <Text>11h ago</Text>
+   </Right>
+   </CardItem>
+   </Card>
+   </Content>
+   </View>
+   )}
+
+  <Button onPress={() => {
+    this.setModalVisible(true);
+  }}>
+  <Text>Edit Information</Text>
+  </Button>
+  <Button
+  onPress={() => this.logout()}
+  ><Text>Logout</Text></Button>
+  <Text>Information</Text>
+  <Text>{this.state.newName}</Text>
+  <Text>{this.state.email}</Text>
+  <Text>{this.state.newContactNum}</Text>
+  <Text>{this.state.newDescription}</Text>
+  <Text>{this.state.newAddress}</Text>
+  </Content>
+  </Container>
+  )
+}
+}
+
+const styles = StyleSheet.create({
+     container: {
         flex: 1,
         paddingTop: 22
       },
@@ -298,9 +346,7 @@ class Donor_Profile extends React.Component {
       btn:{
         marginTop:10,
         width: 150,
-
       },
+})
 
-    })
-
-    module.exports = Donor_Profile;
+module.exports = Donor_Profile;
