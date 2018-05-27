@@ -18,7 +18,7 @@ class Donor_Campaign extends React.Component {
 
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
     var x = this
-    axios.post('https://qaysdonate.herokuapp.com/Donorcampaign', {
+    axios.post('https://donatandhelp.herokuapp.com/Donorcampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
