@@ -266,7 +266,7 @@ uploadPhoto(photo){
   <Text>Some Description</Text>
 
   {this.state.post.map(po => 
-   <View>
+   <View key={po._id}>
    <Content>
    <Card>
    <CardItem>
