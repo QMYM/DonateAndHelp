@@ -22,7 +22,9 @@ class Beneficiaries extends React.Component {
 
   componentDidMount () {
     var x = this
+
     axios.get('https://donatandhelp.herokuapp.com/donorCam')
+
       .then(function (res) {
         x.setState({camp: res.data})
       }).catch(function (err) {

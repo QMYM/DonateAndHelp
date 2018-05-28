@@ -278,6 +278,7 @@ exports.addProfileDonor = function (req, res) {
 }
 
 exports.uploadImageDonor = function (req, res) { // add a personal photo for the user
+  console.log("jackel is here", req.body)
   var image = req.body.image
   var save = new db.userDonater({
     image: image
@@ -471,7 +472,7 @@ exports.sessionName = function (req, res) {
 
 exports.searchBeneficiary = function (req, res) {
   var name = req.body.name
-  db.userDonater.findOne({name: name}, function (err, data) {
+  db.userDonater.findOne({username: name}, function (err, data) {
     if (err) {
       throw err
     } else if (!data) {
@@ -532,7 +533,7 @@ exports.fetchCompanyData = function (req, res) {
 
 exports.searchDonor = function (req, res) {
   var name = req.body.name
-  db.userCompany.findOne({name: name}, function (err, data) {
+  db.userCompany.findOne({username: name}, function (err, data) {
     if (err) {
       throw err
     } else if (!data) {
@@ -643,6 +644,7 @@ exports.deleteAllMessages = function (req,res){
 exports.editAmount  = function (req , res) {
   var username = req.body.user;
   var amount = parseInt(req.body.amount);
+
   db.companyCampaigns.findOne({_id : username},
     function (err , data) {
     if(err){
@@ -652,11 +654,17 @@ exports.editAmount  = function (req , res) {
       if (prevAmount  < amount){
         res.sendStatus(401);
       } else {
-        amount = prevAmount - amount;  
+
+        amount = prevAmount - amount;
+
+         if (amount === 0){
+       amount = "Donation Completed"
+      }
         db.companyCampaigns.update({_id : username} , {$set : {campaignAmount : amount.toString()}} , function (err , data) {
           if(err ){
             throw err
           }else{
+
             res.send(data);
           }
         })

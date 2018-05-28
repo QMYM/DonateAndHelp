@@ -17,8 +17,10 @@ class Beneficiaries_Campaign extends React.Component {
     }
   }
 
+
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
     axios.post('https://donatandhelp.herokuapp.com/companycampaign', {
+
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
