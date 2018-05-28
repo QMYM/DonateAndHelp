@@ -66,7 +66,7 @@ class Beneficiaries_Profile extends React.Component {
   submit (name, contactNum, description, address) {
     var x = this
     axios.post('/profile_company', {
-      // image: this.state.image,
+      // image: this.state.image, 
       name: this.state.name,
       contactNum: this.state.contactNum,
       description: this.state.description,
@@ -88,14 +88,18 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   uploadPhoto (photo) { // post the photo and get the photo in the same time
+    console.log("alo allo", photo.target.files)
     var x = this
     var file = photo.target.files[0]
+   
     var fileReader = new FileReader()
     fileReader.readAsDataURL(file)
+    console.log("qays is here", fileReader)
     fileReader.onload = function (e) {
+       
       axios.post('/photo', {image: e.target.result})
         .then(res => {
-          window.location.reload()      // here i'm getting the photo from database
+          //window.location.reload()      // here i'm getting the photo from database
         })
         .catch(function (error) {
           console.log(error)
@@ -279,11 +283,8 @@ class Beneficiaries_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
-                 <div className='input-group'>
-                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
-                </div>
-                <br />
+                
+              
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
@@ -365,7 +366,7 @@ class Beneficiaries_Profile extends React.Component {
                   <div className='action-buttons'>
                     <div className='row'>
                       <div className='col-xs-12'>
-                        <a href='/Message' className='btn btn-raised btn-danger'><i className='fa fa-android-mail' /> Message</a>
+                        <a href='/Beneficiaries_Message' className='btn btn-raised btn-danger'><i className='fa fa-android-mail' /> Message</a>
                       </div>
                     </div>
                   </div>
@@ -385,7 +386,7 @@ class Beneficiaries_Profile extends React.Component {
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
-                    <p className='glyphicon glyphicon-user'>Nickname: {this.state.newName}</p><br />
+                    <p className='glyphicon glyphicon-user'>Nickname: {this.state.user}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
                     <p className='fa fa-phone'>Phone-Number: {this.state.newPhone}</p><br />
                     <p className='  fa fa-automobile'>Address: {this.state.newAdress}</p>
@@ -422,6 +423,7 @@ class Beneficiaries_Profile extends React.Component {
                               <div>
                                 <h2>Campaign Name : {po.campaignName}</h2>
                                 <h3>{po.campaignDescription}</h3>
+                                <h3>{po.campaignAmount}</h3>
                                 <h3>{po.campaignAmount}</h3>
                               </div>
                               <a href='#' className='thumbnail'>

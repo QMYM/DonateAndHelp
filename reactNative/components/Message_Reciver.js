@@ -19,7 +19,7 @@ this.openMail(this.props.text ,this.props.message  , this.props.sender)
 }
   sendMessage (to, text) {
     var x = this
-    axios.post('https://qaysdonate.herokuapp.com/sendMessage', {user: to, text: text})
+    axios.post('http://192.168.1.128:3000/sendMessage', {user: to, text: text})
     .then(function (res) {
       x.setState({
         messageForDOM:" Your Message has been sent"

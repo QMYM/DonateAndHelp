@@ -22,7 +22,7 @@ class Signup extends React.Component {
   submitDonater (username,email,password , confirmPassword) { // sending post reqeust to the server
     if (confirmPassword === password) {
      if (password !== '' && confirmPassword !== '') {
-      axios.post('https://qaysdonate.herokuapp.com/Donater',
+      axios.post('http://192.168.1.128:3000/Donater',
       {
         username: username,
         email:email,
@@ -46,7 +46,7 @@ class Signup extends React.Component {
 submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
  if (confirmPassword === password) {
    if (password !== '' && confirmPassword !== '') {
-    axios.post('https://qaysdonate.herokuapp.com/Company',
+    axios.post('http://192.168.1.128:3000/Company',
     {
       username: username,
       email:email,

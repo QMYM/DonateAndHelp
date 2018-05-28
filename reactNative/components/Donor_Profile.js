@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
+import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image,ImageEditor} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
 import { Button } from 'react-native-elements'
-
+import { ImagePicker } from 'expo';
 class Donor_Profile extends React.Component {
   constructor (props) {
     super(props);
@@ -26,9 +26,77 @@ class Donor_Profile extends React.Component {
     }
   }
 
+  largeImage = async () => {
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    
+    if (result.cancelled) {
+      console.log('got here');
+      return;
+    }
+
+    let resizedUri = await new Promise((resolve, reject) => {
+      ImageEditor.cropImage(result.uri,
+        {
+          offset: { x: 0, y: 0 },
+          size: { width: result.width, height: result.height },
+          displaySize: { width: 50, height: 50 },
+          resizeMode: 'contain',
+        },
+        (uri) => resolve(uri),
+        () => reject(),
+      );
+    });
+    
+    // this gives you a rct-image-store URI or a base64 image tag that
+    // you can use from ImageStore
+    //console.log("hello world", "yusur jackel mohammed qays!! mais Alo alo!!!@!@")
+   
+    this.setState({
+      image2:resizedUri
+    })
+    
+ 
+}
+
+ _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    
+    if (result.cancelled) {
+      console.log('got here');
+      return;
+    }
+
+    let resizedUri = await new Promise((resolve, reject) => {
+      ImageEditor.cropImage(result.uri,
+        {
+          offset: { x: 0, y: 0 },
+          size: { width: result.width, height: result.height },
+          displaySize: { width: 50, height: 50 },
+          resizeMode: 'contain',
+        },
+        (uri) => resolve(uri),
+        () => reject(),
+      );
+    });
+        this.setState({
+      image:resizedUri
+    }) 
+
+  
+  }
+
+
+
   getInfoForProfilePageforDonor(){
     var x = this
-    axios.get("https://qaysdonate.herokuapp.com/getInfoForProfilePageforDonor").then(function(res){
+    axios.get("http://192.168.1.128:3000/getInfoForProfilePageforDonor").then(function(res){
       var alo = res.data[0]
         x.setState({
           newDescription:alo.description,
@@ -43,7 +111,7 @@ class Donor_Profile extends React.Component {
 
   submit (name, contactNum, description, address) {
     var x = this
-    axios.post('https://qaysdonate.herokuapp.com/Profile_Donor', {
+    axios.post('http://192.168.1.128:3000/Profile_Donor', {
       name: this.state.name,
       contactNum: this.state.contactNum,
       description: this.state.description,
@@ -66,41 +134,11 @@ class Donor_Profile extends React.Component {
       })
   }
 
-  uploadPhoto (photo) { // post the photo and get the photo in the same time
-    var x = this
-    var file = photo.target.files[0]
-    var fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function (e) {
-      axios.post('https://qaysdonate.herokuapp.com/photoDonor', {image: e.target.result})
-        .then(res => {
-          console.log('hello Donor image', res)
-          window.location.reload() // here i'm getting the photo from database
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-  }
-  uploadPhoto2 (photo) { // post the photo and get the photo in the same time
-    var x = this
-    var file = photo.target.files[0]
-    var fileReader = new FileReader()
-    fileReader.readAsDataURL(file)
-    fileReader.onload = function (e) {
-      axios.post('https://qaysdonate.herokuapp.com/photoDonor2', {image2: e.target.result})
-        .then(res => {
-          window.location.reload() // here i'm getting the photo from database
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-  }
+
 
   getLargeImage () {
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor2')
+    axios.get('http://192.168.1.128:3000/getImageDonor2')
       .then(function (res) {
         var post = res.data
         x.setState({image2: post.image2})
@@ -111,7 +149,7 @@ class Donor_Profile extends React.Component {
   componentDidMount () { // this is the initial
     this.getInfoForProfilePageforDonor()
     this.fetchDonorData()
-    axios.get('https://qaysdonate.herokuapp.com/getImageDonor')
+    axios.get('http://192.168.1.128:3000/getImageDonor')
       .then(response => {
         this.fetchDonorData()
         const posts = response['data']
@@ -124,7 +162,7 @@ class Donor_Profile extends React.Component {
         console.log(error)
       })
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/donorCam')
+    axios.get('http://192.168.1.128:3000/donorCam')
       .then(res => {
         var posts = []
         for (var i = 0; i < res.data.length; i++) {
@@ -139,7 +177,7 @@ class Donor_Profile extends React.Component {
 
   fetchDonorData () {
     var x = this
-    axios.get('https://qaysdonate.herokuapp.com/fetchDonorData').then(function (res) {
+    axios.get('http://192.168.1.128:3000/fetchDonorData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
       x.setState({
@@ -152,7 +190,7 @@ class Donor_Profile extends React.Component {
   }
 
   deleteCampaign (delCampaignID) {
-    axios.post('https://qaysdonate.herokuapp.com/delCampaignDonor', {
+    axios.post('http://192.168.1.128:3000/delCampaignDonor', {
       CampID: delCampaignID
     })
       .then(response => {
@@ -166,7 +204,7 @@ class Donor_Profile extends React.Component {
  
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
-    axios.put('https://qaysdonate.herokuapp.com/editCampaignDonor', {
+    axios.put('http://192.168.1.128:3000/editCampaignDonor', {
       campaignID: campaignID,
       campaignName: campaignName,
       campaignDescription: campaignDescription,
@@ -186,10 +224,10 @@ class Donor_Profile extends React.Component {
   }
 
   logout () {
-    axios.get('https://qaysdonate.herokuapp.com/logout')
+    axios.get('http://192.168.1.128:3000/logout')
       .then(function (res) {
-        console.log('ea eshe ')
-        window.location.href = '/'
+    
+        //window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)
       })
@@ -203,16 +241,25 @@ class Donor_Profile extends React.Component {
         <Header />
         <Content>
         
+          <Button
+          title="Pick an image from camera roll"
+          onPress={this.largeImage}
+        />
          <Image
         style={styles.stretch2}
 
          source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
 
        />
+
        <Image
         style={styles.stretch}
          source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
        />
+       <Button
+          title="Pick an image from camera roll"
+          onPress={this._pickImage}
+        />
         <Container style={styles.center}>
         <Text>About Me</Text>
         <Text>Some Description</Text>
@@ -266,6 +313,8 @@ class Donor_Profile extends React.Component {
 
         )
     }
+  
+
   }
 
   const styles = StyleSheet.create({

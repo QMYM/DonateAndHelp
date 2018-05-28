@@ -18,7 +18,7 @@ class Beneficiaries_Campaign extends React.Component {
 
  submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
 
-    axios.post('https://qaysdonate.herokuapp.com/companycampaign', {
+    axios.post('http://192.168.1.128:3000/companycampaign', {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
