@@ -153,7 +153,6 @@ class Beneficiaries_Profile extends React.Component {
 
   fetchCompanyData () {
     var x = this
-    this.getInfoForProfilePage();
     axios.get('/fetchCompanyData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
