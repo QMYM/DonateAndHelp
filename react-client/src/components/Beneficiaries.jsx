@@ -1,17 +1,13 @@
 // The is the home page of the beneficiary after logging in
-import React from 'react'
-import $ from 'jquery'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
-import BeneficiariesMessage from './Beneficiaries_Message.jsx'
-import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
-import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
+  Route
+} from 'react-router-dom';
+import beneficiariesMessage from './Beneficiaries_Message.jsx';
+import beneficiariesCampaign from './Beneficiaries_Campaign.jsx';
+import beneficiariesProfile from './Beneficiaries_Profile.jsx';
 
 function searching (term) {
   return function (x) {
@@ -31,8 +27,8 @@ class Beneficiaries extends React.Component {
     this.submitCompany = this.submitCompany.bind(this)
   }
 
-  submitCompany(){
-    console.log("Done")
+  submitCompany () {
+    console.log('Done')
   }
 
   componentDidMount () { // Retrieve the donor campagins in the beneficiary home page when the home page is loaded
@@ -64,7 +60,7 @@ class Beneficiaries extends React.Component {
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
+          <a href='#' />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
@@ -83,9 +79,9 @@ class Beneficiaries extends React.Component {
                   <li> <a href='/Beneficiaries_Profile' className='icon-bar' to='/Beneficiaries_Profile'>Profile</a> </li>
                   <li> <a href='/' onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
-                  <Route path='/Beneficiaries_Profile' component={BeneficiariesProfile} />
-                  <Route path='/Beneficiaries_Message' component={BeneficiariesMessage} />
-                  <Route path='/Beneficiaries_Campaign' component={BeneficiariesCampaign} />
+                  <Route path='/Beneficiaries_Profile' component={beneficiariesProfile} />
+                  <Route path='/Beneficiaries_Message' component={beneficiariesMessage} />
+                  <Route path='/Beneficiaries_Campaign' component={beneficiariesCampaign} />
                 </ul>
               </Router>
               <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
@@ -106,9 +102,8 @@ class Beneficiaries extends React.Component {
                   <h2>From : {item.username}</h2>
                   <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
 
-                 
                 </div>
-                 <p> {item.campaignDescription}</p>
+                <p> {item.campaignDescription}</p>
                 <div className='panel-footer'>
                   <h3>{item.campaignAmount}</h3><h3>Items</h3>
                 </div>
@@ -138,14 +133,13 @@ class Beneficiaries extends React.Component {
                 <button type='button' className='btn btn-default' data-dismiss='modal' onClick={this.submitCompany}>Take</button>
               </div>
             </div>
-
           </div>
         </div>
 
         <div className='content'>
-          <Route path='/Beneficiaries_Profile' render={() => <BeneficiariesProfile />} />
-          <Route path='/Message' render={() => <Message />} />
-          <Route path='/Beneficiaries_Campaign' render={() => <Beneficiaries_Campaign />} />
+          <Route path='/Beneficiaries_Profile' render={() => <beneficiariesProfile />} />
+          <Route path='/BeneficiariesMessage' render={() => <beneficiariesMessage />} />
+          <Route path='/Beneficiaries_Campaign' render={() => <beneficiariesCampaign />} />
 
         </div>
 

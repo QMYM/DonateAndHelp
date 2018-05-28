@@ -14,7 +14,6 @@ import Donor_Profile from './Donor_Profile.jsx'
 import Donor_Campaign from './Donor_Campaign.jsx'
 import Donor_Message from './Donor_Message.jsx'
 
-
 class Search_Donor extends React.Component {
   constructor (props) {
     super(props)
@@ -86,42 +85,41 @@ logout () {
 
   render () {
 		 return (
-  <div > 
+  <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
-          <a href='#'></a>
-          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+      <a href='#' />
+      <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
 
-          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
-              <li><a href='/donor'>Home</a></li>
-              <li><a href='/Donor_Campaign'>Campaign</a></li>
-            </ul>
+          <li><a href='/donor'>Home</a></li>
+          <li><a href='/Donor_Campaign'>Campaign</a></li>
+        </ul>
             <form className='form-inline my-2 my-lg-0'>
-              <Router>
+          <Router>
                 <ul className='nav navbar-nav navbar-right ' >
-                  {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
-                  <li> <a href='/searchD' className='icon-bar' >Search</a> </li> 
-                  <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
-                  <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
-                  <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
-                  <li><a /></li>
+              {/* } <li> <a href='/searchD' className='icon-bar' >Search</a> </li> */}
+              <li> <a href='/searchD' className='icon-bar' >Search</a> </li>
+              <li> <a href='/Donor_Message' className='icon-bar' to='/Donor_Message'>Message</a> </li>
+              <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
+              <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
+              <li><a /></li>
 
-                    <Route path='/Donor_Message' component={Donor_Message} />
-                  <Route path='/Donor_Campaign' component={Donor_Campaign} />
-                  <Route path='/Donor_Profile' component={Donor_Profile} />
-                </ul>
+              <Route path='/Donor_Message' component={Donor_Message} />
+              <Route path='/Donor_Campaign' component={Donor_Campaign} />
+              <Route path='/Donor_Profile' component={Donor_Profile} />
+            </ul>
               </Router>
-              <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
-              <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
-            </form>
+          <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search' onChange={this.search} value={this.state.term} />
+          <button className='btn btn-outline-success my-2 my-sm-0 w3-bar-item w3-button w3-hide-small w3-right w3-hover-red' type='submit'> <i className='fa fa-search' />Search</button>
+        </form>
           </div>
-        </nav>
-  
-        {console.log(this.state.searchOut)}
+    </nav>
 
+        {console.log(this.state.searchOut)}
 
         <div className='container' >
       <div className='col-10'>
@@ -130,6 +128,7 @@ logout () {
       </div>
       <br />
       <br />
+
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
         </div>

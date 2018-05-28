@@ -91,7 +91,7 @@ class Signup extends React.Component {
                       <option value='false'>Company</option>
                     </select>
                   </div>
-                 <br />
+                  <br />
                   <label for='user' className='label'>Username</label>
                   <input id='user' type='text' className='input'
                     name='username'

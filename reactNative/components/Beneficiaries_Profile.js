@@ -1,239 +1,28 @@
-import React from 'react';
-import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image,ImageEditor} from 'react-native';
+
+import React from 'react'
+import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
 import axios from 'axios'
-import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
-import { Button } from 'react-native-elements'
-import { ImagePicker } from 'expo';
+import { Actions } from 'react-native-router-flux'
+
 class Beneficiaries_Profile extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
-      contactNum: '',
-      description: '',
-      address: '',
-      newContactNum: '',
-      newDescription: '',
-      newAddress: '',
-      image: '',
-      image2: '',
-      name: '',
-      user: '',
-      email: '',
-      post: [],
-      id: '',
-      newName: ''
+      modalVisible: false
+
     }
   }
- onChange (e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-  getInfoForProfilePage(){
-    var x = this
-    axios.get("/getInfoForProfilePage").then(function(res){
-      var alo = res.data[0]
-      console.log("i'm here tho!",res.data[0])
-        x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
-    }).catch(function(err){
-      console.lof(err)
-    })
-  }
 
-  submit (name, contactNum, description, address) {
-    var x = this
-    axios.post('/profile_company', {
-      // image: this.state.image, 
-      name: this.state.name,
-      contactNum: this.state.contactNum,
-      description: this.state.description,
-      address: this.state.address
-    })
-      .then(response => {
-          var alo = response.data
-        console.log('profile has been updated',response.data)
-        // should go to the home page from here
-         x.setState({
-          newDescription:alo.description,
-           newPhone:alo.contactNum,
-           newAdress: alo.address,
-           newName:alo.name
-          })
-      }).catch(error => {
-        alert('wrong in profile update')
-      })
-  }
+  render () {
+    return (
+      <View style={styles.container}>
 
-  getLargeImage () {
-    var x = this
-    axios.get('/getImage2')
-      .then(function (res) {
-        var post = res.data
-        x.setState({image2: post.image2})
-      }).catch(function (err) {
-        console.log(err)
-      })
-  }
+        <Text>
+      welcome Beneficiaries_Profile
+        </Text>
+      </View>
+    )
 
-  componentDidMount () { // this is the initial
-    this.getInfoForProfilePage()
-    axios.get('/getImage')
-      .then(response => {
-        const posts = response['data']
-        this.setState({ // changing the state to the new image that i fetch it from database
-          image: posts.image
-          // image2:posts.image
-        })
-        this.fetchCompanyData()
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    this.getLargeImage()
-  }
-
-  fetchCompanyData () {
-    var x = this
-    axios.get('/fetchCompanyData').then(function (res) {
-      var user = res.data.username
-      var email = res.data.email
-      x.setState({
-        user: user,
-        email: email
-      })
-    }).catch(function (err) {
-      console.log('error', err)
-    })
-    axios.get('/companyCam')
-      .then(res => {
-        var posts = []
-        for (var i = 0; i < res.data.length; i++) {
-          if (res.data[i].username === this.state.user) {
-            posts.push(res.data[i])
-            x.setState({post: posts})
-          }
-        }
-      })
-  }
-
-  deleteCampaign (delCampaignID) {
-    console.log(delCampaignID)
-    axios.post('/delCampaignComp', {
-      CampID: delCampaignID
-    })
-      .then(response => {
-        alert('campaign has been deleted!')
-        window.location.reload()
-      }).catch(error => {
-        alert('error in campaign deletion!', error)
-      })
-  }
-
-  onChangeCampaign (e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
-    console.log('Update Campaign!')
-    axios.put('/editCampaignComp', {
-      campaignID: campaignID,
-      campaignName: campaignName,
-      campaignDescription: campaignDescription,
-      campaignAmount: campaignAmount,
-      username: name
-    })
-      .then(response => {
-        alert('campaign has been edited!')
-        window.location.reload()
-      }).catch(error => {
-        alert('error in campaign edit!')
-      })
-  }
-  theId (id) {
-    this.setState({id: id})
-  }
-  logout () {
-    axios.get('/logout')
-      .then(function (res) {
-        console.log('ea eshe ')
-        window.location.href = '/'
-      }).catch(function (err) {
-        console.log('logout err ', err)
-      })
-  }
-
-largeImage = async () => {
-
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-    
-    if (result.cancelled) {
-      console.log('got here');
-      return;
-    }
-
-    let resizedUri = await new Promise((resolve, reject) => {
-      ImageEditor.cropImage(result.uri,
-        {
-          offset: { x: 0, y: 0 },
-          size: { width: result.width, height: result.height },
-          displaySize: { width: 50, height: 50 },
-          resizeMode: 'contain',
-        },
-        (uri) => resolve(uri),
-        () => reject(),
-      );
-    });
-    
-    // this gives you a rct-image-store URI or a base64 image tag that
-    // you can use from ImageStore
-    //console.log("hello world", "yusur jackel mohammed qays!! mais Alo alo!!!@!@")
-   
-    this.setState({
-      image2:resizedUri
-    })
-    
- 
-}
-
- _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-    
-    if (result.cancelled) {
-      console.log('got here');
-      return;
-    }
-
-    let resizedUri = await new Promise((resolve, reject) => {
-      ImageEditor.cropImage(result.uri,
-        {
-          offset: { x: 0, y: 0 },
-          size: { width: result.width, height: result.height },
-          displaySize: { width: 50, height: 50 },
-          resizeMode: 'contain',
-        },
-        (uri) => resolve(uri),
-        () => reject(),
-      );
-    });
-        this.setState({
-      image:resizedUri
-    }) 
-
-  
   }
 
   render(){
@@ -321,8 +110,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
 
-module.exports = Beneficiaries_Profile;
+module.exports = Beneficiaries_Profile
