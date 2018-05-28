@@ -18,8 +18,6 @@ class Signup extends React.Component {
     }
   }
 
-
-
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {
@@ -42,6 +40,7 @@ class Signup extends React.Component {
       Alert.alert("password doesn't match,rewrite it again")
     }
   }
+  
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
     if (confirmPassword === password) {
       if (password !== '' && confirmPassword !== '') {

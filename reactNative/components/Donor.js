@@ -97,7 +97,7 @@ class Donor extends React.Component {
       </Modal>
 
       {this.state.camp.filter(searching(this.state.term)).map(item => 
-       <View style={styles.campview} key={item._id}>
+       <View key={item._id}>
        <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
        <Text>{item.campaignDescription}</Text>
        <Text>{item.campaignAmount}</Text><Text>JD</Text>

@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { StyleSheet, TextInput, FlatList, ActivityIndicator, Alert} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 
 
 class Donor_Campaign extends React.Component {
@@ -37,17 +38,19 @@ class Donor_Campaign extends React.Component {
   render () {
     return (
       <View style={styles.container}>
+        <Text>Campaign Name</Text>
         
         <TextInput
           placeholder='Type here your Campaign Name!'
 
           onChangeText={(campaignName) => this.setState({campaignName})}
         />
-        
+        <Text>Campaign Description</Text>
         <TextInput
           placeholder='Type here your Campaign Description!'
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
         />
+        <Text>Amount</Text>
        
         <TextInput
           placeholder='Type here your Amount!'
@@ -55,10 +58,11 @@ class Donor_Campaign extends React.Component {
         />
 
         <Button 
-
         onPress={
-          () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
-        } title='Submit' />
+          () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, 
+            this.state.beneficiaryName, this.state.campaignImage)}>
+          <Text>Submit</Text>
+          </Button>
       </View>
     )
   }
