@@ -51,7 +51,6 @@ class Beneficiaries_Profile extends React.Component {
     var x = this
     axios.get('/getInfoForProfilePage').then(function (res) {
       var alo = res.data[0]
-      console.log("i'm here tho!", res.data[0])
       x.setState({
         newDescription: alo.description,
         newPhone: alo.contactNum,
@@ -88,17 +87,16 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   uploadPhoto (photo) { // post the photo and get the photo in the same time
-    console.log("alo allo", photo.target.files)
     var x = this
     var file = photo.target.files[0]
    
     var fileReader = new FileReader()
     fileReader.readAsDataURL(file)
-    console.log("qays is here", fileReader)
     fileReader.onload = function (e) {
        
       axios.post('/photo', {image: e.target.result})
         .then(res => {
+    this.getInfoForProfilePage();
 
           window.location.reload() // here i'm getting the photo from database
         })
@@ -107,6 +105,7 @@ class Beneficiaries_Profile extends React.Component {
         })
     }
   }
+
   uploadPhoto2 (photo) { // post the photo and get the photo in the same time
     var x = this
     var file = photo.target.files[0]
@@ -135,7 +134,9 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   componentDidMount () { // this is the initial
-    this.getInfoForProfilePage()
+    this.getCampaignData();
+    this.getInfoForProfilePage();
+    this.fetchCompanyData()
     axios.get('/getImage')
       .then(response => {
         const posts = response['data']
@@ -143,7 +144,6 @@ class Beneficiaries_Profile extends React.Component {
           image: posts.image
           // image2:posts.image
         })
-        this.fetchCompanyData()
       })
       .catch(function (error) {
         console.log(error)
@@ -153,6 +153,7 @@ class Beneficiaries_Profile extends React.Component {
 
   fetchCompanyData () {
     var x = this
+    this.getInfoForProfilePage();
     axios.get('/fetchCompanyData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
@@ -163,6 +164,10 @@ class Beneficiaries_Profile extends React.Component {
     }).catch(function (err) {
       console.log('error', err)
     })
+  }
+    
+  getCampaignData(){
+    console.log('here iam i')
     axios.get('/companyCam')
       .then(res => {
         var posts = []
@@ -176,11 +181,10 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   deleteCampaign (delCampaignID) {
-    console.log(delCampaignID)
     axios.post('/delCampaignComp', {
       CampID: delCampaignID
     })
-      .then(response => {
+     .then(response => {
         alert('campaign has been deleted!')
         window.location.reload()
       }).catch(error => {
@@ -195,7 +199,6 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
-    console.log('Update Campaign!')
     axios.put('/editCampaignComp', {
       campaignID: campaignID,
       campaignName: campaignName,
@@ -205,6 +208,7 @@ class Beneficiaries_Profile extends React.Component {
     })
       .then(response => {
         alert('campaign has been edited!')
+    this.getInfoForProfilePage();
         window.location.reload()
       }).catch(error => {
         alert('error in campaign edit!')
@@ -216,7 +220,6 @@ class Beneficiaries_Profile extends React.Component {
   logout () {
     axios.get('/logout')
       .then(function (res) {
-        console.log('ea eshe ')
         window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)
@@ -461,7 +464,6 @@ class Beneficiaries_Profile extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }

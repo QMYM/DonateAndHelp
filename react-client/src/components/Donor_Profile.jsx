@@ -288,7 +288,15 @@ class Donor_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
+<<<<<<< HEAD
                
+=======
+                <div className='input-group'>
+                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
+                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
+                </div>
+                <br />
+>>>>>>> 5406a062aef9a688a7c3f4d2e1f0117d06aa8d0b
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
