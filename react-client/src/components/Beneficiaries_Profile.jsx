@@ -96,6 +96,7 @@ class Beneficiaries_Profile extends React.Component {
        
       axios.post('/photo', {image: e.target.result})
         .then(res => {
+    this.getInfoForProfilePage();
 
           window.location.reload() // here i'm getting the photo from database
         })
@@ -152,6 +153,7 @@ class Beneficiaries_Profile extends React.Component {
 
   fetchCompanyData () {
     var x = this
+    this.getInfoForProfilePage();
     axios.get('/fetchCompanyData').then(function (res) {
       var user = res.data.username
       var email = res.data.email
@@ -165,6 +167,7 @@ class Beneficiaries_Profile extends React.Component {
   }
     
   getCampaignData(){
+    console.log('here iam i')
     axios.get('/companyCam')
       .then(res => {
         var posts = []
@@ -206,6 +209,7 @@ class Beneficiaries_Profile extends React.Component {
     })
       .then(response => {
         alert('campaign has been edited!')
+    this.getInfoForProfilePage();
         window.location.reload()
       }).catch(error => {
         alert('error in campaign edit!')
