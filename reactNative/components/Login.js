@@ -16,7 +16,9 @@ class Login extends React.Component {
   }
 
   submitLoginDonater () { // send post request to the server
+
     axios.post('https://donatandhelp.herokuapp.com/loginDonater', {
+
       userName: this.state.userName,
       password: this.state.password
     })
@@ -26,12 +28,14 @@ class Login extends React.Component {
       }).catch(error => {
         alert('password or username is wrong')
       })
+
   };
   submitLoginCompany () {
     axios.post('https://donatandhelp.herokuapp.com/loginCompany', {
       userName: this.state.userName,
       password: this.state.password
     })
+
       .then(response => {
         Actions.Beneficiaries_Tab()
         // should go to the home page from here

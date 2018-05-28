@@ -19,6 +19,7 @@ class Message extends React.Component {
   }
   sendMessage (to, text) {
     var x = this
+
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
         x.setState({
@@ -28,6 +29,7 @@ class Message extends React.Component {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
+
       })
   }
 

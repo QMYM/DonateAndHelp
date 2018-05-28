@@ -1,8 +1,10 @@
 import React from 'react';
-import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
+import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image,ImageEditor} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
+import { Button } from 'react-native-elements'
+import { ImagePicker } from 'expo';
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -34,9 +36,79 @@ class Donor_Profile extends React.Component {
   }
 
 
+  largeImage = async () => {
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    
+    if (result.cancelled) {
+      console.log('got here');
+      return;
+    }
+
+    let resizedUri = await new Promise((resolve, reject) => {
+      ImageEditor.cropImage(result.uri,
+        {
+          offset: { x: 0, y: 0 },
+          size: { width: result.width, height: result.height },
+          displaySize: { width: 50, height: 50 },
+          resizeMode: 'contain',
+        },
+        (uri) => resolve(uri),
+        () => reject(),
+      );
+    });
+    
+    // this gives you a rct-image-store URI or a base64 image tag that
+    // you can use from ImageStore
+    //console.log("hello world", "yusur jackel mohammed qays!! mais Alo alo!!!@!@")
+   
+    this.setState({
+      image2:resizedUri
+    })
+    
+ 
+}
+
+ _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    
+    if (result.cancelled) {
+      console.log('got here');
+      return;
+    }
+
+    let resizedUri = await new Promise((resolve, reject) => {
+      ImageEditor.cropImage(result.uri,
+        {
+          offset: { x: 0, y: 0 },
+          size: { width: result.width, height: result.height },
+          displaySize: { width: 50, height: 50 },
+          resizeMode: 'contain',
+        },
+        (uri) => resolve(uri),
+        () => reject(),
+      );
+    });
+        this.setState({
+      image:resizedUri
+    }) 
+
+  
+  }
+
+
+
   getInfoForProfilePageforDonor(){
+
     var x = this;
     axios.get('https://donatandhelp.herokuapp.com/getInfoForProfilePageforDonor').then(function(res){
+
       var alo = res.data[0]
       x.setState({
         newDescription:alo.description,
@@ -57,6 +129,7 @@ class Donor_Profile extends React.Component {
       Actions.Home()
     }).catch(function (err) {
       console.log('logout err', err)
+
     })
   }
 
@@ -85,6 +158,9 @@ class Donor_Profile extends React.Component {
   }
 
 
+
+
+
   getLargeImage () {
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/getImageDonor2')
@@ -94,27 +170,34 @@ class Donor_Profile extends React.Component {
     }).catch(function (err) {
       console.log(err)
     })
+
   }
   
   componentDidMount () { // this is the initial
     this.getInfoForProfilePageforDonor()
+
     axios.get('https://donatandhelp.herokuapp.com/getImageDonor')
     .then(response => {
       const posts = response['data']
+
         this.setState({ // changing the state to the new image that i fetch it from database
           image: posts.image
           // image2:posts.image
         })
         this.fetchDonorData()
       })
+
     .catch(function (error) {
       console.log(error)
+
     })
     this.getLargeImage()
   }
 
   deleteCampaign (delCampaignID) {
+
     axios.post('https://donatandhelp.herokuapp.com/delCampaignDonor', {
+
       CampID: delCampaignID
     })
     .then(response => {
@@ -125,7 +208,9 @@ class Donor_Profile extends React.Component {
   }
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
+
     axios.put('https://donatandhelp.herokuapp.com/editCampaignDonor', {
+
       campaignID: campaignID,
       campaignName: campaignName,
       campaignDescription: campaignDescription,
@@ -143,6 +228,7 @@ class Donor_Profile extends React.Component {
   theId (id) {
     this.setState({id: id})
   }
+
 
   editInfo(contactNum, description, address) { 
     var x = this;
@@ -165,11 +251,13 @@ class Donor_Profile extends React.Component {
   })
  };
 
+
  render(){
   return (
    <Container>
    <Header />
    <Content>
+
 
    <Modal
    animationType="slide"
@@ -199,12 +287,14 @@ class Donor_Profile extends React.Component {
   <Button
   onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
 
+
   ><Text>Done</Text></Button>
   <Button onPress={() => {
     this.setModalVisible(!this.state.modalVisible);
   }}><Text>Close</Text></Button>
   </View>
   </Modal>
+
 
 
   <Modal
@@ -249,6 +339,7 @@ class Donor_Profile extends React.Component {
   style={styles.stretch2}
 
   source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+
 
   />
   <Image

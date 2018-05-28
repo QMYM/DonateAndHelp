@@ -24,6 +24,7 @@ class Message extends React.Component {
   componentDidMount () {
     var x = this
     x.user()
+
     x.getPhotoForMessages()
     axios.get('https://donatandhelp.herokuapp.com/recieveMessage')
       .then(function (response) {
@@ -35,6 +36,7 @@ class Message extends React.Component {
             x.setState({messages: mes})
           }
 
+
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
@@ -45,17 +47,20 @@ class Message extends React.Component {
 
   user () {
     var x = this
+
     axios.get('https://donatandhelp.herokuapp.com/sessionName')
       .then(function (res) {
         x.setState({sessionUser: res.data})
       }).catch(function (err) {
         console.log('error', err)
       })
+
   }
   getPhotoForMessages () {
     var x = this
     var arr = []
     var rec = []
+
     var test = []
     axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
       .then(function (res) {
@@ -65,6 +70,7 @@ class Message extends React.Component {
               test.push(res.data[i].userInfo)
               arr.push(res.data[i].userInfo[0].username)
             }
+
           }
           if (res.data[i].userRole.length !== 0) {
             if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
@@ -84,6 +90,7 @@ class Message extends React.Component {
   }
   sendMessage (to, text) {
     var x = this
+
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
         console.log(res, 'ress')
@@ -94,6 +101,7 @@ class Message extends React.Component {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
+
       })
   }
 

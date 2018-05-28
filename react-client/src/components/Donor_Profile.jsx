@@ -135,10 +135,16 @@ class Donor_Profile extends React.Component {
     axios.get('/getImageDonor')
       .then(response => {
         this.fetchDonorData()
-        const posts = response['data']
+        
+        
+        
+        const posts = response['data'].image
+        
+        
+        // console.log("hello world image", posts)
         this.setState({ // changing the state to the new image that i fetch it from database
-          image: posts.image
-          // image2:posts.image
+          image: posts
+          
         })
       })
       .catch(function (error) {
@@ -282,11 +288,15 @@ class Donor_Profile extends React.Component {
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
               <div className='modal-body'>
+<<<<<<< HEAD
+                
+=======
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
                   <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
                 </div>
                 <br />
+>>>>>>> e2cdd22f761a510e712beef91688f226a58d8536
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
@@ -366,7 +376,7 @@ class Donor_Profile extends React.Component {
                   <div className='action-buttons'>
                     <div className='row'>
                       <div className='col-xs-12'>
-                        <a href='/Message' className='btn btn-raised btn-danger'><i className='fa fa-android-mail' /> Message</a>
+                        <a href='/Donor_Message' className='btn btn-raised btn-danger'><i className='fa fa-android-mail' /> Message</a>
                       </div>
                     </div>
                   </div>
@@ -385,7 +395,7 @@ class Donor_Profile extends React.Component {
                   </div>
                   <div className='section'>
                     <h3>Information</h3>
-                    <p className='glyphicon glyphicon-user'>nickname: {this.state.newName}</p><br />
+                    <p className='glyphicon glyphicon-user'>nickname: {this.state.user}</p><br />
                     <p className='  fa fa-address-card-o'> {this.state.email}</p><br />
                     <p className='fa fa-phone'>phone-number: {this.state.newPhone}</p><br />
                     <p className='  fa fa-automobile'>Address: {this.state.newAdress}</p>
@@ -422,6 +432,7 @@ class Donor_Profile extends React.Component {
                               <div>
                                 <h2>Campaign Name : {po.campaignName}</h2>
                                 <h3>{po.campaignDescription}</h3>
+                                <h3>{po.campaignAmount}</h3>
                               </div>
                               <a href='#' className='thumbnail'>
                                 <img src={po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'} alt='Uploaded photo' style={{width: '300px', hight: '300px'}} />

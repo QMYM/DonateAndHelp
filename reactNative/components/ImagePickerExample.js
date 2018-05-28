@@ -8,7 +8,9 @@ export default class ImagePickerExample extends React.Component {
   };
 
 componentDidMount(){
+
   axios.get('https://donatandhelp.herokuapp.com/getImageDonor')
+
       .then(response => {
         this.fetchDonorData()
         const posts = response['data']
