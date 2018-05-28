@@ -135,6 +135,7 @@ class Beneficiaries_Profile extends React.Component {
   componentDidMount () { // this is the initial
     this.getCampaignData();
     this.getInfoForProfilePage();
+    this.fetchCompanyData()
     axios.get('/getImage')
       .then(response => {
         const posts = response['data']
@@ -142,7 +143,6 @@ class Beneficiaries_Profile extends React.Component {
           image: posts.image
           // image2:posts.image
         })
-        this.fetchCompanyData()
       })
       .catch(function (error) {
         console.log(error)
