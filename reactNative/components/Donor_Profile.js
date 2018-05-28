@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image,ImageEditor} from 'react-native';
+import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon } from 'native-base';
-import { Button } from 'react-native-elements'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 import { ImagePicker } from 'expo';
 
 class Donor_Profile extends React.Component {
@@ -37,12 +36,10 @@ class Donor_Profile extends React.Component {
 
 
   largeImage = async () => {
-
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [4, 3],
     });
-    
     if (result.cancelled) {
       console.log('got here');
       return;
@@ -257,6 +254,12 @@ class Donor_Profile extends React.Component {
    <Container>
    <Header />
    <Content>
+   <Button
+         onPress={this._pickImage}
+       ><Text>Pick an image from camera roll</Text></Button>
+       <Button
+         onPress={this.largeImage}
+       ><Text>Pick an image from camera roll</Text></Button>
 
 
    <Modal

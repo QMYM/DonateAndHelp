@@ -1,8 +1,8 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, View, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Thumbnail, Text, Button} from 'native-base'
+import { Container, Header, Content, Thumbnail, Text , Input, Button , Item , Form , Label} from 'native-base'
 class Message extends React.Component {
   constructor (props) {
     super(props)
@@ -136,19 +136,21 @@ class Message extends React.Component {
             }}>
             <View style={{marginTop: 22}}>
               <Text>Send Message</Text>
-
-              <Text>To</Text>
-              <TextInput
+              <Item floatingLabel last>
+              <Label>To</Label>
+              <Input
                 style={styles.input}
-                placeholder='Enter your user!'
                 onChangeText={(user) => this.setState({user})}
               />
-              <Text>Subject</Text>
-              <TextInput
+            </Item>
+              <Item floatingLabel last>
+              <Label>To</Label>
+              <Label>Subject</Label>
+              <Input
                 style={styles.input}
-                placeholder='Enter your text!'
                 onChangeText={(text) => this.setState({text})}
               />
+            </Item>
               <Button
                 onPress={() => this.sendMessage(this.state.user, this.state.text)}
               > <Text>Send</Text>
@@ -159,14 +161,10 @@ class Message extends React.Component {
             </View>
           </Modal>
 
-          <Text>
-      welcome Message
-          </Text>
-
           <Button onPress={() => {
             this.setModalVisible(true)
           }}>
-            <Text>Show Modal</Text>
+            <Text>Send Message </Text>
           </Button>
 
           <View>
