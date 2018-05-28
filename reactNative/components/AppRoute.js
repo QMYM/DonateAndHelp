@@ -35,6 +35,8 @@ export default class AppRoute extends React.Component {
             key='Home'
             component={Home}
             title='Home'
+            animation="fade"
+            duration="2000"
             hideNavBar
             initial
 
