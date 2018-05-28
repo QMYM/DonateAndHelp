@@ -13,23 +13,26 @@ function searching (term) {
 class Donor extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       camp: [],
       amount: '',
       term: '' ,
       modalVisible: false,
+      
     }
+    
   }
+
+ 
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   componentDidMount () {
-
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/companyCam')
-
     .then(function (res) {
       x.setState({camp: res.data})
     }).catch(function (err) {
@@ -38,14 +41,13 @@ class Donor extends React.Component {
   }
 
   submitDonate (amount ) {
-
     axios.post('https://donatandhelp.herokuapp.com/editAmount' , {amount:amount , user : this.state.user })
-
-    .then(function (res) {
-      alert("Thanks For Donation"); 
-      Actions.refresh(key:'Donor_Tab')
+    .then((res) =>{
+      alert("Thanks For Donation joza"); 
+      this.componentDidMount()
+      // this.yussur()
     })
-    .catch(function (err) {
+    .catch((err) => {
       alert("the amount is so high")
     })
   }
@@ -102,7 +104,7 @@ class Donor extends React.Component {
        <Text>{item.campaignDescription}</Text>
        <Text>{item.campaignAmount}</Text><Text>JD</Text>
        <Button onPress={() => {this.setModalVisible(true)  , this.user(item._id)}} >
-       <Text>Donate </Text>
+       <Text>Donate1 </Text>
        </Button>
 
        </View>
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop :10,
     marginBottom :10,
     width: 300,
-    height: 80,
+    height: 200,
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 3,

@@ -28,7 +28,7 @@ class Donor_Campaign extends React.Component {
       campaignAmount: this.state.campaignAmount,
       campaignImage: this.state.campaignImage
     })
-      .then(response => {
+      .then((response) => {
         console.log('campaign has been posted!')
       }).catch(error => {
         alert('wrong in posting a campaign!')
