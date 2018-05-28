@@ -179,13 +179,12 @@ class Beneficiaries_Profile extends React.Component {
         }
       })
   }
-  }
 
   deleteCampaign (delCampaignID) {
     axios.post('/delCampaignComp', {
       CampID: delCampaignID
     })
-      .then(response => {
+     .then(response => {
         alert('campaign has been deleted!')
         window.location.reload()
       }).catch(error => {
@@ -472,7 +471,6 @@ class Beneficiaries_Profile extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }
