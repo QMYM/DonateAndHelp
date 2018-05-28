@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
