@@ -55,7 +55,6 @@ logout () {
       success: function (data) {
         console.log('Success in GET search!', data)
         that.setState({searchOut: data})
-        that.getImage()
       },
       error: function (err) {
         alert('Not Found')
