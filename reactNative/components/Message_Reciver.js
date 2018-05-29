@@ -3,33 +3,37 @@ import { StyleSheet, TextInput, Alert } from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Avatar} from 'react-native-elements'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button } from 'native-base'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Item, Input } from 'native-base'
 class Message extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       text: '',
       rightMes: [],
-      rightMes2: []
+      rightMes2: [],
+      text: '',
+      message: '',
+      sender: ''
     }
   }
 
   componentDidMount () {
     this.openMail(this.props.text, this.props.message, this.props.sender)
+    this.setState({message: this.props.message, sender: this.props.sender, text: this.props.text})
   }
   sendMessage (to, text) {
     var x = this
 
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
-      .then(function (res) {
+      .then((res) => {
+        x.componentDidMount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
-      }).catch(function (err) {
+      }).catch((err) => {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
-
       })
   }
 
@@ -52,9 +56,9 @@ class Message extends React.Component {
 
   remove (user, id) {
     axios.post('/removeMsg', {user: user, id: id})
-      .then(function (res) {
+      .then((res) => {
 
-      }).catch(function (err) {
+      }).catch((err) => {
         console.log('err', err)
       })
   }
@@ -107,17 +111,17 @@ class Message extends React.Component {
                 </Button>
               } />
           )}
-          <TextInput
-            placeholder='Aa'
-
-            onChangeText={(text) => this.setState({text})}
-          />
-          <Button
-            onPress={() => this.sendMessage(this.props.text, this.state.text)}>
-            <Text>Send</Text>
-          </Button>
 
         </Content>
+        <Item>
+          <Input placeholder='Aa'
+            onChangeText={(text) => this.setState({text})}
+          />
+        </Item>
+        <Button block dark
+          onPress={() => this.sendMessage(this.props.text, this.state.text)}>
+          <Text>Send</Text>
+        </Button>
       </Container>
     )
   }

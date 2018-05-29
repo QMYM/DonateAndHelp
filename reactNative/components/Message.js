@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, TouchableHighlight, StyleSheet, View, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Thumbnail, Text , Input, Button , Item , Form , Label} from 'native-base'
+import { Container, Header, Content, Thumbnail, Text, Input, Button, Item, Form, Label, Left, Body, Right, Icon, Title} from 'native-base'
 class Message extends React.Component {
   constructor (props) {
     super(props)
@@ -36,7 +36,6 @@ class Message extends React.Component {
             x.setState({messages: mes})
           }
 
-
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
@@ -54,13 +53,11 @@ class Message extends React.Component {
       }).catch(function (err) {
         console.log('error', err)
       })
-
   }
   getPhotoForMessages () {
     var x = this
     var arr = []
     var rec = []
-
     var test = []
     axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
       .then(function (res) {
@@ -70,7 +67,6 @@ class Message extends React.Component {
               test.push(res.data[i].userInfo)
               arr.push(res.data[i].userInfo[0].username)
             }
-
           }
           if (res.data[i].userRole.length !== 0) {
             if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
@@ -94,6 +90,7 @@ class Message extends React.Component {
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
         console.log(res, 'ress')
+        x.componentDidMount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
@@ -101,7 +98,6 @@ class Message extends React.Component {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
-
       })
   }
 
@@ -125,7 +121,6 @@ class Message extends React.Component {
   render () {
     return (
       <Container>
-        <Header />
         <Content>
           <Modal
             animationType='slide'
@@ -137,20 +132,20 @@ class Message extends React.Component {
             <View style={{marginTop: 22}}>
               <Text>Send Message</Text>
               <Item floatingLabel last>
-              <Label>To</Label>
-              <Input
-                style={styles.input}
-                onChangeText={(user) => this.setState({user})}
-              />
-            </Item>
+                <Label>To</Label>
+                <Input
+                  style={styles.input}
+                  onChangeText={(user) => this.setState({user})}
+                />
+              </Item>
               <Item floatingLabel last>
-              <Label>To</Label>
-              <Label>Subject</Label>
-              <Input
-                style={styles.input}
-                onChangeText={(text) => this.setState({text})}
-              />
-            </Item>
+                <Label>To</Label>
+                <Label>Subject</Label>
+                <Input
+                  style={styles.input}
+                  onChangeText={(text) => this.setState({text})}
+                />
+              </Item>
               <Button
                 onPress={() => this.sendMessage(this.state.user, this.state.text)}
               > <Text>Send</Text>
@@ -160,12 +155,19 @@ class Message extends React.Component {
               }}><Text>Close</Text></Button>
             </View>
           </Modal>
-
-          <Button onPress={() => {
-            this.setModalVisible(true)
-          }}>
-            <Text>Send Message </Text>
-          </Button>
+          <Header>
+            <Left>
+              <Button transparent onPress={() => {
+                this.setModalVisible(true)
+              }}>
+                <Icon active name='mail' />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Messages</Title>
+            </Body>
+            <Right />
+          </Header>
 
           <View>
             {this.state.reciver.map(item =>
@@ -177,7 +179,6 @@ class Message extends React.Component {
                     source={{uri: item.image}}
                   />
                   {item.username}</Text>
-
               </View>
             )
             }

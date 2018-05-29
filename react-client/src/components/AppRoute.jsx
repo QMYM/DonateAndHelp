@@ -1,20 +1,20 @@
-import React from 'react';
-import { BrowserRouter, Route, hashHistory, Switch } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter, Route, hashHistory, Switch } from 'react-router-dom'
 
-import Home from './Home.jsx';
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
-import Beneficiaries from './Beneficiaries.jsx';
-import beneficiariesProfile from './Beneficiaries_Profile.jsx';
-import beneficiariesCampaign from './Beneficiaries_Campaign.jsx';
-import beneficiariesMessage from './Beneficiaries_Message.jsx';
-import Search_Beneficiary from './Search_Beneficiary.jsx';
-import Donor from './Donor.jsx';
-import Search_Donor from './Search_Donor.jsx';
-import donorProfile from './Donor_Profile.jsx';
-import donorCampaign from './Donor_Campaign.jsx';
-import donorMessage from './Donor_Message.jsx';
-import theApp from './TheApp.jsx';
+import Home from './Home.jsx'
+import Login from './Login.jsx'
+import Signup from './Signup.jsx'
+import Beneficiaries from './Beneficiaries.jsx'
+import beneficiariesProfile from './Beneficiaries_Profile.jsx'
+import beneficiariesCampaign from './Beneficiaries_Campaign.jsx'
+import beneficiariesMessage from './Beneficiaries_Message.jsx'
+import Search_Beneficiary from './Search_Beneficiary.jsx'
+import Donor from './Donor.jsx'
+import Search_Donor from './Search_Donor.jsx'
+import donorProfile from './Donor_Profile.jsx'
+import donorCampaign from './Donor_Campaign.jsx'
+import donorMessage from './Donor_Message.jsx'
+import theApp from './TheApp.jsx'
 
 class AppRoute extends React.Component {
   constructor (props) {
@@ -46,4 +46,4 @@ class AppRoute extends React.Component {
   }
 }
 
-export default AppRoute;
+export default AppRoute

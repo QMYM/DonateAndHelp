@@ -19,9 +19,7 @@ import ImagePickerExample from './ImagePickerExample'
 import Aboutus from './Aboutus'
 import Contactus from './Contactus'
 
-
 export default class AppRoute extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -36,11 +34,10 @@ export default class AppRoute extends React.Component {
             key='Home'
             component={Home}
             title='Home'
-            animation="fade"
-            duration="2000"
-             hideNavBar={1}
-             wrapRouter={true}
-             type="replace"
+            animation='fade'
+            duration='2000'
+            hideNavBar={1}
+            type='replace'
             initial
 
           />
@@ -48,19 +45,19 @@ export default class AppRoute extends React.Component {
             key='Login'
             component={Login}
             title='Login'
-             animation="fade"
-              duration={0}
-             hideNavBar={true}
-             navBar={Login}
-             back
+            animation='fade'
+            duration={0}
+            hideNavBar
+            navBar={Login}
+            back
 
           />
 
           <Scene key='Signup'
             component={Signup}
             title='Signup'
-             hideNavBar={1}
-            
+            hideNavBar={1}
+
           />
           <Scene key='Donor'
             hideNavBar
@@ -108,14 +105,14 @@ export default class AppRoute extends React.Component {
 
           />
 
-           <Scene
+          <Scene
             key='Aboutus'
             component={Aboutus}
             title='Aboutus'
 
           />
 
-            <Scene
+          <Scene
             key='Contactus'
             component={Contactus}
             title='Contactus'

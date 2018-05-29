@@ -135,16 +135,9 @@ class Donor_Profile extends React.Component {
     axios.get('/getImageDonor')
       .then(response => {
         this.fetchDonorData()
-        
-        
-        
         const posts = response['data'].image
-        
-        
-        // console.log("hello world image", posts)
         this.setState({ // changing the state to the new image that i fetch it from database
           image: posts
-          
         })
       })
       .catch(function (error) {
@@ -288,7 +281,8 @@ class Donor_Profile extends React.Component {
                 <h4 className='modal-title'>Information</h4>
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
-              <div className='modal-body'>  
+              <div className='modal-body'>
+
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
