@@ -341,7 +341,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('div')).to.have.length(51)
+    expect(wrapper.find('div')).to.have.length(50)
   });
 
   it('renders without exploding', () => {
@@ -351,7 +351,7 @@
 
   it('renders without exploding', () => {
     const wrapper = shallow(<Beneficiaries_Profile/>);
-    expect(wrapper.find('input')).to.have.length(10)
+    expect(wrapper.find('input')).to.have.length(9)
   });
 
   it('renders without exploding', () => {
