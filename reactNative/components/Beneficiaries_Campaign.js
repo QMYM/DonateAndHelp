@@ -36,7 +36,7 @@ class Beneficiaries_Campaign extends React.Component {
   render () {
     return (
       <View >
-        <Text>Campaign Name : </Text>
+        
           <Jiro
           label={'Type here your Campaign Name!'}
           // this is used as active and passive border color
@@ -46,7 +46,7 @@ class Beneficiaries_Campaign extends React.Component {
              />
 
         
-        <Text>Campaign Description : </Text>
+        
 
         <Jiro
           label={'Type here your Campaign Description!'}
@@ -57,7 +57,7 @@ class Beneficiaries_Campaign extends React.Component {
              />
         
 
-        <Text>Amount : </Text>
+        
 
          <Jiro
           label={'Type here your Campaign Amount!'}
