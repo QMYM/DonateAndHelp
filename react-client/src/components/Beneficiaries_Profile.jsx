@@ -66,14 +66,13 @@ class Beneficiaries_Profile extends React.Component {
     var x = this
     axios.post('/profile_company', {
       // image: this.state.image, 
-      name: this.state.name,
-      contactNum: this.state.contactNum,
-      description: this.state.description,
-      address: this.state.address
+      name: name,
+      contactNum: contactNum,
+      description: description,
+      address: address
     })
       .then(response => {
         var alo = response.data
-        console.log('profile has been updated', response.data)
         // should go to the home page from here
         x.setState({
           newDescription: alo.description,
@@ -167,6 +166,7 @@ class Beneficiaries_Profile extends React.Component {
     
   getCampaignData(){
     console.log('here iam i')
+    var x = this
     axios.get('/companyCam')
       .then(res => {
         var posts = []
