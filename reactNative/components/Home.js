@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image,I
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
-import { Container, Header, Content, Button, Text, Icon } from 'native-base'
+import { Container, Header, Content, Button, Text, Icon ,  Title, Footer, FooterTab, Left, Right, Body } from 'native-base'
 import { Drawer } from 'native-base'
 
 import Main from './Main'
@@ -39,8 +39,7 @@ class Home extends React.Component {
     openDrawer = () => {
       this.drawer._root.open()
     }
-    return (
-      
+    return (   
       <Drawer
         type={this.state.drawerType}
         animation={this.state.animation}
@@ -80,8 +79,11 @@ class Home extends React.Component {
       <ImageBackground  style={ styles.imgBackground } 
       resizeMode='cover' 
       source={{uri: 'https://venturebeat.com/wp-content/uploads/2012/10/seed-money.jpg?resize=655%2C488&strip=all?strip=all'}}>
-       <Text>Donate</Text>
-
+      <View style={styles.txt}>
+      <View>
+       <Text>Donate and Help</Text>
+         </View>
+          </View>
          </ImageBackground>
 
        </Container>
@@ -115,6 +117,15 @@ const styles = StyleSheet.create({
   cen:{
     alignItems: 'center',
     
+  },
+  txt:{
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: '#d6d7da',
+    width:150,
+    flexDirection : 'column'
   },
 })
 
