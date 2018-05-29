@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
+import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image,ImageBackground } from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
@@ -32,6 +32,7 @@ class Home extends React.Component {
   }
 
   render () {
+
     closeDrawer = () => {
       this.drawer._root.close()
     }
@@ -67,7 +68,7 @@ class Home extends React.Component {
         <Container>
           <Header >
             <Content>
-
+   
               <Button onPress={() => { openDrawer() }}>
                 <Icon ios='ios-menu' android='md-menu' style={{fontSize: 20, color: 'black'}} />
               </Button>
@@ -75,14 +76,19 @@ class Home extends React.Component {
             </Content>
 
           </Header>
-         <Text>hi yussur</Text>
-         
-        </Container>
+       
+      <ImageBackground  style={ styles.imgBackground } 
+      resizeMode='cover' 
+      source={{uri: 'https://venturebeat.com/wp-content/uploads/2012/10/seed-money.jpg?resize=655%2C488&strip=all?strip=all'}}>
+       <Text>Donate</Text>
 
-  <Image source={{uri: 'http://www.dsscotland.org.uk/wordpress/wp-content/uploads/2015/05/contact-us.jpg'}} 
-       />
+         </ImageBackground>
+
+       </Container>
+      
+  
       </Drawer>
-     
+      
     
     )
   }
@@ -99,8 +105,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
+ imgBackground: {
+        width: '100%',
+        height: '100%',
+        flex: 1 
+},
+  cen:{
+    alignItems: 'center',
+    
+  },
 })
 
 module.exports = Home

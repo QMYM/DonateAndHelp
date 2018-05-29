@@ -36,21 +36,35 @@ class Donor_Campaign extends React.Component {
     return (
       <View style={styles.container}>
         
-        <TextInput
-          placeholder='Type here your Campaign Name!'
 
+        <Jiro
+          label={'Type here your Campaign Name!'}
+          // this is used as active and passive border color
+          borderColor={'#9b537a'}
+          inputStyle={{ color: 'white' }}
           onChangeText={(campaignName) => this.setState({campaignName})}
-        />
+             />
         
-        <TextInput
-          placeholder='Type here your Campaign Description!'
+
+
+        <Jiro
+          label={'Type here your Campaign Description!'}
+          // this is used as active and passive border color
+          borderColor={'#9b537a'}
+          inputStyle={{ color: 'white' }}
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
-        />
-       
-        <TextInput
-          placeholder='Type here your Amount!'
+             />
+
+
+       <Jiro
+          label={'Type here your Campaign Amount!'}
+          // this is used as active and passive border color
+          borderColor={'#9b537a'}
+          inputStyle={{ color: 'white' }}
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
-        />
+             />
+       
+   
 
         <Button 
 
