@@ -108,7 +108,7 @@ const Home = (props) => (<div >
         <br />
         <br />
         <h3>Qays Trad</h3>
-        <p className='w3-opacity'>CEO & Founder</p>
+        <p className='w3-opacity'>CEO & Scrum Master</p>
         <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
         <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
       </div>
@@ -117,7 +117,7 @@ const Home = (props) => (<div >
         <br />
         <br />
         <h3>Mohammed Duraidi</h3>
-        <p className='w3-opacity'>Sha7ad</p>
+        <p className='w3-opacity'>Sha7ad & Founder</p>
         <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
         <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
       </div>
@@ -126,7 +126,7 @@ const Home = (props) => (<div >
         <br />
         <br />
         <h3>Mais Muhtaseb</h3>
-        <p className='w3-opacity'>Architect</p>
+        <p className='w3-opacity'>Software Engineering </p>
         <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
         <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
       </div>
@@ -135,7 +135,7 @@ const Home = (props) => (<div >
         <br />
         <br />
         <h3>Yussur Alani</h3>
-        <p className='w3-opacity'>Architect</p>
+        <p className='w3-opacity'>Software Engineering</p>
         <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
         <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
       </div>

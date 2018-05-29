@@ -39,6 +39,8 @@ export default class AppRoute extends React.Component {
             animation="fade"
             duration="2000"
              hideNavBar={1}
+             wrapRouter={true}
+             type="replace"
             initial
 
           />
@@ -47,13 +49,18 @@ export default class AppRoute extends React.Component {
             component={Login}
             title='Login'
              animation="fade"
-                duration="2000"
+              duration={0}
+             hideNavBar={true}
+             navBar={Login}
+             back
+
           />
 
           <Scene key='Signup'
             component={Signup}
             title='Signup'
-
+             hideNavBar={1}
+            
           />
           <Scene key='Donor'
             hideNavBar
