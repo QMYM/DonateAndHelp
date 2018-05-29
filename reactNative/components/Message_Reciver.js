@@ -21,11 +21,11 @@ class Message extends React.Component {
     var x = this
 
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
-      .then(function (res) {
+      .then((res)=> {
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
-      }).catch(function (err) {
+      }).catch((err)=> {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
@@ -52,9 +52,9 @@ class Message extends React.Component {
 
   remove (user, id) {
     axios.post('/removeMsg', {user: user, id: id})
-      .then(function (res) {
+      .then((res) =>{
 
-      }).catch(function (err) {
+      }).catch((err)=> {
         console.log('err', err)
       })
   }

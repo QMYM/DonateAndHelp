@@ -77,7 +77,7 @@ class Signup extends React.Component {
           <View style={styles.headerContainer}>
 
             <View style={styles.headerIconView}>
-              <TouchableOpacity onPress={Actions.Home()} style={styles.headerBackButtonView}>
+              <TouchableOpacity style={styles.headerBackButtonView}>
                 <Image 
                   source={ require("./back.png")} 
                   style={styles.backButtonIcon} 
@@ -95,7 +95,7 @@ class Signup extends React.Component {
 
           <View style={styles.inputsContainer}>
 
-           <Text style={styles.text}> Choose Your Career !</Text>
+           <Text style={styles.text}>Choose</Text>
           <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
             <Picker.Item label='Company' value='true' />
             <Picker.Item label='Donor' value='false' />
@@ -163,6 +163,7 @@ class Signup extends React.Component {
                 />
               </View>
               <TextInput
+              secureTextEntry={true}
                 style={[styles.input, styles.whiteFont]}
                 placeholder="ConfirmPassword"
                 placeholderTextColor="#FFF"
@@ -213,7 +214,7 @@ let styles = StyleSheet.create({
   text: {
     fontSize: 30,
     alignSelf: 'center',
-    color: 'red'
+    color: '#D8D8D8'
   },
   container: {
     flex: 1,
@@ -283,6 +284,7 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
+    height:20,
   },
   signin: {
     justifyContent: 'center',

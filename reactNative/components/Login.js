@@ -69,7 +69,7 @@ class Login extends React.Component {
          <View style={styles.markWrap}>
             <Image source={require("./login1_mark.png")} style={styles.mark} resizeMode="contain" />
           </View>
-         <Text style={styles.text}> Choose Your Career !</Text>
+         <Text style={styles.text}> Choose</Text>
           <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
             <Picker.Item label='Company' value='' />
             <Picker.Item label='Donor' value='false' />
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 30,
+     height:20,
   },
   buttonText: {
     color: "#FFF",
