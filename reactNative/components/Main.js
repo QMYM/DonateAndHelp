@@ -72,7 +72,7 @@ class Main extends React.Component {
             <Text>AboutUs</Text>
           </Button>
 
-         <Button style={{
+          <Button style={{
             borderWidth: 1,
             borderColor: 'rgba(0,0,0,0.2)',
             alignItems: 'center',
@@ -82,13 +82,12 @@ class Main extends React.Component {
             backgroundColor: '#48C1C5',
             borderRadius: 100,
             marginTop: 20,
-            marginBottom:20,
+            marginBottom: 20,
             marginLeft: 10
           }}
             onPress={() => { Actions.Contactus() }}>
             <Text>Team</Text>
           </Button>
-
 
         </Content>
       </Container>

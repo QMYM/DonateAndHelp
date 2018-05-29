@@ -1,13 +1,13 @@
 // The is the home page of the beneficiary after logging in
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import {
   BrowserRouter as Router,
   Route
-} from 'react-router-dom';
-import beneficiariesMessage from './Beneficiaries_Message.jsx';
-import beneficiariesCampaign from './Beneficiaries_Campaign.jsx';
-import beneficiariesProfile from './Beneficiaries_Profile.jsx';
+} from 'react-router-dom'
+import beneficiariesMessage from './Beneficiaries_Message.jsx'
+import beneficiariesCampaign from './Beneficiaries_Campaign.jsx'
+import beneficiariesProfile from './Beneficiaries_Profile.jsx'
 
 function searching (term) {
   return function (x) {
