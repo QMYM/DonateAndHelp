@@ -27,27 +27,21 @@ class Search extends React.Component {
   }
 
   handleSearchInput (evt) {
-
-    
     this.setState({ searchInput: evt.target.value })
-
   }
 
   logout () {
     axios.get('/logout')
       .then(function (res) {
-       
         window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)
       })
   }
 
-
   handleClickSearch (input) {
-   
     var that = this
-   
+
     $.ajax({
       type: 'POST',
       url: '/search_beneficiary',
@@ -57,7 +51,6 @@ class Search extends React.Component {
       success: function (data) {
         console.log('Success in GET search!', [data])
         that.setState({searchOut: [data]})
-        
       },
       error: function (err) {
         alert('Not Found')
@@ -100,12 +93,11 @@ class Search extends React.Component {
           </div>
     </nav>
 
-        
         <div className='container' >
       <div className='col-10'>
-      <div className='row'>
-        <h2>Here you can search on any Donors </h2>
-      </div>
+            <div className='row'>
+          <h2>Here you can search on any Donors </h2>
+        </div>
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
         </div>
@@ -125,7 +117,7 @@ class Search extends React.Component {
               <br />
               <p>{record.address}</p>
               <br />
-              <img src={record.image} style = {{width:400, heigth: 400}} />
+              <img src={record.image} style={{width: 400, heigth: 400}} />
               <br />
             </div>
               </div>

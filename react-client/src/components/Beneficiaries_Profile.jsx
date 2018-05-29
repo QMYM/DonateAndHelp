@@ -65,7 +65,7 @@ class Beneficiaries_Profile extends React.Component {
   submit (name, contactNum, description, address) {
     var x = this
     axios.post('/profile_company', {
-      // image: this.state.image, 
+      // image: this.state.image,
       name: name,
       contactNum: contactNum,
       description: description,
@@ -88,14 +88,13 @@ class Beneficiaries_Profile extends React.Component {
   uploadPhoto (photo) { // post the photo and get the photo in the same time
     var x = this
     var file = photo.target.files[0]
-   
+
     var fileReader = new FileReader()
     fileReader.readAsDataURL(file)
     fileReader.onload = function (e) {
-       
       axios.post('/photo', {image: e.target.result})
         .then(res => {
-    this.getInfoForProfilePage();
+          this.getInfoForProfilePage()
 
           window.location.reload() // here i'm getting the photo from database
         })
@@ -133,8 +132,8 @@ class Beneficiaries_Profile extends React.Component {
   }
 
   componentDidMount () { // this is the initial
-    this.getCampaignData();
-    this.getInfoForProfilePage();
+    this.getCampaignData()
+    this.getInfoForProfilePage()
     this.fetchCompanyData()
     axios.get('/getImage')
       .then(response => {
@@ -163,8 +162,8 @@ class Beneficiaries_Profile extends React.Component {
       console.log('error', err)
     })
   }
-    
-  getCampaignData(){
+
+  getCampaignData () {
     console.log('here iam i')
     var x = this
     axios.get('/companyCam')
@@ -183,7 +182,7 @@ class Beneficiaries_Profile extends React.Component {
     axios.post('/delCampaignComp', {
       CampID: delCampaignID
     })
-     .then(response => {
+      .then(response => {
         alert('campaign has been deleted!')
         window.location.reload()
       }).catch(error => {
@@ -207,7 +206,7 @@ class Beneficiaries_Profile extends React.Component {
     })
       .then(response => {
         alert('campaign has been edited!')
-    this.getInfoForProfilePage();
+        this.getInfoForProfilePage()
         window.location.reload()
       }).catch(error => {
         alert('error in campaign edit!')

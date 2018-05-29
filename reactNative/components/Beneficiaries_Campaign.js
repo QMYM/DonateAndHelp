@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Jiro} from 'react-native-textinput-effects';
+import { Jiro} from 'react-native-textinput-effects'
 
 class Beneficiaries_Campaign extends React.Component {
   constructor (props) {
@@ -16,7 +16,6 @@ class Beneficiaries_Campaign extends React.Component {
 
     }
   }
-
 
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
     axios.post('https://donatandhelp.herokuapp.com/companycampaign', {
@@ -36,17 +35,14 @@ class Beneficiaries_Campaign extends React.Component {
   render () {
     return (
       <View >
-        
-          <Jiro
+
+        <Jiro
           label={'Type here your Campaign Name!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignName) => this.setState({campaignName})}
-             />
-
-        
-        
+        />
 
         <Jiro
           label={'Type here your Campaign Description!'}
@@ -54,20 +50,15 @@ class Beneficiaries_Campaign extends React.Component {
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
-             />
-        
+        />
 
-        
-
-         <Jiro
+        <Jiro
           label={'Type here your Campaign Amount!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
-             />
-
-       
+        />
 
         <Button onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
           title='Submit' />

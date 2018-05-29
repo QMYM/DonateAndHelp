@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal , StyleSheet , TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title } from 'native-base';
 import { ImagePicker } from 'expo';
 
 class Donor_Profile extends React.Component {
@@ -57,16 +57,9 @@ class Donor_Profile extends React.Component {
         () => reject(),
       );
     });
-    
-    // this gives you a rct-image-store URI or a base64 image tag that
-    // you can use from ImageStore
-    //console.log("hello world", "yusur jackel mohammed qays!! mais Alo alo!!!@!@")
-   
     this.setState({
       image2:resizedUri
     })
-    
- 
 }
 
  _pickImage = async () => {
@@ -95,17 +88,11 @@ class Donor_Profile extends React.Component {
         this.setState({
       image:resizedUri
     }) 
-
-  
   }
 
-
-
   getInfoForProfilePageforDonor(){
-
     var x = this;
     axios.get('https://donatandhelp.herokuapp.com/getInfoForProfilePageforDonor').then(function(res){
-
       var alo = res.data[0]
       x.setState({
         newDescription:alo.description,
@@ -117,7 +104,6 @@ class Donor_Profile extends React.Component {
       console.log(err)
     })
   }
-
 
   logout () {
     axios.get('https://donatandhelp.herokuapp.com/logout')
@@ -154,10 +140,6 @@ class Donor_Profile extends React.Component {
     })
   }
 
-
-
-
-
   getLargeImage () {
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/getImageDonor2')
@@ -167,47 +149,41 @@ class Donor_Profile extends React.Component {
     }).catch(function (err) {
       console.log(err)
     })
-
   }
   
   componentDidMount () { // this is the initial
-    this.getInfoForProfilePageforDonor()
+    this.getInfoForProfilePageforDonor();
+    this.fetchDonorData();
+    this.getLargeImage();
 
     axios.get('https://donatandhelp.herokuapp.com/getImageDonor')
     .then(response => {
       const posts = response['data']
-
         this.setState({ // changing the state to the new image that i fetch it from database
           image: posts.image
           // image2:posts.image
         })
         this.fetchDonorData()
       })
-
     .catch(function (error) {
       console.log(error)
-
     })
-    this.getLargeImage()
   }
 
   deleteCampaign (delCampaignID) {
-
     axios.post('https://donatandhelp.herokuapp.com/delCampaignDonor', {
-
       CampID: delCampaignID
     })
     .then(response => {
       alert('campaign has been deleted!')
+     x.componentDidMount()
     }).catch(error => {
       alert('error in campaign deletion!', error)
     })
   }
 
   updateCampaign (campaignID, campaignName, campaignDescription, campaignAmount, name) {
-
     axios.put('https://donatandhelp.herokuapp.com/editCampaignDonor', {
-
       campaignID: campaignID,
       campaignName: campaignName,
       campaignDescription: campaignDescription,
@@ -216,6 +192,7 @@ class Donor_Profile extends React.Component {
     })
     .then(response => {
       alert('campaign has been edited!')
+     x.componentDidMount()
       window.location.reload()
     }).catch(error => {
       alert('error in campaign edit!')
@@ -243,25 +220,29 @@ class Donor_Profile extends React.Component {
        newDescription: info.description,
        newAddress: info.address
      })
+     x.componentDidMount()
    }).catch(error => {
     console.log("wrong in updating profile!", error);
   })
  };
 
-
  render(){
   return (
    <Container>
-   <Header />
    <Content>
-   <Button
-         onPress={this._pickImage}
-       ><Text>Pick an image from camera roll</Text></Button>
-       <Button
-         onPress={this.largeImage}
-       ><Text>Pick an image from camera roll</Text></Button>
+        <Header>
+          <Left />
+          <Body>
+            <Title>Profile</Title>
+          </Body>
+          <Right>
+         <Button transparent
+  onPress={() => this.logout()}
+  ><Icon active name="exit" /></Button>
+          </Right>
+        </Header>
 
-
+  
    <Modal
    animationType="slide"
    transparent={false}
@@ -289,16 +270,12 @@ class Donor_Profile extends React.Component {
   />
   <Button
   onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
-
-
   ><Text>Done</Text></Button>
   <Button onPress={() => {
     this.setModalVisible(!this.state.modalVisible);
   }}><Text>Close</Text></Button>
   </View>
   </Modal>
-
-
 
   <Modal
   animationType="slide"
@@ -340,18 +317,21 @@ class Donor_Profile extends React.Component {
 
   <Image
   style={styles.stretch2}
-
   source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
-
-
   />
   <Image
   style={styles.stretch}
   source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
   />
-
+  <Text>{this.state.user}</Text>
   <Text>About Me</Text>
-  <Text>Some Description</Text>
+   <Text>{this.state.newDescription}</Text>
+
+  <Text>Information</Text>
+  <Text>{this.state.newName}</Text>
+  <Text>{this.state.email}</Text>
+  <Text>{this.state.newContactNum}</Text>
+  <Text>{this.state.newAddress}</Text>
 
   {this.state.post.map(po => 
    <View>
@@ -375,13 +355,13 @@ class Donor_Profile extends React.Component {
    <CardItem>
    <Left>
    <Button transparent onPress={() => {this.theId(po._id) , this.setEdit(true)}}>
-   <Icon active name="edit" />
+   <Icon active name="create" />
    <Text>Edit</Text>
    </Button>
    </Left>
    <Body>
    <Button transparent onPress={() => this.deleteCampaign(po._id)}>
-   <Icon active name="delete" />
+   <Icon active name="trash" />
    <Text>Delete</Text>
    </Button>
    </Body>
@@ -393,21 +373,18 @@ class Donor_Profile extends React.Component {
    </Content>
    </View>
    )}
-
   <Button onPress={() => {
     this.setModalVisible(true);
   }}>
   <Text>Edit Information</Text>
   </Button>
-  <Button
-  onPress={() => this.logout()}
-  ><Text>Logout</Text></Button>
-  <Text>Information</Text>
-  <Text>{this.state.newName}</Text>
-  <Text>{this.state.email}</Text>
-  <Text>{this.state.newContactNum}</Text>
-  <Text>{this.state.newDescription}</Text>
-  <Text>{this.state.newAddress}</Text>
+
+     <Button
+         onPress={this._pickImage}
+       ><Text>Pick an image from camera roll</Text></Button>
+       <Button
+         onPress={this.largeImage}
+       ><Text>Pick an image from camera roll</Text></Button>
   </Content>
   </Container>
   )

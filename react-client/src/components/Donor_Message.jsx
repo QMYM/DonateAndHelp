@@ -113,7 +113,7 @@ class Message extends React.Component {
   sendMessage (to, text) {
     var x = this
     axios.post('/sendMessage', {user: to, text: text})
-       .then(function (res) {
+      .then(function (res) {
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
