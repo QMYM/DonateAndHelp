@@ -85,7 +85,7 @@ class Main extends React.Component {
             marginLeft: 10
           }}
             onPress={() => { Actions.Contactus() }}>
-            <Text>Contact</Text>
+            <Text>Team</Text>
           </Button>
 
 

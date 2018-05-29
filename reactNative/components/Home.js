@@ -79,8 +79,11 @@ class Home extends React.Component {
       <ImageBackground  style={ styles.imgBackground } 
       resizeMode='cover' 
       source={{uri: 'https://venturebeat.com/wp-content/uploads/2012/10/seed-money.jpg?resize=655%2C488&strip=all?strip=all'}}>
-       <Text>Donate</Text>
-
+      <View style={styles.txt}>
+      <View>
+       <Text>Donate and Help</Text>
+         </View>
+          </View>
          </ImageBackground>
 
        </Container>
@@ -114,6 +117,15 @@ const styles = StyleSheet.create({
   cen:{
     alignItems: 'center',
     
+  },
+  txt:{
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: '#d6d7da',
+    width:150,
+    flexDirection : 'column'
   },
 })
 
