@@ -1,562 +1,599 @@
 
-var assert = require('chai').assert
-var handler = require('../server/handler')
-var server = require('../server/index')
-var db = require('../db/index')
-var chai = require('chai');  
-var assert = chai.assert;    // Using Assert style
-var expect = chai.expect;    // Using Expect style
-var should = chai.should();
-chaiHttp = require('chai-http');
- 
-chai.use(chaiHttp);
+  var assert = require('chai').assert
+  var handler = require('../server/handler')
+  var server = require('../server/index')
+  var db = require('../db/index')
+  var chai = require('chai');  
+  var assert = chai.assert;    // Using Assert style
+  var expect = chai.expect;    // Using Expect style
+  var should = chai.should();
+  chaiHttp = require('chai-http');
+   
+  chai.use(chaiHttp);
 
-// source https://mochajs.org/#timeouts for the timeouts problem!
-describe('a suite of tests', function() {
-  this.timeout(500);
+  // source https://mochajs.org/#timeouts for the timeouts problem!
+  describe('a suite of tests', function() {
+    this.timeout(500);
 
-  it('should take less than 500ms', function(done){
-    setTimeout(done, 300);
-  });
+    it('should take less than 500ms', function(done){
+      setTimeout(done, 300);
+    });
 
-  it('should take less than 500ms as well', function(done){
-    setTimeout(done, 250);
-  });
-})
-
-describe('getImage', function(){
-  it('should be exist', function(){
-    should.exist(handler.getImage);
-  });
-})
-
-describe('deleteAllMessages', function () {
-  it('it should sendStatus(201) to the client', function (done) {
-    chai.request(server)
-      .post('/deleteAllMessages')
-      .end(function (err, res) {
-        res.should.have.status(201)
-
-        done()
-      })
+    it('should take less than 500ms as well', function(done){
+      setTimeout(done, 250);
+    });
   })
-})
 
-describe('removeMsg', function () {
-  it('it should sendStatus(201) to the client', function (done) {
-    chai.request(server)
-      .post('/removeMsg')
-      .end(function (err, res) {
-        res.should.have.status(201)
-
-        done()
-      })
+  describe('getImage', function(){
+    it('should be exist', function(){
+      should.exist(handler.getImage);
+    });
   })
-})
 
-describe('removeCampaignDonor', function () {
-  it('it should sendStatus(200) to the client', function (done) {
-    chai.request(server)
-      .post('/delCampaignDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('deleteAllMessages', function () {
+    it('it should sendStatus(201) to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/deleteAllMessages')
+        .end(function (err, res) {
+          res.should.have.status(201)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('editCampaignDonor', function () {
-  it('it should sendStatus(200) to the client', function (done) {
-    chai.request(server)
-      .put('/editCampaignDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('removeMsg', function () {
+    it('it should sendStatus(201) to the client', function (done) {
+      this.timeout(15000)
+      chai.request(server)
+        .post('/removeMsg')
+        .end(function (err, res) {
+          res.should.have.status(201)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('editCampaignComp', function () {
-  it('it should sendStatus(200) to the client', function (done) {
-    chai.request(server)
-      .put('/editCampaignComp')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('removeCampaignDonor', function () {
+    it('it should sendStatus(200) to the client', function (done) {
+      chai.request(server)
+        .post('/delCampaignDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('removeCampaignComp', function () {
-  it('it should sendStatus(200) to the client', function (done) {
-    chai.request(server)
-      .post('/delCampaignComp')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('editCampaignDonor', function () {
+    it('it should sendStatus(200) to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .put('/editCampaignDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('searchDonor', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/search_donor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('editCampaignComp', function () {
+    it('it should sendStatus(200) to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .put('/editCampaignComp')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('searchBeneficiary', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/search_beneficiary')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('removeCampaignComp', function () {
+    it('it should sendStatus(200) to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/delCampaignComp')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('uploadImageDonor2', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/photoDonor2')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('searchDonor', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/search_donor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('uploadImageDonor', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/photoDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('searchBeneficiary', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/search_beneficiary')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('addProfileDonor', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    this.timeout(150000);
-    chai.request(server)
-      .post('/Profile_Donor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('uploadImageDonor2', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/photoDonor2')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/postCampaign', function () {
-  it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
-    chai.request(server)
-      .post('/campaignInfo')
-      .end(function (err, res) {
-        res.should.have.status(404)
+  describe('uploadImageDonor', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/photoDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/postCompanyCampaign', function () {
-  it('it should sendStatus(201) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/companycampaign')
-      .end(function (err, res) {
-        res.should.have.status(201)
+  describe('addProfileDonor', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+      this.timeout(150000);
+      chai.request(server)
+        .post('/Profile_Donor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/postDonorCampaign', function () {
-  it('it should sendStatus(201) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/Donorcampaign')
-      .end(function (err, res) {
-        res.should.have.status(201)
+  describe('/postCampaign', function () {
+    it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/campaignInfo')
+        .end(function (err, res) {
+          res.should.have.status(404)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/uploadImageCampaign', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/imageCampaign')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('/postCompanyCampaign', function () {
+    it('it should sendStatus(201) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/companycampaign')
+        .end(function (err, res) {
+          res.should.have.status(201)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/addProfileCompany', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/profile_company')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('/postDonorCampaign', function () {
+    it('it should sendStatus(201) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/Donorcampaign')
+        .end(function (err, res) {
+          res.should.have.status(201)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('/uploadImage', function () {
-  it('it should sendStatus(200) if it sending the data to the client', function (done) {
-    chai.request(server)
-      .post('/photo')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('/uploadImageCampaign', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/imageCampaign')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('SignupCompany', function () {
-  it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
-    this.timeout(10000);
-    chai.request(server)
-      .post('/Company')
-      .end(function (err, res) {
-        res.should.have.status(404)
+  describe('/addProfileCompany', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/profile_company')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('Signup', function () {
-  it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
-    chai.request(server)
-      .post('/Donater')
-      .end(function (err, res) {
-        res.should.have.status(404)
+  describe('/uploadImage', function () {
+    it('it should sendStatus(200) if it sending the data to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/photo')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('uploadImage2', function () {
-  it('it should sendStatus(201) to the client', function (done) {
-    chai.request(server)
-      .post('/photo2')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('SignupCompany', function () {
+    it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
 
-        done()
-      })
+      this.timeout(10000);
+      chai.request(server)
+        .post('/Company')
+        .end(function (err, res) {
+          res.should.have.status(404)
+
+          done()
+        })
+    })
   })
-})
 
-describe('LoginCompany', function () {
-  it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
-    chai.request(server)
-      .post('/LoginCompany')
-      .end(function (err, res) {
-        res.should.have.status(404)
+  describe('Signup', function () {
+    it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/Donater')
+        .end(function (err, res) {
+          res.should.have.status(404)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('LoginDonater', function () {
-  it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
-    chai.request(server)
-      .post('/LoginDonater')
-      .end(function (err, res) {
-        res.should.have.status(404)
+  describe('uploadImage2', function () {
+    it('it should sendStatus(201) to the client', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/photo2')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('sessionName', function () {
-  it('it should GET all the sessionNames', function (done) {
-    chai.request(server)
-      .get('/sessionName')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('LoginCompany', function () {
+    it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/LoginCompany')
+        .end(function (err, res) {
+          res.should.have.status(404)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getInfoForProfilePageforDonor', function () {
-  it('it should GET all the getInfoForProfilePageforDonor', function (done) {
-    this.timeout(15000);
-    chai.request(server)
-      .get('/getInfoForProfilePageforDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('LoginDonater', function () {
+    it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .post('/LoginDonater')
+        .end(function (err, res) {
+          res.should.have.status(404)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getInfoForProfilePage', function () {
-  it('it should GET all the getInfoForProfilePage', function (done) {
-    chai.request(server)
-      .get('/getInfoForProfilePage')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('sessionName', function () {
+    it('it should GET all the sessionNames', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/sessionName')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getPhotoForMessages', function () {
-  it('it should GET all the getPhotoForMessages ', function (done) {
-    chai.request(server)
-      .get('/getPhotoForMessages')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getInfoForProfilePageforDonor', function () {
+    it('it should GET all the getInfoForProfilePageforDonor', function (done) {
 
-        done()
-      })
+      this.timeout(15000);
+      chai.request(server)
+        .get('/getInfoForProfilePageforDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
+
+          done()
+        })
+    })
   })
-})
 
-describe('getImage', function () {
-  it('it should GET all the getImage', function (done) {
-    chai.request(server)
-      .get('/getImage')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getInfoForProfilePage', function () {
+    it('it should GET all the getInfoForProfilePage', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getInfoForProfilePage')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getImage2', function () {
-  it('it should GET all the getImage', function (done) {
-    chai.request(server)
-      .get('/getImage2')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getPhotoForMessages', function () {
+    it('it should GET all the getPhotoForMessages ', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getPhotoForMessages')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('logout', function () {
-  it('it should GET all the logout', function (done) {
-    chai.request(server)
-      .get('/logout')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getImage', function () {
+    it('it should GET all the getImage', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getImage')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('reciveMessag', function () {
-  it('it should GET all the reciveMessag', function (done) {
-    chai.request(server)
-      .get('/reciveMessag')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getImage2', function () {
+    it('it should GET all the getImage', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getImage2')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getImageDonor', function () {
-  it('it should GET all the getImageDonor', function (done) {
-    chai.request(server)
-      .get('/getImageDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('logout', function () {
+    it('it should GET all the logout', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/logout')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('getImageDonor2', function () {
-  it('it should GET all the getImageDonor', function (done) {
-    chai.request(server)
-      .get('/getImageDonor2')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('reciveMessag', function () {
+    it('it should GET all the reciveMessag', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/reciveMessag')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('fetchDonorData', function () {
-  it('it should fetching the data from the userDonater schema', function (done) {
-    chai.request(server)
-      .get('/fetchDonorData')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getImageDonor', function () {
+    it('it should GET all the getImageDonor', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getImageDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('fetchCompanyData', function () {
-  it('it should fetching the data from the userCompany schema', function (done) {
-    chai.request(server)
-      .get('/fetchCompanyData')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('getImageDonor2', function () {
+    it('it should GET all the getImageDonor', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/getImageDonor2')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('imageSearch', function () {
-  it('it should GET the image for a specefic user', function (done) {
-    chai.request(server)
-      .get('/imageSearch')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('fetchDonorData', function () {
+    it('it should fetching the data from the userDonater schema', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/fetchDonorData')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('imageSearchDonor', function () {
-  it('it should GET the image for a specefic user from doantorSchema', function (done) {
-     this.timeout(10000);
-    chai.request(server)
-      .get('/imageSearchDonor')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('fetchCompanyData', function () {
+    it('it should fetching the data from the userCompany schema', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/fetchCompanyData')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
+  describe('imageSearch', function () {
+    it('it should GET the image for a specefic user', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/imageSearch')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-describe('recieveMessage', function () {
-  it('it should GET all the Messages', function (done) {
-    chai.request(server)
-      .get('/donorCam')
-      .end(function (err, res) {
-        res.should.have.status(200)
-
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('recieveMessage', function () {
-  it('it should GET all the Messages', function (done) {
-    chai.request(server)
-      .get('/recieveMessage')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('imageSearchDonor', function () {
+    it('it should GET the image for a specefic user from doantorSchema', function (done) {
+       this.timeout(10000);
+      chai.request(server)
+        .get('/imageSearchDonor')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
 
+  describe('recieveMessage', function () {
+    it('it should GET all the Messages', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/donorCam')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-describe('donorCam', function () {
-  it('it should GET all the Campaigns in companyCampaigns schema', function (done) {
-    chai.request(server)
-      .get('/donorCam')
-      .end(function (err, res) {
-        res.should.have.status(200)
-
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('companyCam', function () {
-  it('it should GET all the Campaigns in donerCampaigns schema', function (done) {
-    chai.request(server)
-      .get('/companyCam')
-      .end(function (err, res) {
-        res.should.have.status(200)
+  describe('recieveMessage', function () {
+    it('it should GET all the Messages', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/recieveMessage')
+        .end(function (err, res) {
+          res.should.have.status(200)
 
-        done()
-      })
+          done()
+        })
+    })
   })
-})
 
-describe('userCompany', function () {
-  describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      db.userCompany.deleteOne({id: 'id'}, function (err) {
-        if (err) done(err)
-        else done()
+
+
+  describe('donorCam', function () {
+    it('it should GET all the Campaigns in companyCampaigns schema', function (done) {
+       this.timeout(15000)
+      chai.request(server)
+        .get('/donorCam')
+        .end(function (err, res) {
+          res.should.have.status(200)
+
+          done()
+        })
+    })
+  })
+
+  describe('companyCam', function () {
+    it('it should GET all the Campaigns in donerCampaigns schema', function (done) {
+       this.timeout(150000)
+      chai.request(server)
+        .get('/companyCam')
+        .end(function (err, res) {
+          res.should.have.status(200)
+
+          done()
+        })
+    })
+  })
+
+  describe('userCompany', function () {
+    describe('#delete()', function () {
+      it('should delete without error', function (done) {
+        db.userCompany.deleteOne({id: 'id'}, function (err) {
+          if (err) done(err)
+          else done()
+        })
       })
     })
   })
-})
 
-describe('userDonater', function () {
-  describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      db.userDonater.deleteOne({id: 'id'}, function (err) {
-        if (err) done(err)
-        else done()
+  describe('userDonater', function () {
+    describe('#delete()', function () {
+      it('should delete without error', function (done) {
+        db.userDonater.deleteOne({id: 'id'}, function (err) {
+          if (err) done(err)
+          else done()
+        })
       })
     })
   })
-})
 
-describe('MessageSchema', function () {
-  describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      db.MessageSchema.deleteOne({id: 'id'}, function (err) {
-        if (err) done(err)
-        else done()
+  describe('MessageSchema', function () {
+    describe('#delete()', function () {
+      it('should delete without error', function (done) {
+        db.MessageSchema.deleteOne({id: 'id'}, function (err) {
+          if (err) done(err)
+          else done()
+        })
       })
     })
   })
-})
 
-describe('companyCampaigns', function () {
-  describe('#delete()', function () {
-    it('should delete without error', function (done) {
-      db.companyCampaigns.deleteOne({id: 'id'}, function (err) {
-        if (err) done(err)
-        else done()
+  describe('companyCampaigns', function () {
+    describe('#delete()', function () {
+      it('should delete without error', function (done) {
+        db.companyCampaigns.deleteOne({id: 'id'}, function (err) {
+          if (err) done(err)
+          else done()
+        })
       })
     })
   })
-})
