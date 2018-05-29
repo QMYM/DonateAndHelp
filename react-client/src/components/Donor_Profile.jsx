@@ -280,6 +280,7 @@ class Donor_Profile extends React.Component {
             </div>
           </div>
         </form>
+        
         <div className='modal fade' id='myModal' role='dialog'>
           <div className='modal-dialog'>
             <div className='modal-content'>
@@ -287,10 +288,7 @@ class Donor_Profile extends React.Component {
                 <h4 className='modal-title'>Information</h4>
                 <button type='button' className='close' data-dismiss='modal'>&times;</button>
               </div>
-              <div className='modal-body'>
-
-                
-
+              <div className='modal-body'>  
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
                   <input type='text' className='form-control' name='contactNum' onChange={this.onChange} placeholder='ContactNumber' />
