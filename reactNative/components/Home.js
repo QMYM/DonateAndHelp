@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
+import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image,ImageBackground } from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
@@ -32,66 +32,64 @@ class Home extends React.Component {
   }
 
   render () {
+
     closeDrawer = () => {
       this.drawer._root.close()
     }
     openDrawer = () => {
       this.drawer._root.open()
     }
-    return (
-
+    return (   
       <Drawer
-      type={this.state.drawerType}
-      animation={this.state.animation}
-      openDrawerOffset={this.state.openDrawerOffset}
-      closedDrawerOffset={this.state.closedDrawerOffset}
-      panOpenMask={this.state.panOpenMask}
-      panCloseMask={this.state.panCloseMask}
-      relativeDrag={this.state.relativeDrag}
-      panThreshold={this.state.panThreshold}
-      disabled={this.state.disabled}
-      tweenDuration={this.state.tweenDuration}
-      tweenEasing={this.state.tweenEasing}
-      acceptDoubleTap={this.state.acceptDoubleTap}
-      acceptTap={this.state.acceptTap}
-      acceptPan={this.state.acceptPan}
-      tapToClose={this.state.tapToClose}
-      negotiatePan={this.state.negotiatePan}
-      changeVal={this.state.changeVal}
-      side={this.state.side}
-      ref={(ref) => { this.drawer = ref }}
-      content={<Main navigator={this.navigator} />}
-      styles={drawerStyles}
-      onClose={() => { closeDrawer() }} >
+        type={this.state.drawerType}
+        animation={this.state.animation}
+        openDrawerOffset={this.state.openDrawerOffset}
+        closedDrawerOffset={this.state.closedDrawerOffset}
+        panOpenMask={this.state.panOpenMask}
+        panCloseMask={this.state.panCloseMask}
+        relativeDrag={this.state.relativeDrag}
+        panThreshold={this.state.panThreshold}
+        disabled={this.state.disabled}
+        tweenDuration={this.state.tweenDuration}
+        tweenEasing={this.state.tweenEasing}
+        acceptDoubleTap={this.state.acceptDoubleTap}
+        acceptTap={this.state.acceptTap}
+        acceptPan={this.state.acceptPan}
+        tapToClose={this.state.tapToClose}
+        negotiatePan={this.state.negotiatePan}
+        changeVal={this.state.changeVal}
+        side={this.state.side}
+        ref={(ref) => { this.drawer = ref }}
+        content={<Main navigator={this.navigator} />}
+        styles={drawerStyles}
+        onClose={() => { closeDrawer() }} >
 
-      <Container>
-      <Header>
-      <Left>
-      <Button transparent onPress={() => { openDrawer() }}>
-      <Icon name='menu' />
-      </Button>
-      </Left>
-      <Body>
-      <Title>Header</Title>
-      </Body>
-      <Right />
-      </Header>
-      <Content>
-      <Text>hi yussur</Text>
-      <Image source={{uri: 'http://www.dsscotland.org.uk/wordpress/wp-content/uploads/2015/05/contact-us.jpg'}} 
-      />
-      </Content>
-      <Footer>
-      <FooterTab>
-      <Button full>
-      <Text>Footer</Text>
-      </Button>
-      </FooterTab>
-      </Footer>
+        <Container>
+          <Header >
+            <Content>
+   
+              <Button onPress={() => { openDrawer() }}>
+                <Icon ios='ios-menu' android='md-menu' style={{fontSize: 20, color: 'black'}} />
+              </Button>
 
-      </Container>
-      </Drawer>  
-      )
+            </Content>
+
+          </Header>
+       
+      <ImageBackground  style={ styles.imgBackground } 
+      resizeMode='cover' 
+      source={{uri: 'https://venturebeat.com/wp-content/uploads/2012/10/seed-money.jpg?resize=655%2C488&strip=all?strip=all'}}>
+       <Text>Donate</Text>
+
+         </ImageBackground>
+
+       </Container>
+      
+  
+      </Drawer>
+      
+    
+    )
   }
 }
 
@@ -106,8 +104,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
+ imgBackground: {
+        width: '100%',
+        height: '100%',
+        flex: 1 
+},
+  cen:{
+    alignItems: 'center',
+    
+  },
 })
 
 module.exports = Home

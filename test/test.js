@@ -11,6 +11,19 @@ chaiHttp = require('chai-http');
  
 chai.use(chaiHttp);
 
+// source https://mochajs.org/#timeouts for the timeouts problem!
+describe('a suite of tests', function() {
+  this.timeout(500);
+
+  it('should take less than 500ms', function(done){
+    setTimeout(done, 300);
+  });
+
+  it('should take less than 500ms as well', function(done){
+    setTimeout(done, 250);
+  });
+})
+
 describe('getImage', function(){
   it('should be exist', function(){
     should.exist(handler.getImage);
@@ -139,6 +152,7 @@ describe('uploadImageDonor', function () {
 
 describe('addProfileDonor', function () {
   it('it should sendStatus(200) if it sending the data to the client', function (done) {
+    this.timeout(150000);
     chai.request(server)
       .post('/Profile_Donor')
       .end(function (err, res) {
@@ -223,6 +237,7 @@ describe('/uploadImage', function () {
 
 describe('SignupCompany', function () {
   it('it should sendStatus(404)if there is somthing wrong okay!', function (done) {
+    this.timeout(10000);
     chai.request(server)
       .post('/Company')
       .end(function (err, res) {
@@ -295,6 +310,7 @@ describe('sessionName', function () {
 
 describe('getInfoForProfilePageforDonor', function () {
   it('it should GET all the getInfoForProfilePageforDonor', function (done) {
+    this.timeout(15000);
     chai.request(server)
       .get('/getInfoForProfilePageforDonor')
       .end(function (err, res) {
@@ -439,6 +455,7 @@ describe('imageSearch', function () {
 
 describe('imageSearchDonor', function () {
   it('it should GET the image for a specefic user from doantorSchema', function (done) {
+     this.timeout(10000);
     chai.request(server)
       .get('/imageSearchDonor')
       .end(function (err, res) {
@@ -448,6 +465,7 @@ describe('imageSearchDonor', function () {
       })
   })
 })
+
 
 describe('recieveMessage', function () {
   it('it should GET all the Messages', function (done) {
