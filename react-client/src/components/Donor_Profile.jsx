@@ -64,10 +64,10 @@ class Donor_Profile extends React.Component {
   submit (name, contactNum, description, address) {
     var x = this
     axios.post('/Profile_Donor', {
-      name: this.state.name,
-      contactNum: this.state.contactNum,
-      description: this.state.description,
-      address: this.state.address
+      name: name,
+      contactNum: contactNum,
+      description: description,
+      address: address
     })
       .then(response => {
         // should go to the home page from here
@@ -289,11 +289,7 @@ class Donor_Profile extends React.Component {
               </div>
               <div className='modal-body'>
 
-                <div className='input-group'>
-                  <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='name' onChange={this.onChange} placeholder='NickName' />
-                </div>
-                <br />
+                
 
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-phone' /></span>
