@@ -27,9 +27,22 @@ class Search extends React.Component {
   }
 
   handleSearchInput (evt) {
-    console.log(evt.target.value, 'joos')
-    this.setState({ searchInput: evt.target.value })
+
+    console.log(evt.target.value,"joos")
+    this.setState({ searchInput: this.state.user })
+
   }
+
+  logout () {
+    axios.get('/logout')
+      .then(function (res) {
+        console.log('ea eshe ')
+        window.location.href = '/'
+      }).catch(function (err) {
+        console.log('logout err ', err)
+      })
+  }
+
 
   handleClickSearch (input) {
     console.log(this.state.searchInput)
@@ -44,7 +57,7 @@ class Search extends React.Component {
       success: function (data) {
         console.log('Success in GET search!', data)
         that.setState({searchOut: data})
-        that.getImage()
+        
       },
       error: function (err) {
         alert('Not Found')
@@ -109,7 +122,10 @@ class Search extends React.Component {
 
         {console.log(this.state.searchOut)}
         <div className='container' >
+      <div className='col-10'>
       <div className='row'>
+        <h2>here you can search on any Beneficiaries or Donors </h2>
+      </div>
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
         </div>

@@ -32,6 +32,17 @@ class Search_Donor extends React.Component {
     this.setState({ searchInput: evt.target.value })
   }
 
+logout () {
+    axios.get('/logout')
+      .then(function (res) {
+        console.log('ea eshe ')
+        window.location.href = '/'
+      }).catch(function (err) {
+        console.log('logout err ', err)
+      })
+  }
+
+
   handleClickSearch (input) {
     console.log(this.state.searchInput, 'search input donor!!')
     var that = this
@@ -44,7 +55,6 @@ class Search_Donor extends React.Component {
       success: function (data) {
         console.log('Success in GET search!', data)
         that.setState({searchOut: data})
-        that.getImage()
       },
       error: function (err) {
         alert('Not Found')
@@ -112,11 +122,12 @@ class Search_Donor extends React.Component {
 
         <div className='container' >
       <div className='col-10'>
-            <div className='row'>
-          <h2>here you can search on any beneficiaries  </h2>
-        </div>
-            <br />
-            <br />
+      <div className='row'>
+        <h2>here you can search on any Beneficiaries or Donors </h2>
+      </div>
+      <br />
+      <br />
+
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
         </div>

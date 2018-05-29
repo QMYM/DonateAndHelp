@@ -1,8 +1,8 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, View, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Thumbnail, Text, Button} from 'native-base'
+import { Container, Header, Content, Thumbnail, Text , Input, Button , Item , Form , Label} from 'native-base'
 class Message extends React.Component {
   constructor (props) {
     super(props)
@@ -24,6 +24,7 @@ class Message extends React.Component {
   componentDidMount () {
     var x = this
     x.user()
+
     x.getPhotoForMessages()
     axios.get('https://donatandhelp.herokuapp.com/recieveMessage')
       .then(function (response) {
@@ -35,6 +36,7 @@ class Message extends React.Component {
             x.setState({messages: mes})
           }
 
+
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
@@ -45,17 +47,20 @@ class Message extends React.Component {
 
   user () {
     var x = this
+
     axios.get('https://donatandhelp.herokuapp.com/sessionName')
       .then(function (res) {
         x.setState({sessionUser: res.data})
       }).catch(function (err) {
         console.log('error', err)
       })
+
   }
   getPhotoForMessages () {
     var x = this
     var arr = []
     var rec = []
+
     var test = []
     axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
       .then(function (res) {
@@ -65,6 +70,7 @@ class Message extends React.Component {
               test.push(res.data[i].userInfo)
               arr.push(res.data[i].userInfo[0].username)
             }
+
           }
           if (res.data[i].userRole.length !== 0) {
             if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
@@ -84,6 +90,7 @@ class Message extends React.Component {
   }
   sendMessage (to, text) {
     var x = this
+
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
         console.log(res, 'ress')
@@ -94,6 +101,7 @@ class Message extends React.Component {
         x.setState({
           messageForDOM: ' User Not Found!'
         })
+
       })
   }
 
@@ -128,19 +136,21 @@ class Message extends React.Component {
             }}>
             <View style={{marginTop: 22}}>
               <Text>Send Message</Text>
-
-              <Text>To</Text>
-              <TextInput
+              <Item floatingLabel last>
+              <Label>To</Label>
+              <Input
                 style={styles.input}
-                placeholder='Enter your user!'
                 onChangeText={(user) => this.setState({user})}
               />
-              <Text>Subject</Text>
-              <TextInput
+            </Item>
+              <Item floatingLabel last>
+              <Label>To</Label>
+              <Label>Subject</Label>
+              <Input
                 style={styles.input}
-                placeholder='Enter your text!'
                 onChangeText={(text) => this.setState({text})}
               />
+            </Item>
               <Button
                 onPress={() => this.sendMessage(this.state.user, this.state.text)}
               > <Text>Send</Text>
@@ -151,14 +161,10 @@ class Message extends React.Component {
             </View>
           </Modal>
 
-          <Text>
-      welcome Message
-          </Text>
-
           <Button onPress={() => {
             this.setModalVisible(true)
           }}>
-            <Text>Show Modal</Text>
+            <Text>Send Message </Text>
           </Button>
 
           <View>

@@ -8,13 +8,17 @@ class Signup extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
       user: 'true'
+
     }
   }
+
+
 
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
     if (confirmPassword === password) {
