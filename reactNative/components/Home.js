@@ -65,24 +65,25 @@ class Home extends React.Component {
         onClose={() => { closeDrawer() }} >
 
         <Container>
-          <Header >
-            <Content>
-   
-              <Button onPress={() => { openDrawer() }}>
-                <Icon ios='ios-menu' android='md-menu' style={{fontSize: 20, color: 'black'}} />
-              </Button>
-
-            </Content>
-
-          </Header>
+           <Header>
+          <Left>
+            <Button transparent onPress={() => { openDrawer() }}>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title></Title>
+          </Body>
+          <Right />
+        </Header>
        
       <ImageBackground  style={ styles.imgBackground } 
       resizeMode='cover' 
-      source={{uri: 'https://venturebeat.com/wp-content/uploads/2012/10/seed-money.jpg?resize=655%2C488&strip=all?strip=all'}}>
-      <View style={styles.txt}>
-      <View>
-       <Text>Donate and Help</Text>
-         </View>
+      source={{uri: "https://d1tcrpfk632upo.cloudfront.net/wp-content/uploads/2016/09/27084305/RepeatDonors.jpg"}}>
+      <View style={styles.container}>
+      <View style={styles.markWrap}>
+       <Text style={styles.mark}>Donate and Help</Text>
+          </View>
           </View>
          </ImageBackground>
 
@@ -105,7 +106,6 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -126,6 +126,15 @@ const styles = StyleSheet.create({
     borderColor: '#d6d7da',
     width:150,
     flexDirection : 'column'
+  },
+    markWrap: {
+    flex: 1,
+    paddingVertical: 30,
+  },
+  mark: {
+    width: null,
+    height: null,
+    flex: 1,
   },
 })
 

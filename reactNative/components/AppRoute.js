@@ -39,7 +39,6 @@ export default class AppRoute extends React.Component {
             animation="fade"
             duration="2000"
              hideNavBar={1}
-             wrapRouter={true}
              type="replace"
             initial
 
