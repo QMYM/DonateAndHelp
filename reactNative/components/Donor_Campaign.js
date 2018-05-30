@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, FlatList, ActivityIndicator, Alert} from 'react-
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
-
+import { Jiro} from 'react-native-textinput-effects';
 
 class Donor_Campaign extends React.Component {
   constructor (props) {

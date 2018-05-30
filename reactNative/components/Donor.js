@@ -4,11 +4,11 @@ import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
 import { Container, Header, Item, Input, Icon, Button, Text  , Content} from 'native-base';
 
-function searching (term) {
-  return function (x) {
-    return x.campaignName.toLowerCase().includes(term.toLowerCase())
-  }
-}
+// function searching (term) {
+//   return function (x) {
+//     return x.campaignName.toLowerCase().includes(term.toLowerCase())
+//   }
+// }
 
 class Donor extends React.Component {
   constructor(props) {
@@ -98,7 +98,7 @@ class Donor extends React.Component {
       </View>
       </Modal>
 
-      {this.state.camp.filter(searching(this.state.term)).map(item => 
+      {this.state.camp.map(item => 
        <View key={item._id}>
        <Text style={{fontWeight: 'bold',textAlign :'center'}}>{item.campaignName}</Text>
        <Text>{item.campaignDescription}</Text>
