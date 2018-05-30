@@ -20,12 +20,12 @@ constructor (props) {
     super(props)
     this.state = {
       value:'',
-      duraidiValue:''
+      
     }
     this.onChange = this.onChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
     this.sendMessageForDuraidi = this.sendMessageForDuraidi.bind(this)
-   
+   this.sendMessageForYussur = this.sendMessageForYussur.bind(this)
   }
 
   onChange(e){
@@ -33,7 +33,21 @@ constructor (props) {
       value:e.target.value
     })
   }
-      sendMessageForDuraidi(){
+
+
+  sendMessageForYussur(){
+ axios.post("/serveiceSmsYussur", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
+  }
+
+
+
+
+ sendMessageForDuraidi(){
            axios.post("/serveiceSmsDuraidi", {text:this.state.value}).then((res)=>{
             alert("your message has been send")
               window.location.reload()
@@ -41,7 +55,6 @@ constructor (props) {
             console.log(err)
           })
       }
-
 
       sendMessage(){
           axios.post("/serveiceSms", {text:this.state.value}).then((res)=>{
@@ -117,7 +130,8 @@ return(
           <h4 className="modal-title">Yussur</h4>
         </div>
         <div className="modal-body">
-          <p>Some text in the modal.</p>
+          <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessageForYussur}>Send</button>
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
