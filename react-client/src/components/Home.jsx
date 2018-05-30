@@ -168,16 +168,11 @@ return(
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
     <p className='w3-center'><em>Dononrs</em></p>
-    <p>We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
         <p><b><i className='fa fa-user w3-margin-right' /></b></p><br />
         <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round w3-image w3-opacity w3-hover-opacity-off' alt='Photo of Me' width='500' height='333' />
-      </div>
-
-      <div className='w3-col m6 w3-hide-small w3-padding-large'>
-        <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
     </div>
   </div>
@@ -208,17 +203,14 @@ return(
   </div>
 
   <div className=' w3-container w3-padding-64' id='portfolio'>
-    <h3 className='w3-center'>OUR TEAM</h3>
-    <p className='w3-center'><em>Here is the team behind this big project :D<br /></em></p><br />
-
+    <h3 className='w3-center'>Meet our awesome team</h3>
     <div className='w3-row-padding w3-grayscale'>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3' alt='John' style={{width: '100%'}} />
         <br />
         <br />
         <h3>Qays Trad</h3>
-        <p className='w3-opacity'>CEO & Scrum Master</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        <p className='w3-opacity'>CEO</p>
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Qays">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
@@ -226,8 +218,7 @@ return(
         <br />
         <br />
         <h3>Mohammed Duraidi</h3>
-        <p className='w3-opacity'>Sha7ad & Founder</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        <p className='w3-opacity'>Software Engineer</p>
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Mohammed">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
@@ -235,8 +226,7 @@ return(
         <br />
         <br />
         <h3>Mais Muhtaseb</h3>
-        <p className='w3-opacity'>Software Engineering </p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        <p className='w3-opacity'>Software Engineer</p>
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Mais">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
@@ -244,8 +234,7 @@ return(
         <br />
         <br />
         <h3>Yussur Alani</h3>
-        <p className='w3-opacity'>Software Engineering</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+        <p className='w3-opacity'>Software Engineer</p>
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Yussur">Contact</button></p>
       </div>
     </div>
