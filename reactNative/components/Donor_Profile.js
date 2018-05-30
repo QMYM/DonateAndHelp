@@ -237,8 +237,8 @@ class Donor_Profile extends React.Component {
           </Body>
           <Right>
          <Button transparent
-  onPress={() => this.logout()}
-  ><Icon active name="exit" /></Button>
+           onPress={() => this.logout()}
+           ><Icon active name="exit" /></Button>
           </Right>
         </Header>
 
@@ -334,7 +334,7 @@ class Donor_Profile extends React.Component {
   <Text>{this.state.newAddress}</Text>
 
   {this.state.post.map(po => 
-   <View>
+   <View key={po._id}>
    <Content>
    <Card>
    <CardItem>
