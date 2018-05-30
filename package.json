@@ -59,6 +59,7 @@
         "mongoose": "^4.8.6",
         "mysql": "^2.13.0",
         "native-base": "^2.4.5",
+        "nexmo": "^2.2.1",
         "objectid": "^3.2.1",
         "path": "^0.12.7",
         "react": "^15.6.2",

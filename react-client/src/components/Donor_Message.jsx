@@ -114,11 +114,20 @@ class Message extends React.Component {
     var x = this
     axios.post('/sendMessage', {user: to, text: text})
       .then(function (res) {
-       
-     
-        console.log("hello hi hi  ",res.data)
+        x.setState({
+          messageForDOM: ' Your Message has been sent'
+        })
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
+        console.log('done', x.state.messageForDOM)
       }).catch(function (err) {
-      console.log(err)
+        x.setState({
+          messageForDOM: ' User Not Found!'
+        })
+        setTimeout(function () {
+          window.location.reload()
+        }, 1000)
       })
   }
 

@@ -31,9 +31,9 @@ class Main extends React.Component {
             justifyContent: 'center',
             width: 100,
             height: 100,
-            backgroundColor: 'orange',
+            backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 10,
+            marginTop: 70,
             marginLeft: 10
           }}
             onPress={() => { Actions.Signup() }}>
@@ -47,9 +47,9 @@ class Main extends React.Component {
             justifyContent: 'center',
             width: 100,
             height: 100,
-            backgroundColor: 'blue',
+            backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 10,
+            marginTop: 20,
             marginLeft: 10
           }}
           onPress={() => { Actions.Login() }}>
@@ -63,31 +63,31 @@ class Main extends React.Component {
             justifyContent: 'center',
             width: 100,
             height: 100,
-            backgroundColor: 'green',
+            backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 10,
+            marginTop: 20,
             marginLeft: 10
           }}
           onPress={() => { Actions.Aboutus() }}>
             <Text>AboutUs</Text>
           </Button>
 
-         <Button style={{
+          <Button style={{
             borderWidth: 1,
             borderColor: 'rgba(0,0,0,0.2)',
             alignItems: 'center',
             justifyContent: 'center',
             width: 100,
             height: 100,
-            backgroundColor: 'orange',
+            backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 10,
+            marginTop: 20,
+            marginBottom: 20,
             marginLeft: 10
           }}
             onPress={() => { Actions.Contactus() }}>
             <Text>Team</Text>
           </Button>
-
 
         </Content>
       </Container>

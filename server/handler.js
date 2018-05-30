@@ -4,6 +4,11 @@ let helper = require('../helper/uitilty') // Import utility.js file in helper di
 let bcrypt = require('bcrypt') // Import bcrypt library
 let session = require('express-session') // Import express-session library
 let saltRounds = 10 // Using salt hash for password encryption
+const Nexmo = require('nexmo');
+const nexmo = new Nexmo({
+  apiKey: '838662f6',
+  apiSecret: 'g85V0tSPQDaC4O3N'
+});
 
 exports.Signup = function (req, res) { // This function is responsible for the signup of the donor
   var username = req.body.username; // Store the username of the donor user coming from the client side
@@ -120,7 +125,7 @@ exports.uploadImage = function (req, res) { // This function will upload the pro
   })
   save.save(function (err, data) { // Save the created object of the uploaded image in the schema
     if (err) {
-      throw err // Send an error if the is an error on the save
+      throw err // Send an error if there's an error on the save
     } else {
       console.log('saved!'); // Send a success response if the uploaded image is saved in the schema and updated
     }
@@ -222,7 +227,8 @@ exports.getInfoForProfilePageforDonor = function(req,res){
 }
 
 exports.addProfileCompany = function (req, res) {
-  var contactNum = req.body.phoneNum
+  console.log("hi phone ", req.body)
+  var contactNum = req.body.contactNum
   var description = req.body.description
   var address = req.body.address
 
@@ -250,6 +256,7 @@ exports.addProfileCompany = function (req, res) {
 }
 
 exports.addProfileDonor = function (req, res) {
+  console.log("hello 3eny", req.body)
   var name = req.body.name
   var contactNum = req.body.contactNum
   var description = req.body.description
@@ -473,14 +480,14 @@ exports.sessionName = function (req, res) {
 exports.searchBeneficiary = function (req, res) {
   var name = req.body.name
   db.userDonater.findOne({username: name}, function (err, data) {
-    if (err) {
+    if(err){
       throw err
-    } else if (!data) {
-      res.sendStatus(404)
-    } else {
-      var arr = []
-      arr.push(data)
-      res.send(arr)
+    }else{
+      if(!data){
+        res.sendStatus(404)
+      }else{
+        res.send(data)
+      }
     }
   })
 }
@@ -672,4 +679,21 @@ exports.editAmount  = function (req , res) {
     }
   })
 
+}
+
+
+exports.serveiceSms = function (req, res) { 
+  console.log("here's the data!!!",req.body)
+  const text = req.body.text;
+ nexmo.message.sendSms("Hello From Duraidi", '00962787061743', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
 }

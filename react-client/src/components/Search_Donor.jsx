@@ -32,7 +32,7 @@ class Search_Donor extends React.Component {
     this.setState({ searchInput: evt.target.value })
   }
 
-logout () {
+  logout () {
     axios.get('/logout')
       .then(function (res) {
         console.log('ea eshe ')
@@ -42,9 +42,7 @@ logout () {
       })
   }
 
-
   handleClickSearch (input) {
-    console.log(this.state.searchInput, 'search input donor!!')
     var that = this
     $.ajax({
       type: 'POST',
@@ -122,11 +120,11 @@ logout () {
 
         <div className='container' >
       <div className='col-10'>
-      <div className='row'>
-        <h2>here you can search on any Beneficiaries or Donors </h2>
-      </div>
-      <br />
-      <br />
+            <div className='row'>
+          <h2>Here you can search on any Beneficiaries </h2>
+        </div>
+            <br />
+            <br />
 
             <div className='col align-self-center'>
           <input type='text' name='SearchItems' className='form-control' onChange={this.handleSearchInput} />
@@ -139,8 +137,6 @@ logout () {
             {this.state.searchOut.map(record =>
           <div className='col-lg-3 col-md-4 col-sm-6'>
                 <div>
-              <p>{record.name}</p>
-              <br />
               <p>{record.description}</p>
               <br />
               <p>{record.email}</p>
@@ -149,7 +145,7 @@ logout () {
               <br />
               <p>{record.address}</p>
               <br />
-              <img src={this.state.arr[0]} />
+              <img src={record.image} style={{width: 400, height: 400}} />
               <br />
             </div>
               </div>
