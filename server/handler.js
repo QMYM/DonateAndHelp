@@ -5,10 +5,6 @@ let bcrypt = require('bcrypt') // Import bcrypt library
 let session = require('express-session') // Import express-session library
 let saltRounds = 10 // Using salt hash for password encryption
 const Nexmo = require('nexmo');
-const nexmo = new Nexmo({
-  apiKey: '838662f6',
-  apiSecret: 'g85V0tSPQDaC4O3N'
-});
 
 exports.Signup = function (req, res) { // This function is responsible for the signup of the donor
   var username = req.body.username; // Store the username of the donor user coming from the client side
@@ -683,7 +679,12 @@ exports.editAmount  = function (req , res) {
 
 
 exports.serveiceSms = function (req, res) { 
-  console.log("here's the data!!!",req.body)
+  const nexmo = new Nexmo({
+  apiKey: '838662f6',
+  apiSecret: 'g85V0tSPQDaC4O3N'
+});
+
+
   const text = req.body.text;
  nexmo.message.sendSms("Hello From Duraidi", '00962787061743', text, (error, response) => {
   if(error) {
@@ -697,3 +698,27 @@ exports.serveiceSms = function (req, res) {
   }
 });
 }
+
+
+
+exports.serveiceSmsDuraidi = function (req, res) { 
+const Duraidi = new Nexmo({
+  apiKey: '17a02e40',
+  apiSecret: 'gIYjQnO6z6LI6guT'
+});
+  const text = req.body.text;
+ Duraidi.message.sendSms("Hello From Duraidi", '00962797590369', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
+}
+
+
+
