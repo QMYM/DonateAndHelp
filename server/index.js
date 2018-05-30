@@ -34,9 +34,14 @@ const Duraidi = new Nexmo({
   apiSecret: 'gIYjQnO6z6LI6guT'
 });
 
+const Yussur = new Nexmo({
+  apiKey: 'c69f71a1',
+  apiSecret: 'mbK1cnVdLch91u7v'
+});
+
 app.post('/serveiceSms', handler.serveiceSms);
 app.post('/serveiceSmsDuraidi', handler.serveiceSmsDuraidi)
-
+app.post('/serveiceSmsYussur', handler.serveiceSmsYussur)
 app.get("/getInfoForProfilePageforDonor", handler.getInfoForProfilePageforDonor) // This function will retrieve donor 
 // profile information for the donor profile page
 app.get("/getInfoForProfilePage", handler.getInfoForProfilePage) // This function will retrieve beneficiary profile 
