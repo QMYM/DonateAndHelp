@@ -19,19 +19,30 @@ class Home extends React.Component {
 constructor (props) {
     super(props)
     this.state = {
-      value:''
+      value:'',
+      duraidiValue:''
     }
     this.onChange = this.onChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
+    this.sendMessageForDuraidi = this.sendMessageForDuraidi.bind(this)
    
   }
 
   onChange(e){
-    console.log(e.target.value)
     this.setState({
       value:e.target.value
     })
   }
+      sendMessageForDuraidi(){
+           axios.post("/serveiceSmsDuraidi", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
+      }
+
+
       sendMessage(){
           axios.post("/serveiceSms", {text:this.state.value}).then((res)=>{
             alert("your message has been send")
@@ -54,8 +65,8 @@ return(
           <h4 className="modal-title">Mohammed</h4>
         </div>
         <div className="modal-body">
-          <input type = "text" placeholder="type your text"/>
-          <button>Send</button>
+         <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessageForDuraidi}>Send</button>
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
