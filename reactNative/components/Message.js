@@ -18,13 +18,14 @@ class Message extends React.Component {
       allMessages: [],
       messageForDOM: '',
       modalVisible: false,
-      check: true
+      check: true , 
+      Mount:''
     }
   }
   componentDidMount () {
     var x = this
     x.user()
-
+    this.state.ref =!this.state.ref
     x.getPhotoForMessages()
     axios.get('https://donatandhelp.herokuapp.com/recieveMessage')
       .then(function (response) {
@@ -35,7 +36,6 @@ class Message extends React.Component {
             mes.push(response.data[i])
             x.setState({messages: mes})
           }
-
           if (response.data[i].sender === x.state.sessionUser) {
             mess.push(response.data[i])
             x.setState({senderMess: mess})
@@ -89,7 +89,6 @@ class Message extends React.Component {
 
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then(function (res) {
-        console.log(res, 'ress')
         x.componentDidMount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
@@ -173,7 +172,7 @@ class Message extends React.Component {
             {this.state.reciver.map(item =>
               <View key={item._id}>
                 <Text
-                  onPress={() => Actions.Message_Reciver({text: item.username, message: this.state.messages, sender: this.state.senderMess})}
+                  onPress={() => Actions.Message_Reciver({text: item.username, message: this.state.messages, sender: this.state.senderMess , Mount: this.componentDidMount})}
                 >
                   <Thumbnail large
                     source={{uri: item.image}}

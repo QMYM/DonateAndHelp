@@ -13,19 +13,28 @@ class Contactus extends React.Component {
       text2:'',
       text3:"",
       text4:"",
-modalVisible: false
+Duradi: false,
+Qays: false,
+Mais: false,
+Yussur: false,
     }
   }
- setModalVisible (visible) {
-    this.setState({modalVisible: visible})
+ setDuradi (visible) {
+    this.setState({Duradi: visible})
   }
-
-
+ setQays (visible) {
+    this.setState({Qays: visible})
+  }
+ setMais (visible) {
+    this.setState({Mais: visible})
+  }
+ setYussur (visible) {
+    this.setState({Yussur: visible})
+  }
 
   sendMessage(text3){
            axios.post("https://donatandhelp.herokuapp.com/serveiceSms", {text:text3}).then((res)=>{
             alert("your message has been send")
-            
           }).catch((err)=>{
             console.log(err)
           })
@@ -54,7 +63,6 @@ modalVisible: false
     return (
       <Container>
         <Content>
-
           <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32207749_10204687882073435_1576086593419083776_n.jpg?_nc_cat=0&oh=bdede7d612bfa26c151908dc6ff63aa1&oe=5B9A74BB'}}
               style={styles.img} />
@@ -62,17 +70,13 @@ modalVisible: false
             <Modal
             animationType='slide'
             transparent={false}
-            visible={this.state.modalVisible}
+            visible={this.state.Duradi}
             onRequestClose={() => {
               alert('Modal has been closed.')
             }}>
             <View style={{marginTop: 22}}>
-              <Text>Send Message</Text>
+              <Text>Mohmmad Duradi Message</Text>
               <Item floatingLabel last>
-               
-              </Item>
-              <Item floatingLabel last>
-            
                 <Label>Text</Label>
                 <Input
                   style={styles.input}
@@ -84,20 +88,20 @@ modalVisible: false
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setDuradi(!this.state.Duradi)
               }}><Text>Close</Text></Button>
             </View>
           </Modal>
           <Header>
             <Left>
               <Button transparent onPress={() => {
-                this.setModalVisible(true)
+                this.setDuradi(true)
               }}>
                 <Icon active name='mail' />
               </Button>
             </Left>
             <Body>
-              <Title>Messages</Title>
+              <Title>Mohmmad Duradi</Title>
             </Body>
             <Right />
           </Header>
@@ -110,15 +114,12 @@ modalVisible: false
            <Modal
             animationType='slide'
             transparent={false}
-            visible={this.state.modalVisible}
+            visible={this.state.Qays}
             onRequestClose={() => {
               alert('Modal has been closed.')
             }}>
             <View style={{marginTop: 22}}>
-              <Text>Send Message</Text>
-              <Item floatingLabel last>
-               
-              </Item>
+              <Text>Qays Trad Message</Text>
               <Item floatingLabel last>
             
                 <Label>Text</Label>
@@ -132,20 +133,20 @@ modalVisible: false
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setQays(!this.state.Qays)
               }}><Text>Close</Text></Button>
             </View>
           </Modal>
           <Header>
             <Left>
               <Button transparent onPress={() => {
-                this.setModalVisible(true)
+                this.setQays(true)
               }}>
                 <Icon active name='mail' />
               </Button>
             </Left>
             <Body>
-              <Title>Messages</Title>
+              <Title>Qays Trad</Title>
             </Body>
             <Right />
           </Header>
@@ -156,17 +157,13 @@ modalVisible: false
             <Modal
             animationType='slide'
             transparent={false}
-            visible={this.state.modalVisible}
+            visible={this.state.Mais}
             onRequestClose={() => {
               alert('Modal has been closed.')
             }}>
             <View style={{marginTop: 22}}>
-              <Text>Send Message</Text>
+              <Text>Mais Mohtaseb Message</Text>
               <Item floatingLabel last>
-               
-              </Item>
-              <Item floatingLabel last>
-            
                 <Label>Text</Label>
                 <Input
                   style={styles.input}
@@ -178,20 +175,20 @@ modalVisible: false
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setMais(!this.state.Mais)
               }}><Text>Close</Text></Button>
             </View>
           </Modal>
           <Header>
             <Left>
               <Button transparent onPress={() => {
-                this.setModalVisible(true)
+                this.setMais(true)
               }}>
                 <Icon active name='mail' />
               </Button>
             </Left>
             <Body>
-              <Title>Messages</Title>
+              <Title>Mais Mohtaseb</Title>
             </Body>
             <Right />
           </Header>
@@ -202,15 +199,12 @@ modalVisible: false
             <Modal
             animationType='slide'
             transparent={false}
-            visible={this.state.modalVisible}
+            visible={this.state.Yussur}
             onRequestClose={() => {
               alert('Modal has been closed.')
             }}>
             <View style={{marginTop: 22}}>
-              <Text>Send Message</Text>
-              <Item floatingLabel last>
-               
-              </Item>
+              <Text>Yussur Alani Message</Text>
               <Item floatingLabel last>
             
                 <Label>Text</Label>
@@ -224,20 +218,20 @@ modalVisible: false
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setYussur(!this.state.Yussur)
               }}><Text>Close</Text></Button>
             </View>
           </Modal>
           <Header>
             <Left>
               <Button transparent onPress={() => {
-                this.setModalVisible(true)
+                this.setYussur(true)
               }}>
                 <Icon active name='mail' />
               </Button>
             </Left>
             <Body>
-              <Title>Messages</Title>
+              <Title>Yussur Alani</Title>
             </Body>
             <Right />
           </Header>
