@@ -739,3 +739,31 @@ const Yussur = new Nexmo({
 });
 }
 
+exports.serveiceSmsMais = function (req, res) { 
+  const text = req.body.text;
+
+const Mais = new Nexmo({
+  apiKey: '048b0b91',
+  apiSecret: '3u9jWe2ocWsTnAKG'
+});
+
+ Mais.message.sendSms("Hello World!", '00962776598992', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
+}
+
+
+
+
+
+
+
+

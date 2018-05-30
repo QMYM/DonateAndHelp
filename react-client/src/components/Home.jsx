@@ -26,12 +26,21 @@ constructor (props) {
     this.sendMessage = this.sendMessage.bind(this)
     this.sendMessageForDuraidi = this.sendMessageForDuraidi.bind(this)
    this.sendMessageForYussur = this.sendMessageForYussur.bind(this)
+   this.sendMessageForMais = this.sendMessageForMais.bind(this)
   }
 
   onChange(e){
     this.setState({
       value:e.target.value
     })
+  }
+  sendMessageForMais(){
+ axios.post("/serveiceSmsMais", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
   }
 
 
@@ -114,7 +123,8 @@ return(
           <h4 className="modal-title">Mais</h4>
         </div>
         <div className="modal-body">
-          <p>Some text in the modal.</p>
+           <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessageForMais}>Send</button>
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

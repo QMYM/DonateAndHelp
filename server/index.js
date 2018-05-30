@@ -38,7 +38,7 @@ const Yussur = new Nexmo({
   apiKey: 'c69f71a1',
   apiSecret: 'mbK1cnVdLch91u7v'
 });
-
+app.post('/serveiceSmsMais', handler.serveiceSmsMais);
 app.post('/serveiceSms', handler.serveiceSms);
 app.post('/serveiceSmsDuraidi', handler.serveiceSmsDuraidi)
 app.post('/serveiceSmsYussur', handler.serveiceSmsYussur)
