@@ -92,7 +92,7 @@ class Donor_Campaign extends React.Component {
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
               <li><a href='/donor'>Home</a></li>
-              <li><a href='/Donor_Campaign'>Campaign</a></li>
+              <li><a href='/Donor_Campaign'>Donation</a></li>
             </ul>
             <form className='form-inline my-2 my-lg-0'>
               <Router>
@@ -117,11 +117,11 @@ class Donor_Campaign extends React.Component {
         <Well>
           <div className='container'>
             <div className='row'>
-              <label for='usr'>Campaign Name :</label>
+              <label for='usr'>Donation Name :</label>
               <input type='text' name='campaignName' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <label for='usr'>Campaign Description :</label>
+              <label for='usr'>Donation Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <label for='usr'>Items :</label>
+              <label for='usr'>Items for donation:</label>
               <input type='number' className='form-control w3-round-xlarge' id='usr' onChange={this.onChange} name='campaignAmount' />
             </div>
 

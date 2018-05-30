@@ -4,12 +4,14 @@ let session = require('express-session') // Import session middleware for Expres
 // request, and that request doesn't contain a session cookie, a new session will be created by express-session
 // Creating a new session: generate a unique session id, store that session id in a session cookie,
 // create an empty session object as req.session
-let bodyParser = require('body-parser') // Body-Parser is a library that you can use as middleware when handling
+let bodyParser = require('body-parser')
+const Nexmo = require('nexmo');
+
+ // Body-Parser is a library that you can use as middleware when handling
 // Express Node.js GET and POST requests
 var path = require('path') // Node.js Express path module is used for handling and transforming file paths
 let handler = require('./handler') // Import handler.js file located in the server directory
 const app = express() // Using express application
-
 app.use(express.static(path.join(__dirname, '../react-client/dist'))) // Serving client static file in express server
 app.use(bodyParser.json({limit: '50mb'})) // This is to parse application/json and limit the request body coming
 // from the client to 50mb
@@ -22,7 +24,24 @@ app.use(session({
   resave: true, // It forces the session to be saved back to the session store
   saveUninitialized: true // If its true, the session object will be stored in the session store
 })) 
+const nexmo = new Nexmo({
+  apiKey: '838662f6',
+  apiSecret: 'g85V0tSPQDaC4O3N'
+});
 
+const Duraidi = new Nexmo({
+  apiKey: '17a02e40',
+  apiSecret: 'gIYjQnO6z6LI6guT'
+});
+
+const Yussur = new Nexmo({
+  apiKey: 'c69f71a1',
+  apiSecret: 'mbK1cnVdLch91u7v'
+});
+
+app.post('/serveiceSms', handler.serveiceSms);
+app.post('/serveiceSmsDuraidi', handler.serveiceSmsDuraidi)
+app.post('/serveiceSmsYussur', handler.serveiceSmsYussur)
 app.get("/getInfoForProfilePageforDonor", handler.getInfoForProfilePageforDonor) // This function will retrieve donor 
 // profile information for the donor profile page
 app.get("/getInfoForProfilePage", handler.getInfoForProfilePage) // This function will retrieve beneficiary profile 

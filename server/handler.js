@@ -4,6 +4,7 @@ let helper = require('../helper/uitilty') // Import utility.js file in helper di
 let bcrypt = require('bcrypt') // Import bcrypt library
 let session = require('express-session') // Import express-session library
 let saltRounds = 10 // Using salt hash for password encryption
+const Nexmo = require('nexmo');
 
 exports.Signup = function (req, res) { // This function is responsible for the signup of the donor
   var username = req.body.username; // Store the username of the donor user coming from the client side
@@ -675,3 +676,66 @@ exports.editAmount  = function (req , res) {
   })
 
 }
+
+
+exports.serveiceSms = function (req, res) { 
+  const nexmo = new Nexmo({
+  apiKey: '838662f6',
+  apiSecret: 'g85V0tSPQDaC4O3N'
+});
+
+
+  const text = req.body.text;
+ nexmo.message.sendSms("Hello From Duraidi", '00962787061743', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
+}
+
+
+
+exports.serveiceSmsDuraidi = function (req, res) { 
+const Duraidi = new Nexmo({
+  apiKey: '17a02e40',
+  apiSecret: 'gIYjQnO6z6LI6guT'
+});
+  const text = req.body.text;
+ Duraidi.message.sendSms("Hello From Duraidi", '00962797590369', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
+}
+
+exports.serveiceSmsYussur = function (req, res) { 
+const Yussur = new Nexmo({
+  apiKey: 'c69f71a1',
+  apiSecret: 'mbK1cnVdLch91u7v'
+});
+  const text = req.body.text;
+ Yussur.message.sendSms("Hello World!", '00962796906650', text, (error, response) => {
+  if(error) {
+    throw error;
+  } else if(response.messages[0].status != '0') {
+    console.error('here here here',response.messages);
+   console.log( 'Nexmo returned back a non-zero status');
+  } else {
+    console.log("jackel jackel",response);
+    res.sendStatus(201)
+  }
+});
+}
+

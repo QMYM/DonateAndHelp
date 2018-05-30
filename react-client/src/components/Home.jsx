@@ -15,7 +15,130 @@ import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 import TheApp from './TheApp.jsx'
 
-const Home = (props) => (<div >
+class Home extends React.Component {
+constructor (props) {
+    super(props)
+    this.state = {
+      value:'',
+      
+    }
+    this.onChange = this.onChange.bind(this)
+    this.sendMessage = this.sendMessage.bind(this)
+    this.sendMessageForDuraidi = this.sendMessageForDuraidi.bind(this)
+   this.sendMessageForYussur = this.sendMessageForYussur.bind(this)
+  }
+
+  onChange(e){
+    this.setState({
+      value:e.target.value
+    })
+  }
+
+
+  sendMessageForYussur(){
+ axios.post("/serveiceSmsYussur", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
+  }
+
+
+
+
+ sendMessageForDuraidi(){
+           axios.post("/serveiceSmsDuraidi", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
+      }
+
+      sendMessage(){
+          axios.post("/serveiceSms", {text:this.state.value}).then((res)=>{
+            alert("your message has been send")
+              window.location.reload()
+          }).catch((err)=>{
+            console.log(err)
+          })
+ }
+
+render(){
+return(
+<div >
+
+
+  <div className="modal fade" id="Mohammed" role="dialog">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Mohammed</h4>
+        </div>
+        <div className="modal-body">
+         <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessageForDuraidi}>Send</button>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div className="modal fade" id="Qays" role="dialog2">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Qays</h4>
+        </div>
+        <div className="modal-body">
+          <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessage}>Send</button>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="modal fade" id="Mais" role="dialog2">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Mais</h4>
+        </div>
+        <div className="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div className="modal fade" id="Yussur" role="dialog2">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <button type="button" className="close" data-dismiss="modal">&times;</button>
+          <h4 className="modal-title">Yussur</h4>
+        </div>
+        <div className="modal-body">
+          <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
+          <button onClick={this.sendMessageForYussur}>Send</button>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
     <a href='#' />
     <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
@@ -59,16 +182,11 @@ const Home = (props) => (<div >
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
     <p className='w3-center'><em>Dononrs</em></p>
-    <p>We have created a fictional "personal" website/blog, and our fictional character is a hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
         <p><b><i className='fa fa-user w3-margin-right' /></b></p><br />
         <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round w3-image w3-opacity w3-hover-opacity-off' alt='Photo of Me' width='500' height='333' />
-      </div>
-
-      <div className='w3-col m6 w3-hide-small w3-padding-large'>
-        <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       </div>
     </div>
   </div>
@@ -99,45 +217,39 @@ const Home = (props) => (<div >
   </div>
 
   <div className=' w3-container w3-padding-64' id='portfolio'>
-    <h3 className='w3-center'>OUR TEAM</h3>
-    <p className='w3-center'><em>Here is the team behind this big project :D<br /></em></p><br />
-
+    <h3 className='w3-center'>Meet our awesome team</h3>
     <div className='w3-row-padding w3-grayscale'>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3' alt='John' style={{width: '100%'}} />
         <br />
         <br />
         <h3>Qays Trad</h3>
-        <p className='w3-opacity'>CEO & Scrum Master</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-        <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
+        <p className='w3-opacity'>CEO</p>
+        <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Qays">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32207749_10204687882073435_1576086593419083776_n.jpg?_nc_cat=0&oh=bdede7d612bfa26c151908dc6ff63aa1&oe=5B9A74BB' alt='Jane' style={{width: '100%'}} />
         <br />
         <br />
         <h3>Mohammed Duraidi</h3>
-        <p className='w3-opacity'>Sha7ad & Founder</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-        <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
+        <p className='w3-opacity'>Software Engineer</p>
+        <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Mohammed">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/18527753_10154354095631852_7605981024395115852_n.jpg?_nc_cat=0&oh=99bda792ec1a737846eda8ad22c31edc&oe=5B8DF2C3' alt='Mike' style={{width: '100%'}} />
         <br />
         <br />
         <h3>Mais Muhtaseb</h3>
-        <p className='w3-opacity'>Software Engineering </p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-        <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
+        <p className='w3-opacity'>Software Engineer</p>
+        <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Mais">Contact</button></p>
       </div>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/27067119_10155568249638369_452583962590222091_n.jpg?_nc_cat=0&oh=d77b2bbfb5860f16dcf448fb1cb3dd7e&oe=5B8023B5' alt='Dan' style={{width: '100%'}} />
         <br />
         <br />
         <h3>Yussur Alani</h3>
-        <p className='w3-opacity'>Software Engineering</p>
-        <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-        <p><button className='w3-button w3-light-grey w3-block'>Contact</button></p>
+        <p className='w3-opacity'>Software Engineer</p>
+        <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Yussur">Contact</button></p>
       </div>
     </div>
 
@@ -204,6 +316,14 @@ const Home = (props) => (<div >
     </div>
     <p>Powered by <a href='https://www.w3schools.com/w3css/default.asp' title='W3.CSS' target='_blank' className='w3-hover-text-green'>w3.css</a></p>
   </footer>
+                                                                                                     
 </div>
-)
+
+
+  )  
+}
+}
+
+
+
 export default Home
