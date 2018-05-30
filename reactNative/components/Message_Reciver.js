@@ -13,19 +13,27 @@ class Message extends React.Component {
       rightMes2: [],
       text: '',
       message: '',
-      sender: ''
+      sender: '',
+      refresh:true ,
+      M:''
     }
   }
-
+  async componentDidUpdate() {
+    
+  }
   componentDidMount () {
     this.openMail(this.props.text, this.props.message, this.props.sender)
-    this.setState({message: this.props.message, sender: this.props.sender, text: this.props.text})
+    this.setState({refresh:!this.state.refresh})
+
+    this.props.ref = !this.props.ref
   }
   sendMessage (to, text) {
     var x = this
-
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then((res) => {
+        console.log('aaa' , res)
+        Alert.alert("Your message has been send")
+        x.setState({M:res.message})
         x.componentDidMount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
@@ -55,7 +63,7 @@ class Message extends React.Component {
   }
 
   remove (user, id) {
-    axios.post('/removeMsg', {user: user, id: id})
+    axios.post('https://donatandhelp.herokuapp.com/removeMsg', {user: user, id: id})
       .then((res) => {
 
       }).catch((err) => {
@@ -74,17 +82,18 @@ class Message extends React.Component {
               leftOpenValue={75}
               rightOpenValue={-75}
               left={
-                <Button success onPress={() => this.remove(item.sender, item._id)}>
+                <Button success onPress={() => alert('Trash')} >
                   <Icon active name='add' />
                 </Button>
               }
               body={
                 <View>
                   <Text>{item.message}</Text>
+                  {this.state.M}
                 </View>
               }
               right={
-                <Button danger onPress={() => alert('Trash')}>
+                <Button danger  onPress={() => this.remove(item.sender, item._id)}>
                   <Icon active name='trash' />
                 </Button>
               }
@@ -96,7 +105,7 @@ class Message extends React.Component {
               leftOpenValue={75}
               rightOpenValue={-75}
               left={
-                <Button success onPress={() => this.remove(item.sender, item._id)}>
+                <Button success onPress={() => alert('Trash')}>
                   <Icon active name='add' />
                 </Button>
               }
@@ -106,7 +115,7 @@ class Message extends React.Component {
                 </View>
               }
               right={
-                <Button danger onPress={() => alert('Trash')}>
+                <Button danger  onPress={() => this.remove(item.sender, item._id)}>
                   <Icon active name='trash' />
                 </Button>
               } />
