@@ -115,9 +115,9 @@ class Beneficiaries_Profile extends React.Component {
       CampID: delCampaignID
     })
       .then(response => {
-        alert('campaign has been deleted!')
+        alert('Fundraising has been deleted!')
       }).catch(error => {
-        alert('error in campaign deletion!', error)
+        alert('error in Fundraising deletion!', error)
       })
   }
 
@@ -130,10 +130,10 @@ class Beneficiaries_Profile extends React.Component {
       username: name
     })
       .then(response => {
-        alert('campaign has been edited!')
+        alert('Fundraising has been edited!')
         window.location.reload()
       }).catch(error => {
-        alert('error in campaign edit!')
+        alert('error in Fundraising edit!')
       })
   }
 
@@ -212,19 +212,19 @@ class Beneficiaries_Profile extends React.Component {
             }}>
             <View style={{marginTop: 22}}>
               <Text>Edit</Text>
-              <Text>Campaign Name: </Text>
+              <Text>Fundraising Name: </Text>
               <TextInput
                 placeholder='Type here your campaignName!'
                 onChangeText={(campaignName) => this.setState({campaignName})}
               />
 
-              <Text>Campaign Description: </Text>
+              <Text>Fundraising Description: </Text>
               <TextInput
                 placeholder='Type here your campaignDescription!'
                 onChangeText={(campaignDescription) => this.setState({campaignDescription})}
               />
 
-              <Text>Campaign Amount: </Text>
+              <Text>Fundraising Amount: </Text>
               <TextInput
                 placeholder='Type here your campaignAmount!'
                 onChangeText={(campaignAmount) => this.setState({campaignAmount})}

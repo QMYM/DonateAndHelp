@@ -175,10 +175,10 @@ class Donor_Profile extends React.Component {
       CampID: delCampaignID
     })
     .then(response => {
-      alert('campaign has been deleted!')
+      alert('Donation has been deleted!')
      x.componentDidMount()
     }).catch(error => {
-      alert('error in campaign deletion!', error)
+      alert('error in Donation deletion!', error)
     })
   }
 
@@ -191,11 +191,11 @@ class Donor_Profile extends React.Component {
       username: name
     })
     .then(response => {
-      alert('campaign has been edited!')
+      alert('Donation has been edited!')
      x.componentDidMount()
       window.location.reload()
     }).catch(error => {
-      alert('error in campaign edit!')
+      alert('error in Donation edit!')
     })
   }
 
@@ -286,21 +286,21 @@ class Donor_Profile extends React.Component {
   }}>
   <View style={{marginTop: 22}}>
   <Text>Edit</Text>
-  <Text>Campaign Name: </Text>
+  <Text>Donation Name: </Text>
   <TextInput
-  placeholder="Type here your campaignName!"
+  placeholder="Type here your Donation Name!"
   onChangeText={(campaignName) => this.setState({campaignName})}
   />
 
-  <Text>Campaign Description: </Text>
+  <Text>Donation Description: </Text>
    <TextInput
-  placeholder="Type here your campaignDescription!"
+  placeholder="Type here your Donation Description!"
   onChangeText={(campaignDescription) => this.setState({campaignDescription})}
   />
 
-  <Text>Campaign Amount: </Text>
+  <Text>Donation Amount: </Text>
    <TextInput
-  placeholder="Type here your campaignAmount!"
+  placeholder="Type here your Donation Amount!"
   onChangeText={(campaignAmount) => this.setState({campaignAmount})}
   />
 

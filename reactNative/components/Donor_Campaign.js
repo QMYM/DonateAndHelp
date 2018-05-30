@@ -26,9 +26,9 @@ class Donor_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then((response) => {
-        console.log('campaign has been posted!')
+        console.log('Donation has been posted!')
       }).catch(error => {
-        alert('wrong in posting a campaign!')
+        alert('wrong in posting a Donation!')
       })
   }
 
@@ -37,7 +37,7 @@ class Donor_Campaign extends React.Component {
       <View >
 
         <Jiro
-          label={'Type here your Campaign Name!'}
+          label={'Type here your Donation Name!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -45,7 +45,7 @@ class Donor_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Campaign Description!'}
+          label={'Type here your Donation Description!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -53,7 +53,7 @@ class Donor_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Campaign Amount!'}
+          label={'Type here your Donation Amount!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}

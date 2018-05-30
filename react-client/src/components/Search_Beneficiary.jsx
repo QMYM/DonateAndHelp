@@ -71,7 +71,7 @@ class Search extends React.Component {
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
           <li><a href='/beneficiaries' to='/beneficiaries'>Home</a></li>
-          <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Campaign</a></li>
+          <li><a href='/Beneficiaries_Campaign' to='/Beneficiaries_Campaign'>Fundraising</a></li>
         </ul>
             <form className='form-inline my-2 my-lg-0'>
           <Router>
