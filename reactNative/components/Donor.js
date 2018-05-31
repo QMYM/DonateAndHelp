@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Container, Header, Item, Input, Icon, Button, Text, Content} from 'native-base'
@@ -97,6 +97,8 @@ class Donor extends React.Component {
 
           {this.state.camp.filter(searching(this.state.term)).map(item =>
             <View key={item._id}>
+          <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3'||'{item.campaignImage}'}}
+              style={styles.img}/>
               <Text style={{fontWeight: 'bold', textAlign: 'center'}}>{item.campaignName}</Text>
               <Text>{item.campaignDescription}</Text>
               <Text>{item.campaignAmount}</Text><Text>JD</Text>
@@ -129,6 +131,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     borderColor: '#d6d7da'
+  },
+  img:{
+    width : 20,
+    height:20,
   }
 })
 

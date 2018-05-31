@@ -2,7 +2,6 @@ import React from 'react'
 import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base';
 import { Jiro} from 'react-native-textinput-effects';
 
 
