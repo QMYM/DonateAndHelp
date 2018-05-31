@@ -12,7 +12,8 @@ class Beneficiaries_Campaign extends React.Component {
       campaignDescription: '',
       campaignAmount: '',
       campaignImage: '',
-      messageForDom: ''
+      messageForDom: '',
+      category: ''
 
     }
   }
@@ -23,7 +24,8 @@ class Beneficiaries_Campaign extends React.Component {
       campaignName: this.state.campaignName,
       campaignDescription: this.state.campaignDescription,
       campaignAmount: this.state.campaignAmount,
-      campaignImage: this.state.campaignImage
+      campaignImage: this.state.campaignImage,
+      category: this.state.category
     })
       .then(response => {
         console.log('Fundraising has been posted!')
@@ -59,6 +61,12 @@ class Beneficiaries_Campaign extends React.Component {
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
         />
+
+        <Picker selectedValue={this.state.category} onValueChange={(itemValue) => this.setState({category: itemValue})}>
+        <Picker.Item label='School & Education' value='School & Education' />
+        <Picker.Item label='Medical & Health' value='Medical & Health' />
+        <Picker.Item label='Non Profit & Charity' value='Non Profit & Charity' />
+        </Picker>
 
         <Button onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
           title='Submit' />
