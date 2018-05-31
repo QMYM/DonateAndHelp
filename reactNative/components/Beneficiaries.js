@@ -1,7 +1,9 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
+import { Button } from 'react-native-elements'
+import { Container, Header, Item, Input, Icon,  Content} from 'native-base'
 
 function searching (term) {
   return function (x) {
@@ -15,10 +17,13 @@ class Beneficiaries extends React.Component {
     this.state = {
       camp: [],
       amount: '',
-      term: ''
+      term: '',
+      modalVisible: false
 
     }
   }
+
+
 
   componentDidMount () {
     var x = this
@@ -30,20 +35,54 @@ class Beneficiaries extends React.Component {
       })
   }
 
+ 
+ 
   render () {
     return (
+       <Container>
+       <Header searchBar rounded>
+          <Item>
+            <Icon name='ios-search' />
+            <Input placeholder='Search' onChangeText={(term) => this.setState({term})} />
+            <Icon name='ios-people' />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+
+
+        <Content>
+
       <View style={styles.container}>
-        <TextInput placeholder='Search' onChangeText={(term) => this.setState({term})} />
+
+
+     
+
+      
+
         {this.state.camp.filter(searching(this.state.term)).map(item =>
 
           <View style={styles.campview} key={item._id}>
-            <Text style={{fontWeight: 'bold', textAlign: 'center'}}>{item.campaignName}</Text>
+          
+          <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
+            <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
+            </View>
+            <Image 
+          source={{uri: item.campaignImage || 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'}}
+              style={styles.img}/>
             <Text>{item.campaignDescription}</Text>
-            <Button
-              title='take' />
+            <Text>{item.campaignAmount}</Text>
+
+         
+
+            
           </View>
         )}
       </View>
+       
+        </Content>
+        </Container>
     )
   }
 }
@@ -53,18 +92,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop:20,
   },
   campview: {
     marginTop: 10,
     marginBottom: 10,
     width: 300,
-    height: 80,
+    height: 300,
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: '#d6d7da'
-  }
+    borderColor: '#d6d7da',
+     alignItems: 'center',
+    justifyContent: 'center',
+  },
+   img:{
+    width : 60,
+    height:60,
+    justifyContent: 'center',
+  },
+ 
+
 })
 
 module.exports = Beneficiaries

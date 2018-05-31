@@ -29,50 +29,111 @@ class Signup extends React.Component {
   };
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-    if (confirmPassword === password) {
-      if (password !== '' && confirmPassword !== '') {
-        axios.post('/Company', {username: username,
-          email: email,
-          password: password
-        }).then(function (res) {
-          window.location.href = '/beneficiaries'
+    
+    // if (confirmPassword === password) {
+    //   if (password !== '' && confirmPassword !== '') {
+    //     axios.post('/Company', {username: username,
+    //       email: email,
+    //       password: password
+    //     }).then(function (res) {
+    //       window.location.href = '/beneficiaries'
 
-          // go to the home page
-        }).catch(function (err) {
-          alert('this username is exist')
-        })
-      } else {
-        alert('enter your password')
-      }
-    } else {
-      console.log('cococ  ', confirmPassword)
-      alert("password doesn't match,rewrite it again")
-      this.pass.value = ''
-      this.conPass.value = ''
+    //       // go to the home page
+    //     }).catch(function (err) {
+    //       alert('this username is exist')
+    //     })
+    //   } else {
+    //     alert('enter your password')
+    //   }
+    // } else {
+    //   console.log('cococ  ', confirmPassword)
+    //   alert("password doesn't match,rewrite it again")
+    //   this.pass.value = ''
+    //   this.conPass.value = ''
+    // }
+
+    //Validate the email address
+    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+    if(!regex.test(email)){
+      alert("Please enter a valid email!");
     }
+    // Validate the password
+    if(password === "") {
+     alert("Please enter a valid passowrd");
+      } else if(password.length < 5) {
+         alert("Password length must be at least 5 characters. Please enter a valid password!")
+         } else if(password.length > 8) {
+            alert("Password length must be maximum 8 characters. Please enter a valid password!")
+            } else if(!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password)) ){
+               alert("Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!");
+               } else if (confirmPassword === password) {
+                  axios.post('/Company', {username: username,
+                   email: email,
+                   password: password
+                  }).then(function (res) {
+                    window.location.href = '/beneficiaries' // Go to the home page
+                  }).catch(function (err) {
+                    alert('This username already exists. Please try again!!');
+                  })
+                   } else {
+                      console.log(confirmPassword);
+                      alert("Password doesn't match. Please rewrite it again!!");
+                      this.pass.value = '';
+                      this.conPass.value = '';
+                  }
   };
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-  	if (confirmPassword === password) {
-      if (password !== '' && confirmPassword !== '') {
-        axios.post('/Donater', {username: username,
-          email: email,
-          password: password
-        }).then(function (res) {
-          console.log('hello')
-          window.location.href = '/donor'
-   	 // go to the home page
-        }).catch(function (err) {
-          alert('this username is exist')
-        })
-      } else {
-        alert('enter your password')
-      }
-    } else {
-      console.log('cococ  ', confirmPassword)
-      alert("password doesn't match,rewrite it again")
-      this.pass.value = ''
-      this.conPass.value = ''
+  	// if (confirmPassword === password) {
+   //    if (password !== '' && confirmPassword !== '') {
+   //      axios.post('/Donater', {username: username,
+   //        email: email,
+   //        password: password
+   //      }).then(function (res) {
+   //        console.log('hello')
+   //        window.location.href = '/donor'
+   // 	 // go to the home page
+   //      }).catch(function (err) {
+   //        alert('this username is exist')
+   //      })
+   //    } else {
+   //      alert('enter your password')
+   //    }
+   //  } else {
+   //    console.log('cococ  ', confirmPassword)
+   //    alert("password doesn't match,rewrite it again")
+   //    this.pass.value = ''
+   //    this.conPass.value = ''
+   //  }
+
+   //Validate the email address
+    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+    if(!regex.test(email)){
+      alert("Please enter a valid email!");
     }
+    // Validate the password
+    if(password === "") {
+     alert("Please enter a valid passowrd");
+      } else if(password.length < 5) {
+         alert("Password length must be at least 5 characters. Please enter a valid password!")
+         } else if(password.length > 8) {
+            alert("Password length must be maximum 8 characters. Please enter a valid password!")
+            } else if(!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password)) ){
+               alert("Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!");
+               } else if (confirmPassword === password) {
+                  axios.post('/Donater', {username: username,
+                   email: email,
+                   password: password
+                  }).then(function (res) {
+                    window.location.href = '/donor' // Go to the home page
+                  }).catch(function (err) {
+                    alert('This username already exists. Please try again!!');
+                  })
+                   } else {
+                      console.log(confirmPassword);
+                      alert("Password doesn't match. Please rewrite it again!!");
+                      this.pass.value = '';
+                      this.conPass.value = '';
+                  }
   };
 
   render () {
