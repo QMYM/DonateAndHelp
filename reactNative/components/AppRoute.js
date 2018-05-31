@@ -38,7 +38,8 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial
+            initial={true}
+                
 
           />
           <Scene
@@ -116,7 +117,6 @@ export default class AppRoute extends React.Component {
             key='Contactus'
             component={Contactus}
             title='Contactus'
-
           />
         </Scene>
       </Router>

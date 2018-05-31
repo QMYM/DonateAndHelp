@@ -93,7 +93,7 @@ class Search_Donor extends React.Component {
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
           <li><a href='/donor'>Home</a></li>
-          <li><a href='/Donor_Campaign'>Campaign</a></li>
+          <li><a href='/Donor_Campaign'>Donation</a></li>
         </ul>
             <form className='form-inline my-2 my-lg-0'>
           <Router>

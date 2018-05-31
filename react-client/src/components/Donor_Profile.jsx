@@ -232,7 +232,7 @@ class Donor_Profile extends React.Component {
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
               <li><a href='/donor'>Home</a></li>
-              <li><a href='/Donor_Campaign'>Campaign</a></li>
+              <li><a href='/Donor_Campaign'>Donation</a></li>
             </ul>
             <form className='form-inline my-2 my-lg-0'>
               <Router>
@@ -318,17 +318,17 @@ class Donor_Profile extends React.Component {
               <div className='modal-body'>
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='glyphicon glyphicon-user' /></span>
-                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Campaign Name' />
+                  <input type='text' className='form-control' name='campaignName' onChange={this.onChangeCampaign} placeholder='Donation Name' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-address-card-o' /></span>
-                  <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Campaign Description' />
+                  <input type='text' className='form-control' name='campaignDescription' onChange={this.onChangeCampaign} placeholder='Donation Description' />
                 </div>
                 <br />
                 <div className='input-group'>
                   <span className='input-group-addon'><i className='fa fa-automobile' /></span>
-                  <input type='text' className='form-control' name='campaignAmount' onChange={this.onChangeCampaign} placeholder='Campaign Amount' />
+                  <input type='text' className='form-control' name='campaignAmount' onChange={this.onChangeCampaign} placeholder='Donation Amount' />
                 </div>
                 <br />
               </div>
@@ -400,7 +400,7 @@ class Donor_Profile extends React.Component {
               <div className='col-md-8'>
                 <div className='profile-info-right'>
                   <ul className='nav nav-pills nav-pills-custom-minimal custom-minimal-bottom'>
-                    <li className='active'><a href='#activities' data-toggle='tab'>Campaign</a></li>
+                    <li className='active'><a href='#activities' data-toggle='tab'>ACTIVITIES</a></li>
                     <li><a href='#following' data-toggle='tab'>FOLLOWING</a></li>
                   </ul>
                   <div className='tab-content'>

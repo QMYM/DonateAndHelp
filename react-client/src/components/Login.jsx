@@ -75,7 +75,7 @@ class Login extends React.Component {
                   <div className='input-group mb-3'>
                     <select className='custom-select' value={this.state.value} onChange={this.alo}>
                       <option selected value='false'>Donor</option>
-                      <option value=''>Company</option>
+                      <option value=''>Beneficiary</option>
                     </select>
                   </div>
                   <br />

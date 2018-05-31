@@ -3,6 +3,7 @@ import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, F
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
+import { Container, Header, Content, Left, Body, Right  , Title } from 'native-base';
 
 class Beneficiaries_Campaign extends React.Component {
   constructor (props) {
@@ -26,18 +27,24 @@ class Beneficiaries_Campaign extends React.Component {
       campaignImage: this.state.campaignImage
     })
       .then(response => {
-        console.log('campaign has been posted!')
+        console.log('Fundraising has been posted!')
       }).catch(error => {
-        alert('wrong in posting a campaign!')
+        alert('wrong in posting a Fundraising!')
       })
   }
 
   render () {
     return (
       <View >
-
+       <Header>
+            <Left />
+            <Body>
+              <Title>Messages</Title>
+            </Body>
+            <Right />
+          </Header>
         <Jiro
-          label={'Type here your Campaign Name!'}
+          label={'Type here your Fundraising Name!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -45,7 +52,7 @@ class Beneficiaries_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Campaign Description!'}
+          label={'Type here your Fundraising Description!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -53,7 +60,7 @@ class Beneficiaries_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Campaign Amount!'}
+          label={'Type here your Fundraising Amount!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
