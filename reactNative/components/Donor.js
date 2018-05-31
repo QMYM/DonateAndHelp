@@ -113,6 +113,7 @@ class Donor extends React.Component {
               style={styles.img}/>
               <Text>{item.campaignDescription}</Text>
               <Text>{item.campaignAmount}</Text>
+              <Text>{item.category}</Text>
               <Button title='💰Donate'
               onPress={() => { this.setModalVisible(true), this.user(item._id) }} />
                 
