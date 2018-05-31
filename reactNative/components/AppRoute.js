@@ -38,7 +38,9 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial
+              initial={true}
+            
+                
 
           />
           <Scene
@@ -63,6 +65,7 @@ export default class AppRoute extends React.Component {
             hideNavBar
             component={Donor}
             title='Donor'
+            
 
           />
           <Scene key='Donor_Campaign'
@@ -84,12 +87,12 @@ export default class AppRoute extends React.Component {
           <Scene key='Message_Reciver'
             component={MessageReciver}
             title='Message_Reciver'
-
           />
           <Scene
             key='Beneficiaries'
             component={Beneficiaries}
             title='Beneficiaries'
+             
           />
           <Scene
             key='Beneficiaries_Tab'
@@ -116,7 +119,6 @@ export default class AppRoute extends React.Component {
             key='Contactus'
             component={Contactus}
             title='Contactus'
-
           />
         </Scene>
       </Router>

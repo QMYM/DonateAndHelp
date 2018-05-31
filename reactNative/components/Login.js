@@ -3,7 +3,7 @@ import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, Touchab
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Button , Spinner  } from 'native-base'
 
 const personIcon = require('./login1_person.png')
 
@@ -15,13 +15,14 @@ class Login extends React.Component {
     this.state = {
       userName: '',
       password: '',
-      user: ''
+      user: '',
+       loading: false 
     }
   }
 
   submitLoginDonater () { // send post request to the server
+    this.setState({loading: true})
     axios.post('https://donatandhelp.herokuapp.com/loginDonater', {
-
       userName: this.state.userName,
       password: this.state.password
     })
@@ -33,11 +34,11 @@ class Login extends React.Component {
       })
   };
   submitLoginCompany () {
+    this.setState({loading: true})
     axios.post('https://donatandhelp.herokuapp.com/loginCompany', {
       userName: this.state.userName,
-      password: this.state.password
+      password: this.state.password 
     })
-
       .then(response => {
         Actions.Beneficiaries_Tab()
         // should go to the home page from here
@@ -47,7 +48,20 @@ class Login extends React.Component {
   }
 
   render () {
+    if(this.state.loading === true)  {
+
     return (
+        <Container>
+          <Header />
+          <Content>
+            <Spinner />
+          </Content>
+        </Container>
+      )  
+    }
+    else{
+
+    return(
       <Container>
         <Content>
           <View style={styles.container}>
@@ -130,8 +144,9 @@ class Login extends React.Component {
           </View>
         </Content>
       </Container>
-    )
+      ) 
   }
+    } 
 }
 const styles = StyleSheet.create({
   markWrap: {
