@@ -428,7 +428,7 @@ exports.uploadImageCampaign = function (req, res) {
 }
 
 exports.postCompanyCampaign = function (req, res) {
-  console.log("server category", req.body.category)
+  console.log("mais is here alo!", req.body.category)
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
