@@ -7,6 +7,8 @@ import { Container, Header, Content, Button, Text, Icon, Title, Footer, FooterTa
 import { Drawer } from 'native-base'
 
 import Main from './Main'
+
+const { width } = Dimensions.get('window');
 class Home extends React.Component {
   constructor (props) {
     super(props)

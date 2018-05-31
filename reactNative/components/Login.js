@@ -3,7 +3,7 @@ import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, Touchab
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button , Spinner  } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Button ,Spinner } from 'native-base'
 
 const personIcon = require('./login1_person.png')
 
@@ -54,7 +54,7 @@ class Login extends React.Component {
         <Container>
           <Header />
           <Content>
-            <Spinner />
+            <Spinner  color='blue'/>
           </Content>
         </Container>
       )  
