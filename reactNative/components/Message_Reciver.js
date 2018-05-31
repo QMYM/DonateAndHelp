@@ -14,18 +14,11 @@ class Message extends React.Component {
       text: '',
       message: '',
       sender: '',
-      refresh:true ,
       M:''
     }
   }
-  async componentDidUpdate() {
-    
-  }
   componentDidMount () {
     this.openMail(this.props.text, this.props.message, this.props.sender)
-    this.setState({refresh:!this.state.refresh})
-
-    this.props.ref = !this.props.ref
   }
   sendMessage (to, text) {
     var x = this
@@ -33,8 +26,9 @@ class Message extends React.Component {
       .then((res) => {
         console.log('aaa' , res)
         Alert.alert("Your message has been send")
-        x.setState({M:res.message})
+        // x.setState({M:res.data.message})
         x.componentDidMount()
+        this.props.Mount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
@@ -70,14 +64,48 @@ class Message extends React.Component {
         console.log('err', err)
       })
   }
-
+  user () {
+    var x = this
+    axios.get('https://donatandhelp.herokuapp.com/sessionName')
+      .then(function (res) {
+        x.setState({sessionUser: res.data})
+      }).catch(function (err) {
+        console.log('error', err)
+      })
+  }
+  getPhotoForMessages () {
+    var x = this
+    var arr = []
+    var rec = []
+    var test = []
+    axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
+      .then(function (res) {
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].userInfo.length !== 0) {
+            if (!arr.includes(res.data[i].userInfo[0].username) && res.data[i].userInfo[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
+              test.push(res.data[i].userInfo)
+              arr.push(res.data[i].userInfo[0].username)
+            }
+          }
+          if (res.data[i].userRole.length !== 0) {
+            if (!arr.includes(res.data[i].userRole[0].username) && res.data[i].userRole[0].username !== x.state.sessionUser && res.data[i].reciver === x.state.sessionUser) {
+              test.push(res.data[i].userRole)
+              arr.push(res.data[i].userRole[0].username)
+            }
+          }
+        }
+        var merged = [].concat.apply([], test)
+        x.setState({reciver: merged})
+      }).catch(function (err) {
+        console.log('error', err)
+      })
+  }
   render () {
     return (
       <Container>
-        <Header />
         <Content>
+            <Text> {this.state.M}</Text>
           {this.state.rightMes.map(item =>
-
             <SwipeRow
               leftOpenValue={75}
               rightOpenValue={-75}
@@ -89,7 +117,7 @@ class Message extends React.Component {
               body={
                 <View>
                   <Text>{item.message}</Text>
-                  {this.state.M}
+                 
                 </View>
               }
               right={
