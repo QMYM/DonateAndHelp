@@ -64,11 +64,13 @@ class Beneficiaries extends React.Component {
         {this.state.camp.filter(searching(this.state.term)).map(item =>
 
           <View style={styles.campview} key={item._id}>
-          <Image 
-          source={{uri: item.campaignImage || 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3'}}
-              style={styles.img}/>
           
-            <Text style={{fontWeight: 'bold', textAlign: 'center'}}>{item.campaignName}</Text>
+          <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
+            <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
+            </View>
+            <Image 
+          source={{uri: item.campaignImage || 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'}}
+              style={styles.img}/>
             <Text>{item.campaignDescription}</Text>
             <Text>{item.campaignAmount}</Text>
 

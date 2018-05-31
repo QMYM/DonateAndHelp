@@ -101,16 +101,19 @@ class Donor extends React.Component {
             </View>
           </Modal>
 
-
+<Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
+             style={styles.img2} />
           {this.state.camp.filter(searching(this.state.term)).map(item =>
             <View style={styles.campview} key={item._id}>
-          <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3'||item.campaignImage}}
+          
+              <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
+              <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
+              </View>
+              <Image source={{uri: 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'||item.campaignImage}}
               style={styles.img}/>
-
-              <Text style={{fontWeight: 'bold', textAlign: 'center'}}>{item.campaignName}</Text>
               <Text>{item.campaignDescription}</Text>
-              <Text>{item.campaignAmount}</Text><Text>JD</Text>
-              <Button title='Donate'
+              <Text>{item.campaignAmount}</Text>
+              <Button title='💰Donate'
               onPress={() => { this.setModalVisible(true), this.user(item._id) }} />
                 
              
@@ -135,7 +138,7 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   campview: {
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 10,
     width: 300,
     height: 300,
@@ -159,7 +162,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     borderColor: '#d6d7da',
-  }
+  },
+  img2:{
+    width : 200,
+    height:120,
+    justifyContent: 'center',
+    marginBottom:40
+  },
 
 })
 
