@@ -3,6 +3,7 @@ import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, F
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
+import { Container, Header, Content, Left, Body, Right  , Title } from 'native-base';
 
 class Donor_Campaign extends React.Component {
   constructor (props) {
@@ -35,7 +36,14 @@ class Donor_Campaign extends React.Component {
   render () {
     return (
       <View >
-
+       <Header>
+            <Left />
+            <Body>
+              <Title>Messages</Title>
+            </Body>
+            <Right />
+          </Header>
+          
         <Jiro
           label={'Type here your Donation Name!'}
           // this is used as active and passive border color

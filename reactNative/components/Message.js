@@ -1,8 +1,10 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, View, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
+import { TouchableHighlight, StyleSheet, View, FlatList, ActivityIndicator, Alert, Image , TouchableOpacity} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Container, Header, Content, Thumbnail, Text, Input, Button, Item, Form, Label, Left, Body, Right, Icon, Title} from 'native-base'
+import Modal from 'react-native-modal'; // 2.4.0
+
 class Message extends React.Component {
   constructor (props) {
     super(props)
@@ -19,13 +21,13 @@ class Message extends React.Component {
       messageForDOM: '',
       modalVisible: false,
       check: true , 
-      Mount:''
+      Mount:'',
+      visibleModal: null,
     }
   }
   componentDidMount () {
     var x = this
     x.user()
-    this.state.ref =!this.state.ref
     x.getPhotoForMessages()
     axios.get('https://donatandhelp.herokuapp.com/recieveMessage')
       .then(function (response) {
@@ -46,7 +48,6 @@ class Message extends React.Component {
 
   user () {
     var x = this
-
     axios.get('https://donatandhelp.herokuapp.com/sessionName')
       .then(function (res) {
         x.setState({sessionUser: res.data})
@@ -54,6 +55,7 @@ class Message extends React.Component {
         console.log('error', err)
       })
   }
+  
   getPhotoForMessages () {
     var x = this
     var arr = []
@@ -116,19 +118,14 @@ class Message extends React.Component {
     this.setState({rightMes: arr})
     this.setState({rightMes2: arr2})
   }
+    _renderButton = (text, onPress) => (
+       <Button transparent onPress={onPress}>
+ <Icon active name='mail' />
+              </Button>
+  );
 
-  render () {
-    return (
-      <Container>
-        <Content>
-          <Modal
-            animationType='slide'
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              alert('Modal has been closed.')
-            }}>
-            <View style={{marginTop: 22}}>
+ _renderModalContent = () => (
+    <View style={styles.modalContent}>
               <Text>Send Message</Text>
               <Item floatingLabel last>
                 <Label>To</Label>
@@ -138,7 +135,6 @@ class Message extends React.Component {
                 />
               </Item>
               <Item floatingLabel last>
-                <Label>To</Label>
                 <Label>Subject</Label>
                 <Input
                   style={styles.input}
@@ -149,18 +145,24 @@ class Message extends React.Component {
                 onPress={() => this.sendMessage(this.state.user, this.state.text)}
               > <Text>Send</Text>
               </Button>
-              <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
-              }}><Text>Close</Text></Button>
-            </View>
-          </Modal>
+               <Button transparent onPress={ () => this.setState({ visibleModal: null })}>
+                <Text>Close</Text>
+              </Button>
+    </View>
+  );
+
+
+  render () {
+    return (
+      <Container>
+        <Content>
+          <Modal isVisible={this.state.visibleModal === 5} style={styles.bottomModal}>
+          {this._renderModalContent()}
+        </Modal>
+
           <Header>
             <Left>
-              <Button transparent onPress={() => {
-                this.setModalVisible(true)
-              }}>
-                <Icon active name='mail' />
-              </Button>
+        {this._renderButton('Bottom half modal', () => this.setState({ visibleModal: 5 }))}
             </Left>
             <Body>
               <Title>Messages</Title>
@@ -172,7 +174,8 @@ class Message extends React.Component {
             {this.state.reciver.map(item =>
               <View key={item._id}>
                 <Text
-                  onPress={() => Actions.Message_Reciver({text: item.username, message: this.state.messages, sender: this.state.senderMess , Mount: this.componentDidMount})}
+                  onPress={() => Actions.Message_Reciver({text: item.username,
+                   message: this.state.messages, sender: this.state.senderMess , Mount: this.componentDidMount})}
                 >
                   <Thumbnail large
                     source={{uri: item.image}}
@@ -193,7 +196,28 @@ const styles = StyleSheet.create({
     flex: 3,
     backgroundColor: '#fff',
     alignItems: 'center'
-  }
+  },
+   bottomModal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  }, 
+   button: {
+    backgroundColor: 'lightblue',
+    padding: 12,
+    margin: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
 })
 
 module.exports = Message
