@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
 import { Container, Header, Content, Left, Body, Right  , Title } from 'native-base';
 
+
 class Donor_Campaign extends React.Component {
   constructor (props) {
     super(props)
