@@ -165,7 +165,6 @@ class Message extends React.Component {
   logout () {
     axios.get('/logout')
       .then(function (res) {
-        console.log('ea eshe ')
         window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)
@@ -187,6 +186,8 @@ class Message extends React.Component {
   }
 
   render () {
+    console.log(this.state.reciver)
+    this.openMail(this.state.messages[0]._id)
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>

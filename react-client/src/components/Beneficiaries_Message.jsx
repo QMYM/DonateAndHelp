@@ -26,7 +26,8 @@ class Beneficiaries_Message extends React.Component {
       rightMes2: [],
       reciver: [],
       senderMess: [],
-      messageForDOM: ''
+      messageForDOM: '',
+      lastName:''
     }
     this.sendMessage = this.sendMessage.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -88,6 +89,7 @@ class Beneficiaries_Message extends React.Component {
       }
       var merged = [].concat.apply([], test)
       x.setState({reciver: merged})
+      x.setState({lastName:reciver[0]})
     }).catch(function (err) {
       console.log('error', err)
     })
@@ -181,6 +183,7 @@ class Beneficiaries_Message extends React.Component {
   }
 
   render () {
+    this.openMail(this.state.lastName)
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
