@@ -81,22 +81,21 @@ return(
 
   <div className="modal fade" id="Mohammed" role="dialog">
     <div className="modal-dialog">
-      <div className="modal-content">
-        <div className="modal-header">
+      <div className="modal-content text-center" >
+        <div className="modal-header w3-center">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title">Mohammed</h4>
         </div>
-        <div className="modal-body">
-         <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
-          <button onClick={this.sendMessageForDuraidi}>Send</button>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+             <div className='col-sm-6 form-group text-center' style={{  
+              maxWidth: "500px",
+              margin: 'auto'}}>
+            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+          <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForDuraidi}>Send</button>
+          <br/>
+          </div>
         </div>
       </div>
-      
     </div>
-  </div>
 
   <div className="modal fade" id="Qays" role="dialog2">
     <div className="modal-dialog">
@@ -105,13 +104,14 @@ return(
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title">Qays</h4>
         </div>
-        <div className="modal-body">
-          <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
-          <button onClick={this.sendMessage}>Send</button>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+           <div className='col-sm-6 form-group text-center' style={{  
+              maxWidth: "500px",
+              margin: 'auto'}}>
+            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+          <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessage}>Send</button>
+          <br/>
+          
+          </div>
       </div>
     </div>
   </div>
@@ -122,13 +122,14 @@ return(
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title">Mais</h4>
         </div>
-        <div className="modal-body">
-           <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
-          <button onClick={this.sendMessageForMais}>Send</button>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+          <div className='col-sm-6 form-group text-center' style={{  
+              maxWidth: "500px",
+              margin: 'auto'}}>
+            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+          <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForMais}>Send</button>
+          <br/>
+          
+          </div>
       </div>
     </div>
   </div>
@@ -139,13 +140,14 @@ return(
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title">Yussur</h4>
         </div>
-        <div className="modal-body">
-          <input type = "text" placeholder="type your text" onChange ={this.onChange}/>
-          <button onClick={this.sendMessageForYussur}>Send</button>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+          <div className='col-sm-6 form-group text-center' style={{  
+              maxWidth: "500px",
+              margin: 'auto'}}>
+            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+          <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForYussur}>Send</button>
+          <br/>
+          
+          </div>
       </div>
     </div>
   </div>
@@ -185,7 +187,10 @@ return(
 
   <div className='bgimg-2 w3-display-container w3-opacity-min' id='Home'>
     <div className='w3-display-middle' >
-      <span className='w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity'>MY <span className='w3-hide-small'>WEBSITE</span> LOGO</span>
+      <span className=''>
+                <img className='w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity' alt='Profile' src={ 'https://image.ibb.co/cJ1M8J/logo2.png'} />
+
+      </span>
     </div>
   </div>
 
@@ -195,8 +200,8 @@ return(
     <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
-        <p><b><i className='fa fa-user w3-margin-right' /></b></p><br />
-        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round w3-image w3-opacity w3-hover-opacity-off' alt='Photo of Me' width='500' height='333' />
+        <br />
+        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round w3-image ' alt='Photo of Me' width='500' height='500' />
       </div>
     </div>
   </div>
