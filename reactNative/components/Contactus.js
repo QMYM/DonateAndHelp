@@ -57,7 +57,14 @@ Yussur: false,
             console.log(err)
           })
       }
-
+ sendMessageForMais(text4){
+           axios.post("https://donatandhelp.herokuapp.com/serveiceSmsMais", {text:text4}).then((res)=>{
+            alert("your message has been send")
+            
+          }).catch((err)=>{
+            console.log(err)
+          })
+      }
 
   render () {
     return (
