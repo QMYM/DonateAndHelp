@@ -428,16 +428,19 @@ exports.uploadImageCampaign = function (req, res) {
 }
 
 exports.postCompanyCampaign = function (req, res) {
-  var campaignName = req.body.campaignName
-  var campaignDescription = req.body.campaignDescription
-  var campaignAmount = req.body.campaignAmount
-  var campaignImage = req.body.campaignImage
+  console.log("server category", req.body.category)
+  var campaignName = req.body.campaignName;
+  var campaignDescription = req.body.campaignDescription;
+  var campaignAmount = req.body.campaignAmount;
+  var campaignImage = req.body.campaignImage;
+  var category = req.body.category;
   var info = new db.companyCampaigns({
     campaignName: campaignName,
     campaignDescription: campaignDescription,
     campaignAmount: campaignAmount,
     campaignImage: campaignImage,
-    username: req.session.user
+    username: req.session.user,
+    category: category
   })
   info.save(function (err, data) {
     if (err) {

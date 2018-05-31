@@ -46,7 +46,8 @@ var companyCampaigns = new Schema({
   campaignDescription: {type: String},
   campaignAmount: {type: String},
   campaignImage: {type: String},
-  username: {type: String}
+  username: {type: String},
+  category: {type: String}
 }) // This schema is for beneficary campaigns
 
 var donorCampaigns = new Schema({
