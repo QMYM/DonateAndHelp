@@ -191,7 +191,7 @@ return(
 
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
-    <p className='w3-center'><em>Dononrs</em></p>
+    <p className='w3-center'><em>DonateAndHelp</em></p>
     <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>

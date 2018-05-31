@@ -51,6 +51,7 @@ class Donor extends React.Component {
     var x = this
     axios.get('/companyCam')
       .then(function (res) {
+        console.log("mais is here", res)
         x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
@@ -137,6 +138,7 @@ class Donor extends React.Component {
                       <p> {item.campaignDescription}</p>
                       <div className='panel-footer'>
                         <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                        <h3>{item.category}</h3>
                         <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
                       </div>
                     </div>
