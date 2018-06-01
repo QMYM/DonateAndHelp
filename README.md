@@ -34,7 +34,6 @@
 
 ## Installation:
 
- * Install React JS for frontend web development:
  * Install React Native for frontend mobile development
     `npm install -g create-react-native-app`
     `create-react-native-app DonateAndHelp`
@@ -63,16 +62,16 @@
 
 ## Usage:
 
-## Production: See our website [here]  (https://donatandhelp.herokuapp.com/)
+## Production: See our website [here] (https://donatandhelp.herokuapp.com/)
 
-## Project repo on GitHub: See our project repo [here]  (https://github.com/QMYM/DonateAndHelp)
+## Project repo on GitHub: See our project repo [here] (https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details:
 
- * [Qays Trad]: (https://github.com/QaysTrad)
- * [Yussur Alani]: (https://github.com/Yussur90)
- * [Mohammad Duraidi]: (https://github.com/Mohammedalduraidi)
- * [Mais Muhtaseb]: (https://github.com/MaisMuhtaseb)
+ * [Qays Trad](https://github.com/QaysTrad)
+ * [Yussur Alani](https://github.com/Yussur90)
+ * [Mohammad Duraidi](https://github.com/Mohammedalduraidi)
+ * [Mais Muhtaseb](https://github.com/MaisMuhtaseb)
  
 
 
