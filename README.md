@@ -62,9 +62,11 @@
 
 ## Usage:
 
-## Production: See our website [here] (https://donatandhelp.herokuapp.com/)
+## Production: 
+   See our website [here](https://donatandhelp.herokuapp.com)
 
-## Project repo on GitHub: See our project repo [here] (https://github.com/QMYM/DonateAndHelp)
+## Project repo on GitHub: 
+   See our project repo [here](https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details:
 
