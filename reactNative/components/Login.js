@@ -67,9 +67,9 @@ class Login extends React.Component {
                   <View style={styles.headerIconView}>
                     <TouchableOpacity style={styles.headerBackButtonView}>
                       <Image
-                      source={require('./back.png')}
-                      style={styles.backButtonIcon}
-                      resizeMode='contain'
+                        source={require('./back.png')}
+                        style={styles.backButtonIcon}
+                        resizeMode='contain'
                       />
                     </TouchableOpacity>
                   </View>
