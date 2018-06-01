@@ -13,10 +13,10 @@ class Contactus extends React.Component {
       text2:'',
       text3:"",
       text4:"",
-Duradi: false,
-Qays: false,
-Mais: false,
-Yussur: false,
+      Duradi: false,
+      Qays: false,
+      Mais: false,
+      Yussur: false
     }
   }
  setDuradi (visible) {
@@ -112,8 +112,6 @@ Yussur: false,
             </Body>
             <Right />
           </Header>
-
-           
           <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3'}}
               style={styles.img} />
@@ -247,9 +245,7 @@ Yussur: false,
             <Text>{'\n'}📍Amman , Jordan</Text>
             <Text> 📱Phone: +00 787888888</Text>
             <Text>✉️Email: mail@mail.com</Text>
-
         </View>
-       
         </Content>
         </Container>
     )

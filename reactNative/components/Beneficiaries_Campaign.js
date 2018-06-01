@@ -18,7 +18,6 @@ class Beneficiaries_Campaign extends React.Component {
 
     }
   }
-
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
     axios.post('https://donatandhelp.herokuapp.com/companycampaign', {
 
@@ -46,7 +45,7 @@ class Beneficiaries_Campaign extends React.Component {
             <Right />
           </Header>
         <Jiro
-          label={'Type here your Fundraising Name!'}
+          label={'Type here your Fundraising Campaign Name!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -54,7 +53,7 @@ class Beneficiaries_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Fundraising Description!'}
+          label={'Type here your Fundraising Campaign Description!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}
@@ -62,7 +61,7 @@ class Beneficiaries_Campaign extends React.Component {
         />
 
         <Jiro
-          label={'Type here your Fundraising Amount!'}
+          label={'Type here your Fundraising Campaign Amount!'}
           // this is used as active and passive border color
           borderColor={'#9b537a'}
           inputStyle={{ color: 'white' }}

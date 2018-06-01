@@ -8,38 +8,14 @@ class Signup extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
       user: 'true'
-
     }
   }
-
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-    // if (confirmPassword === password) {
-    //   if (password !== '' && confirmPassword !== '') {
-    //     axios.post('https://donatandhelp.herokuapp.com/Donater',
-    //       {
-    //         username: username,
-    //         email: email,
-    //         password: password,
-    //         user: ''
-    //       })
-    //       .then(function (res) {
-    //         Actions.Donor_Tab()
-    //       }).catch(function (err) {
-    //         console.log('err', err)
-    //       })
-    //   } else {
-    //     Alert.alert('enter your password')
-    //   }
-    // } else {
-    //   Alert.alert("password doesn't match,rewrite it again")
-    // }
-
      // Validate the email
      var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){
@@ -76,27 +52,6 @@ class Signup extends React.Component {
   }
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-    // if (confirmPassword === password) {
-    //   if (password !== '' && confirmPassword !== '') {
-    //     axios.post('https://donatandhelp.herokuapp.com/Company',
-    //       {
-    //         username: username,
-    //         email: email,
-    //         password: password,
-    //         user: ''
-    //       })
-    //       .then(function (res) {
-    //         Actions.Beneficiaries_Tab()
-    //       }).catch(function (err) {
-    //         console.log('err', err)
-    //       })
-    //   } else {
-    //     Alert.alert('enter your password')
-    //   }
-    // } else {
-    //   Alert.alert("password doesn't match,rewrite it again")
-    // }
-
     // Validate the email
      var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){
