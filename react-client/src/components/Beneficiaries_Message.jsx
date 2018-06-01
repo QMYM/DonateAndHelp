@@ -8,6 +8,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+import ReactLoading from 'react-loading';
 
 import BeneficiariesCampaign from './Beneficiaries_Campaign.jsx'
 import BeneficiariesProfile from './Beneficiaries_Profile.jsx'
@@ -27,7 +28,7 @@ class Beneficiaries_Message extends React.Component {
       reciver: [],
       senderMess: [],
       messageForDOM: '',
-      lastName:''
+      loading: true
     }
     this.sendMessage = this.sendMessage.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -46,6 +47,7 @@ class Beneficiaries_Message extends React.Component {
   }
 
   componentDidMount () {
+    setTimeout(() => this.setState({ loading: false }), 1500);
     this.getPhotoForMessages()
     var x = this
     x.user()
@@ -89,7 +91,7 @@ class Beneficiaries_Message extends React.Component {
       }
       var merged = [].concat.apply([], test)
       x.setState({reciver: merged})
-      x.setState({lastName:reciver[0]})
+
     }).catch(function (err) {
       console.log('error', err)
     })
@@ -183,7 +185,19 @@ class Beneficiaries_Message extends React.Component {
   }
 
   render () {
-    this.openMail(this.state.lastName)
+       const { loading } = this.state;
+    
+    if(loading) { // if your component doesn't have to wait for an async action, remove this block 
+     return(
+      <div className="container-fluid">    
+       <div className="row">
+          <div className="col-sm-3">
+      <ReactLoading type="spokes" color="black"  height={500} width={500} />
+      </div>
+      </div>
+      </div>
+      )
+    }else{
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
@@ -227,7 +241,7 @@ class Beneficiaries_Message extends React.Component {
             className='w3-bar-item w3-button w3-hide-large w3-large'>Close <i className='fa fa-remove' /></a>
           <a href='javascript:void(0)' className='w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align' data-toggle='modal' data-target='#myModal'>New Message <i className='w3-padding fa fa-pencil' /></a>
           {this.state.reciver.map(emp =>
-            <div >
+            <div key={emp._id}>
               <div id='Demo1' className=' w3-animate-left'>
                 <a href='javascript:void(0)' className='w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey' onClick={() => this.openMail(emp.username)}>
                   <div className='w3-container'>
@@ -285,7 +299,7 @@ class Beneficiaries_Message extends React.Component {
                     <div key={mes._id} className='msg messageReceived'>
                       {mes.message}
                       <span className='timestamp'>{item.time.slice(0, 10)}</span>
-                      <button className='btn btn-raised btn-danger' className='center block' type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
+                      <button className='btn btn-raised btn-danger' className='center block' type='button' onClick={() => this.remove(mes.sender, item._id)}><ion-icon name="trash"></ion-icon></button>
                       <br />
                     </div>
                   )
@@ -313,6 +327,8 @@ class Beneficiaries_Message extends React.Component {
 
       </div>
     )
+    }
+
   }
 }
 export default Beneficiaries_Message
