@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert, Picker} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
