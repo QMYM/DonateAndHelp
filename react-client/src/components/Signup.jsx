@@ -29,29 +29,6 @@ class Signup extends React.Component {
   };
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-    
-    // if (confirmPassword === password) {
-    //   if (password !== '' && confirmPassword !== '') {
-    //     axios.post('/Company', {username: username,
-    //       email: email,
-    //       password: password
-    //     }).then(function (res) {
-    //       window.location.href = '/beneficiaries'
-
-    //       // go to the home page
-    //     }).catch(function (err) {
-    //       alert('this username is exist')
-    //     })
-    //   } else {
-    //     alert('enter your password')
-    //   }
-    // } else {
-    //   console.log('cococ  ', confirmPassword)
-    //   alert("password doesn't match,rewrite it again")
-    //   this.pass.value = ''
-    //   this.conPass.value = ''
-    // }
-
     //Validate the email address
     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){
@@ -83,28 +60,6 @@ class Signup extends React.Component {
                   }
   };
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-  	// if (confirmPassword === password) {
-   //    if (password !== '' && confirmPassword !== '') {
-   //      axios.post('/Donater', {username: username,
-   //        email: email,
-   //        password: password
-   //      }).then(function (res) {
-   //        console.log('hello')
-   //        window.location.href = '/donor'
-   // 	 // go to the home page
-   //      }).catch(function (err) {
-   //        alert('this username is exist')
-   //      })
-   //    } else {
-   //      alert('enter your password')
-   //    }
-   //  } else {
-   //    console.log('cococ  ', confirmPassword)
-   //    alert("password doesn't match,rewrite it again")
-   //    this.pass.value = ''
-   //    this.conPass.value = ''
-   //  }
-
    //Validate the email address
     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){

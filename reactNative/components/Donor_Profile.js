@@ -36,7 +36,6 @@ class Donor_Profile extends React.Component {
     this.setState({edit: visible});
   }
 
-
   largeImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -334,8 +333,6 @@ class Donor_Profile extends React.Component {
   </View>
   </Modal>
 
-       
-
         <Animated.Image
           source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
           style={{
@@ -441,9 +438,6 @@ class Donor_Profile extends React.Component {
               {this.state.newAddress}
             </Text>
           </View>
-        
-
-
 
   {this.state.post.map(po => 
    <View key={po._id}>
@@ -485,7 +479,6 @@ class Donor_Profile extends React.Component {
    </Content>
    </View>
    )}
-
 
      <Button
          onPress={this._pickImage}
