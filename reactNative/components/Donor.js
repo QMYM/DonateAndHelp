@@ -1,9 +1,8 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Item, Input, Icon, Text, Content} from 'native-base'
-import { Button } from 'react-native-elements'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title  ,Item, Input } from 'native-base';
 
 function searching (term) {
   return function (x) {
@@ -74,8 +73,6 @@ class Donor extends React.Component {
 
       <View style={styles.container}>
 
-       
-
            <Modal
             animationType='slide'
             transparent={false}
@@ -86,27 +83,37 @@ class Donor extends React.Component {
             <View style={{marginTop: 22}}>
               <Text style={{marginTop:40}}>Payment</Text>
 
-              <Text>Amount</Text>
-              <TextInput
-                style={styles.input}
-                placeholder='Enter your user!'
+                <Item floatingLabel last>
+                <Input
+                placeholder="Amount"
+                     keyboardType="numeric"
                 onChangeText={(amount) => this.setState({amount})}
+                />
+              </Item>
+               <Item floatingLabel>
+                   <Input 
+                     placeholder="Credit Number"
+                     keyboardType="numeric" 
+                         />
+                  </Item>
+                   <Item floatingLabel>
+                   <Input 
+                     placeholder="Zip Code"
+                     keyboardType="numeric" 
+                         />
+                  </Item>  
+              <Button full danger
+                onPress={() => this.submitDonate(this.state.amount)}
+              > <Text>Donate</Text>
+              </Button>
+               <Button full dark transparent onPress={ () => this.setModalVisible(!this.state.modalVisible) }>
+                <Text>Close</Text>
+              </Button>
               />
-              <Text>Card Number</Text>
-              <TextInput
-                style={styles.input}
-                placeholder='Enter your text!'
-              />
-
-
-              <Button title='Donate'
-                onPress={() => { this.submitDonate(this.state.amount), this.setModalVisible(!this.state.modalVisible) }}
-              /> 
-              
             </View>
           </Modal>
 
-<Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
+          <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
              style={styles.img2} />
           {this.state.camp.filter(searching(this.state.term)).map(item =>
             <View style={styles.campview} key={item._id}>
@@ -119,16 +126,13 @@ class Donor extends React.Component {
               <Text>{item.campaignDescription}</Text>
               <Text>{item.campaignAmount}</Text>
               <Text>{item.category}</Text>
-              <Button title='💰Donate'
-              onPress={() => { this.setModalVisible(true), this.user(item._id) }} />
-                
-             
-
-
-             </View>
+                <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>
+                <Text>💰Donate</Text>
+              </Button>
+               />
+      </View>
         )}
       </View>
-       
         </Content>
         </Container>
     )

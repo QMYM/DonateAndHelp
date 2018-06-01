@@ -139,7 +139,7 @@ class Donor extends React.Component {
                       </div>
                       <div className='panel-body'>
                         <h2 >From : {item.username}</h2>
-                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
+                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
 
                       </div>
                       <p> {item.campaignDescription}</p>
