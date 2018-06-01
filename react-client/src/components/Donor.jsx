@@ -25,12 +25,15 @@ class Donor extends React.Component {
       camp: [],
       amount: '',
       term: '',
-      user: ''
+      user: '',
+
     }
     this.logout = this.logout.bind(this)
     this.search = this.search.bind(this)
     this.user = this.user.bind(this)
     this.handlechangeAmount = this.handlechangeAmount.bind(this)
+  
+
   }
 
   search (e) {
@@ -51,7 +54,6 @@ class Donor extends React.Component {
     var x = this
     axios.get('/companyCam')
       .then(function (res) {
-        console.log("mais is here", res)
         x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
@@ -66,14 +68,19 @@ class Donor extends React.Component {
   };
 
   submitDonate (amount) { // Donate for the beneficary campagin rendered in the home page
+    if(amount.length !== 0){
     axios.post('/editAmount', {amount: amount, user: this.state.user })
       .then(function (res) {
+        console.log("jackel is here",res.data)
         alert('Thanks For Donation')
         window.location.reload()
       })
       .catch(function (err) {
         alert('the amount is so high')
       })
+    }else{
+      alert("Enter the amount")
+    }
   }
 
   user (name) {
@@ -139,7 +146,7 @@ class Donor extends React.Component {
                       <div className='panel-footer'>
                         <h3>{item.campaignAmount}</h3><h3>JOD</h3>
                         <h3>{item.category}</h3>
-                        <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
+                        <button type='button' className='btn btn-info btn-lg'  data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
                       </div>
                     </div>
                   </div>
@@ -181,7 +188,7 @@ class Donor extends React.Component {
                 </div>
                 <div className='modal-footer'>
                   <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
-                  <button type='button' className='btn btn-default' data-dismiss='modal' onClick={() => this.submitDonate(this.state.amount)}>Donate</button>
+                  <button type='button' className='btn btn-default' data-dismiss='modal'  onClick={() => this.submitDonate(this.state.amount)}>Donate</button>
                 </div>
               </div>
 

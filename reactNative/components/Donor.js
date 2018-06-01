@@ -35,9 +35,11 @@ class Donor extends React.Component {
       }).catch(function (err) {
         console.log(err)
       })
+
   }
 
   submitDonate (amount) {
+    if(amount.length !== 0){
     axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
         alert('Thanks For Donation')
@@ -46,6 +48,9 @@ class Donor extends React.Component {
       .catch((err) => {
         alert('the amount is so high')
       })
+      }else{
+      alert("Enter the amount")
+    }
   }
   user (name) {
     this.setState({user: name})
@@ -65,7 +70,9 @@ class Donor extends React.Component {
           </Button>
         </Header>
         <Content>
+
       <View style={styles.container}>
+
            <Modal
             animationType='slide'
             transparent={false}
@@ -81,7 +88,6 @@ class Donor extends React.Component {
                 placeholder="Amount"
                      keyboardType="numeric"
                 onChangeText={(amount) => this.setState({amount})}
-<<<<<<< HEAD
                 />
               </Item>
                <Item floatingLabel>
@@ -103,20 +109,11 @@ class Donor extends React.Component {
                <Button full dark transparent onPress={ () => this.setModalVisible(!this.state.modalVisible) }>
                 <Text>Close</Text>
               </Button>
-=======
               />
-              <Text>Card Number</Text>
-              <TextInput
-                style={styles.input}
-                placeholder='Enter your text!'
-              />
-              <Button title='Donate'
-                onPress={() => { this.submitDonate(this.state.amount), this.setModalVisible(!this.state.modalVisible) }}
-              />      
->>>>>>> d04768f3d2da0c7076e0219ac5c19457396e01ec
             </View>
           </Modal>
-        <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
+
+          <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
              style={styles.img2} />
           {this.state.camp.filter(searching(this.state.term)).map(item =>
             <View style={styles.campview} key={item._id}>
@@ -129,20 +126,11 @@ class Donor extends React.Component {
               <Text>{item.campaignDescription}</Text>
               <Text>{item.campaignAmount}</Text>
               <Text>{item.category}</Text>
-<<<<<<< HEAD
                 <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>
                 <Text>💰Donate</Text>
               </Button>
                />
-                
-             
-
-
-=======
-              <Button title='💰Donate'
-              onPress={() => { this.setModalVisible(true), this.user(item._id) }} />
->>>>>>> d04768f3d2da0c7076e0219ac5c19457396e01ec
-             </View>
+      </View>
         )}
       </View>
         </Content>

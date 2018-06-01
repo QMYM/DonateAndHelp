@@ -19,11 +19,8 @@ class Beneficiaries extends React.Component {
       amount: '',
       term: '',
       modalVisible: false
-
     }
   }
-
-
 
   componentDidMount () {
     var x = this
@@ -35,8 +32,6 @@ class Beneficiaries extends React.Component {
       })
   }
 
- 
- 
   render () {
     return (
        <Container>
@@ -50,21 +45,11 @@ class Beneficiaries extends React.Component {
             <Text>Search</Text>
           </Button>
         </Header>
-
-
         <Content>
-
       <View style={styles.container}>
 
-
-     
-
-      
-
         {this.state.camp.filter(searching(this.state.term)).map(item =>
-
           <View style={styles.campview} key={item._id}>
-          
           <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
             <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
             </View>
@@ -73,14 +58,9 @@ class Beneficiaries extends React.Component {
               style={styles.img}/>
             <Text>{item.campaignDescription}</Text>
             <Text>{item.campaignAmount}</Text>
-
-         
-
-            
           </View>
         )}
       </View>
-       
         </Content>
         </Container>
     )
@@ -112,8 +92,6 @@ const styles = StyleSheet.create({
     height:60,
     justifyContent: 'center',
   },
- 
-
 })
 
 module.exports = Beneficiaries
