@@ -19,18 +19,18 @@
 ## Tech/framework used:
 
  * Frondend:
-  - React JS for web development
-  - React Native for mobile development
+  1. React JS for web development
+  2. React Native for mobile development
  * Backend:
-  - Node/Express
-  - MongoDB
+  1. Node/Express
+  2. MongoDB
  * Testing:
-  - Mocha
-  - Chai
+  1. Mocha
+  2. Chai
  * API:
-  - Nexmo (sending SMS) 
+  1. Nexmo (sending SMS) 
  * Deployment:
-  - Heroku 
+  1. Heroku 
 
 ## Installation:
 
