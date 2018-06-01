@@ -19,7 +19,7 @@ class Message extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq',
+      image: 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg',
       user: '',
       text: '',
       messages: [],

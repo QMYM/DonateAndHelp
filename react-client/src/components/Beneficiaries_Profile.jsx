@@ -262,7 +262,7 @@ class Beneficiaries_Profile extends React.Component {
           <div className='container'>
             <div className='profile'>
               <div className='container'>
-                <img className='image-lg ' alt='Profile' src={this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
+                <img className='image-lg ' alt='Profile' src={this.state.image2 || 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'} />
                 <div className='middle '>
                   <div className='text '>
                     <label className='btn' style={{color: 'black'}}>
@@ -352,7 +352,7 @@ class Beneficiaries_Profile extends React.Component {
                 <div className='profile-info-left' >
                   <div className='text-center'>
                     <div className='container'>
-                      <Image circle className='avatar ' alt='Profile image example' src={this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
+                      <Image circle className='avatar ' alt='Profile image example' src={this.state.image || 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg'} />
                       <div className='middle '>
                         <div className='text '>
                           <label className='btn' style={{color: 'black'}}>
@@ -415,7 +415,7 @@ class Beneficiaries_Profile extends React.Component {
                       {this.state.post.map(po =>
                         <div className='media activity-item'>
                           <a href='#' className='pull-left'>
-                            <img src={this.state.image || 'http://bootdey.com/img/Content/avatar/avatar3.png'} alt='Avatar' className='media-object avatar' />
+                            <img src={this.state.image || 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg'} alt='Avatar' className='media-object avatar' />
                           </a>
                           <div className='media-body'>
                             <p className='activity-title'><a href='#'>{this.state.user}</a> posted something <small className='text-muted'>- 1h ago</small></p>
@@ -428,7 +428,7 @@ class Beneficiaries_Profile extends React.Component {
                                 <h3>{po.campaignAmount}</h3>
                               </div>
                               <a href='#' className='thumbnail'>
-                                <img src={po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'} alt='Uploaded photo' style={{width: '300px', hight: '300px'}} />
+                                <img src={po.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Uploaded photo' style={{width: '300px', hight: '300px'}} />
                               </a>
                             </div>
                           </div>
