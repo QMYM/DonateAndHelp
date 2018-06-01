@@ -10,7 +10,6 @@ import {
 } from 'react-router-dom'
 import axios from 'axios'
 import {Button, Navbar} from 'react-bootstrap'
-
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 import TheApp from './TheApp.jsx'
@@ -53,9 +52,6 @@ constructor (props) {
           })
   }
 
-
-
-
  sendMessageForDuraidi(){
            axios.post("/serveiceSmsDuraidi", {text:this.state.value}).then((res)=>{
             alert("your message has been send")
@@ -77,8 +73,6 @@ constructor (props) {
 render(){
 return(
 <div >
-
-
   <div className="modal fade" id="Mohammed" role="dialog">
     <div className="modal-dialog">
       <div className="modal-content">
@@ -97,7 +91,6 @@ return(
       
     </div>
   </div>
-
   <div className="modal fade" id="Qays" role="dialog2">
     <div className="modal-dialog">
       <div className="modal-content">
@@ -154,13 +147,12 @@ return(
     <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
       <span className='navbar-toggler-icon' />
     </button>
-
     <div className='collapse navbar-collapse' id='navbarSupportedContent'>
       <ul className='navbar-nav mr-auto' />
       <ul className='navbar-nav mr-auto nav '>
         <li><a href='#Home'>Main</a></li>
-        <li><a href='#About'>About</a></li>
-        <li><a href='#Contact' >Contact</a></li>
+        <li><a href='#About'>About Us</a></li>
+        <li><a href='#Contact' >Contact Us</a></li>
         <li><a href='/theapp' >The App</a></li>
         <Route path='/theapp' component={TheApp} />
       </ul>
@@ -188,11 +180,10 @@ return(
       <span className='w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity'>MY <span className='w3-hide-small'>WEBSITE</span> LOGO</span>
     </div>
   </div>
-
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
-    <p className='w3-center'><em>DonateAndHelp</em></p>
-    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
+    <p className='w3-center'><em>Reach more donors and raise more money with DonateAndHelp</em></p>
+    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in Jordan and MENA region , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiary.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
         <p><b><i className='fa fa-user w3-margin-right' /></b></p><br />
@@ -200,7 +191,6 @@ return(
       </div>
     </div>
   </div>
-
   <div className='w3-row w3-center w3-dark-grey w3-padding-16'>
     <div className='w3-quarter w3-section'>
       <span className='w3-xlarge'>14+</span><br />
@@ -219,13 +209,11 @@ return(
   Meetings
     </div>
   </div>
-
   <div className='bgimg-3 w3-display-container w3-opacity-min'>
     <div className='w3-display-middle'>
       <span className='w3-xxlarge w3-text-white w3-wide'>IDEA</span>
     </div>
   </div>
-
   <div className=' w3-container w3-padding-64' id='portfolio'>
     <h3 className='w3-center'>Meet our awesome team</h3>
     <div className='w3-row-padding w3-grayscale'>
@@ -262,9 +250,7 @@ return(
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Yussur">Contact</button></p>
       </div>
     </div>
-
   </div>
-
   <div id='modal01' className='w3-modal w3-black' >
     <span className='w3-button w3-large w3-black w3-display-topright' title='Close Modal Image'><i className='fa fa-remove' /></span>
     <div className='w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64'>
@@ -272,19 +258,15 @@ return(
       <p id='caption' className='w3-opacity w3-large' />
     </div>
   </div>
-
   <div className='homeImg w3-display-container w3-opacity-min' id='Contact'>
     <div className='w3-display-middle'>
-      <span className='w3-xxlarge w3-text-white w3-wide'>CONTACT</span>
+      <span className='w3-xxlarge w3-text-white w3-wide'>CONTACT US</span>
     </div>
   </div>
-
   <div id='contact' className='container'>
     <br />
-
-    <h3 className='text-center'>You Can Contact With Us AnyTime </h3>
+    <h3 className='text-center'>You Can Contact Us Anytime</h3>
     <br />
-
     <div className='row'>
       <div className='col-md-4'>
         <p><span className='glyphicon glyphicon-map-marker' />Amman , Jordan</p>
@@ -311,7 +293,6 @@ return(
     </div>
     <br />
   </div>
-
   <footer className='w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off'>
     <a href='#home' className='w3-button w3-light-grey'><i className='fa fa-arrow-up w3-margin-right' />To the top</a>
     <div className='w3-xlarge w3-section'>
@@ -325,15 +306,11 @@ return(
       </ul>
     </div>
     <p>Powered by <a href='https://www.w3schools.com/w3css/default.asp' title='W3.CSS' target='_blank' className='w3-hover-text-green'>w3.css</a></p>
-  </footer>
-                                                                                                     
+  </footer>                                                                                                    
 </div>
-
 
   )  
 }
 }
-
-
 
 export default Home

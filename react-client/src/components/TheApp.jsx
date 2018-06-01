@@ -8,7 +8,6 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
-
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 import Home from './Home.jsx'
@@ -29,13 +28,12 @@ class TheApp extends React.Component {
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
-
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
               <li><a href='/'>Main</a></li>
-              <li><a href='/'>About</a></li>
-              <li><a href='/' >Contact</a></li>
+              <li><a href='/'>About Us</a></li>
+              <li><a href='/' >Contact Us</a></li>
               <li><a href='/theapp' >The App</a></li>
             </ul>
             <form className='form-inline my-2 my-lg-0'>
@@ -56,7 +54,6 @@ class TheApp extends React.Component {
             </form>
           </div>
         </nav>
-
         <header className='w3-display-container w3-center'>
           <button className='w3-button w3-block w3-green w3-hide-large w3-hide-medium' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button>
           <div className='mySlides w3-animate-opacity'>
@@ -95,14 +92,14 @@ class TheApp extends React.Component {
           <a className='w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey' onClick='plusDivs(1)'>Take Tour <i className='fa fa-angle-right' /></a>
           <a className='w3-button w3-block w3-black w3-hide-large w3-hide-medium' onClick='plusDivs(1)'>Take Tour <i className='fa fa-angle-right' /></a>
         </header>
-
         <div className='w3-padding-64 w3-white'>
           <div className='w3-row-padding'>
             <div className='w3-col l8 m6'>
               <h1 className='w3-jumbo'><b>The App</b></h1>
               <h1 className='w3-xxxlarge w3-text-green'><b>Why buy it?</b></h1>
-              <p><span className='w3-xlarge'>Take photos like a pro.</span> You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <p><span className='w3-xlarge'>Reach more donors and raise more money with DonateAndHelp.</span></p>
+              <p>Our platform is leading in fundraising and collect donations for beneficiaries in Jordan and MENA region. DonateAndHelp is easy to use, helpful and scales to any 
+              size fundraiser. Similarly, donors can upload any items for donation for any beneficiay.</p>
               <button className='w3-button w3-light-grey w3-padding-large w3-section w3-hide-small' onClick="document.getElementById('download').style.display='block'">
                 <i className='fa fa-download' /> Download Application
               </button>
@@ -119,7 +116,6 @@ class TheApp extends React.Component {
             </div>
           </div>
         </div>
-
         <div id='download' className='w3-modal w3-animate-opacity'>
           <div className='w3-modal-content' style={{padding: 32}}>
             <div className='w3-container w3-white'>
@@ -132,7 +128,6 @@ class TheApp extends React.Component {
             </div>
           </div>
         </div>
-
         <div className='w3-padding-64 w3-light-grey'>
           <div className='w3-row-padding'>
             <div className='w3-col l4 m6'>
@@ -146,7 +141,6 @@ class TheApp extends React.Component {
             </div>
           </div>
         </div>
-
         <div className='w3-container w3-padding-64 w3-dark-grey w3-center'>
           <h1 className='w3-jumbo'><b>Features</b></h1>
           <p>This app is just so lorem ipsum.</p>
@@ -169,7 +163,6 @@ class TheApp extends React.Component {
               <p>Power</p>
             </div>
           </div>
-
           <div className='w3-row' style={{marginTop: 64}}>
             <div className='w3-col s3'>
               <i className='fa fa-diamond w3-text-white w3-jumbo' />
@@ -208,7 +201,6 @@ class TheApp extends React.Component {
             </div>
           </div>
         </div>
-
         <div className='w3-padding-64 w3-center w3-white'>
           <h1 className='w3-jumbo'><b>Pricing</b></h1>
           <p className='w3-large'>Choose a pricing plan that fits your needs.</p>
@@ -246,7 +238,6 @@ class TheApp extends React.Component {
           </div>
           <br />
         </div>
-
         <footer className='w3-container w3-padding-32 w3-light-grey w3-center w3-xlarge'>
           <div className='w3-section'>
             <i className='fa fa-facebook-official w3-hover-opacity' />
@@ -258,7 +249,6 @@ class TheApp extends React.Component {
           </div>
           <p className='w3-medium'>Powered by <a href='https://www.w3schools.com/w3css/default.asp' target='_blank' className='w3-hover-text-green'>w3.css</a></p>
         </footer>
-
       </div>
     )
   }
