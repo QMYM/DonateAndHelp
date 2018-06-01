@@ -36,9 +36,11 @@ class Donor extends React.Component {
       }).catch(function (err) {
         console.log(err)
       })
+
   }
 
   submitDonate (amount) {
+    if(amount.length !== 0){
     axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
         alert('Thanks For Donation')
@@ -47,6 +49,9 @@ class Donor extends React.Component {
       .catch((err) => {
         alert('the amount is so high')
       })
+      }else{
+      alert("Enter the amount")
+    }
   }
   user (name) {
     this.setState({user: name})
@@ -66,7 +71,11 @@ class Donor extends React.Component {
           </Button>
         </Header>
         <Content>
+
       <View style={styles.container}>
+
+       
+
            <Modal
             animationType='slide'
             transparent={false}
@@ -88,12 +97,16 @@ class Donor extends React.Component {
                 style={styles.input}
                 placeholder='Enter your text!'
               />
+
+
               <Button title='Donate'
                 onPress={() => { this.submitDonate(this.state.amount), this.setModalVisible(!this.state.modalVisible) }}
-              />      
+              /> 
+              
             </View>
           </Modal>
-        <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
+
+<Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
              style={styles.img2} />
           {this.state.camp.filter(searching(this.state.term)).map(item =>
             <View style={styles.campview} key={item._id}>
@@ -108,9 +121,14 @@ class Donor extends React.Component {
               <Text>{item.category}</Text>
               <Button title='💰Donate'
               onPress={() => { this.setModalVisible(true), this.user(item._id) }} />
+                
+             
+
+
              </View>
         )}
       </View>
+       
         </Content>
         </Container>
     )
