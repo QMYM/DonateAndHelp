@@ -89,13 +89,13 @@ export default class AppRoute extends React.Component {
             key='Beneficiaries'
             component={Beneficiaries}
             title='Beneficiaries'
-            
+
           />
           <Scene
             key='BeneficiariesCampaign'
             component={BeneficiariesCampaign}
             title='BeneficiariesCampaign'
-             
+
           />
 
           <Scene

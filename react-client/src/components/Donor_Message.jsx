@@ -8,6 +8,8 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+import ReactLoading from 'react-loading';
+
 
 import Donor_Profile from './Donor_Profile.jsx'
 import Search_Donor from './Search_Donor.jsx'
@@ -17,7 +19,7 @@ class Message extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM4S38P0ARNHrGJmB6g_SWarEbJgyipJ4rIDM3rwyzCcuH0Gnq',
+      image: 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg',
       user: '',
       text: '',
       messages: [],
@@ -27,7 +29,9 @@ class Message extends React.Component {
       rightMes2: [],
       reciver: [],
       senderMess: [],
-      messageForDOM: ''
+      messageForDOM: '',
+      loading: true
+
     }
     this.sendMessage = this.sendMessage.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -47,6 +51,7 @@ class Message extends React.Component {
   }
 
   componentDidMount () { // It will retrieve the history messages information when the messages page is loaded
+    setTimeout(() => this.setState({ loading: false }), 1500);
     this.getPhotoForMessages()
     var x = this
     x.user()
@@ -165,7 +170,6 @@ class Message extends React.Component {
   logout () {
     axios.get('/logout')
       .then(function (res) {
-        console.log('ea eshe ')
         window.location.href = '/'
       }).catch(function (err) {
         console.log('logout err ', err)
@@ -187,6 +191,19 @@ class Message extends React.Component {
   }
 
   render () {
+    const { loading } = this.state;
+    
+    if(loading) { // if your component doesn't have to wait for an async action, remove this block 
+     return(
+      <div className="container-fluid">    
+       <div className="row">
+          <div className="col-sm-3">
+      <ReactLoading type="spokes" color="black"  height={500} width={500} />
+      </div>
+      </div>
+      </div>
+      )
+    }else{
     return (
       <div >
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
@@ -290,7 +307,7 @@ class Message extends React.Component {
                     <div key={mes._id} className='msg messageReceived'>
                       {mes.message}
                       <span className='timestamp'>{item.time.slice(0, 10)}</span>
-                      <button className='btn btn-raised btn-danger' className='center block' type='button' onClick={() => this.remove(mes.sender, item._id)}>Remove</button>
+                      <button className='btn btn-raised btn-danger' className='center block' type='button' onClick={() => this.remove(mes.sender, item._id)}><i className='fa fa-remove' /></button>
                       <br />
                     </div>
                   )
@@ -318,6 +335,7 @@ class Message extends React.Component {
 
       </div>
     )
+    }
   }
 }
 export default Message

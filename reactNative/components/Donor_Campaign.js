@@ -1,10 +1,9 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, FlatList, ActivityIndicator, Alert} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, Alert} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
-import { Container, Header, Content, Left, Body, Right  , Title } from 'native-base';
-
+import { Container, Header, Content, Left, Body, Right, Title, Button} from 'native-base'
 
 class Donor_Campaign extends React.Component {
   constructor (props) {
@@ -37,40 +36,42 @@ class Donor_Campaign extends React.Component {
   render () {
     return (
       <View >
-       <Header>
-            <Left />
-            <Body>
-              <Title>Messages</Title>
-            </Body>
-            <Right />
-          </Header>
-          
+        <Header>
+          <Left />
+          <Body>
+            <Title>Campaign</Title>
+          </Body>
+          <Right />
+        </Header>
+
         <Jiro
-          label={'Type here your Donation Name!'}
+          label={'Donation Name!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignName) => this.setState({campaignName})}
         />
 
         <Jiro
-          label={'Type here your Donation Description!'}
+          label={'Donation Description!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
         />
 
         <Jiro
-          label={'Type here your Donation Amount!'}
+          label={'Donation Amount!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
         />
 
-        <Button onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
-          title='Submit' />
+        <Button full dark transparent
+          onPress={() => this.submitCampaign(this.state.campaignName, this.state.description,
+            this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
+        ><Text>Submit</Text></Button>
       </View>
     )
   }

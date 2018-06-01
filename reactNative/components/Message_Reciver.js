@@ -14,7 +14,7 @@ class Message extends React.Component {
       text: '',
       message: '',
       sender: '',
-      M:''
+      M: ''
     }
   }
   componentDidMount () {
@@ -24,8 +24,8 @@ class Message extends React.Component {
     var x = this
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then((res) => {
-        console.log('aaa' , res)
-        Alert.alert("Your message has been send")
+        console.log('aaa', res)
+        Alert.alert('Your message has been send')
         // x.setState({M:res.data.message})
         x.componentDidMount()
         this.props.Mount()
@@ -104,7 +104,7 @@ class Message extends React.Component {
     return (
       <Container>
         <Content>
-            <Text> {this.state.M}</Text>
+          <Text> {this.state.M}</Text>
           {this.state.rightMes.map(item =>
             <SwipeRow
               leftOpenValue={75}
@@ -117,11 +117,11 @@ class Message extends React.Component {
               body={
                 <View>
                   <Text>{item.message}</Text>
-                 
+
                 </View>
               }
               right={
-                <Button danger  onPress={() => this.remove(item.sender, item._id)}>
+                <Button danger onPress={() => this.remove(item.sender, item._id)}>
                   <Icon active name='trash' />
                 </Button>
               }
@@ -143,7 +143,7 @@ class Message extends React.Component {
                 </View>
               }
               right={
-                <Button danger  onPress={() => this.remove(item.sender, item._id)}>
+                <Button danger onPress={() => this.remove(item.sender, item._id)}>
                   <Icon active name='trash' />
                 </Button>
               } />

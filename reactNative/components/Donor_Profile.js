@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal , StyleSheet , TouchableHighlight, Animated ,TextInput , FlatList, ActivityIndicator,  Alert, Image} from 'react-native';
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'; 
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title } from 'native-base';
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title  ,Item, Input } from 'native-base';
 import { ImagePicker } from 'expo';
 import * as Expo from "expo";
 
@@ -270,26 +270,28 @@ class Donor_Profile extends React.Component {
   }}>
   <View style={{marginTop: 22}}>
   <Text>Information</Text>
-  <Text>Phone Number: </Text>      
-  <TextInput
-  placeholder="Type here your phone number!"
+   <Item floatingLabel>
+        <Input 
+  placeholder="Phone Number"
   keyboardType="numeric" 
   onChangeText={(contactNum) => this.setState({contactNum})}
-  />
-  <Text>Description: </Text>
-  <TextInput
-  placeholder="Type here a description!"
+        />
+  </Item>      
+    <Item floatingLabel>
+        <Input placeholder='Description'
   onChangeText={(description) => this.setState({description})}
-  />
-  <Text>Address: </Text>
-  <TextInput
-  placeholder="Type here your address!"
+        />
+  </Item> 
+      <Item floatingLabel>
+        <Input 
+  placeholder="Address"
   onChangeText={(address) => this.setState({address})}
-  />
-  <Button
+        />
+  </Item> 
+  <Button full danger
   onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
   ><Text>Done</Text></Button>
-  <Button onPress={() => {
+  <Button  full dark transparent onPress={() => {
     this.setModalVisible(!this.state.modalVisible);
   }}><Text>Close</Text></Button>
   </View>
@@ -304,30 +306,31 @@ class Donor_Profile extends React.Component {
   }}>
   <View style={{marginTop: 22}}>
   <Text>Edit</Text>
-  <Text>Donation Name: </Text>
-  <TextInput
-  placeholder="Type here your Donation Name!"
+     <Item floatingLabel>
+        <Input 
+  placeholder="Donation Name"
   onChangeText={(campaignName) => this.setState({campaignName})}
-  />
+        />
+  </Item>   
 
-  <Text>Donation Description: </Text>
-   <TextInput
-  placeholder="Type here your Donation Description!"
+       <Item floatingLabel>
+        <Input 
+  placeholder="Donation Description"
   onChangeText={(campaignDescription) => this.setState({campaignDescription})}
-  />
-
-  <Text>Donation Amount: </Text>
-   <TextInput
-  placeholder="Type here your Donation Amount!"
+        />
+  </Item>   
+         <Item floatingLabel>
+        <Input 
+  placeholder="Donation Amount"
   onChangeText={(campaignAmount) => this.setState({campaignAmount})}
-  />
-
-  <Button
+        />
+  </Item>   
+  <Button full danger
   onPress={() => this.updateCampaign(this.state.id, this.state.campaignName,
    this.state.campaignDescription, this.state.campaignAmount, this.state.user)}
   ><Text>Update</Text></Button>
 
-  <Button onPress={() => {
+  <Button full dark transparent onPress={() => {
     this.setEdit(!this.state.edit);
   }}><Text>Close</Text></Button>
   </View>
@@ -453,7 +456,6 @@ class Donor_Profile extends React.Component {
    </CardItem>
    <CardItem cardBody>
    <Image
-
    style={{height: 200, width: null, flex: 1}}
    source={{uri : po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
    />
@@ -480,12 +482,6 @@ class Donor_Profile extends React.Component {
    </View>
    )}
 
-     <Button
-         onPress={this._pickImage}
-       ><Text>Pick an image from camera roll</Text></Button>
-       <Button
-         onPress={this.largeImage}
-       ><Text>Pick an image from camera roll</Text></Button>
          </Animated.ScrollView>
            </View>
   )
@@ -580,9 +576,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "#555"
   },
-  topMargin: {
-    // marginTop: 25
-  },
   content: {
     padding: 10,
     backgroundColor: "white"
@@ -594,5 +587,11 @@ const styles = StyleSheet.create({
   }
 });
 
-
 module.exports = Donor_Profile;
+
+     // <Button
+     //     onPress={this._pickImage}
+     //   ><Text>Pick an image from camera roll</Text></Button>
+     //   <Button
+     //     onPress={this.largeImage}
+     //   ><Text>Pick an image from camera roll</Text></Button>

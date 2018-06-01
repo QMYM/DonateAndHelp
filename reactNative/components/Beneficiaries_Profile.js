@@ -3,6 +3,7 @@ import { Modal, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base'
+import { Font } from 'expo'
 
 class Beneficiaries_Profile extends React.Component {
   constructor (props) {
@@ -251,10 +252,8 @@ class Beneficiaries_Profile extends React.Component {
             style={styles.stretch}
             source={{uri: this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
           />
-
           <Text>About Me</Text>
           <Text>Some Description</Text>
-
           {this.state.post.map(po =>
             <View>
               <Content>
@@ -269,7 +268,6 @@ class Beneficiaries_Profile extends React.Component {
                   </CardItem>
                   <CardItem cardBody>
                     <Image
-
                       style={{height: 200, width: null, flex: 1}}
                       source={{uri: po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
                     />

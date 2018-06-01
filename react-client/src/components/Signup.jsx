@@ -28,6 +28,12 @@ class Signup extends React.Component {
     })
   };
 
+   _handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      console.log('do validate');
+    }
+  }
+
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
     //Validate the email address
     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
@@ -133,27 +139,37 @@ class Signup extends React.Component {
                     }
                     ref={el => this.pass = el} />
                 </div>
+
+
                 <div className='group'>
+                  { this.state.value === 'true' ? (
+                    <div>
+                       <div className='group'>
                   <label for='pass' className='label'>Repeat Password</label>
                   <input id='pass' type='password' className='input' data-type='password'
                     name='confirmPassword'
                     onChange={
                       this.onChange
                     }
+                    onKeyPress={this._handleKeyPress} 
                     ref={el => this.conPass = el} />
                 </div>
-
-                <div className='group'>
-                  { this.state.value === 'true' ? (
-                    <div>
-
                       <input type='submit' className='button' value='Signup' onClick={
-
                         () => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)
                       } />
                     </div>
                   )
                     : <div>
+                       <div className='group'>
+                  <label for='pass' className='label'>Repeat Password</label>
+                  <input id='pass' type='password' className='input' data-type='password'
+                    name='confirmPassword'
+                    onChange={
+                      this.onChange
+                    }
+                    onKeyPress={this._handleKeyPress} 
+                    ref={el => this.conPass = el} />
+                </div>
                       <input type='submit' className='button' value='Signup ' onClick={
 
                         () => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)

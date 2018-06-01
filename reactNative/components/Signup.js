@@ -16,74 +16,74 @@ class Signup extends React.Component {
     }
   }
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
-     // Validate the email
-     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
-    if(!regex.test(email)){
-      alert("Please enter a valid email!");
+    // Validate the email
+    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/
+    if (!regex.test(email)) {
+      alert('Please enter a valid email!')
     }
     // Validate the password
-    if(password === "") {
-     alert("Please enter a valid passowrd");
-      } else if(password.length < 5) {
-         alert("Password length must be at least 5 characters. Please enter a valid password!")
-         } else if(password.length > 8) {
-            alert("Password length must be maximum 8 characters. Please enter a valid password!")
-            } else if(!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password)) ){
-               alert("Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!");
-               } else if (confirmPassword === password) {
-                   axios.post('https://donatandhelp.herokuapp.com/Donater',
-                  {
-                   username: username,
-                   email: email,
-                   password: password,
-                   user: ''
-                  })
-                 .then(function (res) {
-                 Actions.Donor_Tab()
-                 }).catch(function (err) {
-                 console.log('err', err)
-               })
-                   } else {
-                      console.log(confirmPassword);
-                      alert("Password doesn't match. Please rewrite it again!!");
-                      this.pass.value = '';
-                      this.conPass.value = '';
-                  }
+    if (password === '') {
+      alert('Please enter a valid passowrd')
+    } else if (password.length < 5) {
+      alert('Password length must be at least 5 characters. Please enter a valid password!')
+    } else if (password.length > 8) {
+      alert('Password length must be maximum 8 characters. Please enter a valid password!')
+    } else if (!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password))) {
+      alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
+    } else if (confirmPassword === password) {
+      axios.post('https://donatandhelp.herokuapp.com/Donater',
+        {
+          username: username,
+          email: email,
+          password: password,
+          user: ''
+        })
+        .then(function (res) {
+          Actions.Donor_Tab()
+        }).catch(function (err) {
+          console.log('err', err)
+        })
+    } else {
+      console.log(confirmPassword)
+      alert("Password doesn't match. Please rewrite it again!!")
+      this.pass.value = ''
+      this.conPass.value = ''
+    }
   }
 
   submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
     // Validate the email
-     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
-    if(!regex.test(email)){
-      alert("Please enter a valid email!");
+    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/
+    if (!regex.test(email)) {
+      alert('Please enter a valid email!')
     }
     // Validate the password
-    if(password === "") {
-     alert("Please enter a valid passowrd");
-      } else if(password.length < 5) {
-         alert("Password length must be at least 5 characters. Please enter a valid password!")
-         } else if(password.length > 8) {
-            alert("Password length must be maximum 8 characters. Please enter a valid password!")
-            } else if(!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password)) ){
-               alert("Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!");
-               } else if (confirmPassword === password) {
-                   axios.post('https://donatandhelp.herokuapp.com/Company',
-                 {
-                    username: username,
-                    email: email,
-                    password: password
-                  })
-                  .then(function (res) {
-                   Actions.Beneficiaries_Tab()
-                  }).catch(function (err) {
-                   console.log('err', err)
-                  })
-                  } else {
-                      console.log(confirmPassword);
-                      alert("Password doesn't match. Please rewrite it again!!");
-                      this.pass.value = '';
-                      this.conPass.value = '';
-                  }
+    if (password === '') {
+      alert('Please enter a valid passowrd')
+    } else if (password.length < 5) {
+      alert('Password length must be at least 5 characters. Please enter a valid password!')
+    } else if (password.length > 8) {
+      alert('Password length must be maximum 8 characters. Please enter a valid password!')
+    } else if (!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password))) {
+      alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
+    } else if (confirmPassword === password) {
+      axios.post('https://donatandhelp.herokuapp.com/Company',
+        {
+          username: username,
+          email: email,
+          password: password
+        })
+        .then(function (res) {
+          Actions.Beneficiaries_Tab()
+        }).catch(function (err) {
+          console.log('err', err)
+        })
+    } else {
+      console.log(confirmPassword)
+      alert("Password doesn't match. Please rewrite it again!!")
+      this.pass.value = ''
+      this.conPass.value = ''
+    }
   };
 
   render () {
