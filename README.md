@@ -1,80 +1,78 @@
 
 # DonateAndHelp
 
-- Project title:
+## Project title:
 
- Our project name is "DonateAndHelp" which is a platform on a website and mobile application that connects beneficiaries with donors in order to receive money donations from donors in response to the campaigns uploaded by beneficiaries on the platform. In addition, donors can create campaigns for items they want to donate for beneficiaries.
+ Our project name is **"DonateAndHelp"** which is a platform on a website and mobile application that connects beneficiaries with donors in order to receive money donations from donors, in a response to the fundraising campaigns uploaded by beneficiaries on the platform. In addition, donors can upload their items for donations they want to donate for any beneficiaries.
 
-- Motivation:
+## Motivation:
 
- In Jordan, there are no online platforms to connect beneficiaries with donors, so "DonateAndHelp" can solve this issue and build bridges between beneficiaries and donors, where beneficiaries can recieve money donations online as well as donors can upload their items for donations.
+ We founded **"DonateAndHelp"** to connect beneficiaries with donors in Jordan and MENA region, as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. **"DonateAndHelp"** can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiaries.
 
-- Tech/framework used:
+## Project Team:
+ 
+ * Qays Trad
+ * Yussur Alani
+ * Mohammad Duraidi
+ * Mais Muhtaseb
 
- We used React Native and React JS for mobile and web developemnt respectively, while for backend developemnt, we used Node.js Express Framework and MongoDB.
+## Tech/framework used:
 
-- Features:
+ ###### Frondend:
+  * React JS for web development
+  * React Native for mobile development
+ ###### Backend:
+  * Node/Express
+  * MongoDB
+ ###### Testing:
+  * Mocha
+  * Chai
+ ###### API:
+  * Nexmo (sending SMS) 
+ ###### Deployment:
+  * Heroku 
 
- 1- The user whether beneficiary or donor can sign up and login into the platform.
- 2- The donor can create campaigns for items to donate. Similarly, benefeciary can create campaigns for money donations.
- 3- The donor can search for beneficiaries to donate. Likewise, benfeficary can search for donors.
- 4- Beneficiaries and donors can send messages to each others.
- 5- The user whether beneficiary or donor can edit and view their profile information in the profile page.
- 6- The user whether beneficiary or donor can upload and change the profile and background images in the profile page.
- 7- The user whether beneficiary or donor can view campaigns history in their profile pages.
+## Installation:
 
-- Project URL: 'https://qaysdonate.herokuapp.com/'
+ * Install React JS for frontend web development:
+ * Install React Native for frontend mobile development
+    `npm install -g create-react-native-app`
+    `create-react-native-app DonateAndHelp`
+    `cd DonateAndHelp`
+    `npm start`
+ * Install Express Node.js framework:
+    `npm install express`
+ * Install MongoDB:
+    `npm install mongoose`
 
-- Installation:
+## Features:
 
- 1- Install React JS for frontend web development:
- 2- Install React Native for frontend mobile development
- 3- Install Express Node.js framework:
-    - npm install express
- 4- Install MongoDB:
-    - npm install mongoose
- 5- Install chai, shallow, sinon, enzyme for React JS testing:
-    - npm install chai
-    - npm install sinon
-    - npm install sinon-chai
-    - npm i enzyme
-    - npm i enzyme-adapter-react-16
-    - npm i should-enzyme --save-dev
-    - npm install chai-enzyme --save-dev
-    - npm i enzyme-shallow-until
-    - npm install --save-dev enzyme-to-json
-    - npm i react-shallow-renderer
-    - npm install --save render-shallow
- 6- Install chai for backend testing:
-    - npm install chai
+ * User Authentication
+ * Create fundraising campaigns by beneficiaries and donation campaigns by donors
+ * Search for fundraising campaigns by donors and donation campaigns by beneficiaries
+ * Exchange messages between donors and beneficiaries
+ * Add and edit user profile
+ * Upload and view user images on web application
+ * View activities in user profile
+ * Contact project team through sending messages
 
-- Testing:
+## Running tests:
 
-  1- React JS testing:  Go to DonateAndHelp directory and run "npm run test-react" command line
-  2- Backend testing: Go to DonateAndHelp directory and run "npm run test" command line
+  ###### React JS:  `npm run test-react`
+  ###### Backend:   `npm run test` 
 
-- How to use?
+## Usage:
 
- 1- Authentication:
+## Production: See our website [here]  (https://donatandhelp.herokuapp.com/)
 
-  The user can visit our platform through this link 'https://qaysdonate.herokuapp.com/'. For new users, they should go to the signup page and choose donor or beneficiary options from the dropdownlist and fill in username, email, password to register, afterwards this user will be redirected to the home page, while existing users can go to login page directly and should choose donor or beneficiary from the dropdownlist then fill in username and password to login in order to be redirected to the home page.
+## Project repo on GitHub: See our project repo [here]  (https://github.com/QMYM/DonateAndHelp)
 
- 2- Home page functions:
+## Contact details:
 
- - Create campaigns
- - Messaging
- - Profile page
- - Search 
- - Logout
-
-- Project repo: 'https://github.com/QMYM/DonateAndHelp'
-
-- Contact details:
-
- 1- Qays Trad: https://github.com/QaysTrad
- 2- Yussur Alani: https://github.com/Yussur90
- 3- Mohammad AlDuraidi: https://github.com/Mohammedalduraidi
- 4- Mais Muhtaseb: https://github.com/MaisMuhtaseb
+ * [Qays Trad]: (https://github.com/QaysTrad)
+ * [Yussur Alani]: (https://github.com/Yussur90)
+ * [Mohammad Duraidi]: (https://github.com/Mohammedalduraidi)
+ * [Mais Muhtaseb]: (https://github.com/MaisMuhtaseb)
  
 
 

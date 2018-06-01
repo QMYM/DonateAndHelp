@@ -183,7 +183,7 @@ return(
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
     <p className='w3-center'><em>Reach more donors and raise more money with DonateAndHelp</em></p>
-    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in Jordan and MENA region , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiary.</p>
+    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in Jordan and MENA region, as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiary.</p>
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
         <p><b><i className='fa fa-user w3-margin-right' /></b></p><br />
