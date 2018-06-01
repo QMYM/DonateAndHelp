@@ -43,8 +43,14 @@ class Donor extends React.Component {
     if(amount.length !== 0){
     axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
+         if(res.status === 202){
+        alert("The donation has been completed!")
+        
+
+      }else{
         alert('Thanks For Donation')
         this.componentDidMount()
+        }
       })
       .catch((err) => {
         alert('the amount is so high')

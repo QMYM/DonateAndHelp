@@ -71,11 +71,17 @@ class Donor extends React.Component {
     if(amount.length !== 0){
     axios.post('/editAmount', {amount: amount, user: this.state.user })
       .then(function (res) {
-        console.log("jackel is here",res.data)
+      if(res.status === 202){
+        alert("The donation has been completed!")
+        
+
+      }else{
         alert('Thanks For Donation')
         window.location.reload()
+      }
       })
       .catch(function (err) {
+
         alert('the amount is so high')
       })
     }else{
