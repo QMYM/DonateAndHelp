@@ -653,24 +653,34 @@ exports.editAmount  = function (req , res) {
 
   db.companyCampaigns.findOne({_id : username},
     function (err , data) {
+
     if(err){
       throw err; 
-    } else { 
+    } 
+    else if(data.campaignAmount === "Donation Completed"){
+      console.log("my name ios jackel", data.campaignAmount)
+      res.sendStatus(202)
+    }
+
+    else { 
       var prevAmount = parseInt(data.campaignAmount) ; 
       if (prevAmount  < amount){
         res.sendStatus(401);
       } else {
-
+        
+    
         amount = prevAmount - amount;
 
+         
          if (amount === 0){
        amount = "Donation Completed"
       }
+
         db.companyCampaigns.update({_id : username} , {$set : {campaignAmount : amount.toString()}} , function (err , data) {
           if(err ){
             throw err
           }else{
-
+            console.log("hello data",data)
             res.send(data);
           }
         })

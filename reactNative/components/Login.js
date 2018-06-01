@@ -3,7 +3,7 @@ import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, Touchab
 import axios from 'axios'
 import promise from 'promise'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button , Spinner  } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Button, Spinner } from 'native-base'
 
 const personIcon = require('./login1_person.png')
 
@@ -16,7 +16,7 @@ class Login extends React.Component {
       userName: '',
       password: '',
       user: '',
-       loading: false 
+      loading: false
     }
   }
 
@@ -37,7 +37,7 @@ class Login extends React.Component {
     this.setState({loading: true})
     axios.post('https://donatandhelp.herokuapp.com/loginCompany', {
       userName: this.state.userName,
-      password: this.state.password 
+      password: this.state.password
     })
       .then(response => {
         Actions.Beneficiaries_Tab()
@@ -48,105 +48,102 @@ class Login extends React.Component {
   }
 
   render () {
-    if(this.state.loading === true)  {
-
-    return (
+    if (this.state.loading === true) {
+      return (
         <Container>
           <Header />
           <Content>
-            <Spinner />
+            <Spinner color='blue' />
           </Content>
         </Container>
-      )  
-    }
-    else{
-
-    return(
-      <Container>
-        <Content>
-          <View style={styles.container}>
-            <ImageBackground source={require('./login1_bg.png')} style={styles.background} resizeMode='cover'>
-              <View style={styles.headerContainer}>
-                <View style={styles.headerIconView}>
-                  <TouchableOpacity style={styles.headerBackButtonView}>
-                    <Image
+      )
+    } else {
+      return (
+        <Container>
+          <Content>
+            <View style={styles.container}>
+              <ImageBackground source={require('./login1_bg.png')} style={styles.background} resizeMode='cover'>
+                <View style={styles.headerContainer}>
+                  <View style={styles.headerIconView}>
+                    <TouchableOpacity style={styles.headerBackButtonView}>
+                      <Image
                       source={require('./back.png')}
                       style={styles.backButtonIcon}
                       resizeMode='contain'
-                    />
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+
+                <View style={styles.markWrap}>
+                  <Image source={require('./login1_mark.png')} style={styles.mark} resizeMode='contain' />
+                </View>
+                <Text style={styles.text}> Choose</Text>
+                <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
+                  <Picker.Item label='Company' value='' />
+                  <Picker.Item label='Donor' value='false' />
+                </Picker>
+
+                <View style={styles.wrapper}>
+                  <View style={styles.inputWrap}>
+                    <View style={styles.iconWrap}>
+                      <Image source={require('./login1_person.png')} style={styles.icon} resizeMode='contain' />
+                    </View>
+                    <TextInput
+                      placeholder='Username'
+                      placeholderTextColor='#FFF'
+                      style={styles.input}
+                      onChangeText={(userName) => this.setState({userName})} />
+                  </View>
+                  <View style={styles.inputWrap}>
+                    <View style={styles.iconWrap}>
+                      <Image source={require('./login1_lock.png')} style={styles.icon} resizeMode='contain' />
+                    </View>
+                    <TextInput
+                      placeholderTextColor='#FFF'
+                      placeholder='Password'
+                      style={styles.input}
+                      secureTextEntry
+                      onChangeText={(password) => this.setState({password})} />
+                  </View>
+                  <TouchableOpacity activeOpacity={0.5}>
+                    <View>
+                      <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity activeOpacity={0.5} />
+                </View>
+
+                { this.state.user === 'false' ? (
+                  <View style={styles.button}>
+                    <Button transparent full onPress={() => this.submitLoginDonater()}>
+                      <Text style={styles.buttonText}>Login Donor</Text>
+                    </Button>
+                  </View>
+                )
+                  : <View style={styles.button}>
+                    <Button transparent full onPress={() => this.submitLoginCompany()}>
+                      <Text style={styles.buttonText}>Login Company</Text>
+                    </Button>
+                  </View>
+                }
+
+                <View style={styles.signupWrap}>
+                  <Text style={styles.accountText}>Don't have an account?</Text>
+                  <TouchableOpacity activeOpacity={0.5}>
+                    <View>
+                      <Text style={styles.signupLinkText}>Sign Up</Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
-              </View>
 
-              <View style={styles.markWrap}>
-                <Image source={require('./login1_mark.png')} style={styles.mark} resizeMode='contain' />
-              </View>
-              <Text style={styles.text}> Choose</Text>
-              <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
-                <Picker.Item label='Company' value='' />
-                <Picker.Item label='Donor' value='false' />
-              </Picker>
-
-              <View style={styles.wrapper}>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={require('./login1_person.png')} style={styles.icon} resizeMode='contain' />
-                  </View>
-                  <TextInput
-                    placeholder='Username'
-                    placeholderTextColor='#FFF'
-                    style={styles.input}
-                    onChangeText={(userName) => this.setState({userName})} />
-                </View>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={require('./login1_lock.png')} style={styles.icon} resizeMode='contain' />
-                  </View>
-                  <TextInput
-                    placeholderTextColor='#FFF'
-                    placeholder='Password'
-                    style={styles.input}
-                    secureTextEntry
-                    onChangeText={(password) => this.setState({password})} />
-                </View>
-                <TouchableOpacity activeOpacity={0.5}>
-                  <View>
-                    <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} />
-              </View>
-
-              { this.state.user === 'false' ? (
-                <View style={styles.button}>
-                  <Button transparent full onPress={() => this.submitLoginDonater()}>
-                    <Text style={styles.buttonText}>Login Donor</Text>
-                  </Button>
-                </View>
-              )
-                : <View style={styles.button}>
-                  <Button transparent full onPress={() => this.submitLoginCompany()}>
-                    <Text style={styles.buttonText}>Login Company</Text>
-                  </Button>
-                </View>
-              }
-
-              <View style={styles.signupWrap}>
-                <Text style={styles.accountText}>Don't have an account?</Text>
-                <TouchableOpacity activeOpacity={0.5}>
-                  <View>
-                    <Text style={styles.signupLinkText}>Sign Up</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-
-            </ImageBackground>
-          </View>
-        </Content>
-      </Container>
-      ) 
+              </ImageBackground>
+            </View>
+          </Content>
+        </Container>
+      )
+    }
   }
-    } 
 }
 const styles = StyleSheet.create({
   markWrap: {

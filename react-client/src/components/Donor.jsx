@@ -71,11 +71,17 @@ class Donor extends React.Component {
     if(amount.length !== 0){
     axios.post('/editAmount', {amount: amount, user: this.state.user })
       .then(function (res) {
-        console.log("jackel is here",res.data)
+      if(res.status === 202){
+        alert("The donation has been completed!")
+        
+
+      }else{
         alert('Thanks For Donation')
         window.location.reload()
+      }
       })
       .catch(function (err) {
+
         alert('the amount is so high')
       })
     }else{
@@ -139,7 +145,7 @@ class Donor extends React.Component {
                       </div>
                       <div className='panel-body'>
                         <h2 >From : {item.username}</h2>
-                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'} />
+                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
 
                       </div>
                       <p> {item.campaignDescription}</p>

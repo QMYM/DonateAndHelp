@@ -119,7 +119,7 @@ class Message extends React.Component {
     this.setState({rightMes2: arr2})
   }
     _renderButton = (text, onPress) => (
-       <Button transparent onPress={onPress}>
+       <Button  transparent onPress={onPress}>
  <Icon active name='mail' />
               </Button>
   );
@@ -141,11 +141,11 @@ class Message extends React.Component {
                   onChangeText={(text) => this.setState({text})}
                 />
               </Item>
-              <Button
+              <Button full danger
                 onPress={() => this.sendMessage(this.state.user, this.state.text)}
               > <Text>Send</Text>
               </Button>
-               <Button transparent onPress={ () => this.setState({ visibleModal: null })}>
+               <Button full dark transparent onPress={ () => this.setState({ visibleModal: null })}>
                 <Text>Close</Text>
               </Button>
     </View>

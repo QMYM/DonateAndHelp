@@ -39,6 +39,7 @@ export default class AppRoute extends React.Component {
             hideNavBar={1}
             type='replace'
             initial={true}  
+            
           />
 
           <Scene
@@ -63,8 +64,6 @@ export default class AppRoute extends React.Component {
             hideNavBar
             component={Donor}
             title='Donor'
-            
-
           />
           <Scene key='Donor_Campaign'
             component={DonorCampaign}
@@ -90,13 +89,13 @@ export default class AppRoute extends React.Component {
             key='Beneficiaries'
             component={Beneficiaries}
             title='Beneficiaries'
-            
+
           />
           <Scene
             key='BeneficiariesCampaign'
             component={BeneficiariesCampaign}
             title='BeneficiariesCampaign'
-             
+
           />
 
           <Scene
@@ -110,7 +109,7 @@ export default class AppRoute extends React.Component {
             key='ImagePickerExample'
             component={ImagePickerExample}
             title='ImagePickerExample'
-
+            
           />
 
           <Scene

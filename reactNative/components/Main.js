@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D3D3D3'
   },
   yussur: {
-  marginTop: 30
+    marginTop: 30
   }
 })
 
