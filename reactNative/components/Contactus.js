@@ -10,61 +10,58 @@ class Contactus extends React.Component {
     this.state = {
       user: '',
       text1: '',
-      text2:'',
-      text3:"",
-      text4:"",
+      text2: '',
+      text3: '',
+      text4: '',
       Duradi: false,
       Qays: false,
       Mais: false,
       Yussur: false
     }
   }
- setDuradi (visible) {
+  setDuradi (visible) {
     this.setState({Duradi: visible})
   }
- setQays (visible) {
+  setQays (visible) {
     this.setState({Qays: visible})
   }
- setMais (visible) {
+  setMais (visible) {
     this.setState({Mais: visible})
   }
- setYussur (visible) {
+  setYussur (visible) {
     this.setState({Yussur: visible})
   }
 
-  sendMessage(text3){
-           axios.post("https://donatandhelp.herokuapp.com/serveiceSms", {text:text3}).then((res)=>{
-            alert("your message has been send")
-          }).catch((err)=>{
-            console.log(err)
-          })
-      }
+  sendMessage (text3) {
+    axios.post('https://donatandhelp.herokuapp.com/serveiceSms', {text: text3}).then((res) => {
+      alert('your message has been send')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
-   sendMessageForYussur(text2){
-           axios.post("https://donatandhelp.herokuapp.com/serveiceSmsYussur", {text:text2}).then((res)=>{
-            alert("your message has been send")
-            
-          }).catch((err)=>{
-            console.log(err)
-          })
-      }
+  sendMessageForYussur (text2) {
+    axios.post('https://donatandhelp.herokuapp.com/serveiceSmsYussur', {text: text2}).then((res) => {
+      alert('your message has been send')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
-       sendMessageForDuraidi(text1){
-           axios.post("https://donatandhelp.herokuapp.com/serveiceSmsDuraidi", {text:text1}).then((res)=>{
-            alert("your message has been send")
-            
-          }).catch((err)=>{
-            console.log(err)
-          })
-      }
- sendMessageForMais(text4){
-           axios.post("https://donatandhelp.herokuapp.com/serveiceSmsMais", {text:text4}).then((res)=>{
-            alert("your message has been send")
-            
-          }).catch((err)=>{
-            console.log(err)
-          })
-      }
+  sendMessageForDuraidi (text1) {
+    axios.post('https://donatandhelp.herokuapp.com/serveiceSmsDuraidi', {text: text1}).then((res) => {
+      alert('your message has been send')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  sendMessageForMais (text4) {
+    axios.post('https://donatandhelp.herokuapp.com/serveiceSmsMais', {text: text4}).then((res) => {
+      alert('your message has been send')
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   render () {
     return (
@@ -73,8 +70,8 @@ class Contactus extends React.Component {
           <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32207749_10204687882073435_1576086593419083776_n.jpg?_nc_cat=0&oh=bdede7d612bfa26c151908dc6ff63aa1&oe=5B9A74BB'}}
               style={styles.img} />
-             </View>
-            <Modal
+          </View>
+          <Modal
             animationType='slide'
             transparent={false}
             visible={this.state.Duradi}
@@ -91,7 +88,7 @@ class Contactus extends React.Component {
                 />
               </Item>
               <Button
-              onPress={()=>this.sendMessageForDuraidi(this.state.text1)}
+                onPress={() => this.sendMessageForDuraidi(this.state.text1)}
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
@@ -115,8 +112,8 @@ class Contactus extends React.Component {
           <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3'}}
               style={styles.img} />
-              </View>
-           <Modal
+          </View>
+          <Modal
             animationType='slide'
             transparent={false}
             visible={this.state.Qays}
@@ -126,7 +123,7 @@ class Contactus extends React.Component {
             <View style={{marginTop: 22}}>
               <Text>Qays Trad Message</Text>
               <Item floatingLabel last>
-            
+
                 <Label>Text</Label>
                 <Input
                   style={styles.input}
@@ -134,7 +131,7 @@ class Contactus extends React.Component {
                 />
               </Item>
               <Button
-              onPress={()=>this.sendMessage(this.state.text3)}
+                onPress={() => this.sendMessage(this.state.text3)}
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
@@ -155,11 +152,11 @@ class Contactus extends React.Component {
             </Body>
             <Right />
           </Header>
-            <View style={styles.cen}>
+          <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/18527753_10154354095631852_7605981024395115852_n.jpg?_nc_cat=0&oh=99bda792ec1a737846eda8ad22c31edc&oe=5B8DF2C3'}}
               style={styles.img} />
-              </View>
-            <Modal
+          </View>
+          <Modal
             animationType='slide'
             transparent={false}
             visible={this.state.Mais}
@@ -176,7 +173,7 @@ class Contactus extends React.Component {
                 />
               </Item>
               <Button
-              onPress={()=>this.sendMessageForDuraidi(this.state.text4)}
+                onPress={() => this.sendMessageForDuraidi(this.state.text4)}
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
@@ -197,11 +194,11 @@ class Contactus extends React.Component {
             </Body>
             <Right />
           </Header>
-            <View style={styles.cen}>
+          <View style={styles.cen}>
             <Image source={{uri: 'https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/27067119_10155568249638369_452583962590222091_n.jpg?_nc_cat=0&oh=d77b2bbfb5860f16dcf448fb1cb3dd7e&oe=5B8023B5'}}
               style={styles.img} />
-              </View>
-            <Modal
+          </View>
+          <Modal
             animationType='slide'
             transparent={false}
             visible={this.state.Yussur}
@@ -211,7 +208,7 @@ class Contactus extends React.Component {
             <View style={{marginTop: 22}}>
               <Text>Yussur Alani Message</Text>
               <Item floatingLabel last>
-            
+
                 <Label>Text</Label>
                 <Input
                   style={styles.input}
@@ -219,7 +216,7 @@ class Contactus extends React.Component {
                 />
               </Item>
               <Button
-              onPress={()=>this.sendMessageForYussur(this.state.text2)}
+                onPress={() => this.sendMessageForYussur(this.state.text2)}
               > <Text>Send</Text>
               </Button>
               <Button onPress={() => {
@@ -241,13 +238,13 @@ class Contactus extends React.Component {
             <Right />
           </Header>
             />
-            <View style={styles.cen}>
+          <View style={styles.cen}>
             <Text>{'\n'}📍Amman , Jordan</Text>
             <Text> 📱Phone: +00 787888888</Text>
             <Text>✉️Email: mail@mail.com</Text>
-        </View>
+          </View>
         </Content>
-        </Container>
+      </Container>
     )
   }
 }

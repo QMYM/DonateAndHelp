@@ -23,7 +23,7 @@
  6- The user whether beneficiary or donor can upload and change the profile and background images in the profile page.
  7- The user whether beneficiary or donor can view campaigns history in their profile pages.
 
-- Project URL: 'https://qaysdonate.herokuapp.com/'
+- Project URL: 'https://donatandhelp.herokuapp.com/'
 
 - Installation:
 

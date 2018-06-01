@@ -3,8 +3,7 @@ import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, FlatList,
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
-import { Container, Header, Content, Left, Body, Right  , Title , Button} from 'native-base';
-
+import { Container, Header, Content, Left, Body, Right, Title, Button} from 'native-base'
 
 class Donor_Campaign extends React.Component {
   constructor (props) {
@@ -37,14 +36,14 @@ class Donor_Campaign extends React.Component {
   render () {
     return (
       <View >
-       <Header>
-            <Left />
-            <Body>
-              <Title>Campaign</Title>
-            </Body>
-            <Right />
-          </Header>
-          
+        <Header>
+          <Left />
+          <Body>
+            <Title>Campaign</Title>
+          </Body>
+          <Right />
+        </Header>
+
         <Jiro
           label={'Donation Name!'}
           // this is used as active and passive border color
@@ -69,10 +68,10 @@ class Donor_Campaign extends React.Component {
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
         />
 
-  <Button full dark transparent
-         onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, 
-          this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
-    ><Text>Submit</Text></Button>
+        <Button full dark transparent
+          onPress={() => this.submitCampaign(this.state.campaignName, this.state.description,
+            this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
+        ><Text>Submit</Text></Button>
       </View>
     )
   }

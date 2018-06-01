@@ -3,6 +3,7 @@ import { Modal, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base'
+import { Font } from 'expo'
 
 class Beneficiaries_Profile extends React.Component {
   constructor (props) {

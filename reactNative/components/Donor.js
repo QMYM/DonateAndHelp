@@ -1,8 +1,8 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title  ,Item, Input } from 'native-base';
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input } from 'native-base'
 
 function searching (term) {
   return function (x) {
@@ -35,21 +35,20 @@ class Donor extends React.Component {
       }).catch(function (err) {
         console.log(err)
       })
-
   }
 
   submitDonate (amount) {
-    if(amount.length !== 0){
-    axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
-      .then((res) => {
-        alert('Thanks For Donation')
-        this.componentDidMount()
-      })
-      .catch((err) => {
-        alert('the amount is so high')
-      })
-      }else{
-      alert("Enter the amount")
+    if (amount.length !== 0) {
+      axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
+        .then((res) => {
+          alert('Thanks For Donation')
+          this.componentDidMount()
+        })
+        .catch((err) => {
+          alert('the amount is so high')
+        })
+    } else {
+      alert('Enter the amount')
     }
   }
   user (name) {
@@ -59,7 +58,7 @@ class Donor extends React.Component {
     return (
 
       <Container>
-      <Header searchBar rounded>
+        <Header searchBar rounded>
           <Item>
             <Icon name='ios-search' />
             <Input placeholder='Search' onChangeText={(term) => this.setState({term})} />
@@ -71,81 +70,81 @@ class Donor extends React.Component {
         </Header>
         <Content>
 
-      <View style={styles.container}>
+          <View style={styles.container}>
 
-           <Modal
-            animationType='slide'
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              alert('Modal has been closed.')
-            }}>
-            <View style={{marginTop: 22}}>
-              <Text style={{marginTop:40}}>Payment</Text>
+            <Modal
+              animationType='slide'
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                alert('Modal has been closed.')
+              }}>
+              <View style={{marginTop: 22}}>
+                <Text style={{marginTop: 40}}>Payment</Text>
 
                 <Item floatingLabel last>
-                <Input
-                placeholder="Amount"
-                     keyboardType="numeric"
-                onChangeText={(amount) => this.setState({amount})}
-                />
-              </Item>
-               <Item floatingLabel>
-                   <Input 
-                     placeholder="Credit Number"
-                     keyboardType="numeric" 
-                         />
-                  </Item>
-                   <Item floatingLabel>
-                   <Input 
-                     placeholder="Zip Code"
-                     keyboardType="numeric" 
-                         />
-                  </Item>  
-              <Button full danger
-                onPress={() => this.submitDonate(this.state.amount)}
-              > <Text>Donate</Text>
-              </Button>
-               <Button full dark transparent onPress={ () => this.setModalVisible(!this.state.modalVisible) }>
-                <Text>Close</Text>
-              </Button>
+                  <Input
+                    placeholder='Amount'
+                    keyboardType='numeric'
+                    onChangeText={(amount) => this.setState({amount})}
+                  />
+                </Item>
+                <Item floatingLabel>
+                  <Input
+                    placeholder='Credit Number'
+                    keyboardType='numeric'
+                  />
+                </Item>
+                <Item floatingLabel>
+                  <Input
+                    placeholder='Zip Code'
+                    keyboardType='numeric'
+                  />
+                </Item>
+                <Button full danger
+                  onPress={() => this.submitDonate(this.state.amount)}
+                > <Text>Donate</Text>
+                </Button>
+                <Button full dark transparent onPress={() => this.setModalVisible(!this.state.modalVisible)}>
+                  <Text>Close</Text>
+                </Button>
               />
-            </View>
-          </Modal>
-
-          <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
-             style={styles.img2} />
-          {this.state.camp.filter(searching(this.state.term)).map(item =>
-            <View style={styles.campview} key={item._id}>
-          
-              <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
-              <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
               </View>
-              <Image source={{uri: 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'||item.campaignImage}}
-              style={styles.img}/>
-              <Text>{item.campaignDescription}</Text>
-              <Text>{item.campaignAmount}</Text>
-              <Text>{item.category}</Text>
+            </Modal>
+
+            <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
+              style={styles.img2} />
+            {this.state.camp.filter(searching(this.state.term)).map(item =>
+              <View style={styles.campview} key={item._id}>
+
+                <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
+                </View>
+                <Image source={{uri: 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg' || item.campaignImage}}
+                  style={styles.img} />
+                <Text>{item.campaignDescription}</Text>
+                <Text>{item.campaignAmount}</Text>
+                <Text>{item.category}</Text>
                 <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>
-                <Text>💰Donate</Text>
-              </Button>
+                  <Text>💰Donate</Text>
+                </Button>
                />
-      </View>
-        )}
-      </View>
+              </View>
+            )}
+          </View>
         </Content>
-        </Container>
+      </Container>
     )
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:20,
+    marginTop: 20
   },
   campview: {
     marginTop: 20,
@@ -156,29 +155,29 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     borderColor: '#d6d7da',
-     alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-   img:{
-    width : 60,
-    height:60,
-    justifyContent: 'center',
+  img: {
+    width: 60,
+    height: 60,
+    justifyContent: 'center'
   },
-  search:{
-    marginBottom:20,
-    backgroundColor :'white',
-    width:'100%',
-    height:50,
+  search: {
+    marginBottom: 20,
+    backgroundColor: 'white',
+    width: '100%',
+    height: 50,
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: '#d6d7da',
+    borderColor: '#d6d7da'
   },
-  img2:{
-    width : 200,
-    height:120,
+  img2: {
+    width: 200,
+    height: 120,
     justifyContent: 'center',
-    marginBottom:40
-  },
+    marginBottom: 40
+  }
 
 })
 
