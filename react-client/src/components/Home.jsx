@@ -10,7 +10,6 @@ import {
 } from 'react-router-dom'
 import axios from 'axios'
 import {Button, Navbar} from 'react-bootstrap'
-
 import Signup from './Signup.jsx'
 import Login from './Login.jsx'
 import TheApp from './TheApp.jsx'
@@ -53,9 +52,6 @@ constructor (props) {
           })
   }
 
-
-
-
  sendMessageForDuraidi(){
            axios.post("/serveiceSmsDuraidi", {text:this.state.value}).then((res)=>{
             alert("your message has been send")
@@ -77,8 +73,6 @@ constructor (props) {
 render(){
 return(
 <div >
-
-
   <div className="modal fade" id="Mohammed" role="dialog">
     <div className="modal-dialog">
       <div className="modal-content text-center" >
@@ -89,7 +83,7 @@ return(
              <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
               margin: 'auto'}}>
-            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+            <input className='form-control' id='name' name='name' placeholder='Write Something To Us' type='text' onChange ={this.onChange} /><br/>
           <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForDuraidi}>Send</button>
           <br/>
           </div>
@@ -107,7 +101,7 @@ return(
            <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
               margin: 'auto'}}>
-            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+            <input className='form-control' id='name' name='name' placeholder='Write Something To Us' type='text' onChange ={this.onChange} /><br/>
           <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessage}>Send</button>
           <br/>
           
@@ -125,7 +119,7 @@ return(
           <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
               margin: 'auto'}}>
-            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+            <input className='form-control' id='name' name='name' placeholder='Write Something To Us' type='text' onChange ={this.onChange} /><br/>
           <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForMais}>Send</button>
           <br/>
           
@@ -143,7 +137,7 @@ return(
           <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
               margin: 'auto'}}>
-            <input className='form-control' id='name' name='name' placeholder='Name' type='text' onChange ={this.onChange} /><br/>
+            <input className='form-control' id='name' name='name' placeholder='Write Something To Us' type='text' onChange ={this.onChange} /><br/>
           <button className='btn btn-raised btn-secondary pull-right fa fa-paper-plane' data-dismiss="modal" onClick={this.sendMessageForYussur}>Send</button>
           <br/>
           
@@ -156,13 +150,12 @@ return(
     <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
       <span className='navbar-toggler-icon' />
     </button>
-
     <div className='collapse navbar-collapse' id='navbarSupportedContent'>
       <ul className='navbar-nav mr-auto' />
       <ul className='navbar-nav mr-auto nav '>
         <li><a href='#Home'>Main</a></li>
-        <li><a href='#About'>About</a></li>
-        <li><a href='#Contact' >Contact</a></li>
+        <li><a href='#About'>About Us</a></li>
+        <li><a href='#Contact' >Contact Us</a></li>
         <li><a href='/theapp' >The App</a></li>
         <Route path='/theapp' component={TheApp} />
       </ul>
@@ -186,26 +179,26 @@ return(
   </nav>
 
   <div className='bgimg-2 w3-display-container w3-opacity-min' id='Home'>
-    <div className='w3-display-middle' >
-      <span className=''>
-                <img className='w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity' alt='Profile' src={ 'https://image.ibb.co/cJ1M8J/logo2.png'} />
-
-      </span>
+    <div className='w3-display-topmiddle' >
+            <img className=' w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity' alt='Profile' src={ 'https://image.ibb.co/cJ1M8J/logo2.png'} />
     </div>
   </div>
-
   <div className='w3-content w3-container w3-padding-64' id='About'>
     <h3 className='w3-center'>ABOUT US</h3>
-    <p className='w3-center'><em>DonateAndHelp</em></p>
-    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in the Middle East and North Africa , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online as well as donors can upload their items for donations.</p>
+    <p className='w3-center'><em>Reach more donors and raise more money with DonateAndHelp</em></p>
+    <p>We founded "DonateAndHelp" to connect beneficiaries with donors in Jordan and MENA region , as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. "DonateAndHelp" can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiary.</p>
+        <br />
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
-        <br />
-        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round w3-image ' alt='Photo of Me' width='500' height='500' />
+    <div className="col-sm-6" >
+        <img src='https://i.pinimg.com/736x/da/f0/dd/daf0dddea2e450791d5a05091fc09ce8--little-children-precious-children.jpg' className='w3-round' alt='Photo of Me' width='250' height='500' />
+      </div>
+    <div className="col-sm-6" >
+        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round  ' alt='Photo of Me' width='500' height='500' />
       </div>
     </div>
   </div>
-
+  </div>
   <div className='w3-row w3-center w3-dark-grey w3-padding-16'>
     <div className='w3-quarter w3-section'>
       <span className='w3-xlarge'>14+</span><br />
@@ -224,15 +217,16 @@ return(
   Meetings
     </div>
   </div>
-
   <div className='bgimg-3 w3-display-container w3-opacity-min'>
     <div className='w3-display-middle'>
       <span className='w3-xxlarge w3-text-white w3-wide'>IDEA</span>
     </div>
   </div>
-
   <div className=' w3-container w3-padding-64' id='portfolio'>
-    <h3 className='w3-center'>Meet our awesome team</h3>
+    <h3 className='w3-center'>The Idea start from one of our team member the he was work on one of those beneficiaries , and he said something was not acceptable  , so we think of a way that can make the donor donate without any mistakes or scam   </h3>
+   <br/>
+   <br/>
+    <h1 className='w3-center'>Meet our awesome team</h1>
     <div className='w3-row-padding w3-grayscale'>
       <div className='w3-col l3 m6 w3-margin-bottom'>
         <img src='https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/23473196_915825728566887_4239089197692234922_n.jpg?_nc_cat=0&oh=c8d8c960fe956f1573fa8072743d69f2&oe=5B8FBDE3' alt='John' style={{width: '100%'}} />
@@ -266,10 +260,10 @@ return(
         <p className='w3-opacity'>Software Engineer</p>
         <p><button className='w3-button w3-light-grey w3-block' data-toggle="modal" data-target="#Yussur">Contact</button></p>
       </div>
+
     </div>
-
+    <h3 className='w3-center' style={{color:"#1D1E1E" ,fontSize:50}}>You can now click on the contact and send to everyone of us  SMS message :D </h3>
   </div>
-
   <div id='modal01' className='w3-modal w3-black' >
     <span className='w3-button w3-large w3-black w3-display-topright' title='Close Modal Image'><i className='fa fa-remove' /></span>
     <div className='w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64'>
@@ -277,19 +271,15 @@ return(
       <p id='caption' className='w3-opacity w3-large' />
     </div>
   </div>
-
   <div className='homeImg w3-display-container w3-opacity-min' id='Contact'>
     <div className='w3-display-middle'>
-      <span className='w3-xxlarge w3-text-white w3-wide'>CONTACT</span>
+      <span className='w3-xxlarge w3-text-white w3-wide'>CONTACT US</span>
     </div>
   </div>
-
   <div id='contact' className='container'>
     <br />
-
-    <h3 className='text-center'>You Can Contact With Us AnyTime </h3>
+    <h3 className='text-center'>You Can Contact Us Anytime</h3>
     <br />
-
     <div className='row'>
       <div className='col-md-4'>
         <p><span className='glyphicon glyphicon-map-marker' />Amman , Jordan</p>
@@ -316,9 +306,8 @@ return(
     </div>
     <br />
   </div>
-
   <footer className='w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off'>
-    <a href='#home' className='w3-button w3-light-grey'><i className='fa fa-arrow-up w3-margin-right' />To the top</a>
+    <a href='#' className='w3-button w3-light-grey'><i className='fa fa-arrow-up w3-margin-right' />To the top</a>
     <div className='w3-xlarge w3-section'>
       <ul className='collapse navbar-collapse'>
         <i className='fa fa-facebook-official w3-hover-opacity' />
@@ -329,16 +318,12 @@ return(
         <i className='fa fa-linkedin w3-hover-opacity' />
       </ul>
     </div>
-    <p>Powered by <a href='https://www.w3schools.com/w3css/default.asp' title='W3.CSS' target='_blank' className='w3-hover-text-green'>w3.css</a></p>
-  </footer>
-                                                                                                     
+    <p>Powered by <a href='https://www.w3schools.com/w3css/default.asp' title='W3.CSS' target='_blank' className='w3-hover-text-green'>Qays , Mais , Yussur , Mohammed (QMYM)</a></p>
+  </footer>                                                                                                    
 </div>
-
 
   )  
 }
 }
-
-
 
 export default Home

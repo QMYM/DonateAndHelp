@@ -36,7 +36,6 @@ class Donor_Profile extends React.Component {
     this.setState({edit: visible});
   }
 
-
   largeImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -483,6 +482,15 @@ class Donor_Profile extends React.Component {
    </View>
    )}
 
+<<<<<<< HEAD
+=======
+     <Button
+         onPress={this._pickImage}
+       ><Text>Pick an image from camera roll</Text></Button>
+       <Button
+         onPress={this.largeImage}
+       ><Text>Pick an image from camera roll</Text></Button>
+>>>>>>> d04768f3d2da0c7076e0219ac5c19457396e01ec
          </Animated.ScrollView>
            </View>
   )

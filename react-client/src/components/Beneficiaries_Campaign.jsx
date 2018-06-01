@@ -111,11 +111,11 @@ class Beneficiaries_Campaign extends React.Component {
         <Well>
           <div className='container'>
             <div className='row'>
-              <label for='usr'>Fundraising Name :</label>
+              <label for='usr'>Fundraising Campaign Name :</label>
               <input type='text' name='campaignName' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <label for='usr'>Fundraising Description :</label>
+              <label for='usr'>Fundraising Campaign Description :</label>
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <label for='usr'>Fundraising Amount :</label>
+              <label for='usr'>Fundraising Campaign Amount :</label>
               <input type='number' name='campaignAmount' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <div  className="form-group">
               <label for='usr'>Category :</label>
