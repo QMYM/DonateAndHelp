@@ -117,31 +117,29 @@ class Beneficiaries_Campaign extends React.Component {
               <input type='text' name='campaignDescription' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
               <label for='usr'>Fundraising Amount :</label>
               <input type='number' name='campaignAmount' onChange={this.onChange} className='form-control w3-round-xlarge' id='usr' />
-              <div>
+              <div  className="form-group">
               <label for='usr'>Category :</label>
-              <select  value ={this.state.category} onChange={this.onChangeOption}>
-              <option value="School & Education" >School & Education</option>
+              <select className="form-control" value ={this.state.category} onChange={this.onChangeOption}>
+             <option value="School & Education" >  School & Education </option>
               <option value="Medical & Health" >Medical & Health</option>
               <option value="Non Profit & Charity" >Non Profit & Charity</option>
               </select>
               </div>
               <br />
               <br />
+              <br />
+              <br />
+            </div>
               <form>
                <br />
                 <input type='file' name='image' onChange={this.uploadPhotoCampaign} />
               </form>
-              <br />
-              <br />
-
               <button className='btn btn-raised btn-warning' onClick={
                 () => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)
               } > Submit </button>
-            </div>
           </div>
         </Well>
         <h3 style={{color: 'green'}} className='text-center'>{this.state.messageForDOM}</h3>
-
       </div>
 
     )
