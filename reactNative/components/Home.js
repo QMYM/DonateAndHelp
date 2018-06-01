@@ -1,15 +1,16 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert, Image, ImageBackground  } from 'react-native'
+import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert, Image, ImageBackground } from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
 import { Container, Header, Content, Button, Text, Icon, Title, Footer, FooterTab, Left, Right, Body } from 'native-base'
 import { Drawer } from 'native-base'
-import Dimensions from "Dimensions";
+import Dimensions from 'Dimensions'
+import { Font } from 'expo'
 
 import Main from './Main'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 class Home extends React.Component {
   constructor (props) {
@@ -89,9 +90,7 @@ class Home extends React.Component {
               </View>
             </View>
           </ImageBackground>
-
         </Container>
-
       </Drawer>
 
     )

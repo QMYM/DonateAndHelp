@@ -5,9 +5,9 @@ import Donor from './Donor'
 import Donor_Campaign from './Donor_Campaign'
 import Donor_Profile from './Donor_Profile'
 import Message from './Message'
-import Dimensions from "Dimensions";
+import Dimensions from 'Dimensions'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 const DonorT = TabNavigator({
   Donor: { screen: Donor },

@@ -3,7 +3,8 @@ import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, Button, F
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Jiro} from 'react-native-textinput-effects'
-import { Container, Header, Content, Left, Body, Right  , Title } from 'native-base';
+import { Container, Header, Content, Left, Body, Right, Title } from 'native-base'
+import { Font } from 'expo'
 
 class Beneficiaries_Campaign extends React.Component {
   constructor (props) {
@@ -15,7 +16,6 @@ class Beneficiaries_Campaign extends React.Component {
       campaignImage: '',
       messageForDom: '',
       category: ''
-
     }
   }
   submitCampaign (campaignName, campaignDescription, campaignAmount, campaignImage) {
@@ -37,13 +37,13 @@ class Beneficiaries_Campaign extends React.Component {
   render () {
     return (
       <View >
-       <Header>
-            <Left />
-            <Body>
-              <Title>Messages</Title>
-            </Body>
-            <Right />
-          </Header>
+        <Header>
+          <Left />
+          <Body>
+            <Title>Messages</Title>
+          </Body>
+          <Right />
+        </Header>
         <Jiro
           label={'Type here your Fundraising Campaign Name!'}
           // this is used as active and passive border color
@@ -69,9 +69,9 @@ class Beneficiaries_Campaign extends React.Component {
         />
 
         <Picker selectedValue={this.state.category} onValueChange={(itemValue) => this.setState({category: itemValue})}>
-        <Picker.Item label='School & Education' value='School & Education' />
-        <Picker.Item label='Medical & Health' value='Medical & Health' />
-        <Picker.Item label='Non Profit & Charity' value='Non Profit & Charity' />
+          <Picker.Item label='School & Education' value='School & Education' />
+          <Picker.Item label='Medical & Health' value='Medical & Health' />
+          <Picker.Item label='Non Profit & Charity' value='Non Profit & Charity' />
         </Picker>
 
         <Button onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}

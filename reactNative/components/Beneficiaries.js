@@ -1,9 +1,10 @@
 import React from 'react'
-import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, Alert,Image} from 'react-native'
+import { Modal, TouchableHighlight, StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { Button } from 'react-native-elements'
-import { Container, Header, Item, Input, Icon,  Content} from 'native-base'
+import { Container, Header, Item, Input, Icon, Content} from 'native-base'
+import { Font } from 'expo'
 
 function searching (term) {
   return function (x) {
@@ -34,8 +35,8 @@ class Beneficiaries extends React.Component {
 
   render () {
     return (
-       <Container>
-       <Header searchBar rounded>
+      <Container>
+        <Header searchBar rounded>
           <Item>
             <Icon name='ios-search' />
             <Input placeholder='Search' onChangeText={(term) => this.setState({term})} />
@@ -46,23 +47,23 @@ class Beneficiaries extends React.Component {
           </Button>
         </Header>
         <Content>
-      <View style={styles.container}>
+          <View style={styles.container}>
 
-        {this.state.camp.filter(searching(this.state.term)).map(item =>
-          <View style={styles.campview} key={item._id}>
-          <View style={{height : '30%', backgroundColor: '#f5f5f5',width:'100%',marginBottom: 10}}>
-            <Text style={{fontWeight: 'bold', textAlign: 'center',marginTop:30,fontSize:30}}>{item.campaignName}</Text>
-            </View>
-            <Image 
-          source={{uri: item.campaignImage || 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'}}
-              style={styles.img}/>
-            <Text>{item.campaignDescription}</Text>
-            <Text>{item.campaignAmount}</Text>
+            {this.state.camp.filter(searching(this.state.term)).map(item =>
+              <View style={styles.campview} key={item._id}>
+                <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
+                </View>
+                <Image
+                  source={{uri: item.campaignImage || 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'}}
+                  style={styles.img} />
+                <Text>{item.campaignDescription}</Text>
+                <Text>{item.campaignAmount}</Text>
+              </View>
+            )}
           </View>
-        )}
-      </View>
         </Content>
-        </Container>
+      </Container>
     )
   }
 }
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:20,
+    marginTop: 20
   },
   campview: {
     marginTop: 10,
@@ -84,14 +85,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 3,
     borderColor: '#d6d7da',
-     alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-   img:{
-    width : 60,
-    height:60,
-    justifyContent: 'center',
-  },
+  img: {
+    width: 60,
+    height: 60,
+    justifyContent: 'center'
+  }
 })
 
 module.exports = Beneficiaries
