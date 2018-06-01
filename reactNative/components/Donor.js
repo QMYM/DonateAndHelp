@@ -36,10 +36,12 @@ class Donor extends React.Component {
       }).catch(function (err) {
         console.log(err)
       })
+
   }
 
   submitDonate (amount) {
-    axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
+    if(amount.length !== 0){
+    axios.post('http://192.168.2.18:3000/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
         alert('Thanks For Donation')
         this.componentDidMount()
@@ -47,6 +49,9 @@ class Donor extends React.Component {
       .catch((err) => {
         alert('the amount is so high')
       })
+      }else{
+      alert("Enter the amount")
+    }
   }
   user (name) {
     this.setState({user: name})
