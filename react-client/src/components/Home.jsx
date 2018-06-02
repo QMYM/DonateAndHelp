@@ -186,10 +186,9 @@ return(
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
     <div className="col-sm-6" >
-        <img src='https://i.pinimg.com/736x/da/f0/dd/daf0dddea2e450791d5a05091fc09ce8--little-children-precious-children.jpg' className='w3-round' alt='Photo of Me' width='250' height='500' />
       </div>
     <div className="col-sm-6" >
-        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round  ' alt='Photo of Me' width='500' height='500' />
+        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round  ' alt='Photo of Me' width='400' height='400' />
       </div>
     </div>
   </div>
