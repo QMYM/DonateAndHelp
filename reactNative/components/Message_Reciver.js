@@ -1,14 +1,20 @@
 import React from 'react'
-import { StyleSheet, TextInput, Alert } from 'react-native'
+import { StyleSheet,
+  Alert } from 'react-native'
 import axios from 'axios'
-import { Actions } from 'react-native-router-flux'
-import { Avatar} from 'react-native-elements'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Item, Input } from 'native-base'
+import { Container,
+  Content,
+  SwipeRow,
+  View,
+  Text,
+  Icon,
+  Button,
+  Item,
+  Input } from 'native-base'
 class Message extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      text: '',
       rightMes: [],
       rightMes2: [],
       text: '',
@@ -25,12 +31,13 @@ class Message extends React.Component {
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then((res) => {
         Alert.alert('Your message has been send')
-        x.setState({M:res.data.message})
+        x.setState({M: res.data.message})
         x.componentDidMount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
       }).catch((err) => {
+        console.log(err)
         x.setState({
           messageForDOM: ' User Not Found!'
         })
@@ -40,12 +47,13 @@ class Message extends React.Component {
   openMail (personName, messages, senderMess) {
     var arr = []
     var arr2 = []
-    for (var i = 0; i < messages.length; i++) {
+    var i
+    for (i = 0; i < messages.length; i++) {
       if (messages[i].sender === personName) {
         arr.push(messages[i])
       }
     }
-    for (var i = 0; i < senderMess.length; i++) {
+    for (i = 0; i < senderMess.length; i++) {
       if (senderMess[i].reciver === personName) {
         arr2.push(senderMess[i])
       }
@@ -74,7 +82,6 @@ class Message extends React.Component {
   getPhotoForMessages () {
     var x = this
     var arr = []
-    var rec = []
     var test = []
     axios.get('https://donatandhelp.herokuapp.com/getPhotoForMessages')
       .then(function (res) {
@@ -135,15 +142,15 @@ class Message extends React.Component {
           )}
           <Text> {this.state.M}</Text>
 
-        <Item>
-          <Input placeholder='Aa'
-            onChangeText={(text) => this.setState({text})}
-          />
-        </Item>
-        <Button block dark
-          onPress={() => this.sendMessage(this.props.text, this.state.text)}>
-          <Text>Send</Text>
-        </Button>
+          <Item>
+            <Input placeholder='Aa'
+              onChangeText={(text) => this.setState({text})}
+            />
+          </Item>
+          <Button block dark
+            onPress={() => this.sendMessage(this.props.text, this.state.text)}>
+            <Text>Send</Text>
+          </Button>
         </Content>
       </Container>
     )

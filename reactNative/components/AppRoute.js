@@ -37,8 +37,8 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial={true}  
-            
+            initial
+
           />
 
           <Scene
@@ -103,7 +103,7 @@ export default class AppRoute extends React.Component {
             component={BeneficiariesTab}
             title='Beneficiaries_Tab'
           />
-          
+
           <Scene
             key='Aboutus'
             component={Aboutus}

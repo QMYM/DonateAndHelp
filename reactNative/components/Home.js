@@ -1,16 +1,20 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert, Image, ImageBackground } from 'react-native'
-import axios from 'axios'
-import { Actions } from 'react-native-router-flux'
-import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
-import { Container, Header, Content, Button, Text, Icon, Title, Footer, FooterTab, Left, Right, Body } from 'native-base'
-import { Drawer } from 'native-base'
-import Dimensions from 'Dimensions'
-import { Font } from 'expo'
+import { StyleSheet,
+  View,
+  ImageBackground } from 'react-native'
+import { Container,
+  Header,
+  Button,
+  Text,
+  Icon,
+  Title,
+  Left,
+  Right,
+  Body,
+  Drawer} from 'native-base'
+import * as Expo from 'expo'
 
 import Main from './Main'
-
-const { width } = Dimensions.get('window')
 
 class Home extends React.Component {
   constructor (props) {
@@ -98,7 +102,9 @@ class Home extends React.Component {
 }
 
 const drawerStyles = {
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  drawer: { shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 3},
   main: {paddingLeft: 3}
 }
 
