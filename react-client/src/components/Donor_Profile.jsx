@@ -227,7 +227,6 @@ class Donor_Profile extends React.Component {
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
-
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>
@@ -242,7 +241,6 @@ class Donor_Profile extends React.Component {
                   <li> <a href='/Donor_Profile' className='icon-bar' to='/Donor_Profile'>Profile</a> </li>
                   <li> <a href='#'onClick={this.logout} className='icon-bar' to='/logout'>Logout</a> </li>
                   <li><a /></li>
-
                   <Route path='/Donor_Message' component={Donor_Message} />
                   <Route path='/Donor_Campaign' component={Donor_Campaign} />
                   <Route path='/searchD' component={Search_Donor} />
@@ -356,7 +354,6 @@ class Donor_Profile extends React.Component {
                         </div>
                       </div>
                     </div>
-
                     <h2>{this.state.user}</h2>
                   </div>
                   <div className='action-buttons'>
@@ -405,7 +402,6 @@ class Donor_Profile extends React.Component {
                   </ul>
                   <div className='tab-content'>
                     <div className='tab-pane fade in active' id='activities'>
-
                       {this.state.post.map(po =>
                         <div className='media activity-item' key={po._id}>
                           <a href='#' className='pull-left'>
@@ -438,7 +434,6 @@ class Donor_Profile extends React.Component {
                           <hr />
                         </div>
                       )}
-
                     </div>
                     <div className='tab-pane fade' id='following'>
                       <div className='media user-following'>
@@ -448,7 +443,6 @@ class Donor_Profile extends React.Component {
                           <button type='button' className='btn btn-sm btn-danger pull-right'><i className='fa fa-close-round' /> Unfollow</button>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -456,7 +450,6 @@ class Donor_Profile extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }
