@@ -52,7 +52,6 @@ class Beneficiaries_Campaign extends React.Component {
       category: this.state.category
     })
       .then(response => {
-        // console.log('campaign has been posted!')
         x.setState({
           messageForDOM: ' You have done campaign'
         })
@@ -75,7 +74,6 @@ class Beneficiaries_Campaign extends React.Component {
   }
 
   render () {
-    console.log("hi hi h i hi hi hi ", this.state.category)
     return (
       <div>
         <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top navbar-defaul'>
@@ -83,7 +81,6 @@ class Beneficiaries_Campaign extends React.Component {
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
             <span className='navbar-toggler-icon' />
           </button>
-
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav mr-auto' />
             <ul className='navbar-nav mr-auto nav '>

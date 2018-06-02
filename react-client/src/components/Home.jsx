@@ -78,7 +78,6 @@ return(
       <div className="modal-content text-center" >
         <div className="modal-header w3-center">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Mohammed</h4>
         </div>
              <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
@@ -96,7 +95,6 @@ return(
       <div className="modal-content">
         <div className="modal-header">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Qays</h4>
         </div>
            <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
@@ -114,7 +112,6 @@ return(
       <div className="modal-content">
         <div className="modal-header">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Mais</h4>
         </div>
           <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
@@ -132,7 +129,6 @@ return(
       <div className="modal-content">
         <div className="modal-header">
           <button type="button" className="close" data-dismiss="modal">&times;</button>
-          <h4 className="modal-title">Yussur</h4>
         </div>
           <div className='col-sm-6 form-group text-center' style={{  
               maxWidth: "500px",
@@ -190,10 +186,9 @@ return(
     <div className='w3-row'>
       <div className='w3-col m6 w3-center w3-padding-large'>
     <div className="col-sm-6" >
-        <img src='https://i.pinimg.com/736x/da/f0/dd/daf0dddea2e450791d5a05091fc09ce8--little-children-precious-children.jpg' className='w3-round' alt='Photo of Me' width='250' height='500' />
       </div>
     <div className="col-sm-6" >
-        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round  ' alt='Photo of Me' width='500' height='500' />
+        <img src='http://blog.zealousgood.com/wp-content/uploads/2013/03/Donors.jpeg' className='w3-round  ' alt='Photo of Me' width='400' height='400' />
       </div>
     </div>
   </div>
@@ -222,7 +217,7 @@ return(
     </div>
   </div>
   <div className=' w3-container w3-padding-64' id='portfolio'>
-    <h3 className='w3-center'>The Idea start from one of our team member the he was work on one of those beneficiaries , and he said something was not acceptable  , so we think of a way that can make the donor donate without any mistakes or scam   </h3>
+    <h3 className='w3-center'>The Idea start from one of our team members, he was working on one of those beneficiaries company, and he said something was not acceptable in the donation process, so we thought of a way that could make the donor donate without any mistakes or scams.   </h3>
    <br/>
    <br/>
     <h1 className='w3-center'>Meet our awesome team</h1>
@@ -261,7 +256,7 @@ return(
       </div>
 
     </div>
-    <h3 className='w3-center' style={{color:"#1D1E1E" ,fontSize:50}}>You can now click on the contact and send to everyone of us  SMS message :D </h3>
+    <h3 className='w3-center' style={{color:"#1D1E1E" ,fontSize:50}}>You can now click on the contact and send SMS message for everyone of us :D </h3>
   </div>
   <div id='modal01' className='w3-modal w3-black' >
     <span className='w3-button w3-large w3-black w3-display-topright' title='Close Modal Image'><i className='fa fa-remove' /></span>
