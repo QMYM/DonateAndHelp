@@ -53,6 +53,7 @@
  * Add and edit user profile
  * Upload and view user images on web application
  * View activities in user profile
+ * View the fundraising campaigns created by beneficiaries based on a category in the donor home page
  * Contact project team through sending messages
 
 ## Running tests:
