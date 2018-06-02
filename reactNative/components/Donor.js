@@ -15,14 +15,10 @@ class Donor extends React.Component {
     super(props)
 
     this.state = {
-        campHealth: [],
-      campSchool: [],
-      campProfit: [],
+      camp: [],
       amount: '',
       term: '',
       modalVisible: false,
-       selected1: "key0"
-
     }
   }
 
@@ -34,23 +30,7 @@ class Donor extends React.Component {
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/companyCam')
           .then(function (res) {
-        var healthArr = []
-        var schoolArr = []
-        var profitArr = []
-        for(var i=0;i<res.data.length;i++){
-          if(res.data[i].category ==="Medical & Health"){
-            healthArr.push(res.data[i])
-        x.setState({campHealth: healthArr})
-          }
-          if(res.data[i].category === 'School & Education'){
-            schoolArr.push(res.data[i])
-         x.setState({campSchool : schoolArr})   
-        }
-        if(res.data[i].category === 'Non Profit & Charity'){
-          profitArr.push(res.data[i])
-          x.setState({campProfit : profitArr})
-        }
-          }
+        x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
       })
@@ -85,7 +65,6 @@ class Donor extends React.Component {
     });
   }
   render () {
-    console.log(this.state.selected1)
     return (
       <Container>
         <Header searchBar rounded>
@@ -141,25 +120,7 @@ class Donor extends React.Component {
 
             <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
               style={styles.img2} />
-
-        <Content>
-          <Body>
-            <Title>Picker <Icon name="arrow-dropdown" /></Title>
-          </Body>
-          <Form>
-            <Picker
-              iosHeader="Select one"
-              mode="dropdown"
-              selectedValue={this.state.selected1}
-              onValueChange={this.onValueChange.bind(this)}
-            >
-              <Picker.Item label="School & Education" value="key0" />
-              <Picker.Item label="Medical & Health" value="key1" />
-              <Picker.Item label="Non Profit & Charity" value="key2" />
-            </Picker>
-          </Form>
-        </Content>
-            {this.state.campSchool.filter(searching(this.state.term)).map(item =>
+            {this.state.camp.filter(searching(this.state.term)).map(item =>
               <View style={styles.campview} key={item._id}>
                 <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Actions } from 'react-native-router-flux'
+import { StyleSheet} from 'react-native'
 import { Container,
   Content,
   Button,
-  Text,
-  StyleSheet} from 'native-base'
+  Text } from 'native-base'
 
 class Main extends React.Component {
   constructor (props) {
@@ -87,10 +87,10 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D3D3D3'
+    backgroundColor: '#D3D3D3',
   },
   yussur: {
-    marginTop: 30
+    marginTop: 30,
   }
 })
 

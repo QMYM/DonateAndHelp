@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
   },
   cen: {
     alignItems: 'center'
-
   },
   txt: {
     justifyContent: 'center',
