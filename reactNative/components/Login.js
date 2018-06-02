@@ -30,11 +30,12 @@ class Login extends React.Component {
         Actions.Donor_Tab()
         // should go to the home page from here
       }).catch(error => {
+        this.setState({loading: false})
         alert('password or username is wrong')
       })
   };
   submitLoginCompany () {
-    this.setState({loading: true})
+        this.setState({loading: true})
     axios.post('https://donatandhelp.herokuapp.com/loginCompany', {
       userName: this.state.userName,
       password: this.state.password
@@ -43,8 +44,15 @@ class Login extends React.Component {
         Actions.Beneficiaries_Tab()
         // should go to the home page from here
       }).catch(error => {
+    this.setState({loading: false})
         alert('password or username is wrong')
+
       })
+  }
+
+  _goBack() {
+    console.log("Back button pressed");
+    this.props.navigation.goBack();
   }
 
   render () {
@@ -65,13 +73,13 @@ class Login extends React.Component {
               <ImageBackground source={require('./login1_bg.png')} style={styles.background} resizeMode='cover'>
                 <View style={styles.headerContainer}>
                   <View style={styles.headerIconView}>
-                    <TouchableOpacity style={styles.headerBackButtonView}>
+                    <Button transparent  onPress={this._goBack.bind(this)} style={styles.headerBackButtonView}>
                       <Image
                         source={require('./back.png')}
                         style={styles.backButtonIcon}
                         resizeMode='contain'
                       />
-                    </TouchableOpacity>
+                    </Button>
                   </View>
                 </View>
 
@@ -233,8 +241,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   headerBackButtonView: {
-    width: 25,
-    height: 25
+    top:30,
+    width: 10,
+    height: 10
   }
 })
 

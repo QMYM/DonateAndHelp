@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Alert, Picker, ScrollView, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Button , Spinner} from 'native-base'
 
 class Signup extends React.Component {
   constructor (props) {
@@ -12,7 +12,9 @@ class Signup extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      user: 'true'
+      user: 'true',
+      loading: false
+
     }
   }
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
@@ -85,8 +87,22 @@ class Signup extends React.Component {
       this.conPass.value = ''
     }
   };
+_goBack() {
+    console.log("Back button pressed");
+    this.props.navigation.goBack();
+  }
 
   render () {
+      if (this.state.loading === true) {
+      return (
+        <Container>
+          <Header />
+          <Content>
+            <Spinner color='blue' />
+          </Content>
+        </Container>
+      )
+    } else {
     return (
       <Container>
         <Content>
@@ -99,13 +115,13 @@ class Signup extends React.Component {
               <View style={styles.headerContainer}>
 
                 <View style={styles.headerIconView}>
-                  <TouchableOpacity style={styles.headerBackButtonView}>
+                  <Button transparent style={styles.headerBackButtonView} onPress={this._goBack.bind(this)}>
                     <Image
                       source={require('./back.png')}
                       style={styles.backButtonIcon}
                       resizeMode='contain'
                     />
-                  </TouchableOpacity>
+                  </Button>
                 </View>
 
                 <View style={styles.headerTitleView}>
@@ -226,6 +242,7 @@ class Signup extends React.Component {
         </Content>
       </Container>
     )
+}
   }
 }
 

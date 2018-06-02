@@ -24,11 +24,9 @@ class Message extends React.Component {
     var x = this
     axios.post('https://donatandhelp.herokuapp.com/sendMessage', {user: to, text: text})
       .then((res) => {
-        console.log('aaa', res)
         Alert.alert('Your message has been send')
-        // x.setState({M:res.data.message})
+        x.setState({M:res.data.message})
         x.componentDidMount()
-        this.props.Mount()
         x.setState({
           messageForDOM: ' Your Message has been sent'
         })
@@ -104,16 +102,9 @@ class Message extends React.Component {
     return (
       <Container>
         <Content>
-          <Text> {this.state.M}</Text>
           {this.state.rightMes.map(item =>
             <SwipeRow
-              leftOpenValue={75}
-              rightOpenValue={-75}
-              left={
-                <Button success onPress={() => alert('Trash')} >
-                  <Icon active name='add' />
-                </Button>
-              }
+              rightOpenValue={-65}
               body={
                 <View>
                   <Text>{item.message}</Text>
@@ -130,13 +121,7 @@ class Message extends React.Component {
           {this.state.rightMes2.map(item =>
 
             <SwipeRow
-              leftOpenValue={75}
-              rightOpenValue={-75}
-              left={
-                <Button success onPress={() => alert('Trash')}>
-                  <Icon active name='add' />
-                </Button>
-              }
+              rightOpenValue={-65}
               body={
                 <View>
                   <Text style={styles.sender}>{item.message}</Text>
@@ -148,8 +133,8 @@ class Message extends React.Component {
                 </Button>
               } />
           )}
+          <Text> {this.state.M}</Text>
 
-        </Content>
         <Item>
           <Input placeholder='Aa'
             onChangeText={(text) => this.setState({text})}
@@ -159,6 +144,7 @@ class Message extends React.Component {
           onPress={() => this.sendMessage(this.props.text, this.state.text)}>
           <Text>Send</Text>
         </Button>
+        </Content>
       </Container>
     )
   }

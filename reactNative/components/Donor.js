@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, TouchableHighlight, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input } from 'native-base'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input ,  Picker, Form } from 'native-base'
 
 function searching (term) {
   return function (x) {
@@ -15,10 +15,13 @@ class Donor extends React.Component {
     super(props)
 
     this.state = {
-      camp: [],
+        campHealth: [],
+      campSchool: [],
+      campProfit: [],
       amount: '',
       term: '',
-      modalVisible: false
+      modalVisible: false,
+       selected1: "key0"
 
     }
   }
@@ -30,22 +33,35 @@ class Donor extends React.Component {
   componentDidMount () {
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/companyCam')
-      .then(function (res) {
-        x.setState({camp: res.data})
+          .then(function (res) {
+        var healthArr = []
+        var schoolArr = []
+        var profitArr = []
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].category ==="Medical & Health"){
+            healthArr.push(res.data[i])
+        x.setState({campHealth: healthArr})
+          }
+          if(res.data[i].category === 'School & Education'){
+            schoolArr.push(res.data[i])
+         x.setState({campSchool : schoolArr})   
+        }
+        if(res.data[i].category === 'Non Profit & Charity'){
+          profitArr.push(res.data[i])
+          x.setState({campProfit : profitArr})
+        }
+          }
       }).catch(function (err) {
         console.log(err)
       })
   }
 
   submitDonate (amount) {
-
     if(amount.length !== 0){
     axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
          if(res.status === 202){
         alert("The donation has been completed!")
-        
-
       }else{
         alert('Thanks For Donation')
         this.componentDidMount()
@@ -62,9 +78,15 @@ class Donor extends React.Component {
   user (name) {
     this.setState({user: name})
   }
-  render () {
-    return (
 
+    onValueChange(value: string) {
+    this.setState({
+      selected1: value
+    });
+  }
+  render () {
+    console.log(this.state.selected1)
+    return (
       <Container>
         <Header searchBar rounded>
           <Item>
@@ -77,9 +99,7 @@ class Donor extends React.Component {
           </Button>
         </Header>
         <Content>
-
           <View style={styles.container}>
-
             <Modal
               animationType='slide'
               transparent={false}
@@ -89,7 +109,6 @@ class Donor extends React.Component {
               }}>
               <View style={{marginTop: 22}}>
                 <Text style={{marginTop: 40}}>Payment</Text>
-
                 <Item floatingLabel last>
                   <Input
                     placeholder='Amount'
@@ -122,15 +141,32 @@ class Donor extends React.Component {
 
             <Image source={{uri: 'http://troubletown.com/uploaded_images/flip2.gif'}}
               style={styles.img2} />
-            {this.state.camp.filter(searching(this.state.term)).map(item =>
-              <View style={styles.campview} key={item._id}>
 
+        <Content>
+          <Body>
+            <Title>Picker <Icon name="arrow-dropdown" /></Title>
+          </Body>
+          <Form>
+            <Picker
+              iosHeader="Select one"
+              mode="dropdown"
+              selectedValue={this.state.selected1}
+              onValueChange={this.onValueChange.bind(this)}
+            >
+              <Picker.Item label="School & Education" value="key0" />
+              <Picker.Item label="Medical & Health" value="key1" />
+              <Picker.Item label="Non Profit & Charity" value="key2" />
+            </Picker>
+          </Form>
+        </Content>
+            {this.state.campSchool.filter(searching(this.state.term)).map(item =>
+              <View style={styles.campview} key={item._id}>
                 <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
                 </View>
                 <Image source={{uri: 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg' || item.campaignImage}}
                   style={styles.img} />
-                <Text>{item.campaignDescription}</Text>
+                <Text style={{fontSize: 35}}>{item.campaignDescription}</Text>
                 <Text>{item.campaignAmount}</Text>
                 <Text>{item.category}</Text>
                 <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>
@@ -139,6 +175,7 @@ class Donor extends React.Component {
                />
               </View>
             )}
+          } 
           </View>
         </Content>
       </Container>
@@ -167,8 +204,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   img: {
-    width: 60,
-    height: 60,
+    width: 100,
+    height: 100,
     justifyContent: 'center'
   },
   search: {
