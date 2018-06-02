@@ -128,7 +128,7 @@ class Donor extends React.Component {
                 <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
                 </View>
-                <Image source={{uri: 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg' || item.campaignImage}}
+                <Image source={{uri: 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg' || item.campaignImage}}
                   style={styles.img} />
                 <Text>{item.campaignDescription}</Text>
                 <Text>{item.campaignAmount}</Text>

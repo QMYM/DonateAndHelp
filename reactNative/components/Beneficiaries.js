@@ -55,7 +55,7 @@ class Beneficiaries extends React.Component {
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
                 </View>
                 <Image
-                  source={{uri: item.campaignImage || 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg'}}
+                  source={{uri: item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'}}
                   style={styles.img} />
                 <Text>{item.campaignDescription}</Text>
                 <Text>{item.campaignAmount}</Text>

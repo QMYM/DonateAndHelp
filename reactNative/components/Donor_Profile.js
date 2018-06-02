@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { Container, Header, Content, SwipeRow, View, Text, Icon, Button , Card, CardItem, Thumbnail, Label , Left, Body, Right  , Title  ,Item, Input } from 'native-base';
 import { ImagePicker } from 'expo';
 import * as Expo from "expo";
+import { Font } from 'expo'
 
 class Donor_Profile extends React.Component {
   constructor (props) {
@@ -337,7 +338,7 @@ class Donor_Profile extends React.Component {
   </Modal>
 
         <Animated.Image
-          source={{uri : this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+          source={{uri : this.state.image2 || 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'}}
           style={{
             marginTop: Expo.Constants.statusBarHeight,
             width: "100%",
@@ -387,7 +388,7 @@ class Donor_Profile extends React.Component {
           />
           <Thumbnail
             large
-            source={{uri : this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
+            source={{uri : this.state.image || 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg'}}
             style={styles.avatar}
           />
         </Animated.View>
@@ -457,7 +458,7 @@ class Donor_Profile extends React.Component {
    <CardItem cardBody>
    <Image
    style={{height: 200, width: null, flex: 1}}
-   source={{uri : po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
+   source={{uri : po.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'}}
    />
    </CardItem>
    <CardItem>
