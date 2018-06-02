@@ -53,76 +53,76 @@ class TheApp extends React.Component {
           </div>
         </nav>
 
-         <div id="myCarousel" className="carousel slide" data-ride="carousel">
-    <ol className="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+        <div id='myCarousel' className='carousel slide' data-ride='carousel'>
+          <ol className='carousel-indicators'>
+            <li data-target='#myCarousel' data-slide-to='0' className='active' />
+            <li data-target='#myCarousel' data-slide-to='1' />
+            <li data-target='#myCarousel' data-slide-to='2' />
+          </ol>
 
-    <div className="carousel-inner">
+          <div className='carousel-inner'>
 
-      <div className="item active">
-            <img  src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width:"70%"}} />
+            <div className='item active'>
+              <img src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width: '70%'}} />
 
-        <div className="carousel-caption w3-container w3-center">
-            <div className=' w3-hide-small ' style={{width: 500}}>
-              <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
-                <h1 className='w3-xlarge'>Smart Design</h1>
-                <hr className='w3-opacity' />
-                <p>Customize photos as you go</p>
-                <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
+              <div className='carousel-caption w3-container w3-center'>
+                <div className=' w3-hide-small ' style={{width: 500}}>
+                  <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
+                    <h1 className='w3-xlarge'>Smart Design</h1>
+                    <hr className='w3-opacity' />
+                    <p>Customize photos as you go</p>
+                    <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
+                  </div>
+                </div>
               </div>
-        </div>
-        </div>
-      </div>
+            </div>
 
-      <div className="item">
-            <img  src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width:"70%"}}/>
-        <div className="carousel-caption">
-              <div className=' w3-hide-small ' style={{width: 500}}>
-              <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
-                <h1 className='w3-xlarge'>Smart Design</h1>
-                <hr className='w3-opacity' />
-                <p>Customize photos as you go</p>
-                <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
+            <div className='item'>
+              <img src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width: '70%'}} />
+              <div className='carousel-caption'>
+                <div className=' w3-hide-small ' style={{width: 500}}>
+                  <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
+                    <h1 className='w3-xlarge'>Smart Design</h1>
+                    <hr className='w3-opacity' />
+                    <p>Customize photos as you go</p>
+                    <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
+                  </div>
+                </div>
               </div>
-        </div>
-        </div>
-      </div>
-    
-      <div className="item">
-            <img  src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width:"70%"}}/>
-        <div className="carousel-caption">
-              <div className=' w3-hide-small ' style={{width: 500}}>
-              <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
-                <h1 className='w3-xlarge'>Smart Design</h1>
-                <hr className='w3-opacity' />
-                <p>Customize photos as you go</p>
-                <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
-              </div>
-        </div>
-        </div>
-      </div>
-  
-    </div>
+            </div>
 
-    <a className="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span className="glyphicon glyphicon-chevron-left"></span>
-      <span className="sr-only">Previous</span>
-    </a>
-    <a className="right carousel-control" href="#myCarousel" data-slide="next">
-      <span className="glyphicon glyphicon-chevron-right"></span>
-      <span className="sr-only">Next</span>
-    </a>
-  </div>
+            <div className='item'>
+              <img src={'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Image 1' style={{width: '70%'}} />
+              <div className='carousel-caption'>
+                <div className=' w3-hide-small ' style={{width: 500}}>
+                  <div className='w3-black w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large'>
+                    <h1 className='w3-xlarge'>Smart Design</h1>
+                    <hr className='w3-opacity' />
+                    <p>Customize photos as you go</p>
+                    <p><button className='w3-button w3-block w3-indigo w3-round' onClick="document.getElementById('download').style.display='block'">Download <i className='fa fa-android' /> <i className='fa fa-apple' /> <i className='fa fa-windows' /></button></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <a className='left carousel-control' href='#myCarousel' data-slide='prev'>
+            <span className='glyphicon glyphicon-chevron-left' />
+            <span className='sr-only'>Previous</span>
+          </a>
+          <a className='right carousel-control' href='#myCarousel' data-slide='next'>
+            <span className='glyphicon glyphicon-chevron-right' />
+            <span className='sr-only'>Next</span>
+          </a>
+        </div>
         <div className='w3-padding-64 w3-white'>
           <div className='w3-row-padding'>
             <div className='w3-col l8 m6'>
               <h1 className='w3-jumbo'><b>The App</b></h1>
               <h1 className='w3-xxxlarge w3-text-green'><b>Why buy it?</b></h1>
               <p><span className='w3-xlarge'>Reach more donors and raise more money with DonateAndHelp.</span></p>
-              <p>Our platform is leading in fundraising and collect donations for beneficiaries in Jordan and MENA region. DonateAndHelp is easy to use, helpful and scales to any 
+              <p>Our platform is leading in fundraising and collect donations for beneficiaries in Jordan and MENA region. DonateAndHelp is easy to use, helpful and scales to any
               size fundraiser. Similarly, donors can upload any items for donation for any beneficiay.</p>
               <button className='w3-button w3-light-grey w3-padding-large w3-section w3-hide-small' onClick="document.getElementById('download').style.display='block'">
                 <i className='fa fa-download' /> Download Application
@@ -152,22 +152,8 @@ class TheApp extends React.Component {
             </div>
           </div>
         </div>
-        <div className='w3-padding-64 w3-light-grey'>
-          <div className='w3-row-padding'>
-            <div className='w3-col l4 m6'>
-              <img className='w3-image w3-round-large w3-hide-small w3-grayscale' src='https://cdn.pixabay.com/photo/2017/04/05/11/56/image-in-the-image-2204798_960_720.jpg' alt='App' width='335' height='471' />
-            </div>
-            <div className='w3-col l8 m6'>
-              <h1 className='w3-jumbo'><b>Clarity</b></h1>
-              <h1 className='w3-xxxlarge w3-text-red'><b>Pixels, who?</b></h1>
-              <p><span className='w3-xlarge'>A revolution in resolution.</span> Sharp and clear photos with the world's best photo engine, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            </div>
-          </div>
-        </div>
         <div className='w3-container w3-padding-64 w3-dark-grey w3-center'>
           <h1 className='w3-jumbo'><b>Features</b></h1>
-          <p>This app is just so lorem ipsum.</p>
 
           <div className='w3-row' style={{marginTop: 64}}>
             <div className='w3-col s3'>

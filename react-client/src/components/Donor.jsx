@@ -28,7 +28,7 @@ class Donor extends React.Component {
       campProfit: [],
       amount: '',
       term: '',
-      user: '',
+      user: ''
 
     }
     this.logout = this.logout.bind(this)
@@ -58,20 +58,20 @@ class Donor extends React.Component {
         var healthArr = []
         var schoolArr = []
         var profitArr = []
-        for(var i=0;i<res.data.length;i++){
-          if(res.data[i].category ==="Medical & Health"){
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].category === 'Medical & Health') {
             healthArr.push(res.data[i])
-        x.setState({campHealth: healthArr})
+            x.setState({campHealth: healthArr})
           }
-          if(res.data[i].category === 'School & Education'){
+          if (res.data[i].category === 'School & Education') {
             schoolArr.push(res.data[i])
-         x.setState({campSchool : schoolArr})   
-        }
-        if(res.data[i].category === 'Non Profit & Charity'){
-          profitArr.push(res.data[i])
-          x.setState({campProfit : profitArr})
-        }
+            x.setState({campSchool: schoolArr})
           }
+          if (res.data[i].category === 'Non Profit & Charity') {
+            profitArr.push(res.data[i])
+            x.setState({campProfit: profitArr})
+          }
+        }
       }).catch(function (err) {
         console.log(err)
       })
@@ -85,21 +85,21 @@ class Donor extends React.Component {
   };
 
   submitDonate (amount) { // Donate for the beneficary campagin rendered in the home page
-    if(amount.length !== 0){
-    axios.post('/editAmount', {amount: amount, user: this.state.user })
-      .then(function (res) {
-      if(res.status === 202){
-        alert("The donation has been completed!")
-      }else{
-        alert('Thanks For Donation')
-        window.location.reload()
-      }
-      })
-      .catch(function (err) {
-        alert('the amount is so high')
-      })
-    }else{
-      alert("Enter the amount")
+    if (amount.length !== 0) {
+      axios.post('/editAmount', {amount: amount, user: this.state.user })
+        .then(function (res) {
+          if (res.status === 202) {
+            alert('The donation has been completed!')
+          } else {
+            alert('Thanks For Donation')
+            window.location.reload()
+          }
+        })
+        .catch(function (err) {
+          alert('the amount is so high')
+        })
+    } else {
+      alert('Enter the amount')
     }
   }
 
@@ -144,107 +144,107 @@ class Donor extends React.Component {
         </nav>
 
         <div className='container-fluid'>
-        <Well>  
-         <div className='container'>
-          <div className='user-profile'>
-            <div className='row'>
-                 <div className='profile-info-right'>
-                 <h3>Category </h3>
-                  <ul className='nav nav-pills nav-pills-custom-minimal custom-minimal-bottom'>
-                    <li className='active'><a href='#School' data-toggle='tab'>School & Education </a></li>
-                    <li><a href='#Medical' data-toggle='tab'>Medical & Health </a></li>
-                    <li><a href='#profit' data-toggle='tab'>Non Profit & Charity</a></li>
-                  </ul>
-                  <div className='tab-content'>
-                    <div className='tab-pane fade in active' id='School'>
-                       <div id='pricing' className='container-fluid'>
-            <div className='row slideanim'>
-              {this.state.campSchool.filter(searching(this.state.term)).map(item =>
-                <div key={item._id}>
-                  <div className=' col-xs-12'>
-                    <div className='panel panel-default text-center'>
-                      <div className='panel-heading'>
-                        <h1>{item.campaignName}</h1>
+          <Well>
+            <div className='container'>
+              <div className='user-profile'>
+                <div className='row'>
+                  <div className='profile-info-right'>
+                    <h3>Category </h3>
+                    <ul className='nav nav-pills nav-pills-custom-minimal custom-minimal-bottom'>
+                      <li className='active'><a href='#School' data-toggle='tab'>School & Education </a></li>
+                      <li><a href='#Medical' data-toggle='tab'>Medical & Health </a></li>
+                      <li><a href='#profit' data-toggle='tab'>Non Profit & Charity</a></li>
+                    </ul>
+                    <div className='tab-content'>
+                      <div className='tab-pane fade in active' id='School'>
+                        <div id='pricing' className='container-fluid'>
+                          <div className='row slideanim'>
+                            {this.state.campSchool.filter(searching(this.state.term)).map(item =>
+                              <div key={item._id}>
+                                <div className=' col-xs-12'>
+                                  <div className='panel panel-default text-center'>
+                                    <div className='panel-heading'>
+                                      <h1>{item.campaignName}</h1>
+                                    </div>
+                                    <div className='panel-body'>
+                                      <h2 >From : {item.username}</h2>
+                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                    </div>
+                                    <p> {item.campaignDescription}</p>
+                                    <div className='panel-footer'>
+                                      <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                                      <h3>{item.category}</h3>
+                                      <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <div className='panel-body'>
-                        <h2 >From : {item.username}</h2>
-                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                      <div className='tab-pane fade' id='Medical'>
+                        <div id='pricing' className='container-fluid'>
+                          <div className='row slideanim'>
+                            {this.state.campHealth.filter(searching(this.state.term)).map(item =>
+                              <div key={item._id}>
+                                <div className=' col-xs-12'>
+                                  <div className='panel panel-default text-center'>
+                                    <div className='panel-heading'>
+                                      <h1>{item.campaignName}</h1>
+                                    </div>
+                                    <div className='panel-body'>
+                                      <h2 >From : {item.username}</h2>
+                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                    </div>
+                                    <p> {item.campaignDescription}</p>
+                                    <div className='panel-footer'>
+                                      <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                                      <h3>{item.category}</h3>
+                                      <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <p> {item.campaignDescription}</p>
-                      <div className='panel-footer'>
-                        <h3>{item.campaignAmount}</h3><h3>JOD</h3>
-                        <h3>{item.category}</h3>
-                        <button type='button' className='btn btn-info btn-lg'  data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
+                      <div className='tab-pane fade' id='profit'>
+                        <div id='pricing' className='container-fluid'>
+                          <div className='row slideanim'>
+                            {this.state.campProfit.filter(searching(this.state.term)).map(item =>
+                              <div key={item._id}>
+                                <div className=' col-xs-12'>
+                                  <div className='panel panel-default text-center'>
+                                    <div className='panel-heading'>
+                                      <h1>{item.campaignName}</h1>
+                                    </div>
+                                    <div className='panel-body'>
+                                      <h2 >From : {item.username}</h2>
+                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                    </div>
+                                    <p> {item.campaignDescription}</p>
+                                    <div className='panel-footer'>
+                                      <h3>{item.campaignAmount}</h3><h3>JOD</h3>
+                                      <h3>{item.category}</h3>
+                                      <button type='button' className='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
-          </div>
-          </div>
-                    <div className='tab-pane fade' id='Medical'>
-              <div id='pricing' className='container-fluid'>
-            <div className='row slideanim'>
-              {this.state.campHealth.filter(searching(this.state.term)).map(item =>
-                <div key={item._id}>
-                  <div className=' col-xs-12'>
-                    <div className='panel panel-default text-center'>
-                      <div className='panel-heading'>
-                        <h1>{item.campaignName}</h1>
-                      </div>
-                      <div className='panel-body'>
-                        <h2 >From : {item.username}</h2>
-                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
-                      </div>
-                      <p> {item.campaignDescription}</p>
-                      <div className='panel-footer'>
-                        <h3>{item.campaignAmount}</h3><h3>JOD</h3>
-                        <h3>{item.category}</h3>
-                        <button type='button' className='btn btn-info btn-lg'  data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          </div>
-                    <div className='tab-pane fade' id='profit'>
-              <div id='pricing' className='container-fluid'>
-            <div className='row slideanim'>
-              {this.state.campProfit.filter(searching(this.state.term)).map(item =>
-                <div key={item._id}>
-                  <div className=' col-xs-12'>
-                    <div className='panel panel-default text-center'>
-                      <div className='panel-heading'>
-                        <h1>{item.campaignName}</h1>
-                      </div>
-                      <div className='panel-body'>
-                        <h2 >From : {item.username}</h2>
-                        <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
-                      </div>
-                      <p> {item.campaignDescription}</p>
-                      <div className='panel-footer'>
-                        <h3>{item.campaignAmount}</h3><h3>JOD</h3>
-                        <h3>{item.category}</h3>
-                        <button type='button' className='btn btn-info btn-lg'  data-toggle='modal' data-target='#myModal' onClick={() => this.user(item._id)}>Donate</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
 
-                    </div>
-                    </div>
-       
-        </Well>
+              </div>
+            </div>
+
+          </Well>
 
           <div className='modal fade' id='myModal' role='dialog'>
             <div className='modal-dialog'>
@@ -279,7 +279,7 @@ class Donor extends React.Component {
                 </div>
                 <div className='modal-footer'>
                   <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
-                  <button type='button' className='btn btn-default' data-dismiss='modal'  onClick={() => this.submitDonate(this.state.amount)}>Donate</button>
+                  <button type='button' className='btn btn-default' data-dismiss='modal' onClick={() => this.submitDonate(this.state.amount)}>Donate</button>
                 </div>
               </div>
 

@@ -271,7 +271,7 @@ class Donor_Profile extends React.Component {
             </div>
           </div>
         </form>
-        
+
         <div className='modal fade' id='myModal' role='dialog'>
           <div className='modal-dialog'>
             <div className='modal-content'>
