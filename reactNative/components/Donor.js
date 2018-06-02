@@ -123,11 +123,11 @@ class Donor extends React.Component {
             {this.state.camp.filter(searching(this.state.term)).map(item =>
               <View style={styles.campview} key={item._id}>
                 <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
-                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
+                  <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 18}}>{item.campaignName}</Text>
                 </View>
-                <Image source={{uri: 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg' || item.campaignImage}}
+                <Image source={{uri: item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg' }}
                   style={styles.img} />
-                <Text style={{fontSize: 35}}>{item.campaignDescription}</Text>
+                <Text style={{fontSize: 20}}>{item.campaignDescription}</Text>
                 <Text>{item.campaignAmount}</Text>
                 <Text>{item.category}</Text>
                 <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>

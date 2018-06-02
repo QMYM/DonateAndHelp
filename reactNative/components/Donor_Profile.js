@@ -9,6 +9,7 @@ import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import { View,
   Text,
+  Content,
   Icon,
   Button,
   Card,
