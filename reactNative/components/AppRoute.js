@@ -15,7 +15,6 @@ import Message from './Message'
 import MessageReciver from './Message_Reciver'
 import Beneficiaries from './Beneficiaries'
 import BeneficiariesCampaign from './Beneficiaries_Campaign'
-import ImagePickerExample from './ImagePickerExample'
 import Aboutus from './Aboutus'
 import Contactus from './Contactus'
 
@@ -104,14 +103,7 @@ export default class AppRoute extends React.Component {
             component={BeneficiariesTab}
             title='Beneficiaries_Tab'
           />
-
-          <Scene
-            key='ImagePickerExample'
-            component={ImagePickerExample}
-            title='ImagePickerExample'
-            
-          />
-
+          
           <Scene
             key='Aboutus'
             component={Aboutus}
