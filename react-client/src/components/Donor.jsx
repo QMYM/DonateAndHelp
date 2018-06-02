@@ -58,12 +58,14 @@ class Donor extends React.Component {
         var healthArr = []
         var schoolArr = []
         var profitArr = []
+            console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           if (res.data[i].category === 'Medical & Health') {
             healthArr.push(res.data[i])
             x.setState({campHealth: healthArr})
           }
-          if (res.data[i].category === 'School & Education') {
+          if (res.data[i].category === '') {
+            res.data[i].category = 'School & Education'
             schoolArr.push(res.data[i])
             x.setState({campSchool: schoolArr})
           }
@@ -168,7 +170,7 @@ class Donor extends React.Component {
                                     </div>
                                     <div className='panel-body'>
                                       <h2 >From : {item.username}</h2>
-                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                      <img alt='Profile' style={{width: '300px', height:'250px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
                                     </div>
                                     <p> {item.campaignDescription}</p>
                                     <div className='panel-footer'>
@@ -188,14 +190,14 @@ class Donor extends React.Component {
                           <div className='row slideanim'>
                             {this.state.campHealth.filter(searching(this.state.term)).map(item =>
                               <div key={item._id}>
-                                <div className=' col-xs-12'>
+                                <div className=' col-xs-12' >
                                   <div className='panel panel-default text-center'>
                                     <div className='panel-heading'>
                                       <h1>{item.campaignName}</h1>
                                     </div>
                                     <div className='panel-body'>
                                       <h2 >From : {item.username}</h2>
-                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                      <img alt='Profile' style={{width: '300px', height:'250px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
                                     </div>
                                     <p> {item.campaignDescription}</p>
                                     <div className='panel-footer'>
@@ -222,7 +224,7 @@ class Donor extends React.Component {
                                     </div>
                                     <div className='panel-body'>
                                       <h2 >From : {item.username}</h2>
-                                      <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
+                                      <img alt='Profile' style={{width: '300px' , height:'250px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg '} />
                                     </div>
                                     <p> {item.campaignDescription}</p>
                                     <div className='panel-footer'>

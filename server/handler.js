@@ -22,7 +22,7 @@ exports.Signup = function (req, res) { // This function is responsible for the s
         bcrypt.genSalt(saltRounds, function (err, salt) { 
           if (err) {
             throw err
-          } s
+          } 
           bcrypt.hash(password, salt, function (err, hash) { 
             if (err) {
               throw err
