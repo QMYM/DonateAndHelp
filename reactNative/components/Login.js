@@ -1,11 +1,21 @@
 import React from 'react'
-import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Alert, Picker, KeyboardAvoidingView, ScrollView, Image} from 'react-native'
+import { StyleSheet,
+  ImageBackground,
+  Text,
+  Dimensions,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Picker,
+  Image,
+  Alart} from 'react-native'
 import axios from 'axios'
-import promise from 'promise'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button, Spinner } from 'native-base'
-
-const personIcon = require('./login1_person.png')
+import { Container,
+  Header,
+  Content,
+  Button,
+  Spinner } from 'native-base'
 
 const { width, height } = Dimensions.get('window')
 
@@ -30,7 +40,9 @@ class Login extends React.Component {
         Actions.Donor_Tab()
         // should go to the home page from here
       }).catch(error => {
-        alert('password or username is wrong')
+        console.log(error)
+        this.setState({loading: false})
+        Alart.alert('password or username is wrong')
       })
   };
   submitLoginCompany () {
@@ -43,8 +55,15 @@ class Login extends React.Component {
         Actions.Beneficiaries_Tab()
         // should go to the home page from here
       }).catch(error => {
-        alert('password or username is wrong')
+        console.log(error)
+        this.setState({loading: false})
+        Alart.alert('password or username is wrong')
       })
+  }
+
+  _goBack () {
+    console.log('Back button pressed')
+    this.props.navigation.goBack()
   }
 
   render () {
@@ -65,16 +84,15 @@ class Login extends React.Component {
               <ImageBackground source={require('./login1_bg.png')} style={styles.background} resizeMode='cover'>
                 <View style={styles.headerContainer}>
                   <View style={styles.headerIconView}>
-                    <TouchableOpacity style={styles.headerBackButtonView}>
+                    <Button transparent onPress={this._goBack.bind(this)} style={styles.headerBackButtonView}>
                       <Image
                         source={require('./back.png')}
                         style={styles.backButtonIcon}
                         resizeMode='contain'
                       />
-                    </TouchableOpacity>
+                    </Button>
                   </View>
                 </View>
-
                 <View style={styles.markWrap}>
                   <Image source={require('./login1_mark.png')} style={styles.mark} resizeMode='contain' />
                 </View>
@@ -83,7 +101,6 @@ class Login extends React.Component {
                   <Picker.Item label='Company' value='' />
                   <Picker.Item label='Donor' value='false' />
                 </Picker>
-
                 <View style={styles.wrapper}>
                   <View style={styles.inputWrap}>
                     <View style={styles.iconWrap}>
@@ -127,7 +144,6 @@ class Login extends React.Component {
                     </Button>
                   </View>
                 }
-
                 <View style={styles.signupWrap}>
                   <Text style={styles.accountText}>Don't have an account?</Text>
                   <TouchableOpacity activeOpacity={0.5}>
@@ -136,7 +152,6 @@ class Login extends React.Component {
                     </View>
                   </TouchableOpacity>
                 </View>
-
               </ImageBackground>
             </View>
           </Content>
@@ -233,8 +248,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   headerBackButtonView: {
-    width: 25,
-    height: 25
+    top: 30,
+    width: 10,
+    height: 10
   }
 })
 
