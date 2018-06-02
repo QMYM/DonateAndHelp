@@ -100,7 +100,7 @@ class Beneficiaries extends React.Component {
                 </div>
                 <div className='panel-body'>
                   <h2>From : {item.username}</h2>
-                  <img alt='Profile' style={{width: '300px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} />
+                  <img alt='Profile' style={{width: '300px', height:'250px'}} src={item.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} />
 
                 </div>
                 <p> {item.campaignDescription}</p>

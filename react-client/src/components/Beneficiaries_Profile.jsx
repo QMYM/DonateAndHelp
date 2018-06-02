@@ -424,7 +424,6 @@ class Beneficiaries_Profile extends React.Component {
                                 <h2>Campaign Name : {po.campaignName}</h2>
                                 <h3>{po.campaignDescription}</h3>
                                 <h3>{po.campaignAmount}</h3>
-                                <h3>{po.campaignAmount}</h3>
                               </div>
                               <a href='#' className='thumbnail'>
                                 <img src={po.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'} alt='Uploaded photo' style={{width: '300px', hight: '300px'}} />
