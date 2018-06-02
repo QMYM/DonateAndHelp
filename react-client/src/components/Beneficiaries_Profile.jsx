@@ -260,7 +260,7 @@ class Beneficiaries_Profile extends React.Component {
         </nav>
         <form>
           <div className='container'>
-            <div className='profile'>
+            <div className='profile w3-animate-fading'>
               <div className='container'>
                 <img className='image-lg ' alt='Profile' src={this.state.image2 || 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'} />
                 <div className='middle '>
