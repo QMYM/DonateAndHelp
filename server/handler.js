@@ -1,42 +1,42 @@
 
-let db = require('../db/index') // Import index.js file located in db directory
-let helper = require('../helper/uitilty') // Import utility.js file in helper directory
-let bcrypt = require('bcrypt') // Import bcrypt library
-let session = require('express-session') // Import express-session library
+let db = require('../db/index') 
+let helper = require('../helper/uitilty') 
+let bcrypt = require('bcrypt') 
+let session = require('express-session') 
 let saltRounds = 10 // Using salt hash for password encryption
 const Nexmo = require('nexmo');
 
 exports.Signup = function (req, res) { // This function is responsible for the signup of the donor
-  var username = req.body.username; // Store the username of the donor user coming from the client side
-  var password = req.body.password; // Store the password of the donor user coming from the client side
-  var email = req.body.email; // Store the email of the donor user coming from the client side
-  db.userDonater.find({ // Search for the username of the donor against donor schema
+  var username = req.body.username; 
+  var password = req.body.password; 
+  var email = req.body.email; 
+  db.userDonater.find({ 
     username: username
   }, function (err, data) {
     if (err) {
-      res.sendStatus(404) // If there is an error in the seeach result, send an error of 404 to the client
+      res.sendStatus(404) 
     } else {
-      if (data.length > 0) { // If the username is found in the donor schema, send an error of 404
+      if (data.length > 0) { 
         res.sendStatus(404)
       } else {
-        bcrypt.genSalt(saltRounds, function (err, salt) { // If the username is not found in the donor schema, generate a salt
+        bcrypt.genSalt(saltRounds, function (err, salt) { 
           if (err) {
             throw err
-          } // Send an error if there is an error on salting process
-          bcrypt.hash(password, salt, function (err, hash) { // hash the salted password
+          } s
+          bcrypt.hash(password, salt, function (err, hash) { 
             if (err) {
               throw err
-            } // If there is an error on the salted password, send  an error
+            } 
             var user = new db.userDonater({
               username: username,
               email: email,
               password: hash
-            }) // Create an object of the new donor user from donor schema
+            }) 
             user.save(function (err, data) {
               if (err) {
                 throw err
-              } // Save the new donor user in the donor schema
-              helper.createSession(req, res, data.username) // Create a session for the donor user
+              } 
+              helper.createSession(req, res, data.username) 
             })
           })
         })
@@ -46,36 +46,36 @@ exports.Signup = function (req, res) { // This function is responsible for the s
 }
 
 exports.SignupCompany = function (req, res) { // This function is responsible for the signup of the beneficiary
-  var username = req.body.username; // Store the username of the beneficiary coming from the client
-  var password = req.body.password; // Store the password of the beneficiary coming from the client
-  var email = req.body.email; // Store the email of the beneficiary coming from the client side
-  db.userCompany.find({ // Search the the username against beneficiary schema
+  var username = req.body.username; 
+  var password = req.body.password; 
+  var email = req.body.email; 
+  db.userCompany.find({ 
     username: username
   }, function (err, data) {
     if (err) {
-      res.sendStatus(404) // If there is an error on the search, send an error of 404
+      res.sendStatus(404) 
     } else {
-      if (data.length > 0) { // If the username is found, send an error of 404
+      if (data.length > 0) { 
         res.sendStatus(404)
       } else {
-        bcrypt.genSalt(saltRounds, function (err, salt) { // If the username is not found, salt the password of the beneficiary
+        bcrypt.genSalt(saltRounds, function (err, salt) { 
           if (err) {
-            throw err // Send an error, if there is an error on salting the password
+            throw err 
           }
-          bcrypt.hash(password, salt, function (err, hash) { // Encrypt the salted password
+          bcrypt.hash(password, salt, function (err, hash) { 
             if (err) {
               throw err
-            } // If there is an error on encrypting the salted password, send an error
+            } 
             var user = new db.userCompany({
               username: username,
               email: email,
               password: hash
-            }) // If the encryption went well, create an object of the user from the beneficiary schema
-            user.save(function (err, data) { // Save the new user object in the beneficiary schema
+            }) 
+            user.save(function (err, data) { 
               if (err) {
-                throw err // If there is a problem on saving the new user, send an error
+                throw err 
               }
-              helper.createSession(req, res, data.username) // Create a session for the new beneficiary user
+              helper.createSession(req, res, data.username) 
             })
           })
         })
@@ -85,28 +85,28 @@ exports.SignupCompany = function (req, res) { // This function is responsible fo
 }
 
 exports.logout = function (req, res) { // Logout of the existing and currently logged in user
-  req.session.destroy(function () { // Destroy the session of the logged out user
-    res.sendStatus(200); // Send a success response to the client for the logged out user
+  req.session.destroy(function () { 
+    res.sendStatus(200); 
   })
 }
   
 exports.LoginCompany = function (req, res) { // This function is responsible for the login of the beneficiary user
-  var username = req.body.userName; // Store the username of the beneficairy coming from the client side
-  var password = req.body.password; // Store the password of the beneficiary coming from the client side
-  db.userCompany.findOne({ // Search for the username against beneficiary schema
+  var username = req.body.userName; 
+  var password = req.body.password; 
+  db.userCompany.findOne({ 
     username: username
   }, function (err, data) {
     if (err) {
-      throw err // Send an error if there is an error on the search function
+      throw err 
     } else {
       if (!data) { 
-        res.sendStatus(404); // If the username is not existed in the schema, send an error of 404 to the client
+        res.sendStatus(404); 
       } else {
-        bcrypt.compare(password, data.password, function (err, found) { // If the usernmae is existed in the schema, compare the sent password from the user against the existing password in the schema
+        bcrypt.compare(password, data.password, function (err, found) { 
           if (found) { 
-            helper.createSession(req, res, data.username) // If the sent password is correct and matches the stored one in the schema, create a session for the user
+            helper.createSession(req, res, data.username) 
           } else {
-            res.sendStatus(404); // Send an error of 404 to the client, if the sent password is wrong
+            res.sendStatus(404); 
           }
         })
       }
@@ -115,15 +115,15 @@ exports.LoginCompany = function (req, res) { // This function is responsible for
 }
 
 exports.uploadImage = function (req, res) { // This function will upload the profile image of the beneficiary in the profile page
-  var image = req.body.image; // Store the uploaded image by the beneficiary user coming from the client side
+  var image = req.body.image; 
   var save = new db.userCompany({
-    image: image // Create an object of the uploaded image from the beenficiary schema
+    image: image 
   })
-  save.save(function (err, data) { // Save the created object of the uploaded image in the schema
+  save.save(function (err, data) { 
     if (err) {
-      throw err // Send an error if there's an error on the save
+      throw err 
     } else {
-      console.log('saved!'); // Send a success response if the uploaded image is saved in the schema and updated
+      console.log('saved!'); 
     }
   })
   db.userCompany.update({username: req.session.user}, { $set: { image: image }}, function (err, data) {
@@ -135,7 +135,8 @@ exports.uploadImage = function (req, res) { // This function will upload the pro
   })
 }
 
-exports.uploadImage2 = function (req, res) { // add a personal photo for the user
+exports.uploadImage2 = function (req, res) { // This function will upload the background image of the beneficiary in the
+// profile page
   var image2 = req.body.image2;
   var save = new db.userCompany({
     image2: image2
@@ -164,7 +165,7 @@ exports.getImage = function (req, res) {
       res.send(data);
     }
   })
-}
+} // This function will retrieve the profile image of the beneficiary in the profile page
 
 exports.getImage2 = function (req, res) {
   db.userCompany.findOne({username: req.session.user}, function (err, data) {
@@ -174,7 +175,7 @@ exports.getImage2 = function (req, res) {
       res.send(data);
     }
   })
-}
+} // // This function will retrieve the background image of the beneficiary in the profile page
 
 exports.LoginDonater = function (req, res) {
   var username = req.body.userName
@@ -209,7 +210,7 @@ exports.getInfoForProfilePage = function(req,res){
       res.send(data)
     }
   })
-}
+} // This function will retrieve beneficiary profile information for the beneficiary profile page
 
 
 exports.getInfoForProfilePageforDonor = function(req,res){
@@ -220,7 +221,7 @@ exports.getInfoForProfilePageforDonor = function(req,res){
       res.send(data)
     }
   })
-}
+} // This function will retrieve donor profile information in the donor profile page
 
 exports.addProfileCompany = function (req, res) {
   console.log("hi phone ", req.body)
@@ -249,7 +250,7 @@ exports.addProfileCompany = function (req, res) {
 
     }
    })
-}
+} // This function is for adding/editing the beneficiary profile information in the profile page
 
 exports.addProfileDonor = function (req, res) {
   console.log("hello 3eny", req.body)
@@ -278,10 +279,9 @@ exports.addProfileDonor = function (req, res) {
 
     }
   })
-}
+} // // This function is responsible for adding donor profile information in the donor profile page
 
 exports.uploadImageDonor = function (req, res) { // add a personal photo for the user
-  console.log("jackel is here", req.body)
   var image = req.body.image
   var save = new db.userDonater({
     image: image
@@ -300,7 +300,7 @@ exports.uploadImageDonor = function (req, res) { // add a personal photo for the
       res.send(data)
     }
   })
-}
+} // This function is for uploading the profile image of the donor in the donor profile page
 
 exports.uploadImageDonor2 = function (req, res) { // add a personal photo for the user
   var image2 = req.body.image2
@@ -321,7 +321,7 @@ exports.uploadImageDonor2 = function (req, res) { // add a personal photo for th
       res.send(data)
     }
   })
-}
+} // This function is for uploading the background image of the donor in the donor profile page
 
 exports.getImageDonor = function (req, res) {
   db.userDonater.findOne({username: req.session.user}, function (err, data) {
@@ -331,7 +331,7 @@ exports.getImageDonor = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is for retrieving the profile image of the donor in the donor profile page
 
 exports.getImageDonor2 = function (req, res) {
   db.userDonater.findOne({username: req.session.user}, function (err, data) {
@@ -341,7 +341,7 @@ exports.getImageDonor2 = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is for retrieving the background image of thedonor in the donor profile page
 
 exports.sendMessage = function (req, res) {
   var reciever = req.body.user
@@ -425,10 +425,9 @@ exports.uploadImageCampaign = function (req, res) {
       res.send(data)
     }
   })
-}
+} // // This function is to upload image campaigns in the beneficiary campaign page
 
 exports.postCompanyCampaign = function (req, res) {
-  console.log("mais is here alo!", req.body.category)
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
@@ -470,7 +469,7 @@ exports.postDonorCampaign = function (req, res) {
       res.sendStatus(201)
     }
   })
-}
+} // // This function is to add campaign information in the donor campaign page
 
 exports.sessionName = function (req, res) {
   res.send(req.session.user)
@@ -489,7 +488,7 @@ exports.searchBeneficiary = function (req, res) {
       }
     }
   })
-}
+} // // This function is to retrieve the donor information for the beneficiary search function
 
 exports.imageSearch = function (req, res) {
   db.userDonater.find({}, function (err, data) {
@@ -499,7 +498,7 @@ exports.imageSearch = function (req, res) {
       res.send(data)
     }
   })
-}
+} // // This function is to retrieve the image of the donor for the beneficiary search function
 
 exports.donorCam = function (req, res) {
   db.donorCampaigns.find({}, function (err, data) {
@@ -507,7 +506,7 @@ exports.donorCam = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is to retrieve the donor campaigns in the donor profile page
 
 exports.companyCam = function (req, res) {
   db.companyCampaigns.find({}, function (err, data) {
@@ -515,7 +514,7 @@ exports.companyCam = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is to retrieve the beneficiary campaigns in the beneficiary profile page
 
 exports.fetchDonorData = function (req, res) {
   db.userDonater.findOne({username: req.session.user}, function (err, data) {
@@ -525,7 +524,7 @@ exports.fetchDonorData = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is retrieve some information of the donor in the profile page
 
 exports.fetchCompanyData = function (req, res) {
   db.userCompany.findOne({username: req.session.user}, function (err, data) {
@@ -535,7 +534,7 @@ exports.fetchCompanyData = function (req, res) {
       res.send(data)
     }
   })
-}
+} // // This function is retrieve some information of the beneficiary in the profile page
 
 exports.searchDonor = function (req, res) {
   var name = req.body.name
@@ -550,7 +549,7 @@ exports.searchDonor = function (req, res) {
       res.send(arr)
     }
   })
-}
+} // This function is to retrieve the beneficiary information for the donor search function 
 
 exports.imageSearchDonor = function (req, res) {
   db.userCompany.find({}, function (err, data) {
@@ -560,7 +559,7 @@ exports.imageSearchDonor = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is to retrieve the image of the beneficiary for the donor search function
 
 exports.removeMsg = function (req, res) {
   var user = req.body.user
@@ -583,7 +582,7 @@ exports.removeCampaignComp = function (req, res) {
       res.sendStatus(200)
     }
   })
-}
+} // This function is to delete beneficiary campaigns in the beneficiary profile page
 
 exports.editCampaignComp = function (req, res) {
   var campaignID = req.body.campaignID
@@ -602,7 +601,7 @@ exports.editCampaignComp = function (req, res) {
       res.send(data)
     }
   })
-}
+} // // This function is to edit beneficiary campaign infomration in the beneficiary profile page 
 
 exports.removeCampaignDonor = function (req, res) {
   var ID = req.body.CampID
@@ -613,7 +612,7 @@ exports.removeCampaignDonor = function (req, res) {
       res.sendStatus(200)
     }
   })
-}
+} // This function is to delete donor campaigns in the donor profile page
 
 exports.editCampaignDonor = function (req, res) {
   var campaignID = req.body.campaignID
@@ -633,7 +632,7 @@ exports.editCampaignDonor = function (req, res) {
       res.send(data)
     }
   })
-}
+} // This function is to edit donor campaign infomrationin the donor profile page 
 
 exports.deleteAllMessages = function (req,res){
   var user = req.body.user
@@ -658,7 +657,6 @@ exports.editAmount  = function (req , res) {
       throw err; 
     } 
     else if(data.campaignAmount === "Donation Completed"){
-      console.log("my name ios jackel", data.campaignAmount)
       res.sendStatus(202)
     }
 
@@ -680,7 +678,6 @@ exports.editAmount  = function (req , res) {
           if(err ){
             throw err
           }else{
-            console.log("hello data",data)
             res.send(data);
           }
         })
@@ -688,7 +685,7 @@ exports.editAmount  = function (req , res) {
     }
   })
 
-}
+} // This function will deduct the amounts donated by donors from the the total amount requested by the beneficiary in the campaign
 
 
 exports.serveiceSms = function (req, res) { 
@@ -710,7 +707,7 @@ exports.serveiceSms = function (req, res) {
     res.sendStatus(201)
   }
 });
-}
+} // Sending SMS to project team through Nexmo API
 
 
 

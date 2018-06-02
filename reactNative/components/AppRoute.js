@@ -37,7 +37,7 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial={true}  
+            initial = {true}
             
           />
 
@@ -63,6 +63,7 @@ export default class AppRoute extends React.Component {
             hideNavBar
             component={Donor}
             title='Donor'
+            
           />
           <Scene key='Donor_Campaign'
             component={DonorCampaign}
@@ -103,9 +104,6 @@ export default class AppRoute extends React.Component {
             component={BeneficiariesTab}
             title='Beneficiaries_Tab'
           />
-
-        
-          
 
           <Scene
             key='Aboutus'

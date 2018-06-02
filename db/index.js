@@ -1,19 +1,18 @@
 
-var mongoose = require('mongoose') // Import mongoose module
+var mongoose = require('mongoose') 
 
 mongoose.Promise = global.Promise
   // mongoose.connect('mongodb://localhost/Donate') 
-mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate') // This is to connect the backend to
+mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate') 
 
-// an external DB hosted on https://mlab.com/
-var db = mongoose.connection // Create mongoose connection for mongodb
+var db = mongoose.connection 
 
 db.on('error', function () {
   console.log('mongoose connection error')
-}) // This will apply if there is a problem on mongoose connection for mongodb
+}) 
 db.once('open', function () {
   console.log('mongoose connected successfully')
-}) // This will apply if mongoose is connected successfully for mongodb
+}) 
 
 var Schema = mongoose.Schema // Create a mongoose schema 
 
@@ -78,7 +77,8 @@ const messageSchema = new Schema({
 
 }) // This schema is for messaging
 
-MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
+ // Create a model from messages schema
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 var messageSenders = function (callback) {
   MessageSchema.aggregate([
@@ -106,12 +106,20 @@ var messageSenders = function (callback) {
   })
 } 
 
-userCompany = mongoose.model('userCompany', userCompany) // Create a model from beneficaries schema
-userDonater = mongoose.model('userDonater', userDonater) // Create a model from donors schema
-companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns) // Create a model from beneficary campaigns 
+// Create a model from beneficaries schema
+userCompany = mongoose.model('userCompany', userCompany) 
+
+ // Create a model from donors schema
+userDonater = mongoose.model('userDonater', userDonater)
+
+// Create a model from beneficary campaigns 
+companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns) 
 // schema
-donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns) // Create a model from donor campaigns schema
-MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
+// Create a model from donor campaigns schema
+donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
+
+// Create a model from messages schema
+MessageSchema = mongoose.model('MessageSchema', messageSchema) 
 
 module.exports.messageSenders = messageSenders
 module.exports.userDonater = userDonater

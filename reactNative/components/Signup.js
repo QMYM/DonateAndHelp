@@ -1,8 +1,20 @@
 import React from 'react'
-import { StyleSheet, ImageBackground, Text, Dimensions, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Alert, Picker, ScrollView, Image} from 'react-native'
+import { StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Picker,
+  Image } from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base'
+import { Container,
+  Header,
+  Content,
+  Button,
+  Spinner} from 'native-base'
 
 class Signup extends React.Component {
   constructor (props) {
@@ -12,24 +24,26 @@ class Signup extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      user: 'true'
+      user: 'true',
+      loading: false
+
     }
   }
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
     // Validate the email
     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/
     if (!regex.test(email)) {
-      alert('Please enter a valid email!')
+      Alert.alert('Please enter a valid email!')
     }
     // Validate the password
     if (password === '') {
-      alert('Please enter a valid passowrd')
+      Alert.alert('Please enter a valid passowrd')
     } else if (password.length < 5) {
-      alert('Password length must be at least 5 characters. Please enter a valid password!')
+      Alert.alert('Password length must be at least 5 characters. Please enter a valid password!')
     } else if (password.length > 8) {
-      alert('Password length must be maximum 8 characters. Please enter a valid password!')
+      Alert.alert('Password length must be maximum 8 characters. Please enter a valid password!')
     } else if (!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password))) {
-      alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
+      Alert.alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
     } else if (confirmPassword === password) {
       axios.post('https://donatandhelp.herokuapp.com/Donater',
         {
@@ -45,7 +59,7 @@ class Signup extends React.Component {
         })
     } else {
       console.log(confirmPassword)
-      alert("Password doesn't match. Please rewrite it again!!")
+      Alert.alert("Password doesn't match. Please rewrite it again!!")
       this.pass.value = ''
       this.conPass.value = ''
     }
@@ -55,17 +69,17 @@ class Signup extends React.Component {
     // Validate the email
     var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/
     if (!regex.test(email)) {
-      alert('Please enter a valid email!')
+      Alert.alert('Please enter a valid email!')
     }
     // Validate the password
     if (password === '') {
-      alert('Please enter a valid passowrd')
+      Alert.alert('Please enter a valid passowrd')
     } else if (password.length < 5) {
-      alert('Password length must be at least 5 characters. Please enter a valid password!')
+      Alert.alert('Password length must be at least 5 characters. Please enter a valid password!')
     } else if (password.length > 8) {
-      alert('Password length must be maximum 8 characters. Please enter a valid password!')
+      Alert.alert('Password length must be maximum 8 characters. Please enter a valid password!')
     } else if (!(/[0-9]/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password))) {
-      alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
+      Alert.alert('Password should have at least one number, one upper case, one small case and one speciall character. Please enter a valid one!')
     } else if (confirmPassword === password) {
       axios.post('https://donatandhelp.herokuapp.com/Company',
         {
@@ -80,152 +94,166 @@ class Signup extends React.Component {
         })
     } else {
       console.log(confirmPassword)
-      alert("Password doesn't match. Please rewrite it again!!")
+      Alert.alert("Password doesn't match. Please rewrite it again!!")
       this.pass.value = ''
       this.conPass.value = ''
     }
   };
+  _goBack () {
+    console.log('Back button pressed')
+    this.props.navigation.goBack()
+  }
 
   render () {
-    return (
-      <Container>
-        <Content>
-          <View style={styles.container}>
-            <ImageBackground
-              source={require('./signup_bg.png')}
-              style={[styles.container, styles.bg]}
-              resizeMode='cover'
-            >
-              <View style={styles.headerContainer}>
+    if (this.state.loading === true) {
+      return (
+        <Container>
+          <Header />
+          <Content>
+            <Spinner color='blue' />
+          </Content>
+        </Container>
+      )
+    } else {
+      return (
+        <Container>
+          <Content>
+            <View style={styles.container}>
+              <ImageBackground
+                source={require('./signup_bg.png')}
+                style={[styles.container, styles.bg]}
+                resizeMode='cover'
+              >
+                <View style={styles.headerContainer}>
+                  <View style={styles.headerIconView}>
+                    <Button transparent style={styles.headerBackButtonView} onPress={this._goBack.bind(this)}>
+                      <Image
+                        source={require('./back.png')}
+                        style={styles.backButtonIcon}
+                        resizeMode='contain'
+                      />
+                    </Button>
+                  </View>
 
-                <View style={styles.headerIconView}>
-                  <TouchableOpacity style={styles.headerBackButtonView}>
-                    <Image
-                      source={require('./back.png')}
-                      style={styles.backButtonIcon}
-                      resizeMode='contain'
+                  <View style={styles.headerTitleView}>
+                    <Text style={styles.titleViewText}>Sign Up</Text>
+                  </View>
+
+                </View>
+
+                <View style={styles.inputsContainer}>
+
+                  <Text style={styles.text}>Choose</Text>
+                  <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
+                    <Picker.Item label='Company' value='true' />
+                    <Picker.Item label='Donor' value='false' />
+                  </Picker>
+
+                  <View style={styles.inputContainer}>
+                    <View style={styles.iconContainer}>
+                      <Image
+                        source={require('./login1_person.png')}
+                        style={styles.inputIcon}
+                        resizeMode='contain'
+                      />
+                    </View>
+                    <TextInput
+                      style={[styles.input, styles.whiteFont]}
+                      placeholder='Name'
+                      placeholderTextColor='#FFF'
+                      underlineColorAndroid='transparent'
+                      onChangeText={(username) => this.setState({username})}
+
                     />
+                  </View>
+
+                  <View style={styles.inputContainer}>
+                    <View style={styles.iconContainer}>
+                      <Image
+                        source={require('./signup_email.png')}
+                        style={styles.inputIcon}
+                        resizeMode='contain'
+                      />
+                    </View>
+                    <TextInput
+                      style={[styles.input, styles.whiteFont]}
+                      placeholder='Email'
+                      placeholderTextColor='#FFF'
+                      onChangeText={(email) => this.setState({email})}
+
+                    />
+                  </View>
+
+                  <View style={styles.inputContainer}>
+                    <View style={styles.iconContainer}>
+                      <Image
+                        source={require('./login1_lock.png')}
+                        style={styles.inputIcon}
+                        resizeMode='contain'
+                      />
+                    </View>
+                    <TextInput
+                      secureTextEntry
+                      style={[styles.input, styles.whiteFont]}
+                      placeholder='Password'
+                      placeholderTextColor='#FFF'
+                      onChangeText={(password) => this.setState({password})}
+
+                    />
+                  </View>
+
+                  <View style={styles.inputContainer}>
+                    <View style={styles.iconContainer}>
+                      <Image
+                        source={require('./login1_lock.png')}
+                        style={styles.inputIcon}
+                        resizeMode='contain'
+                      />
+                    </View>
+                    <TextInput
+                      secureTextEntry
+                      style={[styles.input, styles.whiteFont]}
+                      placeholder='ConfirmPassword'
+                      placeholderTextColor='#FFF'
+                      underlineColorAndroid='transparent'
+                      onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+
+                    />
+                  </View>
+
+                </View>
+
+                <View style={styles.footerContainer}>
+
+                  { this.state.user === 'true' ? (
+
+                    <View style={styles.signup}>
+                      <Button transparent full
+                        onPress={() => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)}>
+                        <Text style={styles.whiteFont}>Sign up Company</Text>
+                      </Button>
+                    </View>
+                  )
+                    : <View style={styles.signup}>
+                      <Button transparent full
+                        onPress={() => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)}>
+                        <Text style={styles.whiteFont}>Sign up Donor</Text>
+                      </Button>
+                    </View>
+                  }
+
+                  <TouchableOpacity>
+                    <View style={styles.signin}>
+                      <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
-
-                <View style={styles.headerTitleView}>
-                  <Text style={styles.titleViewText}>Sign Up</Text>
-                </View>
-
-              </View>
-
-              <View style={styles.inputsContainer}>
-
-                <Text style={styles.text}>Choose</Text>
-                <Picker selectedValue={this.state.user} onValueChange={(itemValue) => this.setState({user: itemValue})}>
-                  <Picker.Item label='Company' value='true' />
-                  <Picker.Item label='Donor' value='false' />
-                </Picker>
-
-                <View style={styles.inputContainer}>
-                  <View style={styles.iconContainer}>
-                    <Image
-                      source={require('./login1_person.png')}
-                      style={styles.inputIcon}
-                      resizeMode='contain'
-                    />
-                  </View>
-                  <TextInput
-                    style={[styles.input, styles.whiteFont]}
-                    placeholder='Name'
-                    placeholderTextColor='#FFF'
-                    underlineColorAndroid='transparent'
-                    onChangeText={(username) => this.setState({username})}
-
-                  />
-                </View>
-
-                <View style={styles.inputContainer}>
-                  <View style={styles.iconContainer}>
-                    <Image
-                      source={require('./signup_email.png')}
-                      style={styles.inputIcon}
-                      resizeMode='contain'
-                    />
-                  </View>
-                  <TextInput
-                    style={[styles.input, styles.whiteFont]}
-                    placeholder='Email'
-                    placeholderTextColor='#FFF'
-                    onChangeText={(email) => this.setState({email})}
-
-                  />
-                </View>
-
-                <View style={styles.inputContainer}>
-                  <View style={styles.iconContainer}>
-                    <Image
-                      source={require('./login1_lock.png')}
-                      style={styles.inputIcon}
-                      resizeMode='contain'
-                    />
-                  </View>
-                  <TextInput
-                    secureTextEntry
-                    style={[styles.input, styles.whiteFont]}
-                    placeholder='Password'
-                    placeholderTextColor='#FFF'
-                    onChangeText={(password) => this.setState({password})}
-
-                  />
-                </View>
-
-                <View style={styles.inputContainer}>
-                  <View style={styles.iconContainer}>
-                    <Image
-                      source={require('./login1_lock.png')}
-                      style={styles.inputIcon}
-                      resizeMode='contain'
-                    />
-                  </View>
-                  <TextInput
-                    secureTextEntry
-                    style={[styles.input, styles.whiteFont]}
-                    placeholder='ConfirmPassword'
-                    placeholderTextColor='#FFF'
-                    underlineColorAndroid='transparent'
-                    onChangeText={(confirmPassword) => this.setState({confirmPassword})}
-
-                  />
-                </View>
-
-              </View>
-
-              <View style={styles.footerContainer}>
-
-                { this.state.user === 'true' ? (
-
-                  <View style={styles.signup}>
-                    <Button transparent full
-                      onPress={() => this.submitCompany(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)}>
-                      <Text style={styles.whiteFont}>Sign up Company</Text>
-                    </Button>
-                  </View>
-                )
-                  : <View style={styles.signup}>
-                    <Button transparent full
-                      onPress={() => this.submitDonater(this.state.username, this.state.email, this.state.password, this.state.confirmPassword)}>
-                      <Text style={styles.whiteFont}>Sign up Donor</Text>
-                    </Button>
-                  </View>
-                }
-
-                <TouchableOpacity>
-                  <View style={styles.signin}>
-                    <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </ImageBackground>
-          </View>
-        </Content>
-      </Container>
-    )
+              </ImageBackground>
+            </View>
+          </Content>
+        </Container>
+      )
+    }
   }
 }
 

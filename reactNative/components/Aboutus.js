@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Image} from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { StyleSheet,
+  Text,
+  View,
+  Image} from 'react-native'
 
 class Aboutus extends React.Component {
   constructor (props) {
@@ -14,7 +16,6 @@ class Aboutus extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={{fontWeight: 'bold'}}>ABOUT US{'\n'}</Text>
-
         <Text style={styles.txt}>We have created a fictional "personal" website/blog, and our fictional character is a
         hobby photographer. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -30,7 +31,6 @@ class Aboutus extends React.Component {
       Duis aute irure incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
       </View>
-
     )
   }
 }
