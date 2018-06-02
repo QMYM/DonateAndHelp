@@ -77,7 +77,8 @@ const messageSchema = new Schema({
 
 }) // This schema is for messaging
 
-MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
+ // Create a model from messages schema
+MessageSchema = mongoose.model('MessageSchema', messageSchema)
 
 var messageSenders = function (callback) {
   MessageSchema.aggregate([
@@ -105,12 +106,20 @@ var messageSenders = function (callback) {
   })
 } 
 
-userCompany = mongoose.model('userCompany', userCompany) // Create a model from beneficaries schema
-userDonater = mongoose.model('userDonater', userDonater) // Create a model from donors schema
-companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns) // Create a model from beneficary campaigns 
+// Create a model from beneficaries schema
+userCompany = mongoose.model('userCompany', userCompany) 
+
+ // Create a model from donors schema
+userDonater = mongoose.model('userDonater', userDonater)
+
+// Create a model from beneficary campaigns 
+companyCampaigns = mongoose.model('companyCampaigns', companyCampaigns) 
 // schema
-donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns) // Create a model from donor campaigns schema
-MessageSchema = mongoose.model('MessageSchema', messageSchema) // Create a model from messages schema
+// Create a model from donor campaigns schema
+donorCampaigns = mongoose.model('donorCampaigns', donorCampaigns)
+
+// Create a model from messages schema
+MessageSchema = mongoose.model('MessageSchema', messageSchema) 
 
 module.exports.messageSenders = messageSenders
 module.exports.userDonater = userDonater

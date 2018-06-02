@@ -15,7 +15,6 @@ import Message from './Message'
 import MessageReciver from './Message_Reciver'
 import Beneficiaries from './Beneficiaries'
 import BeneficiariesCampaign from './Beneficiaries_Campaign'
-import ImagePickerExample from './ImagePickerExample'
 import Aboutus from './Aboutus'
 import Contactus from './Contactus'
 
@@ -38,7 +37,7 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial={true}  
+            initial = {true}
             
           />
 
@@ -64,6 +63,7 @@ export default class AppRoute extends React.Component {
             hideNavBar
             component={Donor}
             title='Donor'
+            
           />
           <Scene key='Donor_Campaign'
             component={DonorCampaign}
@@ -103,13 +103,6 @@ export default class AppRoute extends React.Component {
             hideNavBar
             component={BeneficiariesTab}
             title='Beneficiaries_Tab'
-          />
-
-          <Scene
-            key='ImagePickerExample'
-            component={ImagePickerExample}
-            title='ImagePickerExample'
-            
           />
 
           <Scene

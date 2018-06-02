@@ -282,7 +282,6 @@ exports.addProfileDonor = function (req, res) {
 } // // This function is responsible for adding donor profile information in the donor profile page
 
 exports.uploadImageDonor = function (req, res) { // add a personal photo for the user
-  console.log("jackel is here", req.body)
   var image = req.body.image
   var save = new db.userDonater({
     image: image
@@ -429,7 +428,6 @@ exports.uploadImageCampaign = function (req, res) {
 } // // This function is to upload image campaigns in the beneficiary campaign page
 
 exports.postCompanyCampaign = function (req, res) {
-  console.log("mais is here alo!", req.body.category)
   var campaignName = req.body.campaignName;
   var campaignDescription = req.body.campaignDescription;
   var campaignAmount = req.body.campaignAmount;
@@ -659,7 +657,6 @@ exports.editAmount  = function (req , res) {
       throw err; 
     } 
     else if(data.campaignAmount === "Donation Completed"){
-      console.log("my name ios jackel", data.campaignAmount)
       res.sendStatus(202)
     }
 
@@ -681,7 +678,6 @@ exports.editAmount  = function (req , res) {
           if(err ){
             throw err
           }else{
-            console.log("hello data",data)
             res.send(data);
           }
         })

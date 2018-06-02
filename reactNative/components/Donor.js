@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, TouchableHighlight, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input } from 'native-base'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input ,  Picker, Form } from 'native-base'
 
 function searching (term) {
   return function (x) {
@@ -18,8 +18,7 @@ class Donor extends React.Component {
       camp: [],
       amount: '',
       term: '',
-      modalVisible: false
-
+      modalVisible: false,
     }
   }
 
@@ -30,7 +29,7 @@ class Donor extends React.Component {
   componentDidMount () {
     var x = this
     axios.get('https://donatandhelp.herokuapp.com/companyCam')
-      .then(function (res) {
+          .then(function (res) {
         x.setState({camp: res.data})
       }).catch(function (err) {
         console.log(err)
@@ -38,14 +37,11 @@ class Donor extends React.Component {
   }
 
   submitDonate (amount) {
-
     if(amount.length !== 0){
     axios.post('https://donatandhelp.herokuapp.com/editAmount', {amount: amount, user: this.state.user })
       .then((res) => {
          if(res.status === 202){
         alert("The donation has been completed!")
-        
-
       }else{
         alert('Thanks For Donation')
         this.componentDidMount()
@@ -62,9 +58,14 @@ class Donor extends React.Component {
   user (name) {
     this.setState({user: name})
   }
+
+    onValueChange(value: string) {
+    this.setState({
+      selected1: value
+    });
+  }
   render () {
     return (
-
       <Container>
         <Header searchBar rounded>
           <Item>
@@ -77,9 +78,7 @@ class Donor extends React.Component {
           </Button>
         </Header>
         <Content>
-
           <View style={styles.container}>
-
             <Modal
               animationType='slide'
               transparent={false}
@@ -89,7 +88,6 @@ class Donor extends React.Component {
               }}>
               <View style={{marginTop: 22}}>
                 <Text style={{marginTop: 40}}>Payment</Text>
-
                 <Item floatingLabel last>
                   <Input
                     placeholder='Amount'
@@ -124,13 +122,12 @@ class Donor extends React.Component {
               style={styles.img2} />
             {this.state.camp.filter(searching(this.state.term)).map(item =>
               <View style={styles.campview} key={item._id}>
-
                 <View style={{height: '30%', backgroundColor: '#f5f5f5', width: '100%', marginBottom: 10}}>
                   <Text style={{fontWeight: 'bold', textAlign: 'center', marginTop: 30, fontSize: 30}}>{item.campaignName}</Text>
                 </View>
-                <Image source={{uri: 'http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg' || item.campaignImage}}
+                <Image source={{uri: 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg' || item.campaignImage}}
                   style={styles.img} />
-                <Text>{item.campaignDescription}</Text>
+                <Text style={{fontSize: 35}}>{item.campaignDescription}</Text>
                 <Text>{item.campaignAmount}</Text>
                 <Text>{item.category}</Text>
                 <Button full dark onPress={() => { this.setModalVisible(true), this.user(item._id) }}>
@@ -139,6 +136,7 @@ class Donor extends React.Component {
                />
               </View>
             )}
+          } 
           </View>
         </Content>
       </Container>
@@ -167,8 +165,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   img: {
-    width: 60,
-    height: 60,
+    width: 100,
+    height: 100,
     justifyContent: 'center'
   },
   search: {

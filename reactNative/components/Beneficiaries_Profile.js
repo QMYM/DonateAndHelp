@@ -1,8 +1,10 @@
 import React from 'react'
-import { Modal, StyleSheet, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
+import { Modal, StyleSheet, TouchableHighlight, Animated, TextInput, FlatList, ActivityIndicator, Alert, Image} from 'react-native'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Left, Body, Right } from 'native-base'
+import { Container, Header, Content, SwipeRow, View, Text, Icon, Button, Card, CardItem, Thumbnail, Label, Left, Body, Right, Title, Item, Input } from 'native-base'
+import { ImagePicker } from 'expo'
+import * as Expo from 'expo'
 import { Font } from 'expo'
 
 class Beneficiaries_Profile extends React.Component {
@@ -24,7 +26,8 @@ class Beneficiaries_Profile extends React.Component {
       email: '',
       post: [],
       id: '',
-      newName: ''
+      newName: '',
+      scrollY: new Animated.Value(0)
     }
   }
   setModalVisible (visible) {
@@ -163,99 +166,222 @@ class Beneficiaries_Profile extends React.Component {
       })
   };
 
-  render () {
-    return (
-      <Container>
-        <Header />
-        <Content>
+  _goBack () {
+    console.log('Back button pressed')
+    this.props.navigation.goBack()
+  }
 
-          <Modal
-            animationType='slide'
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              alert('Modal has been closed.')
-            }}>
-            <View style={{marginTop: 22}}>
-              <Text>Information</Text>
-              <Text>Phone Number: </Text>
-              <TextInput
-                placeholder='Type here your phone number!'
+  render () {
+    var headMov = this.state.scrollY.interpolate({
+      inputRange: [0, 390, 391],
+      outputRange: [0, -390, -390]
+    })
+    var coverMov = this.state.scrollY.interpolate({
+      inputRange: [0, 94, 95],
+      outputRange: [0, -94, -94]
+    })
+    var avatarMov = this.state.scrollY.interpolate({
+      inputRange: [0, 150, 151],
+      outputRange: [0, -150, -150]
+    })
+    var avatarOp = this.state.scrollY.interpolate({
+      inputRange: [0, 94, 95],
+      outputRange: [1, 0, 0]
+    })
+    var headerOp = this.state.scrollY.interpolate({
+      inputRange: [95, 180, 181],
+      outputRange: [0, 0.75, 0.75]
+    })
+    var headerContentOp = this.state.scrollY.interpolate({
+      inputRange: [0, 180, 210],
+      outputRange: [0, 0, 1]
+    })
+
+    return (
+      <View style={{ flex: 1 }} >
+
+        <Modal
+          animationType='slide'
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            alert('Modal has been closed.')
+          }}>
+          <View style={{marginTop: 22}}>
+            <Text>Information</Text>
+            <Item floatingLabel>
+              <Input
+                placeholder='Phone Number'
                 keyboardType='numeric'
                 onChangeText={(contactNum) => this.setState({contactNum})}
               />
-              <Text>Description: </Text>
-              <TextInput
-                placeholder='Type here a description!'
+            </Item>
+            <Item floatingLabel>
+              <Input placeholder='Description'
                 onChangeText={(description) => this.setState({description})}
               />
-              <Text>Address: </Text>
-              <TextInput
-                placeholder='Type here your address!'
+            </Item>
+            <Item floatingLabel>
+              <Input
+                placeholder='Address'
                 onChangeText={(address) => this.setState({address})}
               />
-              <Button
-                onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
+            </Item>
+            <Button full danger
+              onPress={() => this.editInfo(this.state.phoneNum, this.state.description, this.state.address)}
+            ><Text>Done</Text></Button>
+            <Button full dark transparent onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+            }}><Text>Close</Text></Button>
+          </View>
+        </Modal>
 
-              ><Text>Done</Text></Button>
-              <Button onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
-              }}><Text>Close</Text></Button>
-            </View>
-          </Modal>
-
-          <Modal
-            animationType='slide'
-            transparent={false}
-            visible={this.state.edit}
-            onRequestClose={() => {
-              alert('Modal has been closed.')
-            }}>
-            <View style={{marginTop: 22}}>
-              <Text>Edit</Text>
-              <Text>Fundraising Name: </Text>
-              <TextInput
-                placeholder='Type here your campaignName!'
+        <Modal
+          animationType='slide'
+          transparent={false}
+          visible={this.state.edit}
+          onRequestClose={() => {
+            alert('Modal has been closed.')
+          }}>
+          <View style={{marginTop: 22}}>
+            <Text>Edit</Text>
+            <Item floatingLabel>
+              <Input
+                placeholder='Donation Name'
                 onChangeText={(campaignName) => this.setState({campaignName})}
               />
+            </Item>
 
-              <Text>Fundraising Description: </Text>
-              <TextInput
-                placeholder='Type here your campaignDescription!'
+            <Item floatingLabel>
+              <Input
+                placeholder='Donation Description'
                 onChangeText={(campaignDescription) => this.setState({campaignDescription})}
               />
-
-              <Text>Fundraising Amount: </Text>
-              <TextInput
-                placeholder='Type here your campaignAmount!'
+            </Item>
+            <Item floatingLabel>
+              <Input
+                placeholder='Donation Amount'
                 onChangeText={(campaignAmount) => this.setState({campaignAmount})}
               />
+            </Item>
+            <Button full danger
+              onPress={() => this.updateCampaign(this.state.id, this.state.campaignName,
+                this.state.campaignDescription, this.state.campaignAmount, this.state.user)}
+            ><Text>Update</Text></Button>
 
+            <Button full dark transparent onPress={() => {
+              this.setEdit(!this.state.edit)
+            }}><Text>Close</Text></Button>
+          </View>
+        </Modal>
+
+        <Animated.Image
+          source={{uri: this.state.image2 || 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'}}
+          style={{
+            marginTop: Expo.Constants.statusBarHeight,
+            width: '100%',
+            height: 150,
+            zIndex: 2,
+            position: 'absolute',
+            transform: [{ translateY: coverMov }]
+          }}
+        />
+        <Animated.View
+          style={{
+            width: '100%',
+            position: 'absolute',
+            backgroundColor: '#121212',
+            height: 56 + Expo.Constants.statusBarHeight,
+            zIndex: 13,
+            opacity: headerOp,
+            paddingTop: Expo.Constants.statusBarHeight,
+            alignItems: 'center'
+          }}
+        >
+          <Animated.View
+            style={{
+              opacity: headerContentOp,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-start'
+            }}
+          />
+        </Animated.View>
+        <Animated.View
+          style={{
+            zIndex: 4,
+            position: 'absolute',
+            top: 135,
+            opacity: avatarOp,
+            transform: [{ translateY: avatarMov }]
+          }}
+        >
+          <Thumbnail
+            large
+            source={{
+              uri: 'https://data.humdata.org/crisis-tiles/12/2485/1645.png'
+            }}
+            style={styles.avatarbg}
+          />
+          <Thumbnail
+            large
+            source={{uri: this.state.image || 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg'}}
+            style={styles.avatar}
+          />
+        </Animated.View>
+        <Animated.ScrollView
+          scrollEventThrottle={16}
+          onScroll={Animated.event(
+            [
+              {
+                nativeEvent: { contentOffset: { y: this.state.scrollY } }
+              }
+            ],
+            {
+              useNativeDriver: true
+            }
+          )}
+        >
+          <View
+            style={StyleSheet.flatten([
+              styles.header,
+              { marginTop: 150 + Expo.Constants.statusBarHeight }
+            ])}
+          >
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
               <Button
-                onPress={() => this.updateCampaign(this.state.id, this.state.campaignName,
-                  this.state.campaignDescription, this.state.campaignAmount, this.state.user)}
-              ><Text>Update</Text></Button>
-
-              <Button onPress={() => {
-                this.setEdit(!this.state.edit)
-              }}><Text>Close</Text></Button>
+                onPress={() => { this.setModalVisible(true) }}
+                rounded bordered style={styles.headerButton}>
+                <Icon
+                  name='create'
+                  style={{ color: '#4286f4', paddingLeft: 3 }}
+                />
+              </Button>
+              <Button
+                onPress={() => this.logout()}
+                bordered
+                rounded
+                primary
+                style={StyleSheet.flatten([
+                  styles.headerButton,
+                  { paddingLeft: 10, paddingRight: 10 }
+                ])}
+              > <Icon active name='log-out' />
+              </Button>
             </View>
-          </Modal>
+          </View>
+          <View style={styles.header}>
+            <Text style={styles.nameText}>{this.state.user}</Text>
+            <Text style={styles.usernameText}>{'@' + this.state.email}</Text>
+            <Text style={styles.bioText}>{this.state.newContactNum}</Text>
+            <Text style={styles.locationText}>
+              <Icon small name='ios-pin-outline' style={{ fontSize: 16 }} />
+              {this.state.newAddress}
+            </Text>
+          </View>
 
-          <Image
-            style={styles.stretch2}
-
-            source={{uri: this.state.image2 || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
-
-          />
-          <Image
-            style={styles.stretch}
-            source={{uri: this.state.image || 'https://orig00.deviantart.net/3cc1/f/2012/247/1/b/meelo_facebook_default_profile_picture_by_redjanuary-d5dmoxd.jpg'}}
-          />
-          <Text>About Me</Text>
-          <Text>Some Description</Text>
           {this.state.post.map(po =>
-            <View>
+            <View key={po._id}>
               <Content>
                 <Card>
                   <CardItem>
@@ -269,19 +395,19 @@ class Beneficiaries_Profile extends React.Component {
                   <CardItem cardBody>
                     <Image
                       style={{height: 200, width: null, flex: 1}}
-                      source={{uri: po.campaignImage || 'http://bootdey.com/img/Content/avatar/avatar1.png'}}
+                      source={{uri: po.campaignImage || 'https://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg'}}
                     />
                   </CardItem>
                   <CardItem>
                     <Left>
                       <Button transparent onPress={() => { this.theId(po._id), this.setEdit(true) }}>
-                        <Icon active name='edit' />
+                        <Icon active name='create' />
                         <Text>Edit</Text>
                       </Button>
                     </Left>
                     <Body>
                       <Button transparent onPress={() => this.deleteCampaign(po._id)}>
-                        <Icon active name='delete' />
+                        <Icon active name='trash' />
                         <Text>Delete</Text>
                       </Button>
                     </Body>
@@ -294,27 +420,12 @@ class Beneficiaries_Profile extends React.Component {
             </View>
           )}
 
-          <Button onPress={() => {
-            this.setModalVisible(true)
-          }}>
-            <Text>Edit Information</Text>
-          </Button>
-          <Button
-            onPress={() => this.logout()}
-          ><Text>Logout</Text></Button>
-          <Text>Information</Text>
-          <Text>{this.state.newName}</Text>
-          <Text>{this.state.email}</Text>
-          <Text>{this.state.newContactNum}</Text>
-          <Text>{this.state.newDescription}</Text>
-          <Text>{this.state.newAddress}</Text>
-        </Content>
-      </Container>
+        </Animated.ScrollView>
+      </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
+const sty = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 22
@@ -340,6 +451,76 @@ const styles = StyleSheet.create({
   btn: {
     marginTop: 10,
     width: 150
+  }
+})
+
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+
+const styles = StyleSheet.create({
+  header: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'column',
+    backgroundColor: 'white'
+  },
+  avatarbg: {
+    // marginTop: -95,
+    marginLeft: 20,
+    padding: 10,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    zIndex: 12
+    // borderRadius: 180
+  },
+  avatar: {
+    marginLeft: 26,
+    marginTop: -95,
+    width: 89,
+    height: 89,
+    borderRadius: 44,
+    zIndex: 12
+  },
+  headerButton: {
+    // alignSelf: "flex-end",
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 3,
+    paddingTop: 3,
+    marginRight: 10
+  },
+  nameText: {
+    fontSize: 26,
+    fontWeight: '500',
+    marginLeft: 14
+  },
+  usernameText: {
+    color: '#777',
+    fontSize: 16,
+    marginLeft: 14
+  },
+  bioText: {
+    fontSize: 16,
+    marginLeft: 14,
+    marginTop: 10,
+    maxHeight: 41
+  },
+  locationText: {
+    fontSize: 16,
+    marginLeft: 14,
+    marginTop: 10,
+    color: '#555'
+  },
+  content: {
+    padding: 10,
+    backgroundColor: 'white'
+  },
+  heading: {
+    fontSize: 32,
+    fontWeight: '400',
+    marginBottom: 30
   }
 })
 
