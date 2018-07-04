@@ -57,7 +57,7 @@
 
  1- Authentication:
 
-  The user can visit our platform through this link 'https://qaysdonate.herokuapp.com/'. For new users, they should go to the signup page and choose donor or beneficiary options from the dropdownlist and fill in username, email, password to register, afterwards this user will be redirected to the home page, while existing users can go to login page directly and should choose donor or beneficiary from the dropdownlist then fill in username and password to login in order to be redirected to the home page.
+  The user can visit our platform through this link 'https://donatandhelp.herokuapp.com/'. For new users, they should go to the signup page and choose donor or beneficiary options from the dropdownlist and fill in username, email, password to register, afterwards this user will be redirected to the home page, while existing users can go to login page directly and should choose donor or beneficiary from the dropdownlist then fill in username and password to login in order to be redirected to the home page.
 
  2- Home page functions:
 
