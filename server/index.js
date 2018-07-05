@@ -61,7 +61,7 @@ app.post('/deleteAllMessages', handler.deleteAllMessages);
 app.post('/editAmount', handler.editAmount);
 app.get('/*', (req, res) => {
     res.sendFile(path.resolve(path.join(__dirname, '../react-client/dist/index.html')))
-  }) // This is the defualt render for the frontend client pages from the backend side
+  });
   
 
 const PORT = process.env.PORT || 3000; 
