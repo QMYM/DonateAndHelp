@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import axios from 'axios'
 
 class Signup extends React.Component {
@@ -10,8 +9,7 @@ class Signup extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
-      value: 'true'
-
+      value: 'true',
     }
     this.onChange = this.onChange.bind(this)
     this.submitDonater = this.submitDonater.bind(this)
@@ -30,13 +28,13 @@ class Signup extends React.Component {
 
    _handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      console.log('do validate');
     }
   }
 
-  submitCompany (username, email, password, confirmPassword) { // sending post reqeust to the server
-    //Validate the email address
-    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+  // sending post reqeust to the server
+  //Validate the email address
+  submitCompany (username, email, password, confirmPassword) { 
+    let regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){
       alert("Please enter a valid email!");
     }
@@ -53,9 +51,9 @@ class Signup extends React.Component {
                   axios.post('/Company', {username: username,
                    email: email,
                    password: password
-                  }).then(function (res) {
+                  }).then(function () {
                     window.location.href = '/beneficiaries' // Go to the home page
-                  }).catch(function (err) {
+                  }).catch(function () {
                     alert('This username already exists. Please try again!!');
                   })
                    } else {
@@ -67,7 +65,7 @@ class Signup extends React.Component {
   };
   submitDonater (username, email, password, confirmPassword) { // sending post reqeust to the server
    //Validate the email address
-    var regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+    let regex = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
     if(!regex.test(email)){
       alert("Please enter a valid email!");
     }
@@ -84,9 +82,9 @@ class Signup extends React.Component {
                   axios.post('/Donater', {username: username,
                    email: email,
                    password: password
-                  }).then(function (res) {
+                  }).then(function () {
                     window.location.href = '/donor' // Go to the home page
-                  }).catch(function (err) {
+                  }).catch(function () {
                     alert('This username already exists. Please try again!!');
                   })
                    } else {

@@ -38,8 +38,8 @@ export default class AppRoute extends React.Component {
             duration='2000'
             hideNavBar={1}
             type='replace'
-            initial={true}  
-            
+            initial
+
           />
 
           <Scene
@@ -109,7 +109,7 @@ export default class AppRoute extends React.Component {
             key='ImagePickerExample'
             component={ImagePickerExample}
             title='ImagePickerExample'
-            
+
           />
 
           <Scene
