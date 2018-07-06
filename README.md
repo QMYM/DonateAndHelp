@@ -1,25 +1,27 @@
 
-# DonateAndHelp
+# Project Name
+
+>  DonateAndHelp
 
 ## Table of Contents
 
-1. Project title
-2. Motivation
-3. Project Team
-4. Tech/framework used
-   * Frondend
-   * Backend
-   * Testing
-   * API
-   * Deployment
-5. Installation
-6. Features
-7. Running tests
-   * React JS
-   * Backend
-8. Production
-9. Project repo on GitHub
-10. Contact details
+1. [Project title](#Project-title)
+1. [Motivation](#Motivation)
+1. [Project Team](#Project-Team)
+1. [Tech/framework used](#Tech/framework-used)
+    1. [Frondend](#Frontend)å
+    1. [Backend](#Backend)
+    1. [Testing](#Testing)
+    1. [API](#API)
+    1. [Deployment](#Deployment)
+1. [Installation](#Installation)
+1. [Features](#Features)
+1. [Running tests](#Running-tests)
+    1. [React JS](#React-JS)
+    1. [Backend](#Backend)
+1. [Production](#Production)
+1. [Project repo on GitHub](#Project-repo-on-GitHub)
+1. [Contact details](#Contact-details)
 
 ## Project title
 
@@ -31,10 +33,10 @@
 
 ## Project Team
  
- * Qays Trad
- * Yussur Alani
- * Mohammad Duraidi
- * Mais Muhtaseb
+ - Qays Trad
+ - Yussur Alani
+ - Mohammad Duraidi
+ - Mais Muhtaseb
 
 ## Tech/framework used
 
@@ -55,10 +57,12 @@
 ## Installation
 
  * Install React Native for frontend mobile development
-    `npm install -g create-react-native-app`
-    `create-react-native-app DonateAndHelp`
-    `cd DonateAndHelp`
-    `npm start`
+ ```sh
+    npm install -g create-react-native-app
+    create-react-native-app DonateAndHelp
+    cd DonateAndHelp
+    npm start
+ ```
  * Install Express Node.js framework:
     `npm install express`
  * Install MongoDB:
@@ -84,9 +88,11 @@
   `npm run test` 
 
 ## Production
+
    See our website [here](https://donatandhelp.herokuapp.com)
 
 ## Project repo on GitHub
+
    See our project repo [here](https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details
