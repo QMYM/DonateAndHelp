@@ -1,13 +1,10 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, FlatList, ActivityIndicator, Alert} from 'react-native'
-import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
-import { TabNavigator } from 'react-navigation' // Version can be specified in package.json
-import { Container, Header, Content, Button, Text } from 'native-base'
-import { Drawer } from 'native-base'
-import Signup from './Signup'
-import Aboutus from './Aboutus'
-import Contactus from './Contactus'
+import { StyleSheet} from 'react-native'
+import { Container,
+  Content,
+  Button,
+  Text } from 'native-base'
 
 class Main extends React.Component {
   constructor (props) {
@@ -90,10 +87,10 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D3D3D3'
+    backgroundColor: '#D3D3D3',
   },
   yussur: {
-    marginTop: 30
+    marginTop: 30,
   }
 })
 

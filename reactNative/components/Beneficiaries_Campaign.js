@@ -47,7 +47,7 @@ class Beneficiaries_Campaign extends React.Component {
         <Jiro
           label={'Type here your Fundraising Campaign Name!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignName) => this.setState({campaignName})}
         />
@@ -55,7 +55,7 @@ class Beneficiaries_Campaign extends React.Component {
         <Jiro
           label={'Type here your Fundraising Campaign Description!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignDescription) => this.setState({campaignDescription})}
         />
@@ -63,7 +63,7 @@ class Beneficiaries_Campaign extends React.Component {
         <Jiro
           label={'Type here your Fundraising Campaign Amount!'}
           // this is used as active and passive border color
-          borderColor={'#9b537a'}
+          borderColor={'tomato'}
           inputStyle={{ color: 'white' }}
           onChangeText={(campaignAmount) => this.setState({campaignAmount})}
         />
@@ -74,7 +74,7 @@ class Beneficiaries_Campaign extends React.Component {
           <Picker.Item label='Non Profit & Charity' value='Non Profit & Charity' />
         </Picker>
 
-        <Button onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
+        <Button full dark transparent onPress={() => this.submitCampaign(this.state.campaignName, this.state.description, this.state.amount, this.state.beneficiaryName, this.state.campaignImage)}
           title='Submit' />
       </View>
     )

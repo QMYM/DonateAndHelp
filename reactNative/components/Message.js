@@ -178,7 +178,7 @@ class Message extends React.Component {
                    message: this.state.messages, sender: this.state.senderMess , Mount: this.componentDidMount})}
                 >
                   <Thumbnail large
-                    source={{uri: item.image}}
+                    source={{uri: item.image || 'https://orig00.deviantart.net/1471/f/2013/110/f/a/facebook_default_pic__2____copy_by_neuronboy42-d62cgrr.jpg'}}
                   />
                   {item.username}</Text>
               </View>
