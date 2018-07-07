@@ -15,8 +15,7 @@
     1. [API](#api)
     1. [Deployment](#deployment)
 1. [Development](#development)
-    1. [Installation](#installation)
-    1. [Running Application](#running-application)
+    1. [Usage](#usage)
 1. [Features](#features)
 1. [Running tests](#running-tests)
     1. [React JS](#react-js)
@@ -62,21 +61,8 @@
 
 ## Development
 
- ### Installation
 
- * Install React Native for frontend mobile development
- ```sh
-    npm install -g create-react-native-app
-    create-react-native-app DonateAndHelp
-    cd DonateAndHelp
-    npm start
- ```
- * Install Express Node.js framework:
-    `npm install express`
- * Install MongoDB:
-    `npm install mongoose`
-
- ### Running Application
+ ### Usage
 
   * Frontend for the website
     Go to the project repo and run `npm run react`
@@ -113,10 +99,6 @@
 
    * See our website [here](https://donatandhelp.herokuapp.com)
    * See our project demo [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
-
-## Project repo on GitHub
-
-   * See our project repo [here](https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details
 
