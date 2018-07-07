@@ -20,7 +20,7 @@
     1. [React JS](#react-js)
     1. [Backend](#backend)
 1. [Production](#production)
-1. [Project repo on GitHub](#project-repo-on-gitHub)
+1. [Project repo on GitHub](#project-repo-on-github)
 1. [Contact details](#contact-details)
 
 ## Project title
