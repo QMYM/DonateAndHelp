@@ -5,25 +5,27 @@
 
 ## Table of Contents
 
-1. [Project title](#Project-title)
-1. [Motivation](#Motivation)
-1. [Project Team](#Project-Team)
-1. [Tech/framework used](#Tech/framework-used)
-    1. [Frondend](#Frontend)å
-    1. [Backend](#Backend)
-    1. [Testing](#Testing)
-    1. [API](#API)
-    1. [Deployment](#Deployment)
-1. [Installation](#Installation)
-1. [Features](#Features)
-1. [Running tests](#Running-tests)
-    1. [React JS](#React-JS)
-    1. [Backend](#Backend)
-1. [Production](#Production)
-1. [Project repo on GitHub](#Project-repo-on-GitHub)
-1. [Contact details](#Contact-details)
+1. [Project description](#project-description)
+1. [Motivation](#motivation)
+1. [Project Team](#project-team)
+1. [Frameworks used](#frameworks-used)
+    1. [Frondend](#frontend)
+    1. [Backend](#backend)
+    1. [Testing](#testing)
+    1. [API](#api)
+    1. [Deployment](#deployment)
+1. [Development](#development)
+    1. [Installation](#installation)
+    1. [Running Application](#running-application)
+1. [Features](#features)
+1. [Running tests](#running-tests)
+    1. [React JS](#react-js)
+    1. [Backend](#backend)
+1. [Production](#production)
+1. [Project repo on GitHub](#project-repo-on-github)
+1. [Contact details](#contact-details)
 
-## Project title
+## Project description
 
  Our project name is **"DonateAndHelp"** which is a platform on a website and mobile application that connects beneficiaries with donors in order to receive money donations from donors, in a response to the fundraising campaigns uploaded by beneficiaries on the platform. In addition, donors can upload their items for donations they want to donate for any beneficiaries.
 
@@ -32,29 +34,35 @@
  We founded **"DonateAndHelp"** to connect beneficiaries with donors in Jordan and MENA region, as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. **"DonateAndHelp"** can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiaries.
 
 ## Project Team
- 
+
  - Qays Trad
  - Yussur Alani
  - Mohammad Duraidi
  - Mais Muhtaseb
 
-## Tech/framework used
+## Frameworks used
 
- * Frondend:
-  1. React JS for web development
-  2. React Native for mobile development
- * Backend:
-  1. Node/Express
-  2. MongoDB
- * Testing:
-  1. Mocha
-  2. Chai
- * API:
-  1. Nexmo (sending SMS) 
- * Deployment:
-  1. Heroku 
+ ### Frondend
+ * React JS for web development
+ * React Native for mobile development
 
-## Installation
+ ### Backend
+  * Node/Express
+  * MongoDB
+
+ ### Testing
+  * Mocha
+  * Chai
+
+ ### API
+  * Nexmo (sending SMS) 
+
+ ### Deployment
+  * Heroku 
+
+## Development
+
+ ### Installation
 
  * Install React Native for frontend mobile development
  ```sh
@@ -67,6 +75,20 @@
     `npm install express`
  * Install MongoDB:
     `npm install mongoose`
+
+ ### Running Application
+
+  * Frontend for the website
+    Go to the project repo and run `npm run react`
+
+  * Frontend for the mobile app
+    Go to reactNative folder in the project repo and run `npm run start`
+
+  * MongoDB
+    Go to the project repo and run `mongod`
+
+  * Node.js/Express server
+    Go to the project repo and run `npm run server`
 
 ## Features
 
@@ -89,11 +111,12 @@
 
 ## Production
 
-   See our website [here](https://donatandhelp.herokuapp.com)
+   * See our website [here](https://donatandhelp.herokuapp.com)
+   * See our project demo [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
 
 ## Project repo on GitHub
 
-   See our project repo [here](https://github.com/QMYM/DonateAndHelp)
+   * See our project repo [here](https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details
 
