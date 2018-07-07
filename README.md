@@ -5,7 +5,7 @@
 
 ## Table of Contents
 
-1. [Project title](#project-title)
+1. [Project description](#project-description)
 1. [Motivation](#motivation)
 1. [Project Team](#project-team)
 1. [Frameworks used](#frameworks-used)
@@ -14,7 +14,13 @@
     1. [Testing](#testing)
     1. [API](#api)
     1. [Deployment](#deployment)
-1. [Installation](#installation)
+1. [Development](#development)
+    1. [Installation](#installation)
+        1. [Frontend for the website](#frontedn-for-the-website)
+        1. [Frontend for the mobile app](#frontend-for-the-mobile-app)
+        1. [MongoDB](#mongodb)
+        1. [Node.js/Express](#node.js/express)
+    1. [Running Application](#running-application)
 1. [Features](#features)
 1. [Running tests](#running-tests)
     1. [React JS](#react-js)
@@ -23,7 +29,7 @@
 1. [Project repo on GitHub](#project-repo-on-github)
 1. [Contact details](#contact-details)
 
-## Project title
+## Project description
 
  Our project name is **"DonateAndHelp"** which is a platform on a website and mobile application that connects beneficiaries with donors in order to receive money donations from donors, in a response to the fundraising campaigns uploaded by beneficiaries on the platform. In addition, donors can upload their items for donations they want to donate for any beneficiaries.
 
@@ -32,7 +38,7 @@
  We founded **"DonateAndHelp"** to connect beneficiaries with donors in Jordan and MENA region, as we have observed an alarming gap in the online donation software market in the region, so we set out to create the simplest solution around here. **"DonateAndHelp"** can build bridges between beneficiaries and donors, where beneficiaries can receive money donations online for their fundraising campaigns, as well as donors can upload their items for donations for any beneficiaries.
 
 ## Project Team
- 
+
  - Qays Trad
  - Yussur Alani
  - Mohammad Duraidi
@@ -54,7 +60,9 @@
  * Deployment:
   1. Heroku 
 
-## Installation
+## Development
+
+ 1- Installation
 
  * Install React Native for frontend mobile development
  ```sh
@@ -67,6 +75,20 @@
     `npm install express`
  * Install MongoDB:
     `npm install mongoose`
+
+ 2- Running Application
+
+  * Frontend for the website
+    Go to the project repo and run `npm run react`
+
+  * Frontend for the mobile app
+    Go to reactNative folder in the project repo and run `npm run start`
+
+  * MongoDB
+    Go to the project repo and run `mongod`
+
+  * Node.js/Express server
+    Go to the project repo and run `npm run server`
 
 ## Features
 
