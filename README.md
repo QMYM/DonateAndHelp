@@ -8,19 +8,19 @@
 1. [Project title](#project-title)
 1. [Motivation](#motivation)
 1. [Project Team](#project-team)
-1. [Tech/framework used](#tech/framework-used)
+1. [Frameworks used](#frameworks-used)
     1. [Frondend](#frontend)
     1. [Backend](#backend)
     1. [Testing](#testing)
-    1. [API](#API)
+    1. [API](#api)
     1. [Deployment](#deployment)
 1. [Installation](#installation)
 1. [Features](#features)
 1. [Running tests](#running-tests)
-    1. [React JS](#React-JS)
+    1. [React JS](#react-js)
     1. [Backend](#backend)
 1. [Production](#production)
-1. [Project repo on GitHub](#project-repo-on-GitHub)
+1. [Project repo on GitHub](#project-repo-on-gitHub)
 1. [Contact details](#contact-details)
 
 ## Project title
@@ -38,7 +38,7 @@
  - Mohammad Duraidi
  - Mais Muhtaseb
 
-## Tech/framework used
+## Frameworks used
 
  * Frondend:
   1. React JS for web development
