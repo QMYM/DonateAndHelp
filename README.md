@@ -5,23 +5,23 @@
 
 ## Table of Contents
 
-1. [Project title](#Project-title)
-1. [Motivation](#Motivation)
-1. [Project Team](#Project-Team)
-1. [Tech/framework used](#Tech/framework-used)
-    1. [Frondend](#Frontend)å
-    1. [Backend](#Backend)
-    1. [Testing](#Testing)
+1. [Project title](#project-title)
+1. [Motivation](#motivation)
+1. [Project Team](#project-team)
+1. [Tech/framework used](#tech/framework-used)
+    1. [Frondend](#frontend)
+    1. [Backend](#backend)
+    1. [Testing](#testing)
     1. [API](#API)
-    1. [Deployment](#Deployment)
-1. [Installation](#Installation)
-1. [Features](#Features)
-1. [Running tests](#Running-tests)
+    1. [Deployment](#deployment)
+1. [Installation](#installation)
+1. [Features](#features)
+1. [Running tests](#running-tests)
     1. [React JS](#React-JS)
-    1. [Backend](#Backend)
-1. [Production](#Production)
-1. [Project repo on GitHub](#Project-repo-on-GitHub)
-1. [Contact details](#Contact-details)
+    1. [Backend](#backend)
+1. [Production](#production)
+1. [Project repo on GitHub](#project-repo-on-GitHub)
+1. [Contact details](#contact-details)
 
 ## Project title
 
@@ -89,12 +89,12 @@
 
 ## Production
 
-   See our website [here](https://donatandhelp.herokuapp.com)
+   * See our website [here](https://donatandhelp.herokuapp.com)
+   * See our project demp [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
 
 ## Project repo on GitHub
 
-   See our project repo [here](https://github.com/QMYM/DonateAndHelp)
-   See our project demp [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
+   * See our project repo [here](https://github.com/QMYM/DonateAndHelp)
 
 ## Contact details
 
