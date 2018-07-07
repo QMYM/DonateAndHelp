@@ -90,7 +90,7 @@
 ## Production
 
    * See our website [here](https://donatandhelp.herokuapp.com)
-   * See our project demp [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
+   * See our project demo [here](https://www.youtube.com/watch?v=WokqUXd1j40&feature=youtu.be)
 
 ## Project repo on GitHub
 
