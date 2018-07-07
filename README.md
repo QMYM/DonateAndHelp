@@ -62,7 +62,7 @@
 
 ## Development
 
- 1- Installation
+ - Installation
 
  * Install React Native for frontend mobile development
  ```sh
@@ -76,7 +76,7 @@
  * Install MongoDB:
     `npm install mongoose`
 
- 2- Running Application
+ - Running Application
 
   * Frontend for the website
     Go to the project repo and run `npm run react`
