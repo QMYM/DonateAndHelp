@@ -42,19 +42,23 @@
 
 ## Frameworks used
 
- * Frondend:
-  1. React JS for web development
-  2. React Native for mobile development
- * Backend:
-  1. Node/Express
-  2. MongoDB
- * Testing:
-  1. Mocha
-  2. Chai
- * API:
-  1. Nexmo (sending SMS) 
- * Deployment:
-  1. Heroku 
+ ### Frondend
+ * React JS for web development
+ * React Native for mobile development
+
+ ### Backend
+  * Node/Express
+  * MongoDB
+
+ ### Testing
+  * Mocha
+  * Chai
+
+ ### API
+  * Nexmo (sending SMS) 
+
+ ### Deployment
+  * Heroku 
 
 ## Development
 
