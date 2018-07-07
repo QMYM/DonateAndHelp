@@ -15,7 +15,7 @@
     1. [API](#api)
     1. [Deployment](#deployment)
 1. [Development](#development)
-    1. [Usage](#Usage)
+    1. [Usage](#usage)
 1. [Features](#features)
 1. [Running tests](#running-tests)
     1. [React JS](#react-js)
