@@ -561,7 +561,7 @@ exports.searchDonor = function (req, res) {
     });
 };
 
-exports.imageSearchDonor = function (res) {
+exports.imageSearchDonor = function (req,res) {
     db.userCompany.find({}, function (err, data) {
         if (err) {
             throw err;
