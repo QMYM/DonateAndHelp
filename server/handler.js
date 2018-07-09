@@ -393,7 +393,7 @@ exports.sendMessage = function (req, res) {
     });
 };
 
-exports.getPhotoForMessages = function (res) {
+exports.getPhotoForMessages = function (req,res) {
     db.messageSenders(function (err, data) {
         if (err){
             throw err; 
@@ -403,7 +403,7 @@ exports.getPhotoForMessages = function (res) {
     });
 };
 
-exports.reciveMessag = function (res) {
+exports.reciveMessag = function (req,res) {
     db.MessageSchema.find({}, function (err, data) {
         if (err) {
             throw err; 
@@ -498,7 +498,7 @@ exports.searchBeneficiary = function (req, res) {
     });
 };
 
-exports.imageSearch = function (res) {
+exports.imageSearch = function (req,res) {
     db.userDonater.find({}, function (err, data) {
         if (err) {
             throw err;
@@ -508,7 +508,7 @@ exports.imageSearch = function (res) {
     });
 };
 
-exports.donorCam = function (res) {
+exports.donorCam = function (req,res) {
     db.donorCampaigns.find({}, function (err, data) {
         if (err) {
             throw err; 
@@ -518,7 +518,7 @@ exports.donorCam = function (res) {
     });
 };
 
-exports.companyCam = function (res) {
+exports.companyCam = function (req,res) {
     db.companyCampaigns.find({}, function (err, data) {
         if (err) { throw err; } else {
             res.send(data);
