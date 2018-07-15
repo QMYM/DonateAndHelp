@@ -26,7 +26,7 @@ class Main extends React.Component {
             height: 100,
             backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 70,
+            marginTop: 60,
             marginLeft: 10
           }}
             onPress={() => { Actions.Signup() }}>
@@ -41,7 +41,7 @@ class Main extends React.Component {
             height: 100,
             backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 20,
+            marginTop: 15,
             marginLeft: 10
           }}
           onPress={() => { Actions.Login() }}>
@@ -56,7 +56,7 @@ class Main extends React.Component {
             height: 100,
             backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 20,
+            marginTop: 15,
             marginLeft: 10
           }}
           onPress={() => { Actions.Aboutus() }}>
@@ -71,8 +71,8 @@ class Main extends React.Component {
             height: 100,
             backgroundColor: '#48C1C5',
             borderRadius: 100,
-            marginTop: 20,
-            marginBottom: 20,
+            marginTop: 15,
+            marginBottom: 15,
             marginLeft: 10
           }}
             onPress={() => { Actions.Contactus() }}>
@@ -87,10 +87,10 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D3D3D3',
+    backgroundColor: '#D3D3D3'
   },
   yussur: {
-    marginTop: 30,
+    marginTop: 30
   }
 })
 
