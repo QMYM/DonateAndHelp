@@ -106,7 +106,7 @@ exports.LoginCompany = function (req, res) {
             if (!data) { // if the user does not exist
                 res.sendStatus(404);
             } else {
-                bcrypt.compare(password, data.password, function (found) { 
+                bcrypt.compare(password, data.password, function (err,found) { 
                     if (found) {
                         helper.createSession(req, res, data.username); 
                     } else {
@@ -196,7 +196,7 @@ exports.LoginDonater = function (req, res) {
             if (!data) { // if the user does not exist
                 res.sendStatus(404);
             } else {
-                bcrypt.compare(password, data.password, function (found) {
+                bcrypt.compare(password, data.password, function (err,found) {
                     if (found) {
                         helper.createSession(req, res, data.username);
                     } else {
