@@ -21,7 +21,7 @@ class Home extends React.Component {
     super(props)
     this.state = {
       drawerType: 'overlay',
-      openDrawerOffset: 200,
+      openDrawerOffset: 250,
       closedDrawerOffset: 0,
       panOpenMask: 0.1,
       panCloseMask: 0.9,
