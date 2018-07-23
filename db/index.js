@@ -1,7 +1,7 @@
 let mongoose = require('mongoose') // Import mongoose module
 
 mongoose.Promise = global.Promise
-// mongoose.connect('mongodb://localhost/Donate')
+// mongoose.connect('mongodb://localhost/Donate', { useMongoClient: true })
 
 // This is to connect the backend to an external DB hosted on https://mlab.com/
 mongoose.connect('mongodb://qays:qays123@ds129670.mlab.com:29670/donate')
