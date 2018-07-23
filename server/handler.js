@@ -49,21 +49,22 @@ exports.Signup = function (req, res) {
 // hashing the password and create session for the user
 // and saving the informtion in the company schema 
 exports.SignupCompany = function (req, res) { 
-    let username = req.body.username;
+    let username = req.body.username; 
     let password = req.body.password; 
     let email = req.body.email; 
-    db.userCompany.find({
+    db.userCompany.find({ 
         username: username
     }, function (err, data) {
         if (err) {
             res.sendStatus(404); 
+        } else {
             if (data.length > 0) { 
                 res.sendStatus(404);
             } else {
                 bcrypt.genSalt(saltRounds, function (err, salt) { 
                     if (err) {
                         throw err;
-                    }
+                    } 
                     bcrypt.hash(password, salt, function (err, hash) { 
                         if (err) {
                             throw err;
@@ -73,11 +74,11 @@ exports.SignupCompany = function (req, res) {
                             email: email,
                             password: hash
                         }); 
-                        user.save(function (err, data) { 
+                        user.save(function (err, data) {
                             if (err) {
                                 throw err;
-                            }
-                            helper.createSession(req, res, data.username);
+                            } 
+                            helper.createSession(req, res, data.username); 
                         });
                     });
                 });
